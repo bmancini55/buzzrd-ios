@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Room.h"
 
 @interface RoomsTableViewController : UITableViewController <CLLocationManagerDelegate>
 
 @property NSArray *rooms;
 @property CLLocationManager *locationManager;
+@property CLLocation *currentLocation;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+
+-(IBAction)unwindFromNewRoom:(UIStoryboardSegue*)segue;
+
+-(void)addRoomToTable:(Room *)room;
 
 @end

@@ -12,6 +12,16 @@
 
 @implementation RoomService
 
++(Room*)deserializeFromJson:(NSDictionary *)json
+{
+    Room *room = [[Room alloc] init];
+    room.idroom = json[@"_id"];
+    room.name = json[@"name"];
+    room.lon = json[@"lon"];
+    room.lat = json[@"lat"];
+    return room;
+}
+
 +(void)getRooms:(void (^)(NSArray *theRooms))callback
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -29,21 +39,11 @@
                 NSMutableArray *temp = [[NSMutableArray alloc] init];
                 for(NSDictionary *dic in results)
                 {
-                    Room *room = [[Room alloc] init];
-                    room.idroom = dic[@"_id"];
-                    room.name = dic[@"name"];
-                    room.lon = dic[@"lon"];
-                    room.lat = dic[@"lat"];
+                    Room* room = [RoomService deserializeFromJson:dic];
                     [temp addObject:room];
                 }
                 results = [[NSArray alloc]initWithArray:temp];
-             
-                // fire rooms loaded event
-                //[[NSNotificationCenter defaultCenter]
-                // postNotificationName:@"RoomsLoadedSuccessfully"
-                //            object:results];
                 
-                // return the results;
                 callback(results);                
             } else
             {
@@ -54,6 +54,37 @@
         failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
+}
+
++(void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:newRoom.name forKey:@"name"];
+    [parameters setObject:newRoom.lon forKey:@"lon"];
+    [parameters setObject:newRoom.lat forKey:@"lat"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager
+        POST:@"http://derpturkey.listmill.com:8055/api/rooms"
+  parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+        if(responseObject[@"success"])
+        {
+            NSDictionary *json = responseObject[@"results"];
+            Room *room = [RoomService deserializeFromJson:json];
+            
+            callback(room);
+            
+        } else {
+            NSLog(@"Response was not successful");
+        }
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error)
+     {
+         NSLog(@"Error: %@", error);
+     }];
 }
 
 @end

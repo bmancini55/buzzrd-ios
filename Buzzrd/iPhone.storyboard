@@ -46,7 +46,7 @@
                     <navigationItem key="navigationItem" title="Rooms" id="Rbf-Vh-5xn">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bGW-lq-ElM">
                             <connections>
-                                <segue destination="ytx-T6-B8O" kind="modal" id="egp-j3-5bg"/>
+                                <segue destination="XVQ-Cv-sKq" kind="modal" identifier="AddRoom" id="IWY-nW-zts"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -58,48 +58,72 @@
             </objects>
             <point key="canvasLocation" x="1105" y="-361"/>
         </scene>
-        <!--Table View Controller - New Room-->
-        <scene sceneID="sne-if-7qg">
+        <!--New Room View Controller - Add Room-->
+        <scene sceneID="2iY-J6-2CG">
             <objects>
-                <tableViewController id="sUL-GS-0Le" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hOn-dB-NmQ">
+                <tableViewController id="hw4-tF-nTD" customClass="NewRoomViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0A5-K1-3Iw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oYV-rs-gle">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oYV-rs-gle" id="KjH-sI-oKf">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Name" id="sAx-kT-Zx1">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HJT-mO-IGQ">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HJT-mO-IGQ" id="2F7-Vl-EXt">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VIZ-7l-afq">
+                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Room" id="J4b-tA-ssY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8YP-2D-CAR"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Qbh-qq-096"/>
+                    <navigationItem key="navigationItem" title="Add Room" id="GhB-YF-UVR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bHj-gu-qrL">
+                            <connections>
+                                <segue destination="k6b-Co-TRp" kind="unwind" identifier="Cancel" unwindAction="unwindFromNewRoom:" id="75f-fo-5ep"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="KPt-vx-Ff0">
+                            <connections>
+                                <segue destination="k6b-Co-TRp" kind="unwind" identifier="CreateRoom" unwindAction="unwindFromNewRoom:" id="CVp-Oq-qgr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="VIZ-7l-afq" id="2Jh-i7-mL8"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lAo-fC-PC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsV-Vw-0ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="k6b-Co-TRp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2273" y="-676"/>
+            <point key="canvasLocation" x="2134" y="-745"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="VuF-Nh-gCq">
+        <scene sceneID="cQI-Vj-tnI">
             <objects>
-                <navigationController definesPresentationContext="YES" id="ytx-T6-B8O" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x4m-Qw-fZX">
+                <navigationController definesPresentationContext="YES" id="XVQ-Cv-sKq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ebg-WN-TFg">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="sUL-GS-0Le" kind="relationship" relationship="rootViewController" id="duS-m8-lTf"/>
+                        <segue destination="hw4-tF-nTD" kind="relationship" relationship="rootViewController" id="GW2-Hj-Dbw"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4fS-2S-hKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NpD-gl-qu7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1739" y="-676"/>
+            <point key="canvasLocation" x="1600" y="-745"/>
         </scene>
         <!--Room View Controller-->
         <scene sceneID="eqk-EW-v4z">

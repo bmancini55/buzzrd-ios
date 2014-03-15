@@ -10,6 +10,7 @@
 #import "RoomService.h"
 #import "RoomsTableViewController.h"
 #import "RoomViewController.h"
+#import "NewRoomViewController.h"
 
 @implementation RoomsTableViewController
 
@@ -55,6 +56,7 @@
      didUpdateLocations:(NSArray*)locations{
     
     CLLocation *location = [locations lastObject];
+    self.currentLocation = location;
     NSLog(@"latitude %+.6f, latitute %+.6f\n",
     location.coordinate.latitude,
     location.coordinate.longitude);
@@ -97,5 +99,41 @@
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"AddRoom"])
+    {
+        UINavigationController *navController = segue.destinationViewController;
+        NewRoomViewController *newRoomViewController = (NewRoomViewController *)navController.topViewController;
+        newRoomViewController.currentLocation = self.currentLocation;
+    }
+}
+
+-(IBAction)unwindFromNewRoom:(UIStoryboardSegue*)segue
+{
+    if([segue.identifier isEqualToString:@"CreateRoom"])
+    {
+        NewRoomViewController *newRoomViewController = segue.sourceViewController;
+        Room *room = newRoomViewController.room;
+        NSLog(@"Creating room called %@ at lon %@ and lat %@", room.name, room.lon, room.lat);
+        
+        [RoomService createRoom:room
+                       callback:^(Room* createdRoom){
+                           [self addRoomToTable:createdRoom];
+                           NSLog(@"Created room: %@", createdRoom.idroom);	
+                       }];
+        
+    }
+}
+
+-(void)addRoomToTable:(Room *)room
+{
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.rooms];
+    [temp insertObject:room atIndex:0];
+    self.rooms = [NSArray arrayWithArray:temp];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 @end

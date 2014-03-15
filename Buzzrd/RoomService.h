@@ -12,6 +12,7 @@
 @interface RoomService : NSObject
 
 + (void)getRooms:(void (^)(NSArray *theRooms))callback;
-//+ (id)saveRoom:(Room *)aRoom;
+
++ (void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback;
 
 @end
