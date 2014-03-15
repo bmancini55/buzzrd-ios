@@ -90,6 +90,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     RoomViewController *roomViewController = [[RoomViewController alloc] init];
@@ -97,6 +98,7 @@
     roomViewController.room = self.rooms[indexPath.row];
     
     [self.navigationController pushViewController:roomViewController animated:YES];
+     */
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -120,7 +122,7 @@
         [RoomService createRoom:room
                        callback:^(Room* createdRoom){
                            [self addRoomToTable:createdRoom];
-                           NSLog(@"Created room: %@", createdRoom.idroom);	
+                           NSLog(@"Created room: %@", createdRoom.idroom);
                        }];
         
     }
