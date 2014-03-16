@@ -22,7 +22,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWi	thNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = self.room.name;        
     }
@@ -42,12 +42,9 @@
     
     
     // configure this biatch
-    self.view.backgroundColor = [UIColor whiteColor];
-    
     UIScrollView *scrollView = [[UIScrollView alloc]
                                 initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,
                                                          self.view.frame.size.height-60)];
-    scrollView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:scrollView];
     
     _inputView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width, 60)];
@@ -56,7 +53,8 @@
     
     UITextField *textField = [[UITextField alloc] init];
     textField.frame = CGRectMake(40, 10, _inputView.frame.size.width - 80, _inputView.frame.size.height - 20);
-    textField.borderStyle = UITextBorderStyleLine;
+    textField.borderStyle = UITextBorderStyleLine
+    ;
     textField.keyboardType = UIKeyboardTypeDefault;
     textField.delegate = self;
     textField.backgroundColor = [UIColor whiteColor];
