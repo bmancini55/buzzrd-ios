@@ -22,9 +22,10 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWi	thNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = self.room.name;        
+        self.title = self.room.name;
+        messages = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -38,7 +39,7 @@
     // connect to the room
     NSLog(@"Connecting to room %@", self.room.name);
     _socket = [[SocketIO alloc] initWithDelegate:self];
-    [_socket connectToHost:@"derpturkey.listmill.com" onPort:8055];
+    [_socket connectToHost:@"192.168.0.150" onPort:5050];
     
     
     // configure this biatch
@@ -125,21 +126,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Room"];
-    cell.textLabel.text = @"";
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Room"];
+    }
+    cell.textLabel.text = messages[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
 }
 
 
@@ -156,7 +158,7 @@
 
 -(void)socketIODidConnect:(SocketIO *)socket
 {
-    NSLog(@"Websocket connected");
+    NSLog(@"Websocket connected, joining room: %@", self.room.idroom);
     [_socket sendEvent:@"join" withData:self.room.idroom];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
@@ -169,7 +171,19 @@
 }
 -(void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
-    NSLog(@"Received event: %@", packet.data);
+    if([packet.name isEqualToString:@"message"]) {
+        NSLog(@"Recieved message");
+        NSString *message = packet.args[0];
+        [messages addObject:message];
+        
+        NSIndexPath *path = [NSIndexPath indexPathForRow:messages.count-1 inSection:0];
+
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
+        
+    
 }
 
 

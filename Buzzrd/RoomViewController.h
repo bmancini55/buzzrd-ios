@@ -11,6 +11,9 @@
 #import "Room.h"
 
 @interface RoomViewController : UITableViewController <SocketIODelegate, UITextFieldDelegate>
+{
+    NSMutableArray *messages;
+}
 
 @property Room* room;
 
