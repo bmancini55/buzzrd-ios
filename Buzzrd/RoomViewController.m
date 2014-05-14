@@ -39,7 +39,7 @@
     // connect to the room
     NSLog(@"Connecting to room %@", self.room.name);
     _socket = [[SocketIO alloc] initWithDelegate:self];
-    [_socket connectToHost:@"192.168.0.150" onPort:5050];
+    [_socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
     
     
     // configure this biatch

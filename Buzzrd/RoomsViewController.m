@@ -8,11 +8,11 @@
 
 #import "Room.h"
 #import "RoomService.h"
-#import "RoomsTableViewController.h"
+#import "RoomsViewController.h"
 #import "RoomViewController.h"
 #import "NewRoomViewController.h"
 
-@implementation RoomsTableViewController
+@implementation RoomsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

@@ -6,17 +6,15 @@
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
 //
 
-#import "BuzzrdAppDelegate.h"
-#import "RoomsTableViewController.h"
+#import "AppDelegate.h"
+#import "RoomsViewController.h"
 
-@implementation BuzzrdAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*
-    RoomsTableViewController *roomsTableViewController = [[RoomsTableViewController alloc]
-                                                          initWithStyle:UITableViewStylePlain];
-    UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:roomsTableViewController];
+    RoomsViewController *rootController = [[RoomsViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:rootController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[roomsNavController];
@@ -25,7 +23,6 @@
     // initialize the window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabBarController;
-    */
      
     [self.window makeKeyAndVisible];
     return YES;

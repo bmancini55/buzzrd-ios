@@ -28,7 +28,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager
      
-            GET:@"http://192.168.0.150:5050/api/rooms"
+            GET:@"http://derpturkey.listmill.com:5050/api/rooms"
      parameters:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
          
@@ -66,7 +66,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager
-        POST:@"http://192.168.0.150:5050/api/rooms"
+        POST:@"http://derpturkey.listmill.com:5050/api/rooms"
   parameters:parameters
      success:^(NSURLSessionDataTask *task, id responseObject)
      {

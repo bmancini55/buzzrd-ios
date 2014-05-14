@@ -12,14 +12,14 @@
 		35BA0DFD18CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
 		35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35BA0E0118CF37A100F5B339 /* InfoPlist.strings */; };
 		35BA0E0518CF37A100F5B339 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E0418CF37A100F5B339 /* main.m */; };
-		35BA0E0918CF37A100F5B339 /* BuzzrdAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E0818CF37A100F5B339 /* BuzzrdAppDelegate.m */; };
+		35BA0E0918CF37A100F5B339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E0818CF37A100F5B339 /* AppDelegate.m */; };
 		35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35BA0E0A18CF37A100F5B339 /* Images.xcassets */; };
 		35BA0E1218CF37A100F5B339 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0E1118CF37A100F5B339 /* XCTest.framework */; };
 		35BA0E1318CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0E1418CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
 		35BA0E1C18CF37A100F5B339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35BA0E1A18CF37A100F5B339 /* InfoPlist.strings */; };
 		35BA0E1E18CF37A100F5B339 /* BuzzrdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */; };
-		35BA0E2E18CF383100F5B339 /* RoomsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E2B18CF383100F5B339 /* RoomsTableViewController.m */; };
+		35BA0E2E18CF383100F5B339 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E2B18CF383100F5B339 /* RoomsViewController.m */; };
 		35BA0E2F18CF383100F5B339 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E2D18CF383100F5B339 /* RoomViewController.m */; };
 		35BA0E3518CF385200F5B339 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E3218CF385200F5B339 /* RoomService.m */; };
 		35BA0E3618CF385200F5B339 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E3418CF385200F5B339 /* LocationService.m */; };
@@ -58,16 +58,16 @@
 		35BA0E0218CF37A100F5B339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35BA0E0418CF37A100F5B339 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		35BA0E0618CF37A100F5B339 /* Buzzrd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Buzzrd-Prefix.pch"; sourceTree = "<group>"; };
-		35BA0E0718CF37A100F5B339 /* BuzzrdAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuzzrdAppDelegate.h; sourceTree = "<group>"; };
-		35BA0E0818CF37A100F5B339 /* BuzzrdAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuzzrdAppDelegate.m; sourceTree = "<group>"; };
+		35BA0E0718CF37A100F5B339 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		35BA0E0818CF37A100F5B339 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		35BA0E0A18CF37A100F5B339 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		35BA0E1018CF37A100F5B339 /* BuzzrdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuzzrdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0E1118CF37A100F5B339 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		35BA0E1918CF37A100F5B339 /* BuzzrdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuzzrdTests-Info.plist"; sourceTree = "<group>"; };
 		35BA0E1B18CF37A100F5B339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuzzrdTests.m; sourceTree = "<group>"; };
-		35BA0E2A18CF383100F5B339 /* RoomsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsTableViewController.h; sourceTree = "<group>"; };
-		35BA0E2B18CF383100F5B339 /* RoomsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsTableViewController.m; sourceTree = "<group>"; };
+		35BA0E2A18CF383100F5B339 /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsViewController.h; sourceTree = "<group>"; };
+		35BA0E2B18CF383100F5B339 /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsViewController.m; sourceTree = "<group>"; };
 		35BA0E2C18CF383100F5B339 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
 		35BA0E2D18CF383100F5B339 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
 		35BA0E3118CF385200F5B339 /* RoomService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomService.h; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
-				35BA0E0718CF37A100F5B339 /* BuzzrdAppDelegate.h */,
-				35BA0E0818CF37A100F5B339 /* BuzzrdAppDelegate.m */,
+				35BA0E0718CF37A100F5B339 /* AppDelegate.h */,
+				35BA0E0818CF37A100F5B339 /* AppDelegate.m */,
 				35BA0F8E18D2C35A00F5B339 /* iPhone.storyboard */,
 				35BA0E4118CF38D500F5B339 /* Libraries */,
 				35BA0E3718CF385C00F5B339 /* Models */,
@@ -209,8 +209,8 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35BA0E2A18CF383100F5B339 /* RoomsTableViewController.h */,
-				35BA0E2B18CF383100F5B339 /* RoomsTableViewController.m */,
+				35BA0E2A18CF383100F5B339 /* RoomsViewController.h */,
+				35BA0E2B18CF383100F5B339 /* RoomsViewController.m */,
 				35BA0E2C18CF383100F5B339 /* RoomViewController.h */,
 				35BA0E2D18CF383100F5B339 /* RoomViewController.m */,
 				35FC420F18D4033F00C5CDEB /* NewRoomViewController.h */,
@@ -418,8 +418,8 @@
 				35BA0E0518CF37A100F5B339 /* main.m in Sources */,
 				35BA0E3E18CF386700F5B339 /* User.m in Sources */,
 				35FC421118D4033F00C5CDEB /* NewRoomViewController.m in Sources */,
-				35BA0E0918CF37A100F5B339 /* BuzzrdAppDelegate.m in Sources */,
-				35BA0E2E18CF383100F5B339 /* RoomsTableViewController.m in Sources */,
+				35BA0E0918CF37A100F5B339 /* AppDelegate.m in Sources */,
+				35BA0E2E18CF383100F5B339 /* RoomsViewController.m in Sources */,
 				35BA0E8618CF394800F5B339 /* SocketIO.m in Sources */,
 				35BA0E3518CF385200F5B339 /* RoomService.m in Sources */,
 				35BA0E3618CF385200F5B339 /* LocationService.m in Sources */,

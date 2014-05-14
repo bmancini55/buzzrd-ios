@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Room.h"
 
-@interface RoomsTableViewController : UITableViewController <CLLocationManagerDelegate>
+@interface RoomsViewController : UITableViewController <CLLocationManagerDelegate>
 
 @property NSArray *rooms;
 @property CLLocationManager *locationManager;
