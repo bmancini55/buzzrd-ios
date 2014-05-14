@@ -1,0 +1,20 @@
+//
+//  BuzzrdAPI.h
+//  Buzzrd
+//
+//  Created by Brian Mancini on 5/13/14.
+//  Copyright (c) 2014 Brian Mancini. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "RoomService.h"
+#import "LocationService.h"
+
+@interface BuzzrdAPI : NSObject
+
++(BuzzrdAPI *) current;
+
+@property (strong, nonatomic) RoomService *roomService;
+@property (strong, nonatomic) LocationService *locationService;
+
+@end

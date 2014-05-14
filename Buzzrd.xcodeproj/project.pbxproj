@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B419230C39009E8681 /* BuzzrdAPI.m */; };
+		35A828B819230F03009E8681 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B719230F03009E8681 /* ServiceBase.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0DFB18CF37A100F5B339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */; };
 		35BA0DFD18CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35A828B319230C39009E8681 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzrdAPI.h; sourceTree = "<group>"; };
+		35A828B419230C39009E8681 /* BuzzrdAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzrdAPI.m; sourceTree = "<group>"; };
+		35A828B619230F03009E8681 /* ServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceBase.h; sourceTree = "<group>"; };
+		35A828B719230F03009E8681 /* ServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceBase.m; sourceTree = "<group>"; };
 		35BA0DF518CF37A100F5B339 /* Buzzrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzzrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0DF818CF37A100F5B339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,12 +171,14 @@
 			children = (
 				35BA0E0718CF37A100F5B339 /* AppDelegate.h */,
 				35BA0E0818CF37A100F5B339 /* AppDelegate.m */,
-				35BA0F8E18D2C35A00F5B339 /* iPhone.storyboard */,
+				35A828B319230C39009E8681 /* BuzzrdAPI.h */,
+				35A828B419230C39009E8681 /* BuzzrdAPI.m */,
 				35BA0E4118CF38D500F5B339 /* Libraries */,
 				35BA0E3718CF385C00F5B339 /* Models */,
 				35BA0E3018CF384500F5B339 /* Services */,
 				35BA0E2918CF380300F5B339 /* Controllers */,
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
+				35BA0F8E18D2C35A00F5B339 /* iPhone.storyboard */,
 				35CA8C8318D2CCA200B35F23 /* Images */,
 				35BA0DFF18CF37A100F5B339 /* Supporting Files */,
 			);
@@ -222,6 +230,8 @@
 		35BA0E3018CF384500F5B339 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				35A828B619230F03009E8681 /* ServiceBase.h */,
+				35A828B719230F03009E8681 /* ServiceBase.m */,
 				35BA0E3118CF385200F5B339 /* RoomService.h */,
 				35BA0E3218CF385200F5B339 /* RoomService.m */,
 				35BA0E3318CF385200F5B339 /* LocationService.h */,
@@ -416,6 +426,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35BA0E0518CF37A100F5B339 /* main.m in Sources */,
+				35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */,
+				35A828B819230F03009E8681 /* ServiceBase.m in Sources */,
 				35BA0E3E18CF386700F5B339 /* User.m in Sources */,
 				35FC421118D4033F00C5CDEB /* NewRoomViewController.m in Sources */,
 				35BA0E0918CF37A100F5B339 /* AppDelegate.m in Sources */,

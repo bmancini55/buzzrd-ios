@@ -13,8 +13,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // create root view
     RoomsViewController *rootController = [[RoomsViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[roomsNavController];

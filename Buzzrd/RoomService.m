@@ -1,6 +1,6 @@
 //
 //  RoomService.m
-//  FizBuz
+//  Buzzrd
 //
 //  Created by Brian Mancini on 3/9/14.
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
@@ -22,13 +22,11 @@
     return room;
 }
 
-+(void)getRooms:(void (^)(NSArray *theRooms))callback
+-(void)getRooms:(void (^)(NSArray *theRooms))callback
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    AFHTTPSessionManager *manager = [self getJSONRequestManager];
     [manager
-     
-            GET:@"http://derpturkey.listmill.com:5050/api/rooms"
+            GET:[self.apiURLBase stringByAppendingString:@"/api/rooms"]
      parameters:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
          
@@ -56,17 +54,17 @@
         }];
 }
 
-+(void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback
+-(void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:newRoom.name forKey:@"name"];
     [parameters setObject:newRoom.lon forKey:@"lon"];
     [parameters setObject:newRoom.lat forKey:@"lat"];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [self getJSONRequestManager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager
-        POST:@"http://derpturkey.listmill.com:5050/api/rooms"
+        POST:[self.apiURLBase stringByAppendingString:@"/api/rooms"]
   parameters:parameters
      success:^(NSURLSessionDataTask *task, id responseObject)
      {

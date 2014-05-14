@@ -1,13 +1,13 @@
 //
 //  RoomsTableViewController.m
-//  FizBuz
+//  Buzzrd
 //
 //  Created by Brian Mancini on 3/9/14.
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
 //
 
 #import "Room.h"
-#import "RoomService.h"
+#import "BuzzrdAPI.h"
 #import "RoomsViewController.h"
 #import "RoomViewController.h"
 #import "NewRoomViewController.h"
@@ -40,7 +40,7 @@
     
     
     
-    [RoomService getRooms:^(NSArray *theRooms) {
+    [[BuzzrdAPI current].roomService getRooms:^(NSArray *theRooms) {
         
         NSLog(@"Rooms have loaded");
         
@@ -117,7 +117,7 @@
         Room *room = newRoomViewController.room;
         NSLog(@"Creating room called %@ at lon %@ and lat %@", room.name, room.lon, room.lat);
         
-        [RoomService createRoom:room
+        [[BuzzrdAPI current].roomService createRoom:room
                        callback:^(Room* createdRoom){
                            [self addRoomToTable:createdRoom];
                            NSLog(@"Created room: %@", createdRoom.idroom);
