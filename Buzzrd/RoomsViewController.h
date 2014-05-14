@@ -16,10 +16,7 @@
 @property CLLocationManager *locationManager;
 @property CLLocation *currentLocation;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
--(IBAction)unwindFromNewRoom:(UIStoryboardSegue*)segue;
-
 -(void)addRoomToTable:(Room *)room;
+-(void)addRoomTouch;
 
 @end

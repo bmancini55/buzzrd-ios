@@ -10,11 +10,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Room.h"
 
-@interface NewRoomViewController : UITableViewController
+@interface NewRoomViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) CLLocation *currentLocation;
-@property (strong, nonatomic) Room *room;
+@property (strong, nonatomic) void(^onRoomCreated)(Room *created);
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) UITableViewCell *nameCell;
+@property (strong, nonatomic) UITextField *nameTextField;
 
 @end

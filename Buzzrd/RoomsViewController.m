@@ -18,17 +18,19 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        
         self.title = @"Rooms";
         self.tabBarItem.title = @"Rooms";
+        
+        UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
+        self.navigationItem.rightBarButtonItem = addRoomItem;
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
-    
-    [self.spinner startAnimating];
+    [super loadView];
     
     if(self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
@@ -38,16 +40,10 @@
     //self.locationManager.distanceFilter = 100; // meters
     [self.locationManager startMonitoringSignificantLocationChanges];    
     
-    
-    
-    [[BuzzrdAPI current].roomService getRooms:^(NSArray *theRooms) {
-        
-        NSLog(@"Rooms have loaded");
-        
+    [[BuzzrdAPI current].roomService getRooms:^(NSArray *theRooms) {        
+        NSLog(@"%d rooms were loaded", theRooms.count);
         self.rooms = theRooms;
         [self.tableView reloadData];
-        
-        [self.spinner stopAnimating];
     }];
     
 }
@@ -84,7 +80,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Room"];
-    cell.textLabel.text = [self.rooms[indexPath.row] name];    
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Room"];
+    }
+    cell.textLabel.text = [self.rooms[indexPath.row] name];
     return cell;
 }
 
@@ -99,31 +99,17 @@
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"AddRoom"])
-    {
-        UINavigationController *navController = segue.destinationViewController;
-        NewRoomViewController *newRoomViewController = (NewRoomViewController *)navController.topViewController;
-        newRoomViewController.currentLocation = self.currentLocation;
-    }
-}
 
--(IBAction)unwindFromNewRoom:(UIStoryboardSegue*)segue
+-(void)addRoomTouch
 {
-    if([segue.identifier isEqualToString:@"CreateRoom"])
+    NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]init];
+    newRoomViewController.onRoomCreated = ^(Room *newRoom)
     {
-        NewRoomViewController *newRoomViewController = segue.sourceViewController;
-        Room *room = newRoomViewController.room;
-        NSLog(@"Creating room called %@ at lon %@ and lat %@", room.name, room.lon, room.lat);
-        
-        [[BuzzrdAPI current].roomService createRoom:room
-                       callback:^(Room* createdRoom){
-                           [self addRoomToTable:createdRoom];
-                           NSLog(@"Created room: %@", createdRoom.idroom);
-                       }];
-        
-    }
+        [self addRoomToTable:newRoom];
+    };
+    
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newRoomViewController];
+    [self presentViewController:navController animated:true completion:nil];
 }
 
 -(void)addRoomToTable:(Room *)room
