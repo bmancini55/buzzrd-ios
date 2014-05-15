@@ -80,7 +80,7 @@
 		35BA0E0618CF37A100F5B339 /* Buzzrd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Buzzrd-Prefix.pch"; sourceTree = "<group>"; };
 		35BA0E0718CF37A100F5B339 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		35BA0E0818CF37A100F5B339 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		35BA0E0A18CF37A100F5B339 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		35BA0E0A18CF37A100F5B339 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Buzzrd/Images.xcassets; sourceTree = "<group>"; };
 		35BA0E1018CF37A100F5B339 /* BuzzrdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuzzrdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0E1118CF37A100F5B339 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		35BA0E1918CF37A100F5B339 /* BuzzrdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuzzrdTests-Info.plist"; sourceTree = "<group>"; };
@@ -162,6 +162,19 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		359FBA3E19246FCC00704F2B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				35BA0E0718CF37A100F5B339 /* AppDelegate.h */,
+				35BA0E0818CF37A100F5B339 /* AppDelegate.m */,
+				35A828B319230C39009E8681 /* BuzzrdAPI.h */,
+				35A828B419230C39009E8681 /* BuzzrdAPI.m */,
+				359FBA3519245E2100704F2B /* BuzzrdNav.h */,
+				359FBA3619245E2100704F2B /* BuzzrdNav.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		35BA0DEC18CF37A100F5B339 = {
 			isa = PBXGroup;
 			children = (
@@ -198,18 +211,12 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
-				359FBA2B192327A100704F2B /* Views */,
+				359FBA3E19246FCC00704F2B /* Application */,
 				359FBA2A1923278D00704F2B /* Utils */,
-				35BA0E0718CF37A100F5B339 /* AppDelegate.h */,
-				35BA0E0818CF37A100F5B339 /* AppDelegate.m */,
-				35A828B319230C39009E8681 /* BuzzrdAPI.h */,
-				35A828B419230C39009E8681 /* BuzzrdAPI.m */,
-				359FBA3519245E2100704F2B /* BuzzrdNav.h */,
-				359FBA3619245E2100704F2B /* BuzzrdNav.m */,
 				35BA0E3718CF385C00F5B339 /* Models */,
 				35BA0E3018CF384500F5B339 /* Services */,
 				35BA0E2918CF380300F5B339 /* Controllers */,
-				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
+				359FBA2B192327A100704F2B /* Views */,
 				35BA0E4118CF38D500F5B339 /* Libraries */,
 				35CA8C8318D2CCA200B35F23 /* Images */,
 				35BA0DFF18CF37A100F5B339 /* Supporting Files */,
@@ -320,6 +327,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
 				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
 				35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */,
 			);
