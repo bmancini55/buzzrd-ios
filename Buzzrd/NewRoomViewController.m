@@ -76,7 +76,7 @@
 
 -(void)cancelTouch
 {
-    [self dismissViewControllerAnimated:true completion:^{ }];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(void)doneTouch

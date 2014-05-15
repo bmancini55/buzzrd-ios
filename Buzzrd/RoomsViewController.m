@@ -8,9 +8,9 @@
 
 #import "Room.h"
 #import "BuzzrdAPI.h"
+#import "BuzzrdNav.h"
 #import "RoomsViewController.h"
-#import "RoomViewController.h"
-#import "NewRoomViewController.h"
+
 
 @implementation RoomsViewController
 
@@ -19,11 +19,6 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        self.title = @"Rooms";
-        self.tabBarItem.title = @"Rooms";
-        
-        UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
-        self.navigationItem.rightBarButtonItem = addRoomItem;
     }
     return self;
 }
@@ -31,6 +26,10 @@
 - (void)loadView
 {
     [super loadView];
+    
+    self.title = @"Rooms";
+    UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
+    self.navigationItem.rightBarButtonItem = addRoomItem;
     
     if(self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
@@ -92,24 +91,18 @@
 {    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    RoomViewController *roomViewController = [[RoomViewController alloc] init];
-    roomViewController.hidesBottomBarWhenPushed=YES;
-    roomViewController.room = self.rooms[indexPath.row];
-    
+    UIViewController *roomViewController = [BuzzrdNav createRoomViewController:self.rooms[indexPath.row]];
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
 
 -(void)addRoomTouch
 {
-    NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]init];
-    newRoomViewController.onRoomCreated = ^(Room *newRoom)
+    UIViewController *newRoomViewController = [BuzzrdNav createNewRoomViewController:^(Room *newRoom)
     {
         [self addRoomToTable:newRoom];
-    };
-    
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newRoomViewController];
-    [self presentViewController:navController animated:true completion:nil];
+    }];
+    [self presentViewController:newRoomViewController animated:true completion:nil];
 }
 
 -(void)addRoomToTable:(Room *)room

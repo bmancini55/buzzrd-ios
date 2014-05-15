@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		359FBA2E192327BD00704F2B /* FrameUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA2D192327BD00704F2B /* FrameUtils.m */; };
+		359FBA31192456CC00704F2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA30192456CC00704F2B /* LoginViewController.m */; };
+		359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3619245E2100704F2B /* BuzzrdNav.m */; };
+		359FBA3A192466F300704F2B /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA39192466F300704F2B /* NewUserViewController.m */; };
 		35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B419230C39009E8681 /* BuzzrdAPI.m */; };
 		35A828B819230F03009E8681 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B719230F03009E8681 /* ServiceBase.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
@@ -54,6 +57,12 @@
 /* Begin PBXFileReference section */
 		359FBA2C192327BD00704F2B /* FrameUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameUtils.h; sourceTree = "<group>"; };
 		359FBA2D192327BD00704F2B /* FrameUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameUtils.m; sourceTree = "<group>"; };
+		359FBA2F192456CC00704F2B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		359FBA30192456CC00704F2B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		359FBA3519245E2100704F2B /* BuzzrdNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzrdNav.h; sourceTree = "<group>"; };
+		359FBA3619245E2100704F2B /* BuzzrdNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzrdNav.m; sourceTree = "<group>"; };
+		359FBA38192466F300704F2B /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
+		359FBA39192466F300704F2B /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
 		35A828B319230C39009E8681 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzrdAPI.h; sourceTree = "<group>"; };
 		35A828B419230C39009E8681 /* BuzzrdAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzrdAPI.m; sourceTree = "<group>"; };
 		35A828B619230F03009E8681 /* ServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceBase.h; sourceTree = "<group>"; };
@@ -192,6 +201,8 @@
 				35BA0E0818CF37A100F5B339 /* AppDelegate.m */,
 				35A828B319230C39009E8681 /* BuzzrdAPI.h */,
 				35A828B419230C39009E8681 /* BuzzrdAPI.m */,
+				359FBA3519245E2100704F2B /* BuzzrdNav.h */,
+				359FBA3619245E2100704F2B /* BuzzrdNav.m */,
 				35BA0E3718CF385C00F5B339 /* Models */,
 				35BA0E3018CF384500F5B339 /* Services */,
 				35BA0E2918CF380300F5B339 /* Controllers */,
@@ -235,12 +246,16 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				359FBA2F192456CC00704F2B /* LoginViewController.h */,
+				359FBA30192456CC00704F2B /* LoginViewController.m */,
 				35BA0E2A18CF383100F5B339 /* RoomsViewController.h */,
 				35BA0E2B18CF383100F5B339 /* RoomsViewController.m */,
 				35BA0E2C18CF383100F5B339 /* RoomViewController.h */,
 				35BA0E2D18CF383100F5B339 /* RoomViewController.m */,
 				35FC420F18D4033F00C5CDEB /* NewRoomViewController.h */,
 				35FC421018D4033F00C5CDEB /* NewRoomViewController.m */,
+				359FBA38192466F300704F2B /* NewUserViewController.h */,
+				359FBA39192466F300704F2B /* NewUserViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -442,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */,
 				35BA0E0518CF37A100F5B339 /* main.m in Sources */,
 				35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */,
 				35A828B819230F03009E8681 /* ServiceBase.m in Sources */,
@@ -454,9 +470,11 @@
 				35BA0E3518CF385200F5B339 /* RoomService.m in Sources */,
 				35BA0E3618CF385200F5B339 /* LocationService.m in Sources */,
 				35BA0E8718CF394800F5B339 /* SocketIOJSONSerialization.m in Sources */,
+				359FBA3A192466F300704F2B /* NewUserViewController.m in Sources */,
 				35BA0E8818CF394800F5B339 /* SocketIOPacket.m in Sources */,
 				35BA0E8A18CF394800F5B339 /* SocketIOTransportXHR.m in Sources */,
 				35BA0E3F18CF386700F5B339 /* Room.m in Sources */,
+				359FBA31192456CC00704F2B /* LoginViewController.m in Sources */,
 				35BA0E8918CF394800F5B339 /* SocketIOTransportWebsocket.m in Sources */,
 				35BA0E4018CF386700F5B339 /* Message.m in Sources */,
 				35BA0E2F18CF383100F5B339 /* RoomViewController.m in Sources */,
