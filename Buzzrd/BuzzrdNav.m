@@ -12,6 +12,7 @@
 #import "RoomViewController.h"
 #import "NewRoomViewController.h"
 #import "NewUserViewController.h"
+#import "UserOptionsViewController.h"
 
 #import "Room.h"
 
@@ -27,9 +28,14 @@
 {
     RoomsViewController *roomsViewController = [[RoomsViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:roomsViewController];
-        
+    
+    UserOptionsViewController *userOptionsViewController = [[UserOptionsViewController alloc]init];
+    UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:userOptionsViewController];
+    
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[roomsNavController];
+    tabBarController.viewControllers = @[roomsNavController, userOptionsNavController];
+    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:@"Rooms"];
+    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:@"Options"];
     
     return tabBarController;
 }
@@ -46,7 +52,6 @@
 {
     NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]init];
     newRoomViewController.onRoomCreated = roomCreatedCallback;
-    
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newRoomViewController];
     return navController;
 }
@@ -54,7 +59,6 @@
 +(UIViewController *) createNewUserViewController
 {
     NewUserViewController *newUserViewController = [[NewUserViewController alloc]init];
-    
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newUserViewController];
     return navController;
 }
