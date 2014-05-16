@@ -12,6 +12,8 @@
 		359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3619245E2100704F2B /* BuzzrdNav.m */; };
 		359FBA3A192466F300704F2B /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA39192466F300704F2B /* NewUserViewController.m */; };
 		359FBA3D19246C7F00704F2B /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3C19246C7F00704F2B /* UserOptionsViewController.m */; };
+		359FBA431926305400704F2B /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA401926305400704F2B /* LoadingOverlay.m */; };
+		359FBA441926305400704F2B /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA421926305400704F2B /* ProfileImageView.m */; };
 		35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B419230C39009E8681 /* BuzzrdAPI.m */; };
 		35A828B819230F03009E8681 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A828B719230F03009E8681 /* ServiceBase.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
@@ -66,6 +68,10 @@
 		359FBA39192466F300704F2B /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
 		359FBA3B19246C7F00704F2B /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOptionsViewController.h; sourceTree = "<group>"; };
 		359FBA3C19246C7F00704F2B /* UserOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOptionsViewController.m; sourceTree = "<group>"; };
+		359FBA3F1926305400704F2B /* LoadingOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingOverlay.h; sourceTree = "<group>"; };
+		359FBA401926305400704F2B /* LoadingOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingOverlay.m; sourceTree = "<group>"; };
+		359FBA411926305400704F2B /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageView.h; sourceTree = "<group>"; };
+		359FBA421926305400704F2B /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageView.m; sourceTree = "<group>"; };
 		35A828B319230C39009E8681 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzrdAPI.h; sourceTree = "<group>"; };
 		35A828B419230C39009E8681 /* BuzzrdAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzrdAPI.m; sourceTree = "<group>"; };
 		35A828B619230F03009E8681 /* ServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceBase.h; sourceTree = "<group>"; };
@@ -158,6 +164,10 @@
 		359FBA2B192327A100704F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				359FBA3F1926305400704F2B /* LoadingOverlay.h */,
+				359FBA401926305400704F2B /* LoadingOverlay.m */,
+				359FBA411926305400704F2B /* ProfileImageView.h */,
+				359FBA421926305400704F2B /* ProfileImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -490,7 +500,9 @@
 				35BA0E3F18CF386700F5B339 /* Room.m in Sources */,
 				359FBA31192456CC00704F2B /* LoginViewController.m in Sources */,
 				35BA0E8918CF394800F5B339 /* SocketIOTransportWebsocket.m in Sources */,
+				359FBA441926305400704F2B /* ProfileImageView.m in Sources */,
 				35BA0E4018CF386700F5B339 /* Message.m in Sources */,
+				359FBA431926305400704F2B /* LoadingOverlay.m in Sources */,
 				35BA0E2F18CF383100F5B339 /* RoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
