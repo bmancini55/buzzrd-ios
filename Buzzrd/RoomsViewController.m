@@ -38,6 +38,8 @@
         NSLog(@"%d rooms were loaded", theRooms.count);
         self.rooms = theRooms;
         [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
     }];
     
 }

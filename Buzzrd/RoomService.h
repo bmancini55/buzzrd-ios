@@ -12,8 +12,11 @@
 
 @interface RoomService : ServiceBase
 
--(void)getRooms:(void (^)(NSArray *theRooms))callback;
+-(void)getRooms:(void (^)(NSArray *theRooms))success
+        failure:(void (^)(NSError *error))failure;
 
--(void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback;
+-(void)createRoom:(Room *)newRoom
+          success:(void (^)(Room *createdRoom))success
+          failure:(void (^)(NSError *error))failure;
 
 @end

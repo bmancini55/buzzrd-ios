@@ -22,7 +22,8 @@
     return room;
 }
 
--(void)getRooms:(void (^)(NSArray *theRooms))callback
+-(void)getRooms:(void (^)(NSArray *theRooms))success
+        failure:(void (^)(NSError *error))failure;
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     [manager
@@ -30,7 +31,7 @@
      parameters:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
          
-            if(responseObject[@"success"])
+            if([responseObject[@"success"] boolValue])
             {
                 // parse rooms
                 NSArray *results = responseObject[@"results"];
@@ -42,19 +43,24 @@
                 }
                 results = [[NSArray alloc]initWithArray:temp];
                 
-                callback(results);                
+                // call success callback
+                success(results);
             } else
             {
-             NSLog(@"Response was not successful");
+                NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+                failure(error);
             }
          
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"Error: %@", error);
+            failure(error);
         }];
 }
 
--(void)createRoom:(Room *)newRoom callback:(void (^)(Room *createdRoom))callback
+-(void)createRoom:(Room *)newRoom
+          success:(void (^)(Room *createdRoom))success
+          failure:(void (^)(NSError *error))failure;
+
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:newRoom.name forKey:@"name"];
@@ -68,20 +74,20 @@
   parameters:parameters
      success:^(NSURLSessionDataTask *task, id responseObject)
      {
-        if(responseObject[@"success"])
+        if([responseObject[@"success"] boolValue])
         {
             NSDictionary *json = responseObject[@"results"];
             Room *room = [RoomService deserializeFromJson:json];
-            
-            callback(room);
+            success(room);
             
         } else {
-            NSLog(@"Response was not successful");
+            NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+            failure(error);
         }
      }
      failure:^(NSURLSessionDataTask *task, NSError *error)
      {
-         NSLog(@"Error: %@", error);
+         failure(error);
      }];
 }
 

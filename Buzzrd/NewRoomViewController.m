@@ -77,12 +77,16 @@
     room.lon = [NSNumber numberWithDouble:self.currentLocation.coordinate.longitude];
     room.lat = [NSNumber numberWithDouble:self.currentLocation.coordinate.latitude];
     
-    [[BuzzrdAPI current].roomService createRoom:room
-     callback:^(Room* createdRoom)
-     {
-        NSLog(@"Created room: %@", createdRoom.idroom);
-        self.onRoomCreated(createdRoom);
-     }];
+    [[BuzzrdAPI current].roomService
+        createRoom:room
+           success:^(Room* createdRoom)
+           {
+              NSLog(@"Created room: %@", createdRoom.idroom);
+              self.onRoomCreated(createdRoom);
+           }
+           failure:^(NSError *error) {
+               NSLog(@"%@", error);
+           }];
     
     // TODO fire delegate... or something from caller
     [self dismissViewControllerAnimated:true completion:^{ }];
