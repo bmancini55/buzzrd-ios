@@ -16,9 +16,14 @@
     @property (strong, nonatomic) NSMutableArray *messages;
     @property (strong, nonatomic) UIView *inputView;
 
+    @property (strong, nonatomic) UITextView *textView;
+
 @end
 
 @implementation RoomViewController
+
+const int MARGIN_SIZE = 5;
+const int BUTTON_WIDTH = 52;
 
 - (void)loadView
 {
@@ -32,24 +37,31 @@
     [self.socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
     
     
-    // configure this biatch
-    UIScrollView *scrollView = [[UIScrollView alloc]
-                                initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,
-                                                         self.view.frame.size.height-60)];
-    [self.view addSubview:scrollView];
-    
-    self.inputView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width, 60)];
-    self.inputView.backgroundColor = [[UIColor alloc]initWithRed:245 green:245 blue:245 alpha:255];
+    self.inputView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-40,self.view.frame.size.width, 40)];
+    self.inputView.backgroundColor = [[UIColor alloc]initWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0f alpha:1.0f];
     [self.view addSubview:self.inputView];
     
-    UITextField *textField = [[UITextField alloc] init];
-    textField.frame = CGRectMake(40, 10, _inputView.frame.size.width - 80, _inputView.frame.size.height - 20);
-    textField.borderStyle = UITextBorderStyleLine;
-    textField.keyboardType = UIKeyboardTypeDefault;
-    textField.delegate = self;
-    textField.backgroundColor = [UIColor whiteColor];
-    [self.inputView addSubview:textField];
+    UITextView *textView = [[UITextView alloc] init];
+    textView.frame = CGRectMake(40, MARGIN_SIZE, self.inputView.frame.size.width - 100, self.inputView.frame.size.height - (2 * MARGIN_SIZE));
+    textView.editable = true;
+    textView.keyboardType = UIKeyboardTypeDefault;
+    textView.delegate = self;
+    textView.backgroundColor = [UIColor whiteColor];
+    textView.layer.masksToBounds = true;
+    textView.layer.cornerRadius = 5.0f;
+    [self.inputView addSubview:textView];
+    self.textView = textView;
     
+    
+    UIButton *sendButton = [[UIButton alloc]init];
+    sendButton.frame = CGRectMake(self.inputView.frame.size.width - BUTTON_WIDTH - MARGIN_SIZE, MARGIN_SIZE, BUTTON_WIDTH, self.inputView.frame.size.height - (2 * MARGIN_SIZE));
+    sendButton.backgroundColor = [UIColor orangeColor];
+    sendButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+    sendButton.layer.masksToBounds = true;
+    sendButton.layer.cornerRadius = 5.0f;
+    [sendButton setTitle:@"Send" forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(sendTouch) forControlEvents:UIControlEventTouchUpInside];
+    [self.inputView addSubview:sendButton];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -63,7 +75,20 @@
 }
 
 
+-(void)sendTouch
+{
+    // get message from text view
+    NSString *message = self.textView.text;
+    
+    // send message
+    [self.socket sendEvent:@"message" withData:message];
+    
+    // clear textview
+    self.textView.text = @"";
+}
 
+
+#pragma mark - Keyboard methods
 
 -(void)onKeyboardOpen:(NSNotification *)notification
 {
@@ -98,11 +123,6 @@
     newFrame.origin.y = keyboardFrameEndRect.origin.y - newFrame.size.height;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 
@@ -136,13 +156,34 @@
 
 
 
-#pragma mark - UITextViewDelete
+#pragma mark - UITextViewDelegate
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)aTextView {
-    
-    return YES;
+-(BOOL)textViewShouldBeginEditing:(UITextView *)aTextView
+{
+    return true;
 }
 
+-(void)textViewDidChange:(UITextView *)textView
+{
+    if(textView.frame.size.height != textView.contentSize.height)
+    {
+        float delta = textView.contentSize.height - textView.frame.size.height;
+        
+        // change textview size
+        CGRect textViewFrame = textView.frame;
+        textViewFrame.size.height = textView.contentSize.height;
+        textView.frame = textViewFrame;
+        
+        // change view size
+        CGRect inputFrame = self.inputView.frame;
+        inputFrame.size.height = inputFrame.size.height + delta;
+        inputFrame.origin.y = inputFrame.origin.y - delta;
+        self.inputView.frame = inputFrame;
+        
+        // change button position
+        // TODO
+    }
+}
 
 
 #pragma mark - SocketIODelegate
@@ -150,7 +191,7 @@
 -(void)socketIODidConnect:(SocketIO *)socket
 {
     NSLog(@"Websocket connected, joining room: %@", self.room.idroom);
-    [_socket sendEvent:@"join" withData:self.room.idroom];
+    [self.socket sendEvent:@"join" withData:self.room.idroom];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {

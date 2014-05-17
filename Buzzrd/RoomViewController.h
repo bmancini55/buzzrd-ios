@@ -11,7 +11,7 @@
 #import "SocketIO.h"
 #import "Room.h"
 
-@interface RoomViewController : BaseTableViewController <SocketIODelegate, UITextFieldDelegate>
+@interface RoomViewController : BaseTableViewController <SocketIODelegate, UITextViewDelegate>
 
 @property Room* room;
 
