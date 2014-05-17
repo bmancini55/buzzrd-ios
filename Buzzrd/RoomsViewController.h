@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "BaseTableViewController.h"
 #import "Room.h"
 
-@interface RoomsViewController : UITableViewController <CLLocationManagerDelegate>
+@interface RoomsViewController : BaseTableViewController <CLLocationManagerDelegate>
 
 @property NSArray *rooms;
 @property CLLocationManager *locationManager;
@@ -18,5 +19,7 @@
 
 -(void)addRoomToTable:(Room *)room;
 -(void)addRoomTouch;
+
+
 
 @end

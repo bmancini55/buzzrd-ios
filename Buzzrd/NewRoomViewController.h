@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "BaseTableViewController.h"
 #import "Room.h"
 
-@interface NewRoomViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface NewRoomViewController : BaseTableViewController
 
 @property (strong, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) void(^onRoomCreated)(Room *created);

@@ -18,9 +18,7 @@
 
 - (void)loadView
 {
-    [super loadView];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    [super loadView];    
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginButton.backgroundColor = [UIColor orangeColor];

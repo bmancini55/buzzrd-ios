@@ -26,7 +26,7 @@
 
 +(UIViewController *) createHomeViewController
 {
-    RoomsViewController *roomsViewController = [[RoomsViewController alloc] initWithStyle:UITableViewStylePlain];
+    RoomsViewController *roomsViewController = [[RoomsViewController alloc] init];
     UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:roomsViewController];
     
     UserOptionsViewController *userOptionsViewController = [[UserOptionsViewController alloc]init];
@@ -50,7 +50,7 @@
 
 +(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback
 {
-    NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]init];
+    NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]initWithStyle:UITableViewStyleGrouped];
     newRoomViewController.onRoomCreated = roomCreatedCallback;
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newRoomViewController];
     return navController;

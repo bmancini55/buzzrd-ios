@@ -31,15 +31,6 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouch)];
     self.navigationItem.rightBarButtonItem = doneButton;
     
-    // Create the inner table view
-    CGRect innerFrame = [FrameUtils getInnerFrame:self.navigationController.navigationBar
-                                           tabBar:self.tabBarController.tabBar];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:innerFrame
-                                                          style:UITableViewStyleGrouped];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    self.view = tableView;
-    
     
     // create name cell
     self.nameCell = [[UITableViewCell alloc]init];

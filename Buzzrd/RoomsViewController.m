@@ -9,19 +9,12 @@
 #import "Room.h"
 #import "BuzzrdAPI.h"
 #import "BuzzrdNav.h"
+#import "FrameUtils.h"
 #import "RoomsViewController.h"
 
 
 @implementation RoomsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        
-    }
-    return self;
-}
 
 - (void)loadView
 {
@@ -37,7 +30,9 @@
     self.locationManager.delegate = self;
     //self.locationManager.desiredAccuracy = kCLDistanceFilterNone;
     //self.locationManager.distanceFilter = 100; // meters
-    [self.locationManager startMonitoringSignificantLocationChanges];    
+    [self.locationManager startMonitoringSignificantLocationChanges];
+    
+    
     
     [[BuzzrdAPI current].roomService getRooms:^(NSArray *theRooms) {        
         NSLog(@"%d rooms were loaded", theRooms.count);

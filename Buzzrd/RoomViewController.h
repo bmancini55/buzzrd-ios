@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 #import "SocketIO.h"
 #import "Room.h"
 
-@interface RoomViewController : UITableViewController <SocketIODelegate, UITextFieldDelegate>
-{
-    NSMutableArray *messages;
-}
+@interface RoomViewController : BaseTableViewController <SocketIODelegate, UITextFieldDelegate>
 
 @property Room* room;
 

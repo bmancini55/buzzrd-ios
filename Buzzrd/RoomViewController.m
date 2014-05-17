@@ -7,39 +7,29 @@
 //
 
 #import "RoomViewController.h"
+#import "FrameUtils.h"
 #import "SocketIOPacket.h"
 
 @interface RoomViewController ()
 
+    @property (strong, nonatomic) SocketIO *socket;
+    @property (strong, nonatomic) NSMutableArray *messages;
+    @property (strong, nonatomic) UIView *inputView;
+
 @end
 
-@implementation RoomViewController {
-    
-    SocketIO *_socket;
-    NSMutableArray *_messages;
-    UIView *_inputView;
-}
+@implementation RoomViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)loadView
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = self.room.name;
-        messages = [[NSMutableArray alloc]init];
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    _messages = [[NSMutableArray alloc] init];
+    [super loadView];
+            
+    self.messages = [[NSMutableArray alloc] init];
     
     // connect to the room
     NSLog(@"Connecting to room %@", self.room.name);
-    _socket = [[SocketIO alloc] initWithDelegate:self];
-    [_socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
+    self.socket = [[SocketIO alloc] initWithDelegate:self];
+    [self.socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
     
     
     // configure this biatch
@@ -48,18 +38,17 @@
                                                          self.view.frame.size.height-60)];
     [self.view addSubview:scrollView];
     
-    _inputView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width, 60)];
-    _inputView.backgroundColor = [[UIColor alloc]initWithRed:245 green:245 blue:245 alpha:255];
-    [self.view addSubview:_inputView];
+    self.inputView = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-60,self.view.frame.size.width, 60)];
+    self.inputView.backgroundColor = [[UIColor alloc]initWithRed:245 green:245 blue:245 alpha:255];
+    [self.view addSubview:self.inputView];
     
     UITextField *textField = [[UITextField alloc] init];
     textField.frame = CGRectMake(40, 10, _inputView.frame.size.width - 80, _inputView.frame.size.height - 20);
-    textField.borderStyle = UITextBorderStyleLine
-    ;
+    textField.borderStyle = UITextBorderStyleLine;
     textField.keyboardType = UIKeyboardTypeDefault;
     textField.delegate = self;
     textField.backgroundColor = [UIColor whiteColor];
-    [_inputView addSubview:textField];
+    [self.inputView addSubview:textField];
     
     
     
@@ -92,9 +81,9 @@
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
     
-    CGRect newFrame = _inputView.frame;
+    CGRect newFrame = self.inputView.frame;
     newFrame.origin.y = keyboardEndFrame.origin.y - newFrame.size.height;
-    _inputView.frame = newFrame;
+    self.inputView.frame = newFrame;
     
     [UIView commitAnimations];
 }
@@ -105,7 +94,7 @@
     NSValue *keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
     
-    CGRect newFrame = _inputView.frame;
+    CGRect newFrame = self.inputView.frame;
     newFrame.origin.y = keyboardFrameEndRect.origin.y - newFrame.size.height;
 }
 
@@ -126,7 +115,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return messages.count;
+    return self.messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,7 +124,7 @@
     if(cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Room"];
     }
-    cell.textLabel.text = messages[indexPath.row];
+    cell.textLabel.text = self.messages[indexPath.row];
     return cell;
 }
 
@@ -153,6 +142,8 @@
     
     return YES;
 }
+
+
 
 #pragma mark - SocketIODelegate
 
@@ -174,16 +165,14 @@
     if([packet.name isEqualToString:@"message"]) {
         NSLog(@"Recieved message");
         NSString *message = packet.args[0];
-        [messages addObject:message];
+        [self.messages addObject:message];
         
-        NSIndexPath *path = [NSIndexPath indexPathForRow:messages.count-1 inSection:0];
+        NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
 
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
-    }
-        
-    
+    }            
 }
 
 
