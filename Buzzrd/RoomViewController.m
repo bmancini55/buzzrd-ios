@@ -25,11 +25,7 @@
             
     self.messages = [[NSMutableArray alloc] init];
     
-    // connect to the room
-    NSLog(@"Connecting to room %@", self.room.name);
-    self.socket = [[SocketIO alloc] initWithDelegate:self];
-    [self.socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
-    
+    [self connectToServer];
     
     self.inputView = [[KeyboardTextView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-40,self.view.frame.size.width, 40)];
     self.inputView.delegate = self;
@@ -70,7 +66,30 @@
 
 - (void)keyboardTextView:(KeyboardTextView *)keyboardTextView sendTouched:(NSString *)text
 {
-    [self.socket sendEvent:@"message" withData:text];
+    [self sendMessage:text];
+}
+
+
+#pragma mark - Socket Interactions
+
+- (void)connectToServer
+{
+    self.socket = [[SocketIO alloc] initWithDelegate:self];
+    [self.socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
+}
+
+- (void)sendMessage:(NSString *)message
+{
+    [self.socket sendEvent:@"message" withData:message];
+}
+
+- (void)receiveMessage:(NSString *)message;
+{
+    [self.messages addObject:message];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
 }
 
 
@@ -78,7 +97,8 @@
 
 -(void)socketIODidConnect:(SocketIO *)socket
 {
-    NSLog(@"Websocket connected, joining room: %@", self.room.idroom);
+    NSLog(@"Websocket connected");
+    NSLog(@"Joining room: %@", self.room.idroom);
     [self.socket sendEvent:@"join" withData:self.room.idroom];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
@@ -92,15 +112,8 @@
 -(void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
     if([packet.name isEqualToString:@"message"]) {
-        NSLog(@"Recieved message");
         NSString *message = packet.args[0];
-        [self.messages addObject:message];
-        
-        NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
-
-        [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
+        [self receiveMessage:message];
     }            
 }
 
