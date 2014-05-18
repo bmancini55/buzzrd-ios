@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
+#import "DateUtils.h"
 
 @interface ServiceBase : NSObject
 
 @property (strong, nonatomic) NSString *apiURLBase;
 
++ (NSDate *) parseMongoDateString:(NSString *)dateString;
 - (AFHTTPSessionManager *) getJSONRequestManager;
 
 @end

@@ -10,6 +10,11 @@
 
 @implementation ServiceBase
 
++ (NSDate *) parseMongoDateString:(NSString *)dateString
+{
+    return [DateUtils stringToLocalDate:dateString dateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+}
+
 - (id) init
 {
     self = [super init];

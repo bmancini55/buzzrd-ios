@@ -10,7 +10,7 @@
 
 @interface Room : NSObject
 
-@property (strong, nonatomic) NSNumber *idroom;
+@property (strong, nonatomic) NSString *idroom;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *lon;
 @property (strong, nonatomic) NSNumber *lat;

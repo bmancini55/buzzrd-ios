@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		357024E01927C58A005C89BD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357024DF1927C58A005C89BD /* BaseTableViewController.m */; };
 		357024E3192853FE005C89BD /* KeyboardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357024E2192853FE005C89BD /* KeyboardTextView.m */; };
+		3575C89319293E7200EAC8D9 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3575C89219293E7200EAC8D9 /* MessageService.m */; };
+		3575C8961929411A00EAC8D9 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3575C8951929411A00EAC8D9 /* DateUtils.m */; };
 		359FBA2E192327BD00704F2B /* FrameUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA2D192327BD00704F2B /* FrameUtils.m */; };
 		359FBA31192456CC00704F2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA30192456CC00704F2B /* LoginViewController.m */; };
 		359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3619245E2100704F2B /* BuzzrdNav.m */; };
@@ -65,6 +67,10 @@
 		357024DF1927C58A005C89BD /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		357024E1192853FE005C89BD /* KeyboardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardTextView.h; sourceTree = "<group>"; };
 		357024E2192853FE005C89BD /* KeyboardTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardTextView.m; sourceTree = "<group>"; };
+		3575C89119293E7200EAC8D9 /* MessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageService.h; sourceTree = "<group>"; };
+		3575C89219293E7200EAC8D9 /* MessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageService.m; sourceTree = "<group>"; };
+		3575C8941929411A00EAC8D9 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		3575C8951929411A00EAC8D9 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		359FBA2C192327BD00704F2B /* FrameUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameUtils.h; sourceTree = "<group>"; };
 		359FBA2D192327BD00704F2B /* FrameUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameUtils.m; sourceTree = "<group>"; };
 		359FBA2F192456CC00704F2B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 			children = (
 				359FBA2C192327BD00704F2B /* FrameUtils.h */,
 				359FBA2D192327BD00704F2B /* FrameUtils.m */,
+				3575C8941929411A00EAC8D9 /* DateUtils.h */,
+				3575C8951929411A00EAC8D9 /* DateUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -306,6 +314,8 @@
 				35BA0E3218CF385200F5B339 /* RoomService.m */,
 				35BA0E3318CF385200F5B339 /* LocationService.h */,
 				35BA0E3418CF385200F5B339 /* LocationService.m */,
+				3575C89119293E7200EAC8D9 /* MessageService.h */,
+				3575C89219293E7200EAC8D9 /* MessageService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -500,6 +510,7 @@
 				357024E3192853FE005C89BD /* KeyboardTextView.m in Sources */,
 				35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */,
 				35A828B819230F03009E8681 /* ServiceBase.m in Sources */,
+				3575C89319293E7200EAC8D9 /* MessageService.m in Sources */,
 				35BA0E3E18CF386700F5B339 /* User.m in Sources */,
 				35FC421118D4033F00C5CDEB /* NewRoomViewController.m in Sources */,
 				35BA0E0918CF37A100F5B339 /* AppDelegate.m in Sources */,
@@ -521,6 +532,7 @@
 				359FBA441926305400704F2B /* ProfileImageView.m in Sources */,
 				35BA0E4018CF386700F5B339 /* Message.m in Sources */,
 				359FBA431926305400704F2B /* LoadingOverlay.m in Sources */,
+				3575C8961929411A00EAC8D9 /* DateUtils.m in Sources */,
 				35BA0E2F18CF383100F5B339 /* RoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

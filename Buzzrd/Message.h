@@ -10,8 +10,8 @@
 
 @interface Message : NSObject
 
-@property (strong, atomic) NSString *idmessage;
-@property (strong, atomic) NSString *text;
-@property (strong, atomic) NSDate *when;
+@property (strong, nonatomic) NSString *idmessage;
+@property (strong, nonatomic) NSString *message;
+@property (strong, nonatomic) NSDate *created;
 
 @end
