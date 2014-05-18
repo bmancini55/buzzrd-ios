@@ -10,8 +10,9 @@
 #import "BaseTableViewController.h"
 #import "SocketIO.h"
 #import "Room.h"
+#import "KeyboardTextView.h"
 
-@interface RoomViewController : BaseTableViewController <SocketIODelegate, UITextViewDelegate>
+@interface RoomViewController : BaseTableViewController <SocketIODelegate, KeyboardTextViewDelegate>
 
 @property Room* room;
 
