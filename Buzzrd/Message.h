@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Message : NSObject
+@interface Message : NSObject <NSCopying>
 
 @property (strong, nonatomic) NSString *idmessage;
 @property (strong, nonatomic) NSString *message;

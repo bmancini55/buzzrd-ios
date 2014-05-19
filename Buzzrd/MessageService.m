@@ -15,7 +15,7 @@
 {
     Message *message = [[Message alloc] init];
     message.idmessage = json[@"_id"];
-    message.message = json[@"message"];
+    message.message = [NSString stringWithFormat:@"%@", json[@"message"]];
     message.created = [ServiceBase parseMongoDateString:json[@"created"]];
     
     return message;

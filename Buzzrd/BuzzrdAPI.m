@@ -27,6 +27,7 @@
     {
         self.roomService = [[RoomService alloc] init];
         self.locationService = [[LocationService alloc]init];
+        self.messageService = [[MessageService alloc]init];
     }
     return self;
 }

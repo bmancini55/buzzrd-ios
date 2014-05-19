@@ -8,8 +8,18 @@
 
 #import "Message.h"
 
-@implementation Message
+@implementation Message 
 
-
+- (id)copyWithZone:(NSZone *)zone
+{
+    Message *message = [[[self class] allocWithZone:zone] init];
+    if(message)
+    {
+        [message setIdmessage:self.idmessage];
+        [message setMessage:self.message];
+        [message setCreated:self.created];
+    }
+    return message;
+}
 
 @end

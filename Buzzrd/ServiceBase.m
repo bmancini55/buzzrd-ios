@@ -19,7 +19,7 @@
 {
     self = [super init];
     if(self) {
-        self.apiURLBase = @"http://derpturkey.listmill.com:5050";
+        self.apiURLBase = @"http://localhost:5050";
     }
     return self;
 }

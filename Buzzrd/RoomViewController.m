@@ -8,11 +8,13 @@
 
 #import "RoomViewController.h"
 #import "SocketIOPacket.h"
+#import "BuzzrdAPI.h"
+#import "Message.h"
 
 @interface RoomViewController ()
 
     @property (strong, nonatomic) SocketIO *socket;
-    @property (strong, nonatomic) NSMutableArray *messages;
+    @property (strong, nonatomic) NSArray *messages;
     @property (strong, nonatomic) KeyboardTextView *inputView;
 
 @end
@@ -23,13 +25,56 @@
 {
     [super loadView];
             
-    self.messages = [[NSMutableArray alloc] init];
+    self.messages = [[NSArray alloc] init];
+
+    // load recent messages
+    [self loadMessagesWithPage:1];
     
-    [self connectToServer];
-    
+    // connect to socket service
+    [self connectToSocketServer];
+
+    // wire-up keyboard
     self.inputView = [[KeyboardTextView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-40,self.view.frame.size.width, 40)];
     self.inputView.delegate = self;
-    [self.view addSubview:self.inputView];        
+    [self.view addSubview:self.inputView];
+    
+    // adjust table view
+    CGRect tableFrame = self.tableView.frame;
+    tableFrame.size.height = tableFrame.size.height - 40;
+    self.tableView.frame = tableFrame;
+}
+
+#pragma mark - Internal helper methods
+
+- (void)loadMessagesWithPage:(uint)page
+{
+    // success handler
+    void (^success)(NSArray *messages) = ^(NSArray *messages) {
+        
+        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:messages];
+        [mergeArray addObjectsFromArray:self.messages];
+        self.messages = mergeArray;
+        
+        [self.tableView reloadData];
+      
+        // scroll to bottom if this was first page
+        if (page == 1)
+        {
+            CGPoint bottomOffset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height);
+            [self.tableView setContentOffset:bottomOffset animated:false];
+        }
+    };
+    
+    // failure handler
+    void (^failure)(NSError *error) = ^(NSError *error) {
+        NSLog(@"Error retrieving messages: %@", error);
+    };
+    
+    // retrive from API
+    [BuzzrdAPI.current.messageService getMessagesForRoom:self.room
+                                                    page:page
+                                                 success:success
+                                                 failure:failure];
 }
 
 
@@ -51,7 +96,7 @@
     if(cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Room"];
     }
-    cell.textLabel.text = self.messages[indexPath.row];
+    cell.textLabel.text = ((Message *)self.messages[indexPath.row]).message;
     return cell;
 }
 
@@ -72,10 +117,10 @@
 
 #pragma mark - Socket Interactions
 
-- (void)connectToServer
+- (void)connectToSocketServer
 {
     self.socket = [[SocketIO alloc] initWithDelegate:self];
-    [self.socket connectToHost:@"derpturkey.listmill.com" onPort:5050];
+    [self.socket connectToHost:@"localhost" onPort:5050];
 }
 
 - (void)sendMessage:(NSString *)message
@@ -85,7 +130,13 @@
 
 - (void)receiveMessage:(NSString *)message;
 {
-    [self.messages addObject:message];
+    Message *messageInstance = [[Message alloc]init];
+    messageInstance.message = message;
+    NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
+    
+    [mergeArray addObject:messageInstance];
+    self.messages = [[NSArray alloc]initWithArray:mergeArray];
+    
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
