@@ -7,6 +7,7 @@
 //
 
 #import "ServiceBase.h"
+#import "BuzzrdAPI.h"
 
 @implementation ServiceBase
 
@@ -19,7 +20,7 @@
 {
     self = [super init];
     if(self) {
-        self.apiURLBase = @"http://localhost:5050";
+        self.apiURLBase = @"http://devapi.buzzrd.io:5050";
     }
     return self;
 }
@@ -30,9 +31,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    // set oauth tokens here
-    //NSString *accessToken = [BuzzrdAPI instance].accessToken;
-    //[manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"access_token"];
+    // set authorization header
+    if([[BuzzrdAPI current] authorization] != nil)
+    {
+        NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
+        [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
+    }
     
     return manager;
 }

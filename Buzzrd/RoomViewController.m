@@ -135,7 +135,7 @@
 - (void)connectToSocketServer
 {
     self.socket = [[SocketIO alloc] initWithDelegate:self];
-    [self.socket connectToHost:@"localhost" onPort:5050];
+    [self.socket connectToHost:@"devapi.buzzrd.io" onPort:5050];
 }
 
 - (void)sendMessage:(NSString *)message

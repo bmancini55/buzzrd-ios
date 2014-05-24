@@ -29,6 +29,10 @@
         self.roomService = [[RoomService alloc] init];
         self.locationService = [[LocationService alloc]init];
         self.messageService = [[MessageService alloc]init];
+        
+        // TODO: REMOVE THIS AND PLACE IN LOGIN REQUEST
+        // THIS IS ONLY TEMPORARY
+        self.authorization = [[Authorization alloc]initWithBearerToken:@"4acec7ac032ae54febf48eec749f4076523625ae"];
     }
     return self;
 }

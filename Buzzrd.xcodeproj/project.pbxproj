@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3512B1061931201B006090E3 /* Authorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3512B1051931201B006090E3 /* Authorization.m */; };
 		357024E01927C58A005C89BD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357024DF1927C58A005C89BD /* BaseTableViewController.m */; };
 		357024E3192853FE005C89BD /* KeyboardTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357024E2192853FE005C89BD /* KeyboardTextView.m */; };
 		3575C89319293E7200EAC8D9 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3575C89219293E7200EAC8D9 /* MessageService.m */; };
@@ -73,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3512B1041931201B006090E3 /* Authorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authorization.h; sourceTree = "<group>"; };
+		3512B1051931201B006090E3 /* Authorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authorization.m; sourceTree = "<group>"; };
 		357024DE1927C58A005C89BD /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		357024DF1927C58A005C89BD /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		357024E1192853FE005C89BD /* KeyboardTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardTextView.h; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				35BA0E3B18CF386700F5B339 /* Room.m */,
 				35BA0E3C18CF386700F5B339 /* Message.h */,
 				35BA0E3D18CF386700F5B339 /* Message.m */,
+				3512B1041931201B006090E3 /* Authorization.h */,
+				3512B1051931201B006090E3 /* Authorization.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				35BA0E8918CF394800F5B339 /* SocketIOTransportWebsocket.m in Sources */,
 				359FBA441926305400704F2B /* ProfileImageView.m in Sources */,
 				C2C6E513192ED99C00DBEEE6 /* AccountCreationBaseViewController.m in Sources */,
+				3512B1061931201B006090E3 /* Authorization.m in Sources */,
 				35BA0E4018CF386700F5B339 /* Message.m in Sources */,
 				359FBA431926305400704F2B /* LoadingOverlay.m in Sources */,
 				3575C8961929411A00EAC8D9 /* DateUtils.m in Sources */,
