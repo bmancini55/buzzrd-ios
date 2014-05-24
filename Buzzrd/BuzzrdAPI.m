@@ -25,6 +25,7 @@
     self = [super init];
     if(self)
     {
+        self.userService = [[UserService alloc] init];
         self.roomService = [[RoomService alloc] init];
         self.locationService = [[LocationService alloc]init];
         self.messageService = [[MessageService alloc]init];

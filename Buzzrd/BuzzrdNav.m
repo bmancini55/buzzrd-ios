@@ -11,8 +11,8 @@
 #import "RoomsViewController.h"
 #import "RoomViewController.h"
 #import "NewRoomViewController.h"
-#import "NewUserViewController.h"
 #import "UserOptionsViewController.h"
+#import "CreatePasswordViewController.h"
 
 #import "Room.h"
 
@@ -56,11 +56,29 @@
     return navController;
 }
 
-+(UIViewController *) createNewUserViewController
++(UIViewController *) joinBuzzrdViewController
 {
-    NewUserViewController *newUserViewController = [[NewUserViewController alloc]init];
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newUserViewController];
+    JoinBuzzrdViewController *viewController = [[JoinBuzzrdViewController alloc]init];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
     return navController;
+}
+
++(UIViewController *) enterUsernameViewController
+{
+    EnterUsernameViewController *viewController = [[EnterUsernameViewController alloc]init];
+    return viewController;
+}
+
++(UIViewController *) createPasswordViewController
+{
+    CreatePasswordViewController *viewController = [[CreatePasswordViewController alloc]init];    
+    return viewController;
+}
+
++(UIViewController *) optionalInfoViewController
+{
+    OptionalInfoViewController *viewController = [[OptionalInfoViewController alloc]init];
+    return viewController;
 }
 
 

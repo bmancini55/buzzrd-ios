@@ -14,7 +14,7 @@
 		359FBA2E192327BD00704F2B /* FrameUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA2D192327BD00704F2B /* FrameUtils.m */; };
 		359FBA31192456CC00704F2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA30192456CC00704F2B /* LoginViewController.m */; };
 		359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3619245E2100704F2B /* BuzzrdNav.m */; };
-		359FBA3A192466F300704F2B /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA39192466F300704F2B /* NewUserViewController.m */; };
+		359FBA3A192466F300704F2B /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA39192466F300704F2B /* JoinBuzzrdViewController.m */; };
 		359FBA3D19246C7F00704F2B /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA3C19246C7F00704F2B /* UserOptionsViewController.m */; };
 		359FBA431926305400704F2B /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA401926305400704F2B /* LoadingOverlay.m */; };
 		359FBA441926305400704F2B /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 359FBA421926305400704F2B /* ProfileImageView.m */; };
@@ -50,6 +50,16 @@
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35FC421118D4033F00C5CDEB /* NewRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FC421018D4033F00C5CDEB /* NewRoomViewController.m */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
+		C29A6672192C3830002421AF /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A6671192C3830002421AF /* UserService.m */; };
+		C29A6679192C58D7002421AF /* JoinBuzzrdView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A6678192C58D7002421AF /* JoinBuzzrdView.m */; };
+		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
+		C2C6E507192DA15500DBEEE6 /* EnterUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E506192DA15500DBEEE6 /* EnterUsernameViewController.m */; };
+		C2C6E50A192DA17600DBEEE6 /* EnterUsernameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E509192DA17600DBEEE6 /* EnterUsernameView.m */; };
+		C2C6E50D192ED30F00DBEEE6 /* CreatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E50C192ED30F00DBEEE6 /* CreatePasswordViewController.m */; };
+		C2C6E510192ED34000DBEEE6 /* CreatePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E50F192ED34000DBEEE6 /* CreatePasswordView.m */; };
+		C2C6E513192ED99C00DBEEE6 /* AccountCreationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E512192ED99C00DBEEE6 /* AccountCreationBaseViewController.m */; };
+		C2C6E516192EEFB800DBEEE6 /* OptionalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E515192EEFB800DBEEE6 /* OptionalInfoViewController.m */; };
+		C2C6E519192EEFCE00DBEEE6 /* OptionalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E518192EEFCE00DBEEE6 /* OptionalInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +87,8 @@
 		359FBA30192456CC00704F2B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		359FBA3519245E2100704F2B /* BuzzrdNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzrdNav.h; sourceTree = "<group>"; };
 		359FBA3619245E2100704F2B /* BuzzrdNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzrdNav.m; sourceTree = "<group>"; };
-		359FBA38192466F300704F2B /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
-		359FBA39192466F300704F2B /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
+		359FBA38192466F300704F2B /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinBuzzrdViewController.h; sourceTree = "<group>"; };
+		359FBA39192466F300704F2B /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinBuzzrdViewController.m; sourceTree = "<group>"; };
 		359FBA3B19246C7F00704F2B /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOptionsViewController.h; sourceTree = "<group>"; };
 		359FBA3C19246C7F00704F2B /* UserOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOptionsViewController.m; sourceTree = "<group>"; };
 		359FBA3F1926305400704F2B /* LoadingOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingOverlay.h; sourceTree = "<group>"; };
@@ -138,6 +148,25 @@
 		35FC421018D4033F00C5CDEB /* NewRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRoomViewController.m; sourceTree = "<group>"; };
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C29A6670192C381F002421AF /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		C29A6671192C3830002421AF /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
+		C29A6677192C58D7002421AF /* JoinBuzzrdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinBuzzrdView.h; sourceTree = "<group>"; };
+		C29A6678192C58D7002421AF /* JoinBuzzrdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinBuzzrdView.m; sourceTree = "<group>"; };
+		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C2C6E505192DA15500DBEEE6 /* EnterUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterUsernameViewController.h; sourceTree = "<group>"; };
+		C2C6E506192DA15500DBEEE6 /* EnterUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterUsernameViewController.m; sourceTree = "<group>"; };
+		C2C6E508192DA17600DBEEE6 /* EnterUsernameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterUsernameView.h; sourceTree = "<group>"; };
+		C2C6E509192DA17600DBEEE6 /* EnterUsernameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterUsernameView.m; sourceTree = "<group>"; };
+		C2C6E50B192ED30F00DBEEE6 /* CreatePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePasswordViewController.h; sourceTree = "<group>"; };
+		C2C6E50C192ED30F00DBEEE6 /* CreatePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePasswordViewController.m; sourceTree = "<group>"; };
+		C2C6E50E192ED34000DBEEE6 /* CreatePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePasswordView.h; sourceTree = "<group>"; };
+		C2C6E50F192ED34000DBEEE6 /* CreatePasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePasswordView.m; sourceTree = "<group>"; };
+		C2C6E511192ED99C00DBEEE6 /* AccountCreationBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCreationBaseViewController.h; sourceTree = "<group>"; };
+		C2C6E512192ED99C00DBEEE6 /* AccountCreationBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCreationBaseViewController.m; sourceTree = "<group>"; };
+		C2C6E514192EEFB800DBEEE6 /* OptionalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalInfoViewController.h; sourceTree = "<group>"; };
+		C2C6E515192EEFB800DBEEE6 /* OptionalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalInfoViewController.m; sourceTree = "<group>"; };
+		C2C6E517192EEFCE00DBEEE6 /* OptionalInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalInfoView.h; sourceTree = "<group>"; };
+		C2C6E518192EEFCE00DBEEE6 /* OptionalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalInfoView.m; sourceTree = "<group>"; };
 		E5DFDC6655324F998BFAE69B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +210,7 @@
 		359FBA2B192327A100704F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C29A6673192C4825002421AF /* AccountCreation */,
 				359FBA3F1926305400704F2B /* LoadingOverlay.h */,
 				359FBA401926305400704F2B /* LoadingOverlay.m */,
 				359FBA411926305400704F2B /* ProfileImageView.h */,
@@ -240,6 +270,7 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
+				C2C6E4FF192D997900DBEEE6 /* Resources */,
 				359FBA3E19246FCC00704F2B /* Application */,
 				359FBA2A1923278D00704F2B /* Utils */,
 				35BA0E3718CF385C00F5B339 /* Models */,
@@ -285,6 +316,7 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C29A6674192C4C29002421AF /* AccountCreation */,
 				359FBA451926317D00704F2B /* BaseViewController.h */,
 				359FBA461926317D00704F2B /* BaseViewController.m */,
 				357024DE1927C58A005C89BD /* BaseTableViewController.h */,
@@ -297,8 +329,6 @@
 				35BA0E2D18CF383100F5B339 /* RoomViewController.m */,
 				35FC420F18D4033F00C5CDEB /* NewRoomViewController.h */,
 				35FC421018D4033F00C5CDEB /* NewRoomViewController.m */,
-				359FBA38192466F300704F2B /* NewUserViewController.h */,
-				359FBA39192466F300704F2B /* NewUserViewController.m */,
 				359FBA3B19246C7F00704F2B /* UserOptionsViewController.h */,
 				359FBA3C19246C7F00704F2B /* UserOptionsViewController.m */,
 			);
@@ -316,6 +346,8 @@
 				35BA0E3418CF385200F5B339 /* LocationService.m */,
 				3575C89119293E7200EAC8D9 /* MessageService.h */,
 				3575C89219293E7200EAC8D9 /* MessageService.m */,
+				C29A6670192C381F002421AF /* UserService.h */,
+				C29A6671192C3830002421AF /* UserService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -368,6 +400,46 @@
 			);
 			path = Images;
 			sourceTree = SOURCE_ROOT;
+		};
+		C29A6673192C4825002421AF /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				C29A6677192C58D7002421AF /* JoinBuzzrdView.h */,
+				C29A6678192C58D7002421AF /* JoinBuzzrdView.m */,
+				C2C6E508192DA17600DBEEE6 /* EnterUsernameView.h */,
+				C2C6E509192DA17600DBEEE6 /* EnterUsernameView.m */,
+				C2C6E50E192ED34000DBEEE6 /* CreatePasswordView.h */,
+				C2C6E50F192ED34000DBEEE6 /* CreatePasswordView.m */,
+				C2C6E517192EEFCE00DBEEE6 /* OptionalInfoView.h */,
+				C2C6E518192EEFCE00DBEEE6 /* OptionalInfoView.m */,
+			);
+			name = AccountCreation;
+			sourceTree = "<group>";
+		};
+		C29A6674192C4C29002421AF /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				C2C6E511192ED99C00DBEEE6 /* AccountCreationBaseViewController.h */,
+				C2C6E512192ED99C00DBEEE6 /* AccountCreationBaseViewController.m */,
+				359FBA38192466F300704F2B /* JoinBuzzrdViewController.h */,
+				359FBA39192466F300704F2B /* JoinBuzzrdViewController.m */,
+				C2C6E505192DA15500DBEEE6 /* EnterUsernameViewController.h */,
+				C2C6E506192DA15500DBEEE6 /* EnterUsernameViewController.m */,
+				C2C6E50B192ED30F00DBEEE6 /* CreatePasswordViewController.h */,
+				C2C6E50C192ED30F00DBEEE6 /* CreatePasswordViewController.m */,
+				C2C6E514192EEFB800DBEEE6 /* OptionalInfoViewController.h */,
+				C2C6E515192EEFB800DBEEE6 /* OptionalInfoViewController.m */,
+			);
+			name = AccountCreation;
+			sourceTree = "<group>";
+		};
+		C2C6E4FF192D997900DBEEE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C2C6E504192D9AC700DBEEE6 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -450,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
 				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
@@ -508,32 +581,41 @@
 				359FBA3719245E2100704F2B /* BuzzrdNav.m in Sources */,
 				35BA0E0518CF37A100F5B339 /* main.m in Sources */,
 				357024E3192853FE005C89BD /* KeyboardTextView.m in Sources */,
+				C2C6E50A192DA17600DBEEE6 /* EnterUsernameView.m in Sources */,
 				35A828B519230C39009E8681 /* BuzzrdAPI.m in Sources */,
 				35A828B819230F03009E8681 /* ServiceBase.m in Sources */,
 				3575C89319293E7200EAC8D9 /* MessageService.m in Sources */,
 				35BA0E3E18CF386700F5B339 /* User.m in Sources */,
+				C2C6E519192EEFCE00DBEEE6 /* OptionalInfoView.m in Sources */,
 				35FC421118D4033F00C5CDEB /* NewRoomViewController.m in Sources */,
+				C2C6E50D192ED30F00DBEEE6 /* CreatePasswordViewController.m in Sources */,
 				35BA0E0918CF37A100F5B339 /* AppDelegate.m in Sources */,
 				35BA0E2E18CF383100F5B339 /* RoomsViewController.m in Sources */,
 				357024E01927C58A005C89BD /* BaseTableViewController.m in Sources */,
+				C2C6E507192DA15500DBEEE6 /* EnterUsernameViewController.m in Sources */,
 				359FBA2E192327BD00704F2B /* FrameUtils.m in Sources */,
 				35BA0E8618CF394800F5B339 /* SocketIO.m in Sources */,
 				35BA0E3518CF385200F5B339 /* RoomService.m in Sources */,
 				359FBA471926317D00704F2B /* BaseViewController.m in Sources */,
 				35BA0E3618CF385200F5B339 /* LocationService.m in Sources */,
 				35BA0E8718CF394800F5B339 /* SocketIOJSONSerialization.m in Sources */,
-				359FBA3A192466F300704F2B /* NewUserViewController.m in Sources */,
+				359FBA3A192466F300704F2B /* JoinBuzzrdViewController.m in Sources */,
 				359FBA3D19246C7F00704F2B /* UserOptionsViewController.m in Sources */,
 				35BA0E8818CF394800F5B339 /* SocketIOPacket.m in Sources */,
+				C29A6679192C58D7002421AF /* JoinBuzzrdView.m in Sources */,
 				35BA0E8A18CF394800F5B339 /* SocketIOTransportXHR.m in Sources */,
+				C2C6E510192ED34000DBEEE6 /* CreatePasswordView.m in Sources */,
 				35BA0E3F18CF386700F5B339 /* Room.m in Sources */,
 				359FBA31192456CC00704F2B /* LoginViewController.m in Sources */,
 				35BA0E8918CF394800F5B339 /* SocketIOTransportWebsocket.m in Sources */,
 				359FBA441926305400704F2B /* ProfileImageView.m in Sources */,
+				C2C6E513192ED99C00DBEEE6 /* AccountCreationBaseViewController.m in Sources */,
 				35BA0E4018CF386700F5B339 /* Message.m in Sources */,
 				359FBA431926305400704F2B /* LoadingOverlay.m in Sources */,
 				3575C8961929411A00EAC8D9 /* DateUtils.m in Sources */,
+				C29A6672192C3830002421AF /* UserService.m in Sources */,
 				35BA0E2F18CF383100F5B339 /* RoomViewController.m in Sources */,
+				C2C6E516192EEFB800DBEEE6 /* OptionalInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +652,14 @@
 				35BA0E1B18CF37A100F5B339 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C2C6E504192D9AC700DBEEE6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2C6E503192D9AC700DBEEE6 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

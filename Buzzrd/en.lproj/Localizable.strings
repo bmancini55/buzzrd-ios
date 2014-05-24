@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  Buzzrd
+
+  Created by Robert Beck on 5/21/14.
+  Copyright (c) 2014 Brian Mancini. All rights reserved.
+*/
+
+"buzzrd" = "Buzzrd";
+
+"join_buzzrd" = "Join Buzzrd";
+
+"join_buzzrd_summary" = "Create an account in a few easy steps";
+
+"join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy, including our Cookie Use.";
+
+"enter_a_username" = "Enter a Username";
+
+"username" = "Username";
+
+"continue" = "Continue";
+
+"create_a_password" = "Create a Password";
+
+"password" = "Password";
+
+"create_password_help_text" = "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &).";
+
+"optional_info" = "Optional Info";
+
+"get_started" = "Get Started";
+
+"first_name" = "First Name";
+
+"last_name" = "Last Name";
+
+"optional_info" = "Optional Info";
+
+"gender" = "Gender";
+
+"save" = "Save";

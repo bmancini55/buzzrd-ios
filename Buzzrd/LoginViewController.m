@@ -44,7 +44,7 @@
 
 - (void)createTouch
 {
-    UIViewController *createController = [BuzzrdNav createNewUserViewController];
+    UIViewController *createController = [BuzzrdNav joinBuzzrdViewController];
     [self presentViewController:createController animated:true completion:nil];
 }
 
