@@ -12,7 +12,10 @@
 
 @interface RoomMainView : UIView
 
-- (id) initWithFrame:(CGRect)frame delegate:(id<KeyboardBarDelegate, UITableViewDelegate, UITableViewDataSource>)delegate;
+- (id) initWithFrame:(CGRect)frame
+ keyboardBarDelegate:(id<KeyboardBarDelegate>)keyboardBarDelegate
+   tableViewDelegate:(id<UITableViewDelegate>)tableViewDelegate
+ tableViewDataSource:(id<UITableViewDataSource>)tableViewDataSource;
 
 @property (strong, nonatomic) KeyboardBarView *keyboardBarView;
 @property (strong, nonatomic) UITableView *tableView;

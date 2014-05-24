@@ -12,7 +12,7 @@
 #import "SocketIO.h"
 #import "Room.h"
 
-@interface RoomViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SocketIODelegate, KeyboardBarDelegate>
+@interface RoomViewController : BaseViewController <KeyboardBarDelegate, UITableViewDelegate, UITableViewDataSource, SocketIODelegate>
 
 @property Room* room;
 

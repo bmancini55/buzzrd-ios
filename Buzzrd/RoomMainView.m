@@ -14,20 +14,23 @@
 
 @implementation RoomMainView
 
-- (id) initWithFrame:(CGRect)frame delegate:(id<KeyboardBarDelegate, UITableViewDelegate, UITableViewDataSource>)delegate;
+- (id) initWithFrame:(CGRect)frame
+ keyboardBarDelegate:(id<KeyboardBarDelegate>)keyboardBarDelegate
+   tableViewDelegate:(id<UITableViewDelegate>)tableViewDelegate
+ tableViewDataSource:(id<UITableViewDataSource>)tableViewDataSource;
 {
     self = [super initWithFrame:frame];
     if (self) {
         
         // create the table view
         self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        self.tableView.delegate = delegate;
-        self.tableView.dataSource = delegate;
+        self.tableView.delegate = tableViewDelegate;
+        self.tableView.dataSource = tableViewDataSource;
         [self addSubview:self.tableView];
         
         // create the keyboard bar
         self.keyboardBarView = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,self.frame.size.height-40,self.frame.size.width, 40)];
-        self.keyboardBarView.delegate = delegate;
+        self.keyboardBarView.delegate = keyboardBarDelegate;
         [self addSubview:self.keyboardBarView];
         
         // adjust table view

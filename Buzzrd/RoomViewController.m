@@ -28,8 +28,11 @@
     self.messages = [[NSArray alloc] init];
 
     // create the main view
-    RoomMainView *mainView = [[RoomMainView alloc]initWithFrame:self.view.frame delegate:self];
-    self.view = mainView;
+    CGRect frame = self.view.frame;
+    self.view = [[RoomMainView alloc]initWithFrame:frame
+                               keyboardBarDelegate:self
+                                 tableViewDelegate:self
+                               tableViewDataSource:self];
     
     // load recent messages
     [self loadMessagesWithPage:1];
