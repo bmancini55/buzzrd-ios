@@ -22,21 +22,23 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        const int KEYBOARD_HEIGHT = 40;
+        
         // create the table view
+        CGRect tableFrame = frame;
+        tableFrame.size.height = tableFrame.size.height - KEYBOARD_HEIGHT;
         self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        self.tableView.frame = tableFrame;
         self.tableView.delegate = tableViewDelegate;
         self.tableView.dataSource = tableViewDataSource;
+        
         [self addSubview:self.tableView];
         
         // create the keyboard bar
-        self.keyboardBarView = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,self.frame.size.height-40,self.frame.size.width, 40)];
+        self.keyboardBarView = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,self.frame.size.height-KEYBOARD_HEIGHT,self.frame.size.width, KEYBOARD_HEIGHT)];
         self.keyboardBarView.delegate = keyboardBarDelegate;
         [self addSubview:self.keyboardBarView];
         
-        // adjust table view
-        CGRect tableFrame = self.tableView.frame;
-        tableFrame.size.height = tableFrame.size.height - self.keyboardBarView.frame.size.height;
-        self.tableView.frame = tableFrame;
         
         // create hooks for keyboard to shrink table view on open/close
         [[NSNotificationCenter defaultCenter] addObserver:self
