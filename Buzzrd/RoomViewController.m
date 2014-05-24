@@ -7,6 +7,7 @@
 //
 
 #import "RoomViewController.h"
+#import "RoomMainView.h"
 #import "SocketIOPacket.h"
 #import "BuzzrdAPI.h"
 #import "Message.h"
@@ -15,7 +16,6 @@
 
     @property (strong, nonatomic) SocketIO *socket;
     @property (strong, nonatomic) NSArray *messages;
-    @property (strong, nonatomic) KeyboardTextView *inputView;
 
 @end
 
@@ -27,31 +27,15 @@
             
     self.messages = [[NSArray alloc] init];
 
+    // create the main view
+    RoomMainView *mainView = [[RoomMainView alloc]initWithFrame:self.view.frame delegate:self];
+    self.view = mainView;
+    
     // load recent messages
     [self loadMessagesWithPage:1];
     
     // connect to socket service
     [self connectToSocketServer];
-
-    // wire-up keyboard
-    self.inputView = [[KeyboardTextView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-40,self.view.frame.size.width, 40)];
-    self.inputView.delegate = self;
-    [self.view addSubview:self.inputView];
-    
-    // adjust table view
-    CGRect tableFrame = self.tableView.frame;
-    tableFrame.size.height = tableFrame.size.height - 40;
-    self.tableView.frame = tableFrame;
-    
-    // create hooks for keyboard
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onKeyboardOpen:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onKeyboardClose:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
 }
 
 #pragma mark - Internal helper methods
@@ -65,7 +49,8 @@
         [mergeArray addObjectsFromArray:self.messages];
         self.messages = mergeArray;
         
-        [self.tableView reloadData];
+        UITableView *tableView = ((RoomMainView *)self.view).tableView;
+        [tableView reloadData];
       
         // scroll to bottom if this was first page
         if (page == 1)
@@ -88,8 +73,9 @@
 
 - (void)scrollToBottom:(BOOL)animated
 {
-    CGPoint bottomOffset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height);
-    [self.tableView setContentOffset:bottomOffset animated:animated];
+    UITableView *tableView = ((RoomMainView *)self.view).tableView;
+    CGPoint bottomOffset = CGPointMake(0, tableView.contentSize.height - tableView.bounds.size.height);
+    [tableView setContentOffset:bottomOffset animated:animated];
 }
 
 
@@ -122,9 +108,9 @@
 
 
 
-#pragma mark - KeyboardTextViewDelegate
+#pragma mark - KeyboardBarDelegate
 
-- (void)keyboardTextView:(KeyboardTextView *)keyboardTextView sendTouched:(NSString *)text
+- (void)keyboardBar:(KeyboardBarView *)keyboardBarView buttonTouched:(NSString *)text
 {
     [self sendMessage:text];
 }
@@ -153,9 +139,10 @@
     self.messages = [[NSArray alloc]initWithArray:mergeArray];
     
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
+    UITableView *tableView = ((RoomMainView *)self.view).tableView;
+    [tableView beginUpdates];
+    [tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
     
     [self scrollToBottom:false];
 }
@@ -183,42 +170,6 @@
         NSString *message = packet.args[0];
         [self receiveMessage:message];
     }            
-}
-
-
-#pragma mark - Keyboard methods
-
--(void)onKeyboardOpen:(NSNotification *)notification
-{
-    // This code will move the keyboard
-    NSDictionary *userInfo = [notification userInfo];
-    NSTimeInterval animationDuration;
-    UIViewAnimationCurve animationCurve;
-    CGRect keyboardEndFrame;
-    
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [UIView setAnimationCurve:animationCurve];
-    
-    CGRect newFrame = self.tableView.frame;
-    newFrame.origin.y = keyboardEndFrame.origin.y - newFrame.size.height - 40;
-    self.tableView.frame = newFrame;
-    
-    [UIView commitAnimations];
-}
-
--(void)onKeyboardClose:(NSNotification *)notification
-{
-    NSDictionary *keyboardInfo = [notification userInfo];
-    NSValue *keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
-    
-    CGRect newFrame = self.tableView.frame;
-    newFrame.origin.y = keyboardFrameEndRect.origin.y - newFrame.size.height - 40;
 }
 
 

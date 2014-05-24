@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
+#import "RoomMainView.h"
 #import "SocketIO.h"
 #import "Room.h"
-#import "KeyboardTextView.h"
 
-@interface RoomViewController : BaseTableViewController <SocketIODelegate, KeyboardTextViewDelegate>
+@interface RoomViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SocketIODelegate, KeyboardBarDelegate>
 
 @property Room* room;
 

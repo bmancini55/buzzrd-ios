@@ -1,21 +1,21 @@
 //
-//  TextBarView.m
+//  KeyboardBarView.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 5/17/14.
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
 //
 
-#import "KeyboardTextView.h"
+#import "KeyboardBarView.h"
 
-@interface KeyboardTextView()
+@interface KeyboardBarView()
 
-@property (strong, nonatomic) UIButton *sendButton;
+@property (strong, nonatomic) UIButton *mainButton;
 
 @end
 
 
-@implementation KeyboardTextView
+@implementation KeyboardBarView
 
 const int MARGIN_SIZE = 5;
 const int BUTTON_WIDTH = 52;
@@ -42,15 +42,15 @@ const int BUTTON_WIDTH = 52;
         [self addSubview:self.textView];
         
         // create the send button
-        self.sendButton = [[UIButton alloc]init];
-        self.sendButton.frame = CGRectMake(self.frame.size.width - BUTTON_WIDTH - MARGIN_SIZE, MARGIN_SIZE, BUTTON_WIDTH, self.frame.size.height - (2 * MARGIN_SIZE));
-        self.sendButton.backgroundColor = [UIColor orangeColor];
-        self.sendButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
-        self.sendButton.layer.masksToBounds = true;
-        self.sendButton.layer.cornerRadius = 5.0f;
-        [self.sendButton setTitle:@"Send" forState:UIControlStateNormal];
-        [self.sendButton addTarget:self action:@selector(sendTouchedAction) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.sendButton];
+        self.mainButton = [[UIButton alloc]init];
+        self.mainButton.frame = CGRectMake(self.frame.size.width - BUTTON_WIDTH - MARGIN_SIZE, MARGIN_SIZE, BUTTON_WIDTH, self.frame.size.height - (2 * MARGIN_SIZE));
+        self.mainButton.backgroundColor = [UIColor orangeColor];
+        self.mainButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+        self.mainButton.layer.masksToBounds = true;
+        self.mainButton.layer.cornerRadius = 5.0f;
+        [self.mainButton setTitle:@"Send" forState:UIControlStateNormal];
+        [self.mainButton addTarget:self action:@selector(buttonTouchedAction) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.mainButton];
         
         // create hooks for keyboard
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -75,14 +75,14 @@ const int BUTTON_WIDTH = 52;
 #pragma mark -  Action Handlers
 
 
--(void)sendTouchedAction
+-(void)buttonTouchedAction
 {
     NSString *message = self.textView.text;
     self.textView.text = @"";
     
     // TODO reset the size of the textview
     
-    [self.delegate keyboardTextView:self sendTouched:message];
+    [self.delegate keyboardBar:self buttonTouched:message];
 }
 
 
@@ -152,9 +152,9 @@ const int BUTTON_WIDTH = 52;
         self.frame = inputFrame;
         
         // change button position
-        CGRect buttonFrame = self.sendButton.frame;
+        CGRect buttonFrame = self.mainButton.frame;
         buttonFrame.origin.y = buttonFrame.origin.y + delta;
-        self.sendButton.frame = buttonFrame;
+        self.mainButton.frame = buttonFrame;
     }
 }
 
