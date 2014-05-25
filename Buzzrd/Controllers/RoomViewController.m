@@ -58,7 +58,7 @@
         // scroll to bottom if this was first page
         if (page == 1)
         {
-            [self scrollToBottom:false];
+            [(RoomMainView *)self.view scrollToBottom:false];
         }
     };
     
@@ -72,15 +72,6 @@
                                                     page:page
                                                  success:success
                                                  failure:failure];
-}
-
-- (void)scrollToBottom:(BOOL)animated
-{
-    if(self.messages.count > 0) {
-        UITableView *tableView = ((RoomMainView *)self.view).tableView;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(self.messages.count - 1) inSection:0];
-        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
-    }
 }
 
 
@@ -152,7 +143,7 @@
     [tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
     
-    [self scrollToBottom:true];
+    [(RoomMainView *)self.view scrollToBottom:true];
 }
 
 

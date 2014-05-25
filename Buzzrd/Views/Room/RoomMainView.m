@@ -58,6 +58,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - Methods
+
+- (void)scrollToBottom:(BOOL)animated
+{
+    NSInteger lastSection = [self.tableView.dataSource numberOfSectionsInTableView:self.tableView] - 1;
+    NSInteger rowIndex = [self.tableView.dataSource tableView:self.tableView numberOfRowsInSection:lastSection] - 1;
+    
+    if(rowIndex >= 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:lastSection];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
+}
+
 #pragma mark - Keyboard methods
 
 -(void)keyboardDidShowOrHide:(NSNotification *)notification
@@ -81,6 +94,7 @@
     self.tableView.frame = newFrame;
     
     [UIView commitAnimations];
+    [self scrollToBottom:false];
 }
 
 

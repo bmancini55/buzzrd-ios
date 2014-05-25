@@ -17,6 +17,8 @@
    tableViewDelegate:(id<UITableViewDelegate>)tableViewDelegate
  tableViewDataSource:(id<UITableViewDataSource>)tableViewDataSource;
 
+- (void)scrollToBottom:(BOOL)animated;
+
 @property (strong, nonatomic) KeyboardBarView *keyboardBarView;
 @property (strong, nonatomic) UITableView *tableView;
 
