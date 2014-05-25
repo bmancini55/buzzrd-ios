@@ -31,6 +31,7 @@
         self.tableView.frame = tableFrame;
         self.tableView.delegate = tableViewDelegate;
         self.tableView.dataSource = tableViewDataSource;
+        [self.tableView endEditing:true];
         
         [self addSubview:self.tableView];
         
@@ -42,11 +43,11 @@
         
         // create hooks for keyboard to shrink table view on open/close
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(onKeyboardOpen:)
+                                                 selector:@selector(keyboardDidShowOrHide:)
                                                      name:UIKeyboardWillShowNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(onKeyboardClose:)
+                                                 selector:@selector(keyboardDidShowOrHide:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:nil];
     }
@@ -55,7 +56,7 @@
 
 #pragma mark - Keyboard methods
 
--(void)onKeyboardOpen:(NSNotification *)notification
+-(void)keyboardDidShowOrHide:(NSNotification *)notification
 {
     // This code will move the keyboard
     NSDictionary *userInfo = [notification userInfo];
@@ -78,14 +79,5 @@
     [UIView commitAnimations];
 }
 
--(void)onKeyboardClose:(NSNotification *)notification
-{
-    NSDictionary *keyboardInfo = [notification userInfo];
-    NSValue *keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
-    
-    CGRect newFrame = self.tableView.frame;
-    newFrame.origin.y = keyboardFrameEndRect.origin.y - newFrame.size.height - self.keyboardBarView.frame.size.height;
-}
 
 @end

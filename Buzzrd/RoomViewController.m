@@ -106,7 +106,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    KeyboardBarView *keyboardBarView = ((RoomMainView *)self.view).keyboardBarView;
+    [keyboardBarView.textView endEditing:true];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
 }
 
 

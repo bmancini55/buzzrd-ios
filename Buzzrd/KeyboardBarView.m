@@ -54,11 +54,11 @@ const int BUTTON_WIDTH = 52;
         
         // create hooks for keyboard
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(onKeyboardOpen:)
+                                                 selector:@selector(keyboardDidShowOrHide:)
                                                      name:UIKeyboardWillShowNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(onKeyboardClose:)
+                                                 selector:@selector(keyboardDidShowOrHide:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:nil];
     }
@@ -88,9 +88,8 @@ const int BUTTON_WIDTH = 52;
 
 #pragma mark - Keyboard methods
 
--(void)onKeyboardOpen:(NSNotification *)notification
+-(void)keyboardDidShowOrHide:(NSNotification *)notification
 {
-    // This code will move the keyboard
     NSDictionary *userInfo = [notification userInfo];
     NSTimeInterval animationDuration;
     UIViewAnimationCurve animationCurve;
@@ -109,16 +108,6 @@ const int BUTTON_WIDTH = 52;
     self.frame = newFrame;
     
     [UIView commitAnimations];
-}
-
--(void)onKeyboardClose:(NSNotification *)notification
-{
-    NSDictionary *keyboardInfo = [notification userInfo];
-    NSValue *keyboardFrameEnd = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrameEndRect = [keyboardFrameEnd CGRectValue];
-    
-    CGRect newFrame = self.frame;
-    newFrame.origin.y = keyboardFrameEndRect.origin.y - newFrame.size.height;
 }
 
 
