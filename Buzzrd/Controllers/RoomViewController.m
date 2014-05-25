@@ -76,9 +76,11 @@
 
 - (void)scrollToBottom:(BOOL)animated
 {
-    UITableView *tableView = ((RoomMainView *)self.view).tableView;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(self.messages.count -1) inSection:0];
-    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    if(self.messages.count > 0) {
+        UITableView *tableView = ((RoomMainView *)self.view).tableView;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(self.messages.count - 1) inSection:0];
+        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
 }
 
 

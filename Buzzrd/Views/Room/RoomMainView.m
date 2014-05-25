@@ -77,7 +77,7 @@
     [UIView setAnimationCurve:animationCurve];
     
     CGRect newFrame = self.tableView.frame;
-    newFrame.origin.y = keyboardEndFrame.origin.y - newFrame.size.height - self.keyboardBarView.frame.size.height;
+    newFrame.size.height = newFrame.origin.y + keyboardEndFrame.origin.y - self.keyboardBarView.frame.size.height;
     self.tableView.frame = newFrame;
     
     [UIView commitAnimations];
