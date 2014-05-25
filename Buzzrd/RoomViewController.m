@@ -77,8 +77,8 @@
 - (void)scrollToBottom:(BOOL)animated
 {
     UITableView *tableView = ((RoomMainView *)self.view).tableView;
-    CGPoint bottomOffset = CGPointMake(0, tableView.contentSize.height - tableView.bounds.size.height);
-    [tableView setContentOffset:bottomOffset animated:animated];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(self.messages.count -1) inSection:0];
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
 }
 
 
@@ -150,7 +150,7 @@
     [tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
     
-    [self scrollToBottom:false];
+    [self scrollToBottom:true];
 }
 
 
