@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "room.h"
 #import "JoinBuzzrdViewController.h"
-#import "EnterUsernameViewController.h"
-#import "CreatePasswordViewController.h"
-#import "OptionalInfoViewController.h"
+#import "OptionalInfoTableViewController.h"
+#import "RequiredInfoTableViewController.h"
 
 @interface BuzzrdNav : NSObject
 
@@ -22,8 +21,7 @@
 
 // Account Creation
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;
-+(EnterUsernameViewController *) enterUsernameViewController;
-+(CreatePasswordViewController *) createPasswordViewController;
-+(OptionalInfoViewController *) optionalInfoViewController;
++(RequiredInfoTableViewController *) requiredInfoTableViewController;
++(OptionalInfoTableViewController *) optionalInfoTableViewController;
 
 @end

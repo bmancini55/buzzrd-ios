@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  Buzzrd
-
-  Created by Robert Beck on 5/21/14.
-  Copyright (c) 2014 Brian Mancini. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Buzzrd
+ 
+ Created by Robert Beck on 5/21/14.
+ Copyright (c) 2014 Brian Mancini. All rights reserved.
+ */
 
 "buzzrd" = "Buzzrd";
 
@@ -14,19 +14,13 @@
 
 "join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy, including our Cookie Use.";
 
-"enter_a_username" = "Enter a Username";
-
 "username" = "Username";
-
-"continue" = "Continue";
-
-"create_a_password" = "Create a Password";
 
 "password" = "Password";
 
-"create_password_help_text" = "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &).";
+"verify" = "Verify";
 
-"optional_info" = "Optional Info";
+"create_password_help_text" = "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &).";
 
 "get_started" = "Get Started";
 
@@ -38,4 +32,20 @@
 
 "gender" = "Gender";
 
-"save" = "Save";
+"gender_0" = "Male";
+
+"gender_1" = "Female";
+
+"gender_2" = "I don't want to tell";
+
+"next" = "Next";
+
+"done" = "Done";
+
+"username_not_unique" = "The username you entered is not unique.";
+
+"username_required" = "A username is required";
+
+"password_required" = "A password is required";
+
+"passwords_dont_match" = "Passwords don't match";

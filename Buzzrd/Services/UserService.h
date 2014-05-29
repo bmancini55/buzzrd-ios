@@ -19,4 +19,7 @@
           success:(void (^)(User *createdUser))success
           failure:(void (^)(NSError *error))failure;
 
+-(void)usernameExists:(NSString *)username
+              success:(void (^)(bool usernameExists))success
+              failure:(void (^)(NSError *error))failure;
 @end

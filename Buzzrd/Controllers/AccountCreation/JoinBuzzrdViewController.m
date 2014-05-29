@@ -25,7 +25,7 @@
     mainView = [[JoinBuzzrdView alloc] initWithFrame:CGRectMake(0, 0, 320, 468)];
     [self.view addSubview:mainView];
     
-    [mainView.getStartedButton addTarget:self action:@selector(getStartedButton_click) forControlEvents:UIControlEventTouchUpInside];
+    [mainView.getStartedButton addTarget:self action:@selector(getStartedTouch) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) cancelTouch
@@ -33,10 +33,10 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
--(void) getStartedButton_click
+-(void) getStartedTouch
 {
-    EnterUsernameViewController *enterUsernameViewController = [BuzzrdNav enterUsernameViewController];
-    [self.navigationController pushViewController:enterUsernameViewController animated:YES];
+    RequiredInfoTableViewController *requiredInfoTableViewController = [BuzzrdNav requiredInfoTableViewController];
+    [self.navigationController pushViewController:requiredInfoTableViewController animated:YES];
 }
 
 @end

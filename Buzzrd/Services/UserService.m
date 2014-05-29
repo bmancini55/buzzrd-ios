@@ -65,7 +65,7 @@
     [parameters setObject:newUser.password forKey:@"password"];
     [parameters setObject:newUser.firstName forKey:@"firstName"];
     [parameters setObject:newUser.lastName forKey:@"lastName"];
-    [parameters setObject:newUser.sex forKey:@"sex"];
+    [parameters setObject:newUser.genderId forKey:@"sex"];
     
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -81,6 +81,46 @@
              success(user);
              
          } else {
+             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+             failure(error);
+         }
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error)
+     {
+         failure(error);
+     }];
+}
+
+-(void)usernameExists:(NSString *)username
+              success:(void (^)(bool))success
+              failure:(void (^)(NSError *))failure;
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:username forKey:@"username"];
+    
+    AFHTTPSessionManager *manager = [self getJSONRequestManager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager
+     POST:[self.apiURLBase stringByAppendingString:@"/api/users/usernameExists"]
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+         if([responseObject[@"success"] boolValue])
+         {
+             BOOL usernameExists = [responseObject[@"results"] boolValue];
+             
+             if (!usernameExists)
+             {
+                 success(false);
+             }
+             else
+             {
+                 NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"username", nil), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"username_not_unique", nil) }];
+                 failure(error);
+             }
+         }
+         else
+         {
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              failure(error);
          }

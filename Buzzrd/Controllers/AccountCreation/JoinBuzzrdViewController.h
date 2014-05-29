@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "JoinBuzzrdView.h"
-#import "AccountCreationBaseViewController.h"
+#import "RequiredInfoTableViewController.h"
 
-@interface JoinBuzzrdViewController : AccountCreationBaseViewController
+@interface JoinBuzzrdViewController : BaseViewController
 {
     JoinBuzzrdView *mainView;
 }

@@ -21,11 +21,6 @@
 		35A46F5819328A5E00B615A4 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5119328A5E00B615A4 /* RoomService.m */; };
 		35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5319328A5E00B615A4 /* ServiceBase.m */; };
 		35A46F5A19328A5E00B615A4 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5519328A5E00B615A4 /* UserService.m */; };
-		35A46F6519328A7A00B615A4 /* AccountCreationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5C19328A7A00B615A4 /* AccountCreationBaseViewController.m */; };
-		35A46F6619328A7A00B615A4 /* CreatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5E19328A7A00B615A4 /* CreatePasswordViewController.m */; };
-		35A46F6719328A7A00B615A4 /* EnterUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F6019328A7A00B615A4 /* EnterUsernameViewController.m */; };
-		35A46F6819328A7A00B615A4 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F6219328A7A00B615A4 /* JoinBuzzrdViewController.m */; };
-		35A46F6919328A7A00B615A4 /* OptionalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F6419328A7A00B615A4 /* OptionalInfoViewController.m */; };
 		35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9119328A9F00B615A4 /* BaseTableViewController.m */; };
 		35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9319328A9F00B615A4 /* BaseViewController.m */; };
 		35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9519328A9F00B615A4 /* LoginViewController.m */; };
@@ -33,10 +28,7 @@
 		35A46FA219328A9F00B615A4 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9919328A9F00B615A4 /* RoomsViewController.m */; };
 		35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9B19328A9F00B615A4 /* RoomViewController.m */; };
 		35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */; };
-		35A46FB719328ACC00B615A4 /* CreatePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FA719328ACC00B615A4 /* CreatePasswordView.m */; };
-		35A46FB819328ACC00B615A4 /* EnterUsernameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FA919328ACC00B615A4 /* EnterUsernameView.m */; };
 		35A46FB919328ACC00B615A4 /* JoinBuzzrdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */; };
-		35A46FBA19328ACC00B615A4 /* OptionalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAD19328ACC00B615A4 /* OptionalInfoView.m */; };
 		35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */; };
 		35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB119328ACC00B615A4 /* LoadingOverlay.m */; };
 		35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB319328ACC00B615A4 /* ProfileImageView.m */; };
@@ -63,6 +55,12 @@
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
+		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
+		C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */; };
+		C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */; };
+		C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */; };
+		C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E54C1936D6A300DBEEE6 /* Gender.m */; };
+		C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5501936D73200DBEEE6 /* StaticData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,16 +102,6 @@
 		35A46F5319328A5E00B615A4 /* ServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceBase.m; path = Services/ServiceBase.m; sourceTree = "<group>"; };
 		35A46F5419328A5E00B615A4 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserService.h; path = Services/UserService.h; sourceTree = "<group>"; };
 		35A46F5519328A5E00B615A4 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserService.m; path = Services/UserService.m; sourceTree = "<group>"; };
-		35A46F5B19328A7A00B615A4 /* AccountCreationBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountCreationBaseViewController.h; path = Controllers/AccountCreation/AccountCreationBaseViewController.h; sourceTree = "<group>"; };
-		35A46F5C19328A7A00B615A4 /* AccountCreationBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountCreationBaseViewController.m; path = Controllers/AccountCreation/AccountCreationBaseViewController.m; sourceTree = "<group>"; };
-		35A46F5D19328A7A00B615A4 /* CreatePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreatePasswordViewController.h; path = Controllers/AccountCreation/CreatePasswordViewController.h; sourceTree = "<group>"; };
-		35A46F5E19328A7A00B615A4 /* CreatePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreatePasswordViewController.m; path = Controllers/AccountCreation/CreatePasswordViewController.m; sourceTree = "<group>"; };
-		35A46F5F19328A7A00B615A4 /* EnterUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnterUsernameViewController.h; path = Controllers/AccountCreation/EnterUsernameViewController.h; sourceTree = "<group>"; };
-		35A46F6019328A7A00B615A4 /* EnterUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnterUsernameViewController.m; path = Controllers/AccountCreation/EnterUsernameViewController.m; sourceTree = "<group>"; };
-		35A46F6119328A7A00B615A4 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
-		35A46F6219328A7A00B615A4 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
-		35A46F6319328A7A00B615A4 /* OptionalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalInfoViewController.h; path = Controllers/AccountCreation/OptionalInfoViewController.h; sourceTree = "<group>"; };
-		35A46F6419328A7A00B615A4 /* OptionalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalInfoViewController.m; path = Controllers/AccountCreation/OptionalInfoViewController.m; sourceTree = "<group>"; };
 		35A46F9019328A9F00B615A4 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableViewController.h; path = Controllers/BaseTableViewController.h; sourceTree = "<group>"; };
 		35A46F9119328A9F00B615A4 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableViewController.m; path = Controllers/BaseTableViewController.m; sourceTree = "<group>"; };
 		35A46F9219328A9F00B615A4 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Controllers/BaseViewController.h; sourceTree = "<group>"; };
@@ -128,14 +116,8 @@
 		35A46F9B19328A9F00B615A4 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomViewController.m; path = Controllers/RoomViewController.m; sourceTree = "<group>"; };
 		35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserOptionsViewController.h; path = Controllers/UserOptionsViewController.h; sourceTree = "<group>"; };
 		35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserOptionsViewController.m; path = Controllers/UserOptionsViewController.m; sourceTree = "<group>"; };
-		35A46FA619328ACC00B615A4 /* CreatePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePasswordView.h; sourceTree = "<group>"; };
-		35A46FA719328ACC00B615A4 /* CreatePasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePasswordView.m; sourceTree = "<group>"; };
-		35A46FA819328ACC00B615A4 /* EnterUsernameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterUsernameView.h; sourceTree = "<group>"; };
-		35A46FA919328ACC00B615A4 /* EnterUsernameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterUsernameView.m; sourceTree = "<group>"; };
 		35A46FAA19328ACC00B615A4 /* JoinBuzzrdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinBuzzrdView.h; sourceTree = "<group>"; };
 		35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinBuzzrdView.m; sourceTree = "<group>"; };
-		35A46FAC19328ACC00B615A4 /* OptionalInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalInfoView.h; sourceTree = "<group>"; };
-		35A46FAD19328ACC00B615A4 /* OptionalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalInfoView.m; sourceTree = "<group>"; };
 		35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardBarView.h; path = Views/KeyboardBarView.h; sourceTree = "<group>"; };
 		35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardBarView.m; path = Views/KeyboardBarView.m; sourceTree = "<group>"; };
 		35A46FB019328ACC00B615A4 /* LoadingOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingOverlay.h; path = Views/LoadingOverlay.h; sourceTree = "<group>"; };
@@ -174,6 +156,18 @@
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
+		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
+		C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequiredInfoTableViewController.h; path = Controllers/AccountCreation/RequiredInfoTableViewController.h; sourceTree = "<group>"; };
+		C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequiredInfoTableViewController.m; path = Controllers/AccountCreation/RequiredInfoTableViewController.m; sourceTree = "<group>"; };
+		C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalInfoTableViewController.h; path = Controllers/AccountCreation/OptionalInfoTableViewController.h; sourceTree = "<group>"; };
+		C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalInfoTableViewController.m; path = Controllers/AccountCreation/OptionalInfoTableViewController.m; sourceTree = "<group>"; };
+		C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderPickerTableViewController.h; path = Controllers/Shared/GenderPickerTableViewController.h; sourceTree = "<group>"; };
+		C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenderPickerTableViewController.m; path = Controllers/Shared/GenderPickerTableViewController.m; sourceTree = "<group>"; };
+		C2C6E54B1936D6A300DBEEE6 /* Gender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gender.h; path = Models/Gender.h; sourceTree = "<group>"; };
+		C2C6E54C1936D6A300DBEEE6 /* Gender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gender.m; path = Models/Gender.m; sourceTree = "<group>"; };
+		C2C6E54F1936D73200DBEEE6 /* StaticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticData.h; path = Common/StaticData.h; sourceTree = "<group>"; };
+		C2C6E5501936D73200DBEEE6 /* StaticData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticData.m; path = Common/StaticData.m; sourceTree = "<group>"; };
 		E5DFDC6655324F998BFAE69B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,14 +239,8 @@
 		35A46FA519328ACC00B615A4 /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
-				35A46FA619328ACC00B615A4 /* CreatePasswordView.h */,
-				35A46FA719328ACC00B615A4 /* CreatePasswordView.m */,
-				35A46FA819328ACC00B615A4 /* EnterUsernameView.h */,
-				35A46FA919328ACC00B615A4 /* EnterUsernameView.m */,
 				35A46FAA19328ACC00B615A4 /* JoinBuzzrdView.h */,
 				35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */,
-				35A46FAC19328ACC00B615A4 /* OptionalInfoView.h */,
-				35A46FAD19328ACC00B615A4 /* OptionalInfoView.m */,
 			);
 			name = AccountCreation;
 			path = Views/AccountCreation;
@@ -323,6 +311,7 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
+				C2C6E54E1936D71500DBEEE6 /* Common */,
 				C2C6E4FF192D997900DBEEE6 /* Resources */,
 				359FBA3E19246FCC00704F2B /* Application */,
 				359FBA2A1923278D00704F2B /* Utils */,
@@ -369,6 +358,7 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2C6E5471936D61800DBEEE6 /* Shared */,
 				C29A6674192C4C29002421AF /* AccountCreation */,
 				35A46F9019328A9F00B615A4 /* BaseTableViewController.h */,
 				35A46F9119328A9F00B615A4 /* BaseTableViewController.m */,
@@ -416,6 +406,8 @@
 				35A46F4519328A4C00B615A4 /* Room.m */,
 				35A46F4619328A4C00B615A4 /* User.h */,
 				35A46F4719328A4C00B615A4 /* User.m */,
+				C2C6E54B1936D6A300DBEEE6 /* Gender.h */,
+				C2C6E54C1936D6A300DBEEE6 /* Gender.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -441,16 +433,12 @@
 		C29A6674192C4C29002421AF /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
-				35A46F5B19328A7A00B615A4 /* AccountCreationBaseViewController.h */,
-				35A46F5C19328A7A00B615A4 /* AccountCreationBaseViewController.m */,
-				35A46F5D19328A7A00B615A4 /* CreatePasswordViewController.h */,
-				35A46F5E19328A7A00B615A4 /* CreatePasswordViewController.m */,
-				35A46F5F19328A7A00B615A4 /* EnterUsernameViewController.h */,
-				35A46F6019328A7A00B615A4 /* EnterUsernameViewController.m */,
-				35A46F6119328A7A00B615A4 /* JoinBuzzrdViewController.h */,
-				35A46F6219328A7A00B615A4 /* JoinBuzzrdViewController.m */,
-				35A46F6319328A7A00B615A4 /* OptionalInfoViewController.h */,
-				35A46F6419328A7A00B615A4 /* OptionalInfoViewController.m */,
+				C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */,
+				C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */,
+				C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */,
+				C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */,
+				C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */,
+				C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */,
 			);
 			name = AccountCreation;
 			sourceTree = "<group>";
@@ -461,6 +449,24 @@
 				C2C6E504192D9AC700DBEEE6 /* Localizable.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		C2C6E5471936D61800DBEEE6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */,
+				C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		C2C6E54E1936D71500DBEEE6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C2C6E54F1936D73200DBEEE6 /* StaticData.h */,
+				C2C6E5501936D73200DBEEE6 /* StaticData.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,38 +613,36 @@
 				35A46FBE19328ACC00B615A4 /* RoomMainView.m in Sources */,
 				35A46F5819328A5E00B615A4 /* RoomService.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
-				35A46FBA19328ACC00B615A4 /* OptionalInfoView.m in Sources */,
+				C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
+				C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */,
+				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
-				35A46F6819328A7A00B615A4 /* JoinBuzzrdViewController.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
 				35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
-				35A46F6719328A7A00B615A4 /* EnterUsernameViewController.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
-				35A46F6519328A7A00B615A4 /* AccountCreationBaseViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46FA219328A9F00B615A4 /* RoomsViewController.m in Sources */,
-				35A46F6919328A7A00B615A4 /* OptionalInfoViewController.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
+				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
 				35A46F5719328A5E00B615A4 /* MessageService.m in Sources */,
-				35A46F6619328A7A00B615A4 /* CreatePasswordViewController.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
 				35A46F5619328A5E00B615A4 /* LocationService.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
-				35A46FB819328ACC00B615A4 /* EnterUsernameView.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
-				35A46FB719328ACC00B615A4 /* CreatePasswordView.m in Sources */,
 				35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */,
 				35A46FB919328ACC00B615A4 /* JoinBuzzrdView.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
+				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
+				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				35A46F5A19328A5E00B615A4 /* UserService.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
 			);
