@@ -14,7 +14,7 @@
 +(Message*) deserializeFromJson:(NSDictionary *)json
 {
     Message *message = [[Message alloc] init];
-    message.idmessage = json[@"_id"];
+    message.idmessage = json[@"id"];
     message.message = [NSString stringWithFormat:@"%@", json[@"message"]];
     message.created = [ServiceBase parseMongoDateString:json[@"created"]];
     

@@ -15,7 +15,7 @@
 +(Room*)deserializeFromJson:(NSDictionary *)json
 {
     Room *room = [[Room alloc] init];
-    room.idroom = json[@"_id"];
+    room.idroom = json[@"id"];		
     room.name = json[@"name"];
     room.lon = json[@"lon"];
     room.lat = json[@"lat"];
