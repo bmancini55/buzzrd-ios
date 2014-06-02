@@ -10,12 +10,21 @@
 
 @implementation Room : NSObject
 
-- (id)init
+
+-(id) initWithJson:(NSDictionary *)json
 {
-    self = [super init];
+    self = [self init];
+    if(self) {
+        //self.created = // USE DATE UTIL
+        self.id = json[@"id"];
+        self.name = json[@"name"];
+        //self.updated = // USE DATE UTIL
+        self.userCount = [json[@"userCount"] unsignedIntegerValue];
+        self.venueDefault = [json[@"venueDefault"] boolValue];
+        self.venueId = json[@"venueId"];
+    }
     return self;
 }
-
 
 
 

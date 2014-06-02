@@ -11,6 +11,7 @@
 #import "RoomService.h"
 #import "LocationService.h"
 #import "MessageService.h"
+#import "VenueService.h"
 
 #import "Authorization.h"
 #import "User.h"
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) RoomService *roomService;
 @property (strong, nonatomic) LocationService *locationService;
 @property (strong, nonatomic) MessageService *messageService;
+@property (strong, nonatomic) VenueService *venueService;
 
 
 // Data Properties

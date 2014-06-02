@@ -152,8 +152,8 @@
 -(void)socketIODidConnect:(SocketIO *)socket
 {
     NSLog(@"Websocket connected");
-    NSLog(@"Joining room: %@", self.room.idroom);
-    [self.socket sendEvent:@"join" withData:self.room.idroom];
+    NSLog(@"Joining room: %@", self.room.id);
+    [self.socket sendEvent:@"join" withData:self.room.id];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {

@@ -26,7 +26,7 @@
                    success:(void (^)(NSArray *messages))success
                    failure:(void (^)(NSError *error))failure
 {
-    NSString *url = [self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/rooms/%@/messages?page=%d", room.idroom, page]];
+    NSString *url = [self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/rooms/%@/messages?page=%d", room.id, page]];
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     [manager
      GET:url

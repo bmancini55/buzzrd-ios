@@ -40,6 +40,10 @@
 		35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FCB19328B1500B615A4 /* SocketIOPacket.m */; };
 		35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FCE19328B1500B615A4 /* SocketIOTransportWebsocket.m */; };
 		35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FD019328B1500B615A4 /* SocketIOTransportXHR.m */; };
+		35A46FDB1938444600B615A4 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDA1938444600B615A4 /* Venue.m */; };
+		35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* VenueLocation.m */; };
+		35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE0193C079900B615A4 /* VenueCategory.m */; };
+		35A46FE4193C0C6E00B615A4 /* VenueService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE3193C0C6E00B615A4 /* VenueService.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0DFB18CF37A100F5B339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */; };
 		35BA0DFD18CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
@@ -140,6 +144,14 @@
 		35A46FCE19328B1500B615A4 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
 		35A46FCF19328B1500B615A4 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
 		35A46FD019328B1500B615A4 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		35A46FD91938444600B615A4 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = Models/Venue.h; sourceTree = "<group>"; };
+		35A46FDA1938444600B615A4 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = Models/Venue.m; sourceTree = "<group>"; };
+		35A46FDC193C01E100B615A4 /* VenueLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueLocation.h; path = Models/VenueLocation.h; sourceTree = "<group>"; };
+		35A46FDD193C01E100B615A4 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueLocation.m; path = Models/VenueLocation.m; sourceTree = "<group>"; };
+		35A46FDF193C079900B615A4 /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCategory.h; path = Models/VenueCategory.h; sourceTree = "<group>"; };
+		35A46FE0193C079900B615A4 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCategory.m; path = Models/VenueCategory.m; sourceTree = "<group>"; };
+		35A46FE2193C0C6E00B615A4 /* VenueService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueService.h; path = Services/VenueService.h; sourceTree = "<group>"; };
+		35A46FE3193C0C6E00B615A4 /* VenueService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueService.m; path = Services/VenueService.m; sourceTree = "<group>"; };
 		35BA0DF518CF37A100F5B339 /* Buzzrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzzrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0DF818CF37A100F5B339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -391,6 +403,8 @@
 				35A46F5319328A5E00B615A4 /* ServiceBase.m */,
 				35A46F5419328A5E00B615A4 /* UserService.h */,
 				35A46F5519328A5E00B615A4 /* UserService.m */,
+				35A46FE2193C0C6E00B615A4 /* VenueService.h */,
+				35A46FE3193C0C6E00B615A4 /* VenueService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -408,6 +422,12 @@
 				35A46F4719328A4C00B615A4 /* User.m */,
 				C2C6E54B1936D6A300DBEEE6 /* Gender.h */,
 				C2C6E54C1936D6A300DBEEE6 /* Gender.m */,
+				35A46FD91938444600B615A4 /* Venue.h */,
+				35A46FDA1938444600B615A4 /* Venue.m */,
+				35A46FDC193C01E100B615A4 /* VenueLocation.h */,
+				35A46FDD193C01E100B615A4 /* VenueLocation.m */,
+				35A46FDF193C079900B615A4 /* VenueCategory.h */,
+				35A46FE0193C079900B615A4 /* VenueCategory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -607,11 +627,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				35A46FA119328A9F00B615A4 /* NewRoomViewController.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				35A46FBE19328ACC00B615A4 /* RoomMainView.m in Sources */,
 				35A46F5819328A5E00B615A4 /* RoomService.m in Sources */,
+				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
@@ -633,12 +655,14 @@
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
 				35A46F5719328A5E00B615A4 /* MessageService.m in Sources */,
+				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
 				35A46F5619328A5E00B615A4 /* LocationService.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
 				35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */,
 				35A46FB919328ACC00B615A4 /* JoinBuzzrdView.m in Sources */,
+				35A46FE4193C0C6E00B615A4 /* VenueService.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,

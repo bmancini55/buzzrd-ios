@@ -10,9 +10,14 @@
 
 @interface Room : NSObject
 
-@property (strong, nonatomic) NSString *idroom;
+@property (strong, nonatomic) NSDate *created;
+@property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSNumber *lon;
-@property (strong, nonatomic) NSNumber *lat;
+@property (strong, nonatomic) NSDate *updated;
+@property (nonatomic) NSUInteger userCount;
+@property (nonatomic) bool venueDefault;
+@property (strong, nonatomic) NSString *venueId;
+
+-(id) initWithJson:(NSDictionary *)json;
 
 @end

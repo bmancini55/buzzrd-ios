@@ -29,6 +29,7 @@
         self.roomService = [[RoomService alloc] init];
         self.locationService = [[LocationService alloc]init];
         self.messageService = [[MessageService alloc]init];
+        self.venueService = [[VenueService alloc]init];
         
         // TODO: REMOVE THIS AND PLACE IN LOGIN REQUEST
         // THIS IS ONLY TEMPORARY

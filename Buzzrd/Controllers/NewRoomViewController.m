@@ -74,14 +74,14 @@
 {
     Room *room = [[Room alloc]init];
     room.name = self.nameTextField.text;
-    room.lon = [NSNumber numberWithDouble:self.currentLocation.coordinate.longitude];
-    room.lat = [NSNumber numberWithDouble:self.currentLocation.coordinate.latitude];
+    //room.lon = [NSNumber numberWithDouble:self.currentLocation.coordinate.longitude];
+    //room.lat = [NSNumber numberWithDouble:self.currentLocation.coordinate.latitude];
     
     [[BuzzrdAPI current].roomService
         createRoom:room
            success:^(Room* createdRoom)
            {
-              NSLog(@"Created room: %@", createdRoom.idroom);
+              NSLog(@"Created room: %@", createdRoom.id);
               self.onRoomCreated(createdRoom);
            }
            failure:^(NSError *error) {

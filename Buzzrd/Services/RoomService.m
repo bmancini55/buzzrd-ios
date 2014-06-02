@@ -12,15 +12,6 @@
 
 @implementation RoomService
 
-+(Room*)deserializeFromJson:(NSDictionary *)json
-{
-    Room *room = [[Room alloc] init];
-    room.idroom = json[@"id"];		
-    room.name = json[@"name"];
-    room.lon = json[@"lon"];
-    room.lat = json[@"lat"];
-    return room;
-}
 
 -(void)getRooms:(void (^)(NSArray *theRooms))success
         failure:(void (^)(NSError *error))failure;
@@ -38,7 +29,7 @@
                 NSMutableArray *temp = [[NSMutableArray alloc] init];
                 for(NSDictionary *dic in results)
                 {
-                    Room* room = [RoomService deserializeFromJson:dic];
+                    Room* room = [[Room alloc]initWithJson:dic];
                     [temp addObject:room];
                 }
                 results = [[NSArray alloc]initWithArray:temp];
@@ -64,8 +55,6 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:newRoom.name forKey:@"name"];
-    [parameters setObject:newRoom.lon forKey:@"lon"];
-    [parameters setObject:newRoom.lat forKey:@"lat"];
     
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -77,7 +66,7 @@
         if([responseObject[@"success"] boolValue])
         {
             NSDictionary *json = responseObject[@"results"];
-            Room *room = [RoomService deserializeFromJson:json];
+            Room *room = [[Room alloc]initWithJson:json];
             success(room);
             
         } else {
