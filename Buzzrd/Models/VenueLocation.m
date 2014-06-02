@@ -10,7 +10,7 @@
 
 @implementation VenueLocation
 
--(id) initFromJson:(NSDictionary *)json
+-(id) initWithJson:(NSDictionary *)json
 {
     self = [self init];
     if(self) {

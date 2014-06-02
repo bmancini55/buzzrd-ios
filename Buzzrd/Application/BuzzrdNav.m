@@ -12,6 +12,7 @@
 #import "RoomViewController.h"
 #import "NewRoomViewController.h"
 #import "UserOptionsViewController.h"
+#import "VenuesViewController.h"
 
 #import "Room.h"
 
@@ -25,6 +26,9 @@
 
 +(UIViewController *) createHomeViewController
 {
+    VenuesViewController *venuesViewController = [[VenuesViewController alloc] init];
+    UINavigationController *venuesNavController = [[UINavigationController alloc] initWithRootViewController:venuesViewController];
+    
     RoomsViewController *roomsViewController = [[RoomsViewController alloc] init];
     UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:roomsViewController];
     
@@ -32,9 +36,10 @@
     UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:userOptionsViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[roomsNavController, userOptionsNavController];
-    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:@"Rooms"];
-    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:@"Options"];
+    tabBarController.viewControllers = @[venuesNavController, roomsNavController, userOptionsNavController];
+    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
+    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"rooms", nil)];
+    [[tabBarController.tabBar.items objectAtIndex:2] setTitle:NSLocalizedString(@"options", nil)];
     
     return tabBarController;
 }

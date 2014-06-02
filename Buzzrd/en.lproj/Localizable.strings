@@ -49,3 +49,9 @@
 "password_required" = "A password is required";
 
 "passwords_dont_match" = "Passwords don't match";
+
+"nearby" = "Nearby";
+
+"rooms" = "Rooms";
+
+"options" = "Options";
