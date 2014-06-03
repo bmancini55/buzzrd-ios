@@ -420,13 +420,10 @@
 				35A46F5319328A5E00B615A4 /* ServiceBase.m */,
 				35A46F5419328A5E00B615A4 /* UserService.h */,
 				35A46F5519328A5E00B615A4 /* UserService.m */,
-<<<<<<< HEAD
 				35A46FE2193C0C6E00B615A4 /* VenueService.h */,
 				35A46FE3193C0C6E00B615A4 /* VenueService.m */,
-=======
 				C2C6E55B193AB8C800DBEEE6 /* ImageService.h */,
-				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */,
->>>>>>> Added profile pic upload to buzzrd-ios
+				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */
 			);
 			name = Services;
 			sourceTree = "<group>";
