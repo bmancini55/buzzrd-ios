@@ -12,9 +12,11 @@
 
 @interface OptionalInfoTableViewController ()
 {
+    UIBarButtonItem *saveButton;
     UITextField *firstNameTextField;
     UITextField *lastNameTextField;
     UILabel *genderLabel;
+    
 }
 
 @end
@@ -25,8 +27,8 @@
 {
     [super loadView];
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneTouch)];
-    self.navigationItem.rightBarButtonItem = doneButton;
+    saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveTouch)];
+    self.navigationItem.rightBarButtonItem = saveButton;
     
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -149,21 +151,32 @@
     return 40;
 }
 
--(void) doneTouch
+-(void) saveTouch
 {
     self.user.firstName = [firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     self.user.lastName = [lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
+    if (self.user.genderId == nil) {
+        self.user.genderId = @2;
+    }
+    
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    
+//    ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+//    profileImageController.user = self.user;
+//    [self.navigationController pushViewController:profileImageController animated:YES];
+
     [[BuzzrdAPI current].userService
      createUser:self.user
      success:^(User* createdUser)
      {
-         [self dismissViewControllerAnimated:true completion:nil];
-         
-         // Close the create account navigation and redirect them to the login screen
-         // or take them to the profile upload view controller
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+         ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+         profileImageController.user = createdUser;
+         [self.navigationController pushViewController:profileImageController animated:YES];
      }
      failure:^(NSError *error) {
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
          UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
          [alert show];
      }];

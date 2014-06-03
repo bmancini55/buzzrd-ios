@@ -12,6 +12,7 @@
 
 @interface RequiredInfoTableViewController ()
 {
+    UIBarButtonItem *nextButton;
     UITextField *usernameTextField;
     UITextField *passwordTextField;
     UITextField *password2TextField;
@@ -25,7 +26,8 @@
 {
     [super loadView];
     
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(nextTouch)];
+    nextButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(nextTouch)];
+    nextButton.enabled = false;
     self.navigationItem.rightBarButtonItem = nextButton;
     
     // Remove the extra row separators
@@ -36,41 +38,18 @@
 
 -(void) nextTouch
 {
-    // Validate if username was filled in
-    usernameTextField.text = [usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if (usernameTextField.text.length == 0)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"username", nil) message: NSLocalizedString(@"username_required", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        
-        return;
-    }
-    
-    // Validate password was filled in
-    if (passwordTextField.text.length == 0)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_required", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    // Validate that the passwords match
-    if (![passwordTextField.text isEqualToString:password2TextField.text])
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"passwords_dont_match", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
     self.user.username = usernameTextField.text;
     self.user.password = passwordTextField.text;
+    
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     // Validate the username is unique
     [[BuzzrdAPI current].userService
      usernameExists:self.user.username
      success:^(bool usernameExists)
      {
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+         
          OptionalInfoTableViewController *optionalInfoTableViewController = [BuzzrdNav optionalInfoTableViewController];
          optionalInfoTableViewController.user = self.user;
          optionalInfoTableViewController.user.username = usernameTextField.text;
@@ -78,6 +57,8 @@
          [self.navigationController pushViewController:optionalInfoTableViewController animated:YES];
      }
      failure:^(NSError *error) {
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+         
          UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
          [alert show];
          
@@ -132,6 +113,8 @@
     // Textfield dimensions
 	tf.frame = CGRectMake(120, 0, 170, 40);
 	
+    [tf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
 	// Workaround to dismiss keyboard when Done/Return is tapped
 	[tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	
@@ -150,6 +133,34 @@
 	tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	tf.adjustsFontSizeToFitWidth = YES;
 	return tf;
+}
+
+-(void)textFieldDidChange :(UITextField *)theTextField{
+
+    // Validate if username was filled in
+    usernameTextField.text = [usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (usernameTextField.text.length == 0)
+    {
+        nextButton.enabled = false;
+        return;
+    }
+    
+    // Validate password was filled in
+    if (passwordTextField.text.length == 0)
+    {
+        nextButton.enabled = false;
+        return;
+    }
+    
+    // Validate that the passwords match
+    if (![passwordTextField.text isEqualToString:password2TextField.text])
+    {
+        nextButton.enabled = false;
+        return;
+    }
+    
+    nextButton.enabled = true;
 }
 
 // Workaround to hide keyboard when Done is tapped

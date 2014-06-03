@@ -30,6 +30,7 @@
         self.locationService = [[LocationService alloc]init];
         self.messageService = [[MessageService alloc]init];
         self.venueService = [[VenueService alloc]init];
+        self.imageService = [[ImageService alloc]init];
         
         // TODO: REMOVE THIS AND PLACE IN LOGIN REQUEST
         // THIS IS ONLY TEMPORARY

@@ -12,6 +12,7 @@
 #import "LocationService.h"
 #import "MessageService.h"
 #import "VenueService.h"
+#import "ImageService.h"
 
 #import "Authorization.h"
 #import "User.h"
@@ -26,7 +27,7 @@
 @property (strong, nonatomic) LocationService *locationService;
 @property (strong, nonatomic) MessageService *messageService;
 @property (strong, nonatomic) VenueService *venueService;
-
+@property (strong, nonatomic) ImageService *imageService;
 
 // Data Properties
 @property (strong, nonatomic) Authorization *authorization;

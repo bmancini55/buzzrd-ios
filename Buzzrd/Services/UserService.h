@@ -22,4 +22,10 @@
 -(void)usernameExists:(NSString *)username
               success:(void (^)(bool usernameExists))success
               failure:(void (^)(NSError *error))failure;
+
+-(void)updateProfilePic:(NSString *)userId
+               imageURI:(NSString *)imageURI
+              success:(void (^)(NSString *userId))success
+              failure:(void (^)(NSError *error))failure;
+
 @end

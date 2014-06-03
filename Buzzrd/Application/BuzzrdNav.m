@@ -79,4 +79,15 @@
     return viewController;
 }
 
++(ProfileImageViewController *) profileImageViewController;
+{
+//    ProfileImageViewController *viewController = [[ProfileImageViewController alloc]init];
+//    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
+//    return navController;
+    
+    
+    ProfileImageViewController *viewController = [[ProfileImageViewController alloc]init];
+    return viewController;
+}
+
 @end

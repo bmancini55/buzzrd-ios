@@ -66,6 +66,10 @@
 		C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */; };
 		C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E54C1936D6A300DBEEE6 /* Gender.m */; };
 		C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5501936D73200DBEEE6 /* StaticData.m */; };
+		C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */; };
+		C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */; };
+		C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */; };
+		C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E55C193AB8C800DBEEE6 /* ImageService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +187,13 @@
 		C2C6E54C1936D6A300DBEEE6 /* Gender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gender.m; path = Models/Gender.m; sourceTree = "<group>"; };
 		C2C6E54F1936D73200DBEEE6 /* StaticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticData.h; path = Common/StaticData.h; sourceTree = "<group>"; };
 		C2C6E5501936D73200DBEEE6 /* StaticData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticData.m; path = Common/StaticData.m; sourceTree = "<group>"; };
+		C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_profile_pic.jpg; sourceTree = "<group>"; };
+		C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageViewController.h; path = Controllers/AccountCreation/ProfileImageViewController.h; sourceTree = "<group>"; };
+		C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageViewController.m; path = Controllers/AccountCreation/ProfileImageViewController.m; sourceTree = "<group>"; };
+		C2C6E5581938241100DBEEE6 /* UIImage+thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+thumbnail.h"; path = "Categories/UIImage+thumbnail.h"; sourceTree = "<group>"; };
+		C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+thumbnail.m"; path = "Categories/UIImage+thumbnail.m"; sourceTree = "<group>"; };
+		C2C6E55B193AB8C800DBEEE6 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageService.h; path = Services/ImageService.h; sourceTree = "<group>"; };
+		C2C6E55C193AB8C800DBEEE6 /* ImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageService.m; path = Services/ImageService.m; sourceTree = "<group>"; };
 		E5DFDC6655324F998BFAE69B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -326,6 +337,7 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
+				C2C6E557193823B700DBEEE6 /* Categories */,
 				C2C6E54E1936D71500DBEEE6 /* Common */,
 				C2C6E4FF192D997900DBEEE6 /* Resources */,
 				359FBA3E19246FCC00704F2B /* Application */,
@@ -408,8 +420,13 @@
 				35A46F5319328A5E00B615A4 /* ServiceBase.m */,
 				35A46F5419328A5E00B615A4 /* UserService.h */,
 				35A46F5519328A5E00B615A4 /* UserService.m */,
+<<<<<<< HEAD
 				35A46FE2193C0C6E00B615A4 /* VenueService.h */,
 				35A46FE3193C0C6E00B615A4 /* VenueService.m */,
+=======
+				C2C6E55B193AB8C800DBEEE6 /* ImageService.h */,
+				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */,
+>>>>>>> Added profile pic upload to buzzrd-ios
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -450,6 +467,7 @@
 			children = (
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
 				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
+				C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */,
 				35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */,
 			);
 			path = Images;
@@ -464,6 +482,8 @@
 				C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */,
 				C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */,
 				C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */,
+				C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */,
+				C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */,
 			);
 			name = AccountCreation;
 			sourceTree = "<group>";
@@ -492,6 +512,15 @@
 				C2C6E5501936D73200DBEEE6 /* StaticData.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		C2C6E557193823B700DBEEE6 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C2C6E5581938241100DBEEE6 /* UIImage+thumbnail.h */,
+				C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,7 +574,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = W7E8H67XME;
+						DevelopmentTeam = R6N6F654JB;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
@@ -579,6 +608,7 @@
 				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
+				C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */,
 			);
@@ -640,6 +670,7 @@
 				35A46F5819328A5E00B615A4 /* RoomService.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
+				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
 				C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */,
@@ -656,6 +687,7 @@
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
+				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
@@ -670,6 +702,7 @@
 				35A46FE4193C0C6E00B615A4 /* VenueService.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
+				C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				35A46F5A19328A5E00B615A4 /* UserService.m in Sources */,
@@ -803,11 +836,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Buzzrd/Supporting Files/Buzzrd-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Buzzrd/Supporting Files/Buzzrd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -820,11 +855,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Buzzrd/Supporting Files/Buzzrd-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Buzzrd/Supporting Files/Buzzrd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

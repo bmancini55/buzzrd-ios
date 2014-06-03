@@ -15,8 +15,12 @@
 +(User*)deserializeFromJson:(NSDictionary *)json
 {
     User *user = [[User alloc] init];
-    //user.iduser = json[@"_id"];
+    user.iduser = json[@"id"];
     user.username = json[@"username"];
+    user.firstName = json[@"firstName"];
+    user.lastName = json[@"lastName"];
+    user.genderId = json[@"genderId"];
+    
     return user;
 }
 
@@ -121,6 +125,38 @@
          }
          else
          {
+             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+             failure(error);
+         }
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error)
+     {
+         failure(error);
+     }];
+}
+
+-(void)updateProfilePic:(NSString *)userId
+               imageURI:(NSString *)imageURI
+                success:(void (^)(NSString *userId))success
+                failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:userId forKey:@"userId"];
+    [parameters setObject:imageURI forKey:@"profilePic"];
+    
+    AFHTTPSessionManager *manager = [self getJSONRequestManager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager
+     POST:[self.apiURLBase stringByAppendingString:@"/api/users/updateProfilePic"]
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+         if([responseObject[@"success"] boolValue])
+         {
+             NSString *userId = responseObject[@"results"];
+             success(userId);
+             
+         } else {
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              failure(error);
          }

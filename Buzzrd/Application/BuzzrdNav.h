@@ -11,6 +11,7 @@
 #import "JoinBuzzrdViewController.h"
 #import "OptionalInfoTableViewController.h"
 #import "RequiredInfoTableViewController.h"
+#import "ProfileImageViewController.h"
 
 @interface BuzzrdNav : NSObject
 
@@ -23,5 +24,6 @@
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;
 +(RequiredInfoTableViewController *) requiredInfoTableViewController;
 +(OptionalInfoTableViewController *) optionalInfoTableViewController;
++(ProfileImageViewController *) profileImageViewController;
 
 @end
