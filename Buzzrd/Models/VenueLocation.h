@@ -14,7 +14,7 @@
 @property (strong,nonatomic) NSString *countryCode;
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *country;
-@property (nonatomic) CLLocationCoordinate2D coord;
+@property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) NSString *state;
 
 

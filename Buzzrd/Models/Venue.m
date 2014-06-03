@@ -25,9 +25,9 @@
         }
         self.categories = [[NSArray alloc]initWithArray:tempCategories];
         
-        double lat = [json[@"lat"] doubleValue];
-        double lng = [json[@"lng"] doubleValue];
-        self.coord = CLLocationCoordinate2DMake(lat, lng);
+        //double lat = [json[@"lat"] doubleValue];
+        //double lng = [json[@"lng"] doubleValue];
+        //self.coord = CLLocationCoordinate2DMake(lat, lng);
 
         self.location = [[VenueLocation alloc]initWithJson:json[@"location"]];
         

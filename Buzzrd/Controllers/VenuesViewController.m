@@ -12,6 +12,8 @@
 #import "BuzzrdNav.h"
 #import "FrameUtils.h"
 #import "VenueView.h"
+#import "VenueRoomView.h"
+#import "VenueRoomCell.h"
 
 @interface VenuesViewController ()
 
@@ -26,6 +28,8 @@
     self.title = NSLocalizedString(@"nearby", nil);
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     if(self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
@@ -82,16 +86,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueRoom"];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VenueRoom"];
-    }
-    
     Venue *venue = (Venue *)self.venues[indexPath.section];
     Room *room = venue.rooms[indexPath.row];
     
-    cell.textLabel.text = room.name;
+    VenueRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueRoom"];
+    if(cell == nil)
+    {
+        cell = [[VenueRoomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VenueRoom"];
+    }
+
+    [cell.roomView setRoom:room];
+
     return cell;
 }
 
@@ -110,19 +115,22 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     Venue *venue = self.venues[section];
-    VenueView *view = [[VenueView alloc]initWithVenue:venue];    
+    
+    VenueView *venueView = [[VenueView alloc]initWithVenue:venue userLocation:self.currentLocation];
+    UIView *view = [[UIView alloc]init];
+    [view addSubview:venueView];
     return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 52;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 42;
 }
 
 #pragma mark - controller interaction methods

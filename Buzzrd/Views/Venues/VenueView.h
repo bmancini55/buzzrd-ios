@@ -11,6 +11,6 @@
 
 @interface VenueView : UIView
 
--(id)initWithVenue:(Venue *)venue;
+-(id)initWithVenue:(Venue *)venue userLocation:(CLLocation *)userLocation;
 
 @end

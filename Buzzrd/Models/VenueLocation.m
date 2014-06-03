@@ -20,7 +20,7 @@
         
         double lat = [json[@"lat"] doubleValue];
         double lng = [json[@"lng"] doubleValue];
-        self.coord = CLLocationCoordinate2DMake(lat, lng);
+        self.location = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
         
         self.state = json[@"state"];
     }

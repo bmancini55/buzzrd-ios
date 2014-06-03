@@ -15,7 +15,6 @@
 @interface Venue : NSObject
 
 @property (strong, nonatomic) NSArray* categories;
-@property (nonatomic) CLLocationCoordinate2D coord;
 @property (strong, nonatomic) NSDate *created;
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) VenueLocation *location;
