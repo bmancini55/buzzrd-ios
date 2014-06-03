@@ -11,6 +11,7 @@
 #import "BuzzrdAPI.h"
 #import "BuzzrdNav.h"
 #import "FrameUtils.h"
+#import "VenueView.h"
 
 @interface VenuesViewController ()
 
@@ -30,8 +31,9 @@
         self.locationManager = [[CLLocationManager alloc] init];
     }
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; // meters
+    //[self.locationManager startUpdatingLocation];
     [self.locationManager startMonitoringSignificantLocationChanges];
     
     
@@ -50,7 +52,7 @@
     [[BuzzrdAPI current].venueService
      getVenuesNearby:location.coordinate
      success: ^(NSArray *theVenues) {
-         NSLog(@"%d venue were loaded", theVenues.count);
+         NSLog(@"%lu venue were loaded", (unsigned long)theVenues.count);
          self.venues = theVenues;
          [self.tableView reloadData];
      }
@@ -70,22 +72,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.venues.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.venues.count;
+    return ((Venue *)self.venues[section]).rooms.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Venue"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueRoom"];
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Venue"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VenueRoom"];
     }
-    cell.textLabel.text = [self.venues[indexPath.row] name];
+    
+    Venue *venue = (Venue *)self.venues[indexPath.section];
+    Room *room = venue.rooms[indexPath.row];
+    
+    cell.textLabel.text = room.name;
     return cell;
 }
 
@@ -93,12 +99,33 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Venue *venue = self.venues[indexPath.row];
-    Room *room = venue.rooms[0];
+    Venue *venue = self.venues[indexPath.section];
+    Room *room = venue.rooms[indexPath.row];
     UIViewController *roomViewController = [BuzzrdNav createRoomViewController:room];
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
+#pragma mark - UITableViewDelegate
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    Venue *venue = self.venues[section];
+    VenueView *view = [[VenueView alloc]initWithVenue:venue];    
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+#pragma mark - controller interaction methods
 
 -(void)addRoomTouch
 {

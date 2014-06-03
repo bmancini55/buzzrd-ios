@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35043739193D520F00731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043738193D520F00731968 /* VenueView.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
 		35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3619328A2400B615A4 /* BuzzrdNav.m */; };
@@ -83,6 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35043737193D520F00731968 /* VenueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueView.h; path = Views/VenueView.h; sourceTree = "<group>"; };
+		35043738193D520F00731968 /* VenueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueView.m; path = Views/VenueView.m; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 				35A46FB119328ACC00B615A4 /* LoadingOverlay.m */,
 				35A46FB219328ACC00B615A4 /* ProfileImageView.h */,
 				35A46FB319328ACC00B615A4 /* ProfileImageView.m */,
+				35043737193D520F00731968 /* VenueView.h */,
+				35043738193D520F00731968 /* VenueView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -423,7 +428,7 @@
 				35A46FE2193C0C6E00B615A4 /* VenueService.h */,
 				35A46FE3193C0C6E00B615A4 /* VenueService.m */,
 				C2C6E55B193AB8C800DBEEE6 /* ImageService.h */,
-				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */
+				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -571,7 +576,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = R6N6F654JB;
+						DevelopmentTeam = W7E8H67XME;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
@@ -659,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35043739193D520F00731968 /* VenueView.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				35A46FA119328A9F00B615A4 /* NewRoomViewController.m in Sources */,
