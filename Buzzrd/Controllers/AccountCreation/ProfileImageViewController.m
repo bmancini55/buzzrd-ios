@@ -68,7 +68,7 @@
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSLog(@"No Camera Detected");
         
-        //return;
+        return;
     }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: @"Take a Photo", @"Use Photo Library", nil];
@@ -129,25 +129,33 @@
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
-    // upload the image to the buzzrd server
-    [[BuzzrdAPI current].imageService uploadImage:_thumbnail
-     success:^(NSString *imageURI) {
-         
-         // Update the location of the user's profile pic
-         [[BuzzrdAPI current].userService
-          updateProfilePic:self.user.iduser imageURI:imageURI success:^(NSString *userId) {                  [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-              [self dismissViewControllerAnimated:false completion:nil];
-          } failure:^(NSError *error) {
-              [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-              UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-              [alert show];
-          }];
-     }
-     failure:^(NSError *error) {
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-         [alert show];
-     }];
+    if (_thumbnail != nil){
+        // upload the image to the buzzrd server
+        [[BuzzrdAPI current].imageService uploadImage:_thumbnail
+        success:^(NSString *imageURI) {
+            // Update the location of the user's profile pic
+            [[BuzzrdAPI current].userService updateProfilePic:self.user.iduser imageURI:imageURI
+             success:^(NSString *userId) {
+                [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                [self dismissViewControllerAnimated:false completion:nil];
+             }
+             failure:^(NSError *error) {
+                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                 [alert show];
+             }];
+        }
+        failure:^(NSError *error) {
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [self dismissViewControllerAnimated:false completion:nil];
+    }
 }
 
 @end
