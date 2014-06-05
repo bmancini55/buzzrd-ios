@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface LoginViewController : BaseViewController
+@interface LoginViewController : BaseViewController <UITextFieldDelegate>
 
 @end
