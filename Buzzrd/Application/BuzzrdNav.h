@@ -10,7 +10,7 @@
 #import "room.h"
 #import "JoinBuzzrdViewController.h"
 #import "OptionalInfoTableViewController.h"
-#import "RequiredInfoTableViewController.h"
+#import "CreateAccountTableViewController.h"
 #import "ProfileImageViewController.h"
 
 @interface BuzzrdNav : NSObject
@@ -22,7 +22,7 @@
 
 // Account Creation
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;
-+(RequiredInfoTableViewController *) requiredInfoTableViewController;
++(CreateAccountTableViewController *) createAccountTableViewController;
 +(OptionalInfoTableViewController *) optionalInfoTableViewController;
 +(ProfileImageViewController *) profileImageViewController;
 

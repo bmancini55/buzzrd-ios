@@ -35,8 +35,8 @@
 
 -(void) getStartedTouch
 {
-    RequiredInfoTableViewController *requiredInfoTableViewController = [BuzzrdNav requiredInfoTableViewController];
-    [self.navigationController pushViewController:requiredInfoTableViewController animated:YES];
+    CreateAccountTableViewController *createAccountTableViewController = [BuzzrdNav createAccountTableViewController];
+    [self.navigationController pushViewController:createAccountTableViewController animated:YES];
 }
 
 @end

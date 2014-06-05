@@ -65,7 +65,7 @@
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
-		C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */; };
+		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
 		C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */; };
 		C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */; };
 		C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E54C1936D6A300DBEEE6 /* Gender.m */; };
@@ -192,8 +192,8 @@
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
-		C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequiredInfoTableViewController.h; path = Controllers/AccountCreation/RequiredInfoTableViewController.h; sourceTree = "<group>"; };
-		C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequiredInfoTableViewController.m; path = Controllers/AccountCreation/RequiredInfoTableViewController.m; sourceTree = "<group>"; };
+		C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateAccountTableViewController.h; path = Controllers/AccountCreation/CreateAccountTableViewController.h; sourceTree = "<group>"; };
+		C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateAccountTableViewController.m; path = Controllers/AccountCreation/CreateAccountTableViewController.m; sourceTree = "<group>"; };
 		C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalInfoTableViewController.h; path = Controllers/AccountCreation/OptionalInfoTableViewController.h; sourceTree = "<group>"; };
 		C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalInfoTableViewController.m; path = Controllers/AccountCreation/OptionalInfoTableViewController.m; sourceTree = "<group>"; };
 		C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderPickerTableViewController.h; path = Controllers/Shared/GenderPickerTableViewController.h; sourceTree = "<group>"; };
@@ -511,8 +511,8 @@
 			children = (
 				C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */,
 				C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */,
-				C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */,
-				C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */,
+				C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */,
+				C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */,
 				C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */,
 				C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */,
 				C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */,
@@ -719,7 +719,7 @@
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
-				C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */,
+				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
 				C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
