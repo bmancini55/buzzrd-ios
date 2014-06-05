@@ -11,7 +11,7 @@
 #import "BaseTableViewController.h"
 #import "GenderPickerTableViewController.h"
 
-@interface OptionalInfoTableViewController : BaseTableViewController <UITextFieldDelegate>
+@interface OptionalInfoTableViewController : BaseTableViewController <UITextFieldDelegate, ProcessDataDelegate>
 
 @property (strong, nonatomic) User *user;
 
