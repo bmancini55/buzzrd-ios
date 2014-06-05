@@ -10,7 +10,7 @@
 #import "User.h"
 #import "BaseTableViewController.h"
 
-@interface RequiredInfoTableViewController : BaseTableViewController <UITextFieldDelegate>
+@interface CreateAccountTableViewController : BaseTableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) User *user;
 

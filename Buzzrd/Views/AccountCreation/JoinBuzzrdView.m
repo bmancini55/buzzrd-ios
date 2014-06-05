@@ -34,7 +34,6 @@
         [self addSubview:createAccountDetailsLbl];
         
         _getStartedButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _getStartedButton.backgroundColor = [UIColor orangeColor];
         _getStartedButton.frame = CGRectMake(80, 235, 160, 40);
         [_getStartedButton setTitle:NSLocalizedString(@"get_started", nil) forState:UIControlStateNormal];
         [self addSubview:_getStartedButton];

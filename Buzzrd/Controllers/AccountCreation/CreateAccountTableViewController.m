@@ -8,9 +8,9 @@
 
 #import "BuzzrdNav.h"
 #import "BuzzrdAPI.h"
-#import "RequiredInfoTableViewController.h"
+#import "CreateAccountTableViewController.h"
 
-@interface RequiredInfoTableViewController ()
+@interface CreateAccountTableViewController ()
 {
     UIBarButtonItem *nextButton;
     UITextField *usernameTextField;
@@ -20,11 +20,14 @@
 
 @end
 
-@implementation RequiredInfoTableViewController
+@implementation CreateAccountTableViewController
 
 -(void) loadView
 {
     [super loadView];
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
+    self.navigationItem.leftBarButtonItem = cancelItem;
     
     nextButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(nextTouch)];
     nextButton.enabled = false;
@@ -34,6 +37,11 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     self.user = [[User alloc] init];
+}
+
+-(void) cancelTouch
+{
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(void) nextTouch
@@ -69,7 +77,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -171,6 +179,26 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    
+    switch (section)
+    {
+        case 0:
+            sectionName = NSLocalizedString(@"requiredInformation", nil);
+            break;
+        case 1:
+            sectionName = NSLocalizedString(@"optionalInformation", nil);
+            break;
+        default:
+            sectionName = nil;
+            break;
+    }
+    
+    return sectionName;
 }
 
 @end

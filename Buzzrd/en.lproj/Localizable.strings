@@ -61,3 +61,7 @@
 "account_created_successfully" = "You have successfully created your Buzzrd account. You can click on the image below to optionally add a profile picture or click Cancel to return to the Login screen.";
 
 "users" = "users";
+
+"requiredInformation" = "Required Information";
+
+"optionalInformation" = "Optional Information";

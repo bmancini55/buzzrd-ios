@@ -62,9 +62,10 @@
 		35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */; };
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
+		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
-		C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */; };
+		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
 		C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */; };
 		C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */; };
 		C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E54C1936D6A300DBEEE6 /* Gender.m */; };
@@ -73,6 +74,9 @@
 		C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */; };
 		C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */; };
 		C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E55C193AB8C800DBEEE6 /* ImageService.m */; };
+		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
+		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
+		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,11 +187,13 @@
 		35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@2x.png"; sourceTree = "<group>"; };
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C212FA8D194005D300D5514E /* BaseTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTheme.h; path = Themes/BaseTheme.h; sourceTree = "<group>"; };
+		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
-		C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequiredInfoTableViewController.h; path = Controllers/AccountCreation/RequiredInfoTableViewController.h; sourceTree = "<group>"; };
-		C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequiredInfoTableViewController.m; path = Controllers/AccountCreation/RequiredInfoTableViewController.m; sourceTree = "<group>"; };
+		C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateAccountTableViewController.h; path = Controllers/AccountCreation/CreateAccountTableViewController.h; sourceTree = "<group>"; };
+		C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateAccountTableViewController.m; path = Controllers/AccountCreation/CreateAccountTableViewController.m; sourceTree = "<group>"; };
 		C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalInfoTableViewController.h; path = Controllers/AccountCreation/OptionalInfoTableViewController.h; sourceTree = "<group>"; };
 		C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalInfoTableViewController.m; path = Controllers/AccountCreation/OptionalInfoTableViewController.m; sourceTree = "<group>"; };
 		C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderPickerTableViewController.h; path = Controllers/Shared/GenderPickerTableViewController.h; sourceTree = "<group>"; };
@@ -203,6 +209,11 @@
 		C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+thumbnail.m"; path = "Categories/UIImage+thumbnail.m"; sourceTree = "<group>"; };
 		C2C6E55B193AB8C800DBEEE6 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageService.h; path = Services/ImageService.h; sourceTree = "<group>"; };
 		C2C6E55C193AB8C800DBEEE6 /* ImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageService.m; path = Services/ImageService.m; sourceTree = "<group>"; };
+		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
+		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
+		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
+		C2FC0468193FF969000183CC /* DefaultTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultTheme.h; path = Themes/DefaultTheme.h; sourceTree = "<group>"; };
+		C2FC0469193FF969000183CC /* DefaultTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultTheme.m; path = Themes/DefaultTheme.m; sourceTree = "<group>"; };
 		E5DFDC6655324F998BFAE69B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -360,6 +371,7 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
+				C2FC0464193FF92E000183CC /* Themes */,
 				C2C6E557193823B700DBEEE6 /* Categories */,
 				C2C6E54E1936D71500DBEEE6 /* Common */,
 				C2C6E4FF192D997900DBEEE6 /* Resources */,
@@ -485,6 +497,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2FC045F193EB20E000183CC /* buzzrd@2x.png */,
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
 				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
 				C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */,
@@ -498,8 +511,8 @@
 			children = (
 				C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */,
 				C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */,
-				C2C6E5411936D5B100DBEEE6 /* RequiredInfoTableViewController.h */,
-				C2C6E5421936D5B100DBEEE6 /* RequiredInfoTableViewController.m */,
+				C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */,
+				C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */,
 				C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */,
 				C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */,
 				C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */,
@@ -541,6 +554,19 @@
 				C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		C2FC0464193FF92E000183CC /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				C2FC0465193FF94E000183CC /* ThemeManager.h */,
+				C2FC0466193FF94E000183CC /* ThemeManager.m */,
+				C2FC0468193FF969000183CC /* DefaultTheme.h */,
+				C2FC0469193FF969000183CC /* DefaultTheme.m */,
+				C212FA8D194005D300D5514E /* BaseTheme.h */,
+				C212FA8E194005D300D5514E /* BaseTheme.m */,
+			);
+			name = Themes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,7 +620,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = W7E8H67XME;
+						DevelopmentTeam = R6N6F654JB;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
@@ -627,6 +653,7 @@
 				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
 				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
+				C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
 				C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
@@ -692,10 +719,11 @@
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
-				C2C6E5431936D5B100DBEEE6 /* RequiredInfoTableViewController.m in Sources */,
+				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
 				C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
+				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
@@ -709,6 +737,7 @@
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
+				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
@@ -716,6 +745,7 @@
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
 				35A46F5619328A5E00B615A4 /* LocationService.m in Sources */,
+				C212FA8F194005D300D5514E /* BaseTheme.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
 				35043743193E01D700731968 /* VenueRoomCell.m in Sources */,

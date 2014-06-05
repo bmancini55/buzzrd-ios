@@ -67,9 +67,9 @@
     return navController;
 }
 
-+(RequiredInfoTableViewController *) requiredInfoTableViewController
++(CreateAccountTableViewController *) createAccountTableViewController
 {
-    RequiredInfoTableViewController *viewController = [[RequiredInfoTableViewController alloc]init];
+    CreateAccountTableViewController *viewController = [[CreateAccountTableViewController alloc]init];
     return viewController;
 }
 

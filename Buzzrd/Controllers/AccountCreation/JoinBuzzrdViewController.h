@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "JoinBuzzrdView.h"
-#import "RequiredInfoTableViewController.h"
+#import "CreateAccountTableViewController.h"
 
 @interface JoinBuzzrdViewController : BaseViewController
 {

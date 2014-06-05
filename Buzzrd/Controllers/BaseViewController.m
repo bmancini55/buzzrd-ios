@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "ThemeManager.h"
 
 @interface BaseViewController ()
 
@@ -18,7 +19,7 @@
 {
     [super loadView];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view setBackgroundColor: [ThemeManager getBackgroundColor]];
 }
 
 @end

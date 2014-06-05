@@ -8,11 +8,14 @@
 
 #import "AppDelegate.h"
 #import "BuzzrdNav.h"
+#import "ThemeManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [ThemeManager setTheme: defaultStyle];
+    
     // create root view
     UIViewController *rootViewController = [BuzzrdNav createLoginViewController];
     
@@ -21,6 +24,7 @@
     self.window.rootViewController = rootViewController;
      
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
