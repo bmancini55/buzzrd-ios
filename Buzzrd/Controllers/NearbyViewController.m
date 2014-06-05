@@ -1,12 +1,12 @@
 //
-//  VenuesViewController.m
+//  NearbyViewController.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 6/1/14.
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
-#import "VenuesViewController.h"
+#import "NearbyViewController.h"
 #import "Room.h"
 #import "BuzzrdAPI.h"
 #import "BuzzrdNav.h"
@@ -16,13 +16,13 @@
 #import "VenueRoomCell.h"
 #import "LocationService.h"
 
-@interface VenuesViewController ()
+@interface NearbyViewController ()
 
 @property (strong, nonatomic) LocationService *locationService;
 
 @end
 
-@implementation VenuesViewController
+@implementation NearbyViewController
 
 - (void)loadView
 {

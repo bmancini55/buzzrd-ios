@@ -47,7 +47,7 @@
 		35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* VenueLocation.m */; };
 		35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE0193C079900B615A4 /* VenueCategory.m */; };
 		35A46FE4193C0C6E00B615A4 /* VenueService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE3193C0C6E00B615A4 /* VenueService.m */; };
-		35A46FE7193C103D00B615A4 /* VenuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE6193C103D00B615A4 /* VenuesViewController.m */; };
+		35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE6193C103D00B615A4 /* NearbyViewController.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0DFB18CF37A100F5B339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */; };
 		35BA0DFD18CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
@@ -166,8 +166,8 @@
 		35A46FE0193C079900B615A4 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCategory.m; path = Models/VenueCategory.m; sourceTree = "<group>"; };
 		35A46FE2193C0C6E00B615A4 /* VenueService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueService.h; path = Services/VenueService.h; sourceTree = "<group>"; };
 		35A46FE3193C0C6E00B615A4 /* VenueService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueService.m; path = Services/VenueService.m; sourceTree = "<group>"; };
-		35A46FE5193C103D00B615A4 /* VenuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenuesViewController.h; path = Controllers/VenuesViewController.h; sourceTree = "<group>"; };
-		35A46FE6193C103D00B615A4 /* VenuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenuesViewController.m; path = Controllers/VenuesViewController.m; sourceTree = "<group>"; };
+		35A46FE5193C103D00B615A4 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = Controllers/NearbyViewController.h; sourceTree = "<group>"; };
+		35A46FE6193C103D00B615A4 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = Controllers/NearbyViewController.m; sourceTree = "<group>"; };
 		35BA0DF518CF37A100F5B339 /* Buzzrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzzrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0DF818CF37A100F5B339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -424,8 +424,8 @@
 				35A46F9B19328A9F00B615A4 /* RoomViewController.m */,
 				35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */,
 				35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */,
-				35A46FE5193C103D00B615A4 /* VenuesViewController.h */,
-				35A46FE6193C103D00B615A4 /* VenuesViewController.m */,
+				35A46FE5193C103D00B615A4 /* NearbyViewController.h */,
+				35A46FE6193C103D00B615A4 /* NearbyViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				35A46F5A19328A5E00B615A4 /* UserService.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
-				35A46FE7193C103D00B615A4 /* VenuesViewController.m in Sources */,
+				35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

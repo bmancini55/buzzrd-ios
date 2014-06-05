@@ -1,5 +1,5 @@
 //
-//  VenuesViewController.h
+//  NearbyViewController.h
 //  Buzzrd
 //
 //  Created by Brian Mancini on 6/1/14.
@@ -11,7 +11,7 @@
 #import "Venue.h"
 #import "Room.h"
 
-@interface VenuesViewController : BaseTableViewController
+@interface NearbyViewController : BaseTableViewController
 
 @property NSArray *venues;
 
