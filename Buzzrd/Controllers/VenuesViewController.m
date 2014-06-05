@@ -14,8 +14,11 @@
 #import "VenueView.h"
 #import "VenueRoomView.h"
 #import "VenueRoomCell.h"
+#import "LocationService.h"
 
 @interface VenuesViewController ()
+
+@property (strong, nonatomic) LocationService *locationService;
 
 @end
 
@@ -31,30 +34,21 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    if(self.locationManager == nil) {
-        self.locationManager = [[CLLocationManager alloc] init];
-    }
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100; // meters
-    //[self.locationManager startUpdatingLocation];
-    [self.locationManager startUpdatingLocation];
-    
-    
-    
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [[LocationService sharedInstance] startUpdatingLocation];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray*)locations{
-    
-    CLLocation *location = [locations lastObject];
-    self.currentLocation = location;
-    NSLog(@"latitude %+.6f, latitute %+.6f\n",
-          location.coordinate.latitude,
-          location.coordinate.longitude);
-    
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        [self loadVenues];
+    }
+}
+
+- (void) loadVenues
+{
     [[BuzzrdAPI current].venueService
-     getVenuesNearby:location.coordinate
+     getVenuesNearby:[LocationService sharedInstance].currentLocation.coordinate
      success: ^(NSArray *theVenues) {
          NSLog(@"%lu venue were loaded", (unsigned long)theVenues.count);
          self.venues = theVenues;
@@ -65,12 +59,11 @@
      }];
 }
 
-
-- (void)didReceiveMemoryWarning
+- (void)dealloc
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[LocationService sharedInstance] removeObserver:self forKeyPath:@"currentLocation"];
 }
+
 
 #pragma mark - Table view data source
 
@@ -116,7 +109,7 @@
 {
     Venue *venue = self.venues[section];
     
-    VenueView *venueView = [[VenueView alloc]initWithVenue:venue userLocation:self.currentLocation];
+    VenueView *venueView = [[VenueView alloc]initWithVenue:venue userLocation:[LocationService sharedInstance].currentLocation];
     UIView *view = [[UIView alloc]init];
     [view addSubview:venueView];
     return view;

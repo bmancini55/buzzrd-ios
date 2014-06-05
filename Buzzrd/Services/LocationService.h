@@ -7,8 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ServiceBase.h"
 
-@interface LocationService : ServiceBase
+
+@interface LocationService : NSObject <CLLocationManagerDelegate>
+
++(LocationService *) sharedInstance;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *currentLocation;
+
+- (void)startUpdatingLocation;
 
 @end

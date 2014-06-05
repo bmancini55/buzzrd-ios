@@ -24,7 +24,6 @@
 // Service Properties
 @property (strong, nonatomic) UserService *userService;
 @property (strong, nonatomic) RoomService *roomService;
-@property (strong, nonatomic) LocationService *locationService;
 @property (strong, nonatomic) MessageService *messageService;
 @property (strong, nonatomic) VenueService *venueService;
 @property (strong, nonatomic) ImageService *imageService;
