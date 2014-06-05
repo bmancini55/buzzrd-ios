@@ -9,15 +9,12 @@
 #import "GenderPickerTableViewController.h"
 
 @interface GenderPickerTableViewController ()
-{
-    NSArray *genders;
-}
+
+@property (strong, nonatomic) NSArray *genders;
 
 @end
 
 @implementation GenderPickerTableViewController
-
-@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,8 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    genders = [StaticData listOfGenders];
+
+    self.genders = [StaticData listOfGenders];
     
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -57,14 +54,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return genders.count;
+    return self.genders.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    Gender *gender = genders[indexPath.row];
+    Gender *gender = self.genders[indexPath.row];
     
     NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", gender.idgender];
     
@@ -89,7 +86,7 @@
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    Gender *gender = genders[indexPath.row];
+    Gender *gender = self.genders[indexPath.row];
     
     _selectedGenderId = gender.idgender;
 }

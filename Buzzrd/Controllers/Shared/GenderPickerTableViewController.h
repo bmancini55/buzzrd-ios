@@ -18,11 +18,8 @@
 @end
 
 @interface GenderPickerTableViewController : BaseTableViewController
-{
-    id <ProcessDataDelegate> delegate;
-}
 
-@property (retain) id delegate;
+@property (weak, nonatomic) id<ProcessDataDelegate> delegate;
 @property (strong, nonatomic) NSNumber *selectedGenderId;
 
 @end
