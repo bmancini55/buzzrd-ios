@@ -88,7 +88,7 @@
     
     Gender *gender = self.genders[indexPath.row];
     
-    _selectedGenderId = gender.idgender;
+    self.selectedGenderId = gender.idgender;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,7 +98,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[self delegate ] processGenderPickerSuccessful:_selectedGenderId];
+    self.onGenderSelected(self.selectedGenderId);
 }
 
 @end

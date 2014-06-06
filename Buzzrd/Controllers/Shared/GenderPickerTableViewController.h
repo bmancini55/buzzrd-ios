@@ -11,15 +11,10 @@
 #import "StaticData.h"
 #import "Gender.h"
 
-@protocol ProcessDataDelegate <NSObject>
-
--(void) processGenderPickerSuccessful:(NSNumber *)data;
-
-@end
 
 @interface GenderPickerTableViewController : BaseTableViewController
 
-@property (weak, nonatomic) id<ProcessDataDelegate> delegate;
+@property (strong, nonatomic) void(^onGenderSelected)(NSNumber *genderId);
 @property (strong, nonatomic) NSNumber *selectedGenderId;
 
 @end

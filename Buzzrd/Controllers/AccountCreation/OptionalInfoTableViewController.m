@@ -49,21 +49,21 @@
 - (void) displayGenderPicker
 {
     GenderPickerTableViewController *viewController = [[GenderPickerTableViewController alloc]init];
-    
-    [viewController setDelegate:self];
     viewController.selectedGenderId = self.user.genderId;
-    
+    viewController.onGenderSelected = ^(NSNumber *genderId) {
+        [self setGender:genderId];
+    };
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (void) processGenderPickerSuccessful:(NSNumber *)data
+- (void) setGender:(NSNumber *)genderId
 {
-    if (data != nil)
+    if (genderId != nil)
     {
-        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", data];
+        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", genderId];
         
         genderLabel.text = NSLocalizedString(genderString, nil);
-        self.user.genderId = data;
+        self.user.genderId = genderId;
     }
 }
 
@@ -83,37 +83,7 @@
     UITextField* tf = nil ;
     
 	switch ( indexPath.row ) {
-		case 0: {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-			cell.textLabel.text = NSLocalizedString(@"first_name", nil);
-			tf = firstNameTextField = [self makeTextField: self.user.firstName placeholder:nil];
-			[cell addSubview:firstNameTextField];
-			break ;
-		}
-		case 1: {
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-            cell.textLabel.text = NSLocalizedString(@"last_name", nil);
-			tf = lastNameTextField = [self makeTextField: self.user.lastName placeholder:nil];
-			[cell addSubview:lastNameTextField];
-			break ;
-		}
-		case 2: {
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GenderCell"];
-            cell.textLabel.text = NSLocalizedString(@"gender", nil);
-            
-            genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 170, 40)];
-            
-            if (self.user.genderId != nil)
-            {
-                NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", self.user.genderId];
-                
-                genderLabel.text = NSLocalizedString(genderString, nil);
-            }
-            
-            [cell addSubview:genderLabel];
-            
-            break ;
-		}
+		
 	}
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
