@@ -57,9 +57,16 @@
 
 -(void) nextTouch
 {
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    
     if (![self.usernameTextField.text isAlphaNumeric]) {
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"usernames", nil) message: NSLocalizedString(@"username_alphanumeric_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"username", nil) message: NSLocalizedString(@"username_alphanumeric_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+    else if (self.passwordTextField.text.length < 6) {
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_length_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }
     else {
@@ -71,8 +78,6 @@
         if (self.user.genderId == nil) {
             self.user.genderId = [NSNumber numberWithInt:0];
         }
-            
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
         // Create the user
         [[BuzzrdAPI current].userService

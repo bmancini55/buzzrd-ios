@@ -14,8 +14,6 @@
 
 "join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy, including our Cookie Use.";
 
-"usernames" = "Usernames";
-
 "username" = "Username";
 
 "password" = "Password";
@@ -52,6 +50,8 @@
 
 "passwords_dont_match" = "Passwords don't match";
 
+"password_length_error" = "Your password must be at least 6 characters in length";
+
 "nearby" = "Nearby";
 
 "rooms" = "Rooms";
@@ -70,7 +70,7 @@
 
 "ok" = "OK";
 
-"username_alphanumeric_error" = "Usernames can only contain letters and numbers";
+"username_alphanumeric_error" = "Your username can only contain letters and numbers";
 
 "cancel" = "Cancel";
 
