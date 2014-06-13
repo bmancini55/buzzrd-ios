@@ -31,7 +31,6 @@
 		35A46FA219328A9F00B615A4 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9919328A9F00B615A4 /* RoomsViewController.m */; };
 		35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9B19328A9F00B615A4 /* RoomViewController.m */; };
 		35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */; };
-		35A46FB919328ACC00B615A4 /* JoinBuzzrdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */; };
 		35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */; };
 		35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB119328ACC00B615A4 /* LoadingOverlay.m */; };
 		35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB319328ACC00B615A4 /* ProfileImageView.m */; };
@@ -66,7 +65,6 @@
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
 		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
-		C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */; };
 		C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */; };
 		C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E54C1936D6A300DBEEE6 /* Gender.m */; };
 		C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5501936D73200DBEEE6 /* StaticData.m */; };
@@ -138,8 +136,6 @@
 		35A46F9B19328A9F00B615A4 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomViewController.m; path = Controllers/RoomViewController.m; sourceTree = "<group>"; };
 		35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserOptionsViewController.h; path = Controllers/UserOptionsViewController.h; sourceTree = "<group>"; };
 		35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserOptionsViewController.m; path = Controllers/UserOptionsViewController.m; sourceTree = "<group>"; };
-		35A46FAA19328ACC00B615A4 /* JoinBuzzrdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinBuzzrdView.h; sourceTree = "<group>"; };
-		35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinBuzzrdView.m; sourceTree = "<group>"; };
 		35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardBarView.h; path = Views/KeyboardBarView.h; sourceTree = "<group>"; };
 		35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardBarView.m; path = Views/KeyboardBarView.m; sourceTree = "<group>"; };
 		35A46FB019328ACC00B615A4 /* LoadingOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingOverlay.h; path = Views/LoadingOverlay.h; sourceTree = "<group>"; };
@@ -194,8 +190,6 @@
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
 		C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateAccountTableViewController.h; path = Controllers/AccountCreation/CreateAccountTableViewController.h; sourceTree = "<group>"; };
 		C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateAccountTableViewController.m; path = Controllers/AccountCreation/CreateAccountTableViewController.m; sourceTree = "<group>"; };
-		C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionalInfoTableViewController.h; path = Controllers/AccountCreation/OptionalInfoTableViewController.h; sourceTree = "<group>"; };
-		C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionalInfoTableViewController.m; path = Controllers/AccountCreation/OptionalInfoTableViewController.m; sourceTree = "<group>"; };
 		C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenderPickerTableViewController.h; path = Controllers/Shared/GenderPickerTableViewController.h; sourceTree = "<group>"; };
 		C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenderPickerTableViewController.m; path = Controllers/Shared/GenderPickerTableViewController.m; sourceTree = "<group>"; };
 		C2C6E54B1936D6A300DBEEE6 /* Gender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gender.h; path = Models/Gender.h; sourceTree = "<group>"; };
@@ -271,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				3504373A193DFAF800731968 /* Venues */,
-				35A46FA519328ACC00B615A4 /* AccountCreation */,
 				35A46FB419328ACC00B615A4 /* Room */,
 				35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */,
 				35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */,
@@ -294,16 +287,6 @@
 				35A46F3619328A2400B615A4 /* BuzzrdNav.m */,
 			);
 			name = Application;
-			sourceTree = "<group>";
-		};
-		35A46FA519328ACC00B615A4 /* AccountCreation */ = {
-			isa = PBXGroup;
-			children = (
-				35A46FAA19328ACC00B615A4 /* JoinBuzzrdView.h */,
-				35A46FAB19328ACC00B615A4 /* JoinBuzzrdView.m */,
-			);
-			name = AccountCreation;
-			path = Views/AccountCreation;
 			sourceTree = "<group>";
 		};
 		35A46FB419328ACC00B615A4 /* Room */ = {
@@ -513,8 +496,6 @@
 				C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */,
 				C2C6E5411936D5B100DBEEE6 /* CreateAccountTableViewController.h */,
 				C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */,
-				C2C6E5441936D5ED00DBEEE6 /* OptionalInfoTableViewController.h */,
-				C2C6E5451936D5ED00DBEEE6 /* OptionalInfoTableViewController.m */,
 				C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */,
 				C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */,
 			);
@@ -721,7 +702,6 @@
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
-				C2C6E5461936D5ED00DBEEE6 /* OptionalInfoTableViewController.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
@@ -751,7 +731,6 @@
 				35043743193E01D700731968 /* VenueRoomCell.m in Sources */,
 				35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */,
 				35043740193DFC5300731968 /* VenueRoomView.m in Sources */,
-				35A46FB919328ACC00B615A4 /* JoinBuzzrdView.m in Sources */,
 				35A46FE4193C0C6E00B615A4 /* VenueService.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,

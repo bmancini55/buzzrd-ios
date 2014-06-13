@@ -32,11 +32,11 @@
 
 "gender" = "Gender";
 
-"gender_0" = "Male";
+"gender_0" = "I don't want to tell";
 
-"gender_1" = "Female";
+"gender_1" = "Male";
 
-"gender_2" = "I don't want to tell";
+"gender_2" = "Female";
 
 "next" = "Next";
 

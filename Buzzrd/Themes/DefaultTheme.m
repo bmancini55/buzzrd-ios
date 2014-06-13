@@ -24,6 +24,8 @@ UIColor *primaryOrangeColor;
     [[UIButton appearance] setBackgroundColor: primaryOrangeColor];
     [[UIButton appearance] setTitleColor: primaryGrayColor forState: UIControlStateNormal];
     [[UIButton appearance] setTitleColor: primaryGrayColor forState: UIControlStateSelected];
+    [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil]
+     setBackgroundColor: [UIColor whiteColor]];
     
     [[UITextField appearance] setBackgroundColor: [UIColor whiteColor]];
     

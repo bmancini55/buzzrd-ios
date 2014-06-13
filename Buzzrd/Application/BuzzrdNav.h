@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "room.h"
 #import "JoinBuzzrdViewController.h"
-#import "OptionalInfoTableViewController.h"
 #import "CreateAccountTableViewController.h"
 #import "ProfileImageViewController.h"
 
@@ -23,7 +22,6 @@
 // Account Creation
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;
 +(CreateAccountTableViewController *) createAccountTableViewController;
-+(OptionalInfoTableViewController *) optionalInfoTableViewController;
 +(ProfileImageViewController *) profileImageViewController;
 
 @end

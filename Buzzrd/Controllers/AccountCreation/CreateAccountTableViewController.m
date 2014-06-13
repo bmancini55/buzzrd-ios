@@ -9,6 +9,8 @@
 #import "BuzzrdNav.h"
 #import "BuzzrdAPI.h"
 #import "CreateAccountTableViewController.h"
+#import "FrameUtils.h"
+#import "GenderPickerTableViewController.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -25,6 +27,11 @@
 @end
 
 @implementation CreateAccountTableViewController
+
+-(id)init
+{
+    return [self initWithStyle:UITableViewStylePlain];
+}
 
 -(void) loadView
 {
@@ -52,28 +59,29 @@
 {
     self.user.username = self.usernameTextField.text;
     self.user.password = self.passwordTextField.text;
+    self.user.firstName = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.user.lastName = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
+    if (self.user.genderId == nil) {
+        self.user.genderId = [NSNumber numberWithInt:0];
+    }
+        
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
-    // Validate the username is unique
+    // Create the user
     [[BuzzrdAPI current].userService
-     usernameExists:self.user.username
-     success:^(bool usernameExists)
+     createUser:self.user
+     success:^(User* createdUser)
      {
          [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         
-         OptionalInfoTableViewController *optionalInfoTableViewController = [BuzzrdNav optionalInfoTableViewController];
-         optionalInfoTableViewController.user = self.user;
-         optionalInfoTableViewController.user.username = self.usernameTextField.text;
-         optionalInfoTableViewController.user.password = self.passwordTextField.text;
-         [self.navigationController pushViewController:optionalInfoTableViewController animated:YES];
+         ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+         profileImageController.user = createdUser;
+         [self.navigationController pushViewController:profileImageController animated:YES];
      }
      failure:^(NSError *error) {
          [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         
          UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
          [alert show];
-         
      }];
 }
 
@@ -91,69 +99,73 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
-    UITextField* tf = nil ;
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row];
     
-    if(indexPath.section == 0) {
-        switch (indexPath.row ) {
-            case 0: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.textLabel.text = NSLocalizedString(@"username", nil);
-                tf = self.usernameTextField = [self makeTextField: self.user.username placeholder:nil];
-                [cell addSubview:self.usernameTextField];
-                break ;
-            }
-            case 1: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.textLabel.text = NSLocalizedString(@"password", nil);
-                tf = self.passwordTextField = [self makeTextField: nil placeholder:nil];
-                self.passwordTextField.secureTextEntry = YES;
-                [cell addSubview:self.passwordTextField];
-                break ;
-            }
-            case 2: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.textLabel.text = NSLocalizedString(@"verify", nil);
-                tf = self.password2TextField = [self makeTextField: nil placeholder:nil];
-                self.password2TextField.secureTextEntry = YES;
-                [cell addSubview:self.password2TextField];
-                break ;
+    UITextField *tf = nil;
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        
+        if(indexPath.section == 0) {
+            switch (indexPath.row ) {
+                case 0: {
+                    cell.textLabel.text = NSLocalizedString(@"username", nil);
+                    tf = self.usernameTextField = [self makeTextField: self.user.username placeholder:nil];
+                    [cell addSubview:self.usernameTextField];
+                    break ;
+                }
+                case 1: {
+                    cell.textLabel.text = NSLocalizedString(@"password", nil);
+                    tf = self.passwordTextField = [self makeTextField: nil placeholder:nil];
+                    self.passwordTextField.secureTextEntry = YES;
+                    [cell addSubview:self.passwordTextField];
+                    break ;
+                }
+                case 2: {
+                    cell.textLabel.text = NSLocalizedString(@"verify", nil);
+                    tf = self.password2TextField = [self makeTextField: nil placeholder:nil];
+                    self.password2TextField.secureTextEntry = YES;
+                    [cell addSubview:self.password2TextField];
+                    break ;
+                }
             }
         }
-    }
     
-    if(indexPath.section == 1) {
-        switch (indexPath.row ) {
-            case 0: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.textLabel.text = NSLocalizedString(@"first_name", nil);
-                tf = self.firstNameTextField = [self makeTextField: self.user.firstName placeholder:nil];
-                [cell addSubview:self.firstNameTextField];
-                break ;
-            }
-            case 1: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-                cell.textLabel.text = NSLocalizedString(@"last_name", nil);
-                tf = self.lastNameTextField = [self makeTextField: self.user.lastName placeholder:nil];
-                [cell addSubview:self.lastNameTextField];
-                break ;
-            }
-            case 2: {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GenderCell"];
-                cell.textLabel.text = NSLocalizedString(@"gender", nil);
-                
-                self.genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 170, 40)];
-                
-                if (self.user.genderId != nil)
-                {
-                    NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", self.user.genderId];
-                    
-                    self.genderLabel.text = NSLocalizedString(genderString, nil);
+        if(indexPath.section == 1) {
+            switch (indexPath.row ) {
+                case 0: {
+                    cell.textLabel.text = NSLocalizedString(@"first_name", nil);
+                    tf = self.firstNameTextField = [self makeTextField: self.user.firstName placeholder:nil];
+                    [cell addSubview:self.firstNameTextField];
+                    break ;
                 }
-                
-                [cell addSubview:self.genderLabel];
-                
-                break ;
+                case 1: {
+                    cell.textLabel.text = NSLocalizedString(@"last_name", nil);
+                    tf = self.lastNameTextField = [self makeTextField: self.user.lastName placeholder:nil];
+                    [cell addSubview:self.lastNameTextField];
+                    break ;
+                }
+                case 2: {
+                    cell.textLabel.text = NSLocalizedString(@"gender", nil);
+                    
+                    self.genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 170, 40)];
+                    
+                    if (self.user.genderId != nil)
+                    {
+                        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", self.user.genderId];
+                        
+                        self.genderLabel.text = NSLocalizedString(genderString, nil);
+                    }
+                    
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    
+                    [cell addSubview:self.genderLabel];
+                    
+                    break ;
+                }
             }
         }
     }
@@ -161,15 +173,15 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Textfield dimensions
-	tf.frame = CGRectMake(120, 0, 170, 40);
+    tf.frame = CGRectMake(120, 0, 170, 40);
 	
     [tf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-	// Workaround to dismiss keyboard when Done/Return is tapped
-	[tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    // Workaround to dismiss keyboard when Done/Return is tapped
+    [tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	
-	// We want to handle textFieldDidEndEditing
-	tf.delegate = self;
+    // We want to handle textFieldDidEndEditing
+    tf.delegate = self;
     
     return cell;
 }
@@ -179,7 +191,8 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if ([cell.reuseIdentifier isEqual: @"GenderCell"])
+    // 12 is the reuseIdentifier for the gender cell
+    if ([cell.reuseIdentifier isEqual: @"12"])
     {
         [self displayGenderPicker];
     }
@@ -205,7 +218,6 @@
         self.user.genderId = genderId;
     }
 }
-
 
 -(UITextField*) makeTextField: (NSString*)text
                   placeholder: (NSString*)placeholder  {

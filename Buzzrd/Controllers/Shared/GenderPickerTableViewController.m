@@ -59,22 +59,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row];
     
-    Gender *gender = self.genders[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", gender.idgender];
-    
-    cell.textLabel.text = NSLocalizedString(genderString, nil);
-    
-    if (gender.idgender == _selectedGenderId)
+    if(cell == nil)
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+
+        Gender *gender = self.genders[indexPath.row];
         
-        [self.tableView selectRowAtIndexPath:indexPath
-                                    animated:YES
-                              scrollPosition:UITableViewScrollPositionNone];
-        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", gender.idgender];
+        
+        cell.textLabel.text = NSLocalizedString(genderString, nil);
+        
+        if (gender.idgender == _selectedGenderId)
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            [self.tableView selectRowAtIndexPath:indexPath
+                                        animated:YES
+                                  scrollPosition:UITableViewScrollPositionNone];
+            
+            self.selectedGenderId = gender.idgender;
+        }
     }
     
     return cell;
@@ -89,6 +97,8 @@
     Gender *gender = self.genders[indexPath.row];
     
     self.selectedGenderId = gender.idgender;
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {

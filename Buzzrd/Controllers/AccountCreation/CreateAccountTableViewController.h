@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) User *user;
 
+- (id)init;
+
 @end

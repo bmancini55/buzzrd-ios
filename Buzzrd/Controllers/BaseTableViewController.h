@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface BaseTableViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource>
-
-@property (strong, nonatomic) UITableView *tableView;
-
--(id)initWithStyle:(UITableViewStyle)style;
+@interface BaseTableViewController : UITableViewController
 
 @end

@@ -73,12 +73,6 @@
     return viewController;
 }
 
-+(OptionalInfoTableViewController *) optionalInfoTableViewController
-{
-    OptionalInfoTableViewController *viewController = [[OptionalInfoTableViewController alloc]init];
-    return viewController;
-}
-
 +(ProfileImageViewController *) profileImageViewController;
 {
 //    ProfileImageViewController *viewController = [[ProfileImageViewController alloc]init];
