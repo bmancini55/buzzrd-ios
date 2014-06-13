@@ -71,7 +71,7 @@
         return;
     }
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: @"Take a Photo", @"Use Photo Library", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles: NSLocalizedString(@"take_a_photo", nil), NSLocalizedString(@"use_photo_library", nil), nil];
     [actionSheet showInView:self.view];
 }
 
@@ -141,13 +141,13 @@
              }
              failure:^(NSError *error) {
                  [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
                  [alert show];
              }];
         }
         failure:^(NSError *error) {
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
             [alert show];
         }];
     }

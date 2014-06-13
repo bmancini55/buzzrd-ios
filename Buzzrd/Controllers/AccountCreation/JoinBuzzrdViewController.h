@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "JoinBuzzrdView.h"
 #import "CreateAccountTableViewController.h"
 
 @interface JoinBuzzrdViewController : BaseViewController
-{
-    JoinBuzzrdView *mainView;
-}
+
+
 @end

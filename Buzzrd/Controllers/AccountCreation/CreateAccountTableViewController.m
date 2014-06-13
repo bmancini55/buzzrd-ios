@@ -57,32 +57,39 @@
 
 -(void) nextTouch
 {
-    self.user.username = self.usernameTextField.text;
-    self.user.password = self.passwordTextField.text;
-    self.user.firstName = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    self.user.lastName = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if (self.user.genderId == nil) {
-        self.user.genderId = [NSNumber numberWithInt:0];
+    if (![self.usernameTextField.text isAlphaNumeric]) {
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"usernames", nil) message: NSLocalizedString(@"username_alphanumeric_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+        [alert show];
     }
-        
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    
-    // Create the user
-    [[BuzzrdAPI current].userService
-     createUser:self.user
-     success:^(User* createdUser)
-     {
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
-         profileImageController.user = createdUser;
-         [self.navigationController pushViewController:profileImageController animated:YES];
-     }
-     failure:^(NSError *error) {
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-         [alert show];
-     }];
+    else {
+        self.user.username = self.usernameTextField.text;
+        self.user.password = self.passwordTextField.text;
+        self.user.firstName = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.user.lastName = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+        if (self.user.genderId == nil) {
+            self.user.genderId = [NSNumber numberWithInt:0];
+        }
+            
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
+        // Create the user
+        [[BuzzrdAPI current].userService
+         createUser:self.user
+         success:^(User* createdUser)
+         {
+             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+             ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+             profileImageController.user = createdUser;
+             [self.navigationController pushViewController:profileImageController animated:YES];
+         }
+         failure:^(NSError *error) {
+             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+             [alert show];
+         }];
+    }
 }
 
 #pragma mark - Table view data source

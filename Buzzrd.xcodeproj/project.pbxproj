@@ -62,6 +62,7 @@
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
+		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
 		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
@@ -185,6 +186,8 @@
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C212FA8D194005D300D5514E /* BaseTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTheme.h; path = Themes/BaseTheme.h; sourceTree = "<group>"; };
 		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
+		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
+		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 		C2C6E557193823B700DBEEE6 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C2996C4C194A89940023D353 /* NSString+string.h */,
+				C2996C4D194A89940023D353 /* NSString+string.m */,
 				C2C6E5581938241100DBEEE6 /* UIImage+thumbnail.h */,
 				C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */,
 			);
@@ -702,6 +707,7 @@
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
+				C2996C4E194A89940023D353 /* NSString+string.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,

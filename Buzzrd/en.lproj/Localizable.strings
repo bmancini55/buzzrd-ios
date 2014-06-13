@@ -14,6 +14,8 @@
 
 "join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy, including our Cookie Use.";
 
+"usernames" = "Usernames";
+
 "username" = "Username";
 
 "password" = "Password";
@@ -65,3 +67,13 @@
 "requiredInformation" = "Required Information";
 
 "optionalInformation" = "Optional Information";
+
+"ok" = "OK";
+
+"username_alphanumeric_error" = "Usernames can only contain letters and numbers";
+
+"cancel" = "Cancel";
+
+"take_a_photo" = "Take a Photo";
+
+"use_photo_library" = "Use Photo Library";
