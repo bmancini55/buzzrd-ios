@@ -13,8 +13,10 @@
 
 @interface VenueService : ServiceBase
 
--(void)getVenuesNearby:(CLLocationCoordinate2D)location
-         success:(void (^)(NSArray *theVenues))success
-         failure:(void (^)(NSError *error))failure;
+-(void)getVenues:(CLLocationCoordinate2D)location
+                search:(NSString *)search
+          includeRooms:(bool)includeRooms
+               success:(void (^)(NSArray *theVenues))success
+               failure:(void (^)(NSError *error))failure;
 
 @end

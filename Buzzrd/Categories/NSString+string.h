@@ -12,4 +12,6 @@
 
 - (BOOL) isAlphaNumeric;
 
++ (NSString *) emptyStringIfNil:(NSString *)string;
+
 @end

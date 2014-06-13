@@ -18,4 +18,10 @@
     return ([self rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
 }
 
++ (NSString *) emptyStringIfNil:(NSString *)string
+{
+    return string ? string : @"";
+}
+
+
 @end

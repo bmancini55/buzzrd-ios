@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
 #import "DateUtils.h"
+#import "NSString+string.h"
 
 @interface ServiceBase : NSObject
 

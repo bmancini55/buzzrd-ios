@@ -48,7 +48,9 @@
 - (void) loadVenues
 {
     [[BuzzrdAPI current].venueService
-     getVenuesNearby:[LocationService sharedInstance].currentLocation.coordinate
+     getVenues:[LocationService sharedInstance].currentLocation.coordinate
+     search:nil
+     includeRooms:true
      success: ^(NSArray *theVenues) {
          NSLog(@"%lu venue were loaded", (unsigned long)theVenues.count);
          self.venues = theVenues;

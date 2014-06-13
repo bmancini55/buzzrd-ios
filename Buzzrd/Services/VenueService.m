@@ -10,13 +10,17 @@
 
 @implementation VenueService
 
--(void)getVenuesNearby:(CLLocationCoordinate2D)location
-               success:(void (^)(NSArray *theVenues))success
-               failure:(void (^)(NSError *error))failure
+
+-(void)getVenues:(CLLocationCoordinate2D)location
+          search:(NSString *)search
+    includeRooms:(bool)includeRooms
+         success:(void (^)(NSArray *theVenues))success
+         failure:(void (^)(NSError *error))failure
 {
+    NSString *url = [self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/venues/?lat=%f&lng=%f&includeRooms=%d&search=%@", location.latitude, location.longitude, includeRooms, [NSString emptyStringIfNil:search]]];
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     [manager
-     GET:[self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/rooms/nearby?lat=%f&lng=%f", location.latitude, location.longitude]]
+     GET:url
      parameters:nil
      success:^(NSURLSessionDataTask *task, id responseObject) {
          
