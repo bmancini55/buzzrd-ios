@@ -10,4 +10,8 @@
 
 @interface BaseViewController : UIViewController
 
+- (void) showActivityView;
+
+- (void) hideActivityView;
+
 @end

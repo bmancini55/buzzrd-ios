@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 #import "NSString+string.h"
 
 @interface BaseTableViewController : UITableViewController
+
+- (void) showActivityView;
+
+- (void) hideActivityView;
 
 @end

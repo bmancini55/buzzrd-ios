@@ -127,7 +127,7 @@
 
 -(void) doneTouch
 {
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [self showActivityView];
     
     if (_thumbnail != nil){
         // upload the image to the buzzrd server
@@ -136,24 +136,24 @@
             // Update the location of the user's profile pic
             [[BuzzrdAPI current].userService updateProfilePic:self.user.iduser imageURI:imageURI
              success:^(NSString *userId) {
-                [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                [self hideActivityView];
                 [self dismissViewControllerAnimated:false completion:nil];
              }
              failure:^(NSError *error) {
-                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                 [self hideActivityView];
                  UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
                  [alert show];
              }];
         }
         failure:^(NSError *error) {
-            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            [self hideActivityView];
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
             [alert show];
         }];
     }
     else
     {
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [self hideActivityView];
         [self dismissViewControllerAnimated:false completion:nil];
     }
 }

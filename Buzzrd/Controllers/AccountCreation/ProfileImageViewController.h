@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 #import "ImageService.h"
 #import "User.h"
 
-@interface ProfileImageViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ProfileImageViewController : BaseTableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) User *user;
 

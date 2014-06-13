@@ -57,15 +57,15 @@
 
 -(void) nextTouch
 {
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [self showActivityView];
     
     if (![self.usernameTextField.text isAlphaNumeric]) {
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [self hideActivityView];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"username", nil) message: NSLocalizedString(@"username_alphanumeric_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }
     else if (self.passwordTextField.text.length < 6) {
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [self hideActivityView];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_length_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }
@@ -84,13 +84,13 @@
          createUser:self.user
          success:^(User* createdUser)
          {
-             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+             [self hideActivityView];
              ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
              profileImageController.user = createdUser;
              [self.navigationController pushViewController:profileImageController animated:YES];
          }
          failure:^(NSError *error) {
-             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+             [self hideActivityView];
              UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
              [alert show];
          }];
