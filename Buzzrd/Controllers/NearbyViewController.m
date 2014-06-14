@@ -61,9 +61,10 @@
      }];
 }
 
-- (void)dealloc
+- (void) joinRoom:(Room *)room
 {
-    [[LocationService sharedInstance] removeObserver:self forKeyPath:@"currentLocation"];
+    UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
@@ -111,7 +112,9 @@
 {
     Venue *venue = self.venues[section];
     
-    VenueView *venueView = [[VenueView alloc]initWithVenue:venue userLocation:[LocationService sharedInstance].currentLocation];
+    VenueView *venueView = [[VenueView alloc]init];
+    [venueView setVenue:venue userLocation:[LocationService sharedInstance].currentLocation];
+    
     UIView *view = [[UIView alloc]init];
     [view addSubview:venueView];
     return view;
@@ -132,23 +135,36 @@
 
 -(void)addRoomTouch
 {
-    UIViewController *newRoomViewController = [BuzzrdNav createNewRoomViewController:^(Room *newRoom)
-                                               {
-                                                   [self addRoomToTable:newRoom];
-                                               }];
-    [self presentViewController:newRoomViewController animated:true completion:nil];
+    UIViewController *viewController = [BuzzrdNav createNewRoomViewController:^(Room *newRoom)
+                                       {
+                                           [self addRoomToTable:newRoom];
+                                           [self joinRoom:newRoom];
+                                       }];
+
+    [self presentViewController:viewController animated:true completion:nil];
 }
 
 -(void)addRoomToTable:(Room *)room
 {
-    /*
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.rooms];
-    [temp insertObject:room atIndex:0];
-    self.rooms = [NSArray arrayWithArray:temp];
+    int venueIndex;
+    Venue *venue;
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    // find the venue
+    for(venueIndex = 0; venueIndex < self.venues.count; venueIndex++)
+    {
+        venue = self.venues[venueIndex];
+        if([venue.id isEqualToString:room.venueId])
+            break;
+    }
+    
+    // insert the room
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:venue.rooms];
+    [temp insertObject:room atIndex:0];
+    venue.rooms = [NSArray arrayWithArray:temp];
+    
+    // insert the room cell
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:venueIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    */
 }
 
 @end

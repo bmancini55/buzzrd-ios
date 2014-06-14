@@ -8,11 +8,11 @@
 
 #import "BuzzrdNav.h"
 #import "LoginViewController.h"
-#import "RoomsViewController.h"
 #import "RoomViewController.h"
-#import "NewRoomViewController.h"
 #import "UserOptionsViewController.h"
 #import "NearbyViewController.h"
+#import "RoomVenueViewController.h"
+#import "RoomOptionsViewController.h"
 
 #import "Room.h"
 
@@ -29,17 +29,13 @@
     NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
     UINavigationController *nearbyNavController = [[UINavigationController alloc] initWithRootViewController:nearbyViewController];
     
-    RoomsViewController *roomsViewController = [[RoomsViewController alloc] init];
-    UINavigationController *roomsNavController = [[UINavigationController alloc] initWithRootViewController:roomsViewController];
-    
     UserOptionsViewController *userOptionsViewController = [[UserOptionsViewController alloc]init];
     UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:userOptionsViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[nearbyNavController, roomsNavController, userOptionsNavController];
+    tabBarController.viewControllers = @[nearbyNavController, userOptionsNavController];
     [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
-    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"rooms", nil)];
-    [[tabBarController.tabBar.items objectAtIndex:2] setTitle:NSLocalizedString(@"options", nil)];
+    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"options", nil)];
     
     return tabBarController;
 }
@@ -52,11 +48,11 @@
     return roomViewController;
 }
 
-+(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback
++(UIViewController *) createNewRoomViewController:(void (^)(Room *))roomCreatedCallback
 {
-    NewRoomViewController *newRoomViewController = [[NewRoomViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    newRoomViewController.onRoomCreated = roomCreatedCallback;
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:newRoomViewController];
+    RoomVenueViewController *viewController = [[RoomVenueViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    viewController.onRoomCreated = roomCreatedCallback;
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
     return navController;
 }
 

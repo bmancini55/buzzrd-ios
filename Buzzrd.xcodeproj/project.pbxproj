@@ -10,6 +10,8 @@
 		3504373D193DFB3100731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373C193DFB3100731968 /* VenueView.m */; };
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
+		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
+		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
 		35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3619328A2400B615A4 /* BuzzrdNav.m */; };
@@ -27,8 +29,7 @@
 		35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9119328A9F00B615A4 /* BaseTableViewController.m */; };
 		35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9319328A9F00B615A4 /* BaseViewController.m */; };
 		35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9519328A9F00B615A4 /* LoginViewController.m */; };
-		35A46FA119328A9F00B615A4 /* NewRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9719328A9F00B615A4 /* NewRoomViewController.m */; };
-		35A46FA219328A9F00B615A4 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9919328A9F00B615A4 /* RoomsViewController.m */; };
+		35A46FA119328A9F00B615A4 /* RoomOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9719328A9F00B615A4 /* RoomOptionsViewController.m */; };
 		35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9B19328A9F00B615A4 /* RoomViewController.m */; };
 		35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */; };
 		35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */; };
@@ -95,6 +96,10 @@
 		3504373F193DFC5300731968 /* VenueRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomView.m; path = Views/Venues/VenueRoomView.m; sourceTree = "<group>"; };
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
+		3561B6B3194C88BD00EF1654 /* RoomVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomVenueViewController.h; path = Controllers/RoomCreation/RoomVenueViewController.h; sourceTree = "<group>"; };
+		3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomVenueViewController.m; path = Controllers/RoomCreation/RoomVenueViewController.m; sourceTree = "<group>"; };
+		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
+		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -129,10 +134,8 @@
 		35A46F9319328A9F00B615A4 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Controllers/BaseViewController.m; sourceTree = "<group>"; };
 		35A46F9419328A9F00B615A4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controllers/LoginViewController.h; sourceTree = "<group>"; };
 		35A46F9519328A9F00B615A4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controllers/LoginViewController.m; sourceTree = "<group>"; };
-		35A46F9619328A9F00B615A4 /* NewRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewRoomViewController.h; path = Controllers/NewRoomViewController.h; sourceTree = "<group>"; };
-		35A46F9719328A9F00B615A4 /* NewRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewRoomViewController.m; path = Controllers/NewRoomViewController.m; sourceTree = "<group>"; };
-		35A46F9819328A9F00B615A4 /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomsViewController.h; path = Controllers/RoomsViewController.h; sourceTree = "<group>"; };
-		35A46F9919328A9F00B615A4 /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomsViewController.m; path = Controllers/RoomsViewController.m; sourceTree = "<group>"; };
+		35A46F9619328A9F00B615A4 /* RoomOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomOptionsViewController.h; path = Controllers/RoomOptionsViewController.h; sourceTree = "<group>"; };
+		35A46F9719328A9F00B615A4 /* RoomOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomOptionsViewController.m; path = Controllers/RoomOptionsViewController.m; sourceTree = "<group>"; };
 		35A46F9A19328A9F00B615A4 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomViewController.h; path = Controllers/RoomViewController.h; sourceTree = "<group>"; };
 		35A46F9B19328A9F00B615A4 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomViewController.m; path = Controllers/RoomViewController.m; sourceTree = "<group>"; };
 		35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserOptionsViewController.h; path = Controllers/UserOptionsViewController.h; sourceTree = "<group>"; };
@@ -245,12 +248,25 @@
 			children = (
 				3504373B193DFB3100731968 /* VenueView.h */,
 				3504373C193DFB3100731968 /* VenueView.m */,
+				3561B6B6194C8C1500EF1654 /* VenueCell.h */,
+				3561B6B7194C8C1500EF1654 /* VenueCell.m */,
 				3504373E193DFC5300731968 /* VenueRoomView.h */,
 				3504373F193DFC5300731968 /* VenueRoomView.m */,
 				35043741193E01D700731968 /* VenueRoomCell.h */,
 				35043742193E01D700731968 /* VenueRoomCell.m */,
 			);
 			name = Venues;
+			sourceTree = "<group>";
+		};
+		3561B6AF194C87DF00EF1654 /* RoomCreation */ = {
+			isa = PBXGroup;
+			children = (
+				3561B6B3194C88BD00EF1654 /* RoomVenueViewController.h */,
+				3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */,
+				35A46F9619328A9F00B615A4 /* RoomOptionsViewController.h */,
+				35A46F9719328A9F00B615A4 /* RoomOptionsViewController.m */,
+			);
+			name = RoomCreation;
 			sourceTree = "<group>";
 		};
 		359FBA2A1923278D00704F2B /* Utils */ = {
@@ -408,16 +424,13 @@
 			children = (
 				C2C6E5471936D61800DBEEE6 /* Shared */,
 				C29A6674192C4C29002421AF /* AccountCreation */,
+				3561B6AF194C87DF00EF1654 /* RoomCreation */,
 				35A46F9019328A9F00B615A4 /* BaseTableViewController.h */,
 				35A46F9119328A9F00B615A4 /* BaseTableViewController.m */,
 				35A46F9219328A9F00B615A4 /* BaseViewController.h */,
 				35A46F9319328A9F00B615A4 /* BaseViewController.m */,
 				35A46F9419328A9F00B615A4 /* LoginViewController.h */,
 				35A46F9519328A9F00B615A4 /* LoginViewController.m */,
-				35A46F9619328A9F00B615A4 /* NewRoomViewController.h */,
-				35A46F9719328A9F00B615A4 /* NewRoomViewController.m */,
-				35A46F9819328A9F00B615A4 /* RoomsViewController.h */,
-				35A46F9919328A9F00B615A4 /* RoomsViewController.m */,
 				35A46F9A19328A9F00B615A4 /* RoomViewController.h */,
 				35A46F9B19328A9F00B615A4 /* RoomViewController.m */,
 				35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */,
@@ -697,11 +710,12 @@
 			files = (
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
-				35A46FA119328A9F00B615A4 /* NewRoomViewController.m in Sources */,
+				35A46FA119328A9F00B615A4 /* RoomOptionsViewController.m in Sources */,
 				3504373D193DFB3100731968 /* VenueView.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				35A46FBE19328ACC00B615A4 /* RoomMainView.m in Sources */,
 				35A46F5819328A5E00B615A4 /* RoomService.m in Sources */,
+				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
@@ -718,7 +732,6 @@
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
-				35A46FA219328A9F00B615A4 /* RoomsViewController.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
@@ -728,6 +741,7 @@
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
 				35A46F5719328A5E00B615A4 /* MessageService.m in Sources */,
+				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
 				35A46F5619328A5E00B615A4 /* LocationService.m in Sources */,

@@ -12,9 +12,6 @@
 
 @interface RoomService : ServiceBase
 
--(void)getRooms:(void (^)(NSArray *theRooms))success
-        failure:(void (^)(NSError *error))failure;
-
 -(void)createRoom:(Room *)newRoom
           success:(void (^)(Room *createdRoom))success
           failure:(void (^)(NSError *error))failure;
