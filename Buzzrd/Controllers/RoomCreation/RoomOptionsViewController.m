@@ -33,8 +33,9 @@
 {
     [super loadView];
     
-    // Create nav bar items
     self.title = NSLocalizedString(@"new_room", nil);
+    
+    self.navigationController.navigationBar.topItem.title = @"";
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouch)];
     self.navigationItem.rightBarButtonItem = doneButton;

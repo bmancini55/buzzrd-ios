@@ -24,7 +24,10 @@
 - (void)loadView
 {
     [super loadView];
-            
+
+    self.title = self.room.name;
+    self.navigationController.navigationBar.topItem.title = @"";
+    
     self.messages = [[NSArray alloc] init];
 
     // create the main view
