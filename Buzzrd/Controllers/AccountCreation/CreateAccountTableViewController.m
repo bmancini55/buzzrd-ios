@@ -188,9 +188,6 @@
     tf.frame = CGRectMake(120, 0, 170, 40);
 	
     [tf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    
-    // Workaround to dismiss keyboard when Done/Return is tapped
-    [tf addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	
     // We want to handle textFieldDidEndEditing
     tf.delegate = self;
@@ -239,6 +236,7 @@
 	tf.autocorrectionType = UITextAutocorrectionTypeNo;
 	tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	tf.adjustsFontSizeToFitWidth = YES;
+    tf.returnKeyType = UIReturnKeyNext;
 	return tf;
 }
 
@@ -270,9 +268,30 @@
     self.nextButton.enabled = true;
 }
 
-// Workaround to hide keyboard when Done is tapped
-- (IBAction)textFieldFinished:(id)sender {
-    // [sender resignFirstResponder];
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.usernameTextField) {
+       [self.passwordTextField becomeFirstResponder];
+    }
+    else if (textField == self.passwordTextField) {
+        [self.password2TextField becomeFirstResponder];
+    }
+    else if (textField == self.password2TextField) {
+        [self.firstNameTextField becomeFirstResponder];
+    }
+    else if (textField == self.firstNameTextField) {
+        [self.lastNameTextField becomeFirstResponder];
+    }
+    else if (textField == self.lastNameTextField) {
+        [self.lastNameTextField resignFirstResponder];
+        
+        NSIndexPath *path = [NSIndexPath indexPathForRow:2 inSection:1];
+        [self.tableView selectRowAtIndexPath:path animated:true scrollPosition:UITableViewScrollPositionBottom];
+        
+        [self displayGenderPicker];
+    }
+    return true;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
