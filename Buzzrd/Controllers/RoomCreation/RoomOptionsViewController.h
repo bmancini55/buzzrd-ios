@@ -12,7 +12,7 @@
 #import "Room.h"
 #import "Venue.h"
 
-@interface RoomOptionsViewController : BaseTableViewController
+@interface RoomOptionsViewController : BaseTableViewController <UITextFieldDelegate>
 
 -(id)initWithVenue:(Venue *)venue callback:(void (^)(Room *created))onRoomCreated;
 
