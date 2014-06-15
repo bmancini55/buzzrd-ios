@@ -619,7 +619,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = R6N6F654JB;
+						DevelopmentTeam = W7E8H67XME;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
