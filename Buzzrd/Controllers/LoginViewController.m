@@ -12,12 +12,11 @@
 #import "FrameUtils.h"
 
 @interface LoginViewController ()
-{
-    UIButton *loginButton;
-    UITextField *usernameTextField;
-    UITextField *passwordTextField;
-    UIButton *createAccountButton;
-}
+
+@property (strong, nonatomic) UIButton *loginButton;
+@property (strong, nonatomic) UITextField *usernameTextField;
+@property (strong, nonatomic) UITextField *passwordTextField;
+@property (strong, nonatomic) UIButton *createAccountButton;
 
 @end
 
@@ -35,42 +34,42 @@
     [buzzrdImageView setCenter: CGPointMake(self.view.frame.size.width / 2, 80)];
     [self.view addSubview:buzzrdImageView];
     
-    usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 130, self.view.frame.size.width - 20, 40)];
-    usernameTextField.placeholder = NSLocalizedString(@"username", nil);
-    usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-	usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	usernameTextField.adjustsFontSizeToFitWidth = YES;
+    self.usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 130, self.view.frame.size.width - 20, 40)];
+    self.usernameTextField.placeholder = NSLocalizedString(@"username", nil);
+    self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+	self.usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	self.usernameTextField.adjustsFontSizeToFitWidth = YES;
     UIView *usernamePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
-    usernameTextField.leftView = usernamePaddingView;
-    usernameTextField.leftViewMode = UITextFieldViewModeAlways;
-    usernameTextField.delegate = self;
-    [usernameTextField addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.view addSubview:usernameTextField];
+    self.usernameTextField.leftView = usernamePaddingView;
+    self.usernameTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.usernameTextField.returnKeyType = UIReturnKeyNext;
+    self.usernameTextField.delegate = self;
+    [self.view addSubview:self.usernameTextField];
     
-    passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 171, self.view.frame.size.width - 20, 40)];
-    passwordTextField.placeholder = NSLocalizedString(@"password", nil);
-    passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-	passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	passwordTextField.adjustsFontSizeToFitWidth = YES;
-    passwordTextField.secureTextEntry = YES;
+    self.passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 171, self.view.frame.size.width - 20, 40)];
+    self.passwordTextField.placeholder = NSLocalizedString(@"password", nil);
+    self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+	self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	self.passwordTextField.adjustsFontSizeToFitWidth = YES;
+    self.passwordTextField.secureTextEntry = YES;
     UIView *passwordPaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
-    passwordTextField.leftView = passwordPaddingView;
-    passwordTextField.leftViewMode = UITextFieldViewModeAlways;
-    passwordTextField.delegate = self;
-    [passwordTextField addTarget:self action:@selector(textFieldFinished:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.view addSubview:passwordTextField];
+    self.passwordTextField.leftView = passwordPaddingView;
+    self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordTextField.returnKeyType = UIReturnKeyDone;
+    self.passwordTextField.delegate = self;
+    [self.view addSubview:self.passwordTextField];
     
-    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    loginButton.frame = CGRectMake(20, 230, self.view.frame.size.width-40, 35);
-    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    [loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.loginButton.frame = CGRectMake(20, 230, self.view.frame.size.width-40, 35);
+    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    [self.loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.loginButton];
     
-    createAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    createAccountButton.frame = CGRectMake(20, self.view.frame.size.height-50, self.view.frame.size.width-40, 35);
-    [createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
-    [createAccountButton addTarget:self action:@selector(createTouch) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:createAccountButton];
+    self.createAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.createAccountButton.frame = CGRectMake(20, self.view.frame.size.height-50, self.view.frame.size.width-40, 35);
+    [self.createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
+    [self.createAccountButton addTarget:self action:@selector(createTouch) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.createAccountButton];
 }
 
 //- (void)loginTouch
@@ -114,10 +113,18 @@
 //    nextButton.enabled = true;
 }
 
-// Workaround to hide keyboard when Done is tapped
-- (IBAction)textFieldFinished:(id)sender {
-    // [sender resignFirstResponder];
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.usernameTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if(textField == self.passwordTextField) {
+        [self.passwordTextField resignFirstResponder];
+        [self loginTouch];
+    }
+    return true;
 }
+
 
 - (void)loginTouch
 {
