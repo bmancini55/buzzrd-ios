@@ -108,7 +108,7 @@
                     self.nameTextField = [[UITextField alloc]init];
                     self.nameTextField.frame = CGRectMake(15, 5, cell.frame.size.width - 30, cell.frame.size.height - 10);
                     self.nameTextField.placeholder = NSLocalizedString(@"name", nil);
-                    self.nameTextField.enablesReturnKeyAutomatically = false;
+                    self.nameTextField.enablesReturnKeyAutomatically = true;
                     self.nameTextField.returnKeyType = UIReturnKeyDone;
                     self.nameTextField.delegate = self;
                     [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
