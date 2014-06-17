@@ -11,6 +11,9 @@
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */; };
+		355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */; };
+		355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */; };
+		355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4719194F120900DF8388 /* FoursquareAttribution.m */; };
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
@@ -98,6 +101,10 @@
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
 		355F4711194CF4C500DF8388 /* RoomOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomOptionsViewController.h; path = Controllers/RoomCreation/RoomOptionsViewController.h; sourceTree = "<group>"; };
 		355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomOptionsViewController.m; path = Controllers/RoomCreation/RoomOptionsViewController.m; sourceTree = "<group>"; };
+		355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_white.png; sourceTree = "<group>"; };
+		355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
+		355F4718194F120900DF8388 /* FoursquareAttribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareAttribution.h; path = Views/FoursquareAttribution.h; sourceTree = "<group>"; };
+		355F4719194F120900DF8388 /* FoursquareAttribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareAttribution.m; path = Views/FoursquareAttribution.m; sourceTree = "<group>"; };
 		3561B6B3194C88BD00EF1654 /* RoomVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomVenueViewController.h; path = Controllers/RoomCreation/RoomVenueViewController.h; sourceTree = "<group>"; };
 		3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomVenueViewController.m; path = Controllers/RoomCreation/RoomVenueViewController.m; sourceTree = "<group>"; };
 		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
@@ -291,6 +298,8 @@
 				35A46FB119328ACC00B615A4 /* LoadingOverlay.m */,
 				35A46FB219328ACC00B615A4 /* ProfileImageView.h */,
 				35A46FB319328ACC00B615A4 /* ProfileImageView.m */,
+				355F4718194F120900DF8388 /* FoursquareAttribution.h */,
+				355F4719194F120900DF8388 /* FoursquareAttribution.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -496,6 +505,8 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */,
+				355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */,
 				C2FC045F193EB20E000183CC /* buzzrd@2x.png */,
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
 				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
@@ -652,8 +663,10 @@
 				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
 				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
+				355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */,
 				C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
+				355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */,
 				C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */,
@@ -732,6 +745,7 @@
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
+				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
