@@ -40,6 +40,8 @@
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self loadVenues];
 }
 
@@ -114,6 +116,8 @@
             if(cell == nil)
             {
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                cell.backgroundColor = [UIColor clearColor];
+
                 FoursquareAttribution *foursquareAttribution = [[FoursquareAttribution alloc]initWithFrame:cell.frame];
                 [cell addSubview:foursquareAttribution];
             }
