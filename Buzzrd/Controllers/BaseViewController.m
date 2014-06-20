@@ -20,6 +20,9 @@
 -(void)loadView
 {
     [super loadView];
+
+    // defaults the back button to have no text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     [self.view setBackgroundColor: [ThemeManager getBackgroundColor]];
 }

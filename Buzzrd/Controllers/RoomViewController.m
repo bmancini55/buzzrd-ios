@@ -26,7 +26,6 @@
     [super loadView];
 
     self.title = self.room.name;
-    self.navigationController.navigationBar.topItem.title = @"";
     
     // create the main view
     CGRect frame = self.view.frame;
@@ -82,17 +81,19 @@
 }
 
 
+// reset the socket connection
 - (void)disconnect
 {
-    // reset the socket connection
     self.socket.delegate = nil;
     [self.socket disconnect];
     self.socket = nil;
 }
 
+// loads the latest messages and reconnects
+// if currently disconnected from the server
 - (void) reconnect
 {
-    if(!self.socket.isConnected) {
+    if(self.socket == nil || !self.socket.isConnected) {
         [self loadRoom];
     }
 }
@@ -219,6 +220,7 @@
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
     NSLog(@"Websocket disconnected with error: %@", error);
+    [self reconnect];
 }
 -(void)socketIO:(SocketIO *)socket onError:(NSError *)error
 {

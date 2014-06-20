@@ -29,6 +29,7 @@
     [super loadView];
     
     self.title = NSLocalizedString(@"nearby", nil);
+    
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
@@ -102,8 +103,7 @@
     
     Venue *venue = self.venues[indexPath.section];
     Room *room = venue.rooms[indexPath.row];
-    UIViewController *roomViewController = [BuzzrdNav createRoomViewController:room];
-    [self.navigationController pushViewController:roomViewController animated:YES];
+    [self joinRoom:room];
 }
 
 #pragma mark - UITableViewDelegate

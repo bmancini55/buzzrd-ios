@@ -21,6 +21,14 @@
     return [self initWithStyle:UITableViewStylePlain];
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    // defaults the back button to have no text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
 - (void) showActivityView {
     [self.view endEditing:YES];
     

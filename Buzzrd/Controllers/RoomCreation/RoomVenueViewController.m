@@ -149,8 +149,9 @@
              success:^(Room* createdRoom)
              {
                  NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
-                 self.onRoomCreated(createdRoom);             
-                 [self dismissViewControllerAnimated:true completion:nil];
+                 [self dismissViewControllerAnimated:true completion:^{
+                     self.onRoomCreated(createdRoom);
+                  }];
              }
              failure:^(NSError *error) {
                  NSLog(@"%@", error);

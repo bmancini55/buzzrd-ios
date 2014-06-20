@@ -36,8 +36,6 @@
     
     self.title = NSLocalizedString(@"new_room", nil);
     
-    self.navigationController.navigationBar.topItem.title = @"";
-    
     self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouch)];
     self.doneButton.enabled = false;
     self.navigationItem.rightBarButtonItem = self.doneButton;
@@ -77,9 +75,9 @@
     success:^(Room* createdRoom)
      {
          NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
-         self.onRoomCreated(createdRoom);
-         
-         [self dismissViewControllerAnimated:true completion:^{ }];
+         [self dismissViewControllerAnimated:true completion:^{
+             self.onRoomCreated(createdRoom);
+         }];         
      }
      failure:^(NSError *error) {
          NSLog(@"%@", error);
