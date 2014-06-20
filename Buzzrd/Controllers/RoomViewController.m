@@ -43,8 +43,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationDidBecomeActiveNotification];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillResignActiveNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 // Fires on room exit
