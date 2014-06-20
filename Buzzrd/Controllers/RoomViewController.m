@@ -28,8 +28,6 @@
     self.title = self.room.name;
     self.navigationController.navigationBar.topItem.title = @"";
     
-    self.messages = [[NSArray alloc] init];
-
     // create the main view
     CGRect frame = self.view.frame;
     self.view = [[RoomMainView alloc]initWithFrame:frame
@@ -37,31 +35,90 @@
                                  tableViewDelegate:self
                                tableViewDataSource:self];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    [self loadRoom];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationDidBecomeActiveNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIApplicationWillResignActiveNotification];
+}
+
+// Fires on room exit
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];    
+    [self disconnect];
+}
+
+// Fires when app is restored
+- (void)appDidBecomeActive
+{
+    [self connectToSocketServer];
+    [self reconnect];
+}
+
+// Fires when app goes to background
+- (void)appWillResignActive
+{
+    // Not sure if we want to disconnect or let timeout occur
+    // probably want to let timeout naturally occur in the event
+    // that a user briefly steps away from the app, it shouldn't
+    // reload the entire chat...
+    
+    //[self disconnect];
+}
+
+
+- (void)loadRoom
+{
+    // reset messages
+    self.messages = [[NSArray alloc]init];
+    
     // load recent messages
     [self loadMessagesWithPage:1];
-    
-    // connect to socket service
-    [self connectToSocketServer];
 }
+
+
+- (void)disconnect
+{
+    // reset the socket connection
+    self.socket.delegate = nil;
+    [self.socket disconnect];
+    self.socket = nil;
+}
+
+- (void) reconnect
+{
+    if(!self.socket.isConnected) {
+        [self loadRoom];
+    }
+}
+
+
 
 #pragma mark - Internal helper methods
 
 - (void)loadMessagesWithPage:(uint)page
 {
     // success handler
-    void (^success)(NSArray *messages) = ^(NSArray *messages) {
+    void (^success)(NSArray *newMessages) = ^(NSArray *newMessages) {
         
-        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:messages];
+        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
         [mergeArray addObjectsFromArray:self.messages];
         self.messages = mergeArray;
         
         UITableView *tableView = ((RoomMainView *)self.view).tableView;
         [tableView reloadData];
       
-        // scroll to bottom if this was first page
+        // on fresh reload
         if (page == 1)
         {
             [(RoomMainView *)self.view scrollToBottom:false];
+            [self connectToSocketServer];
         }
     };
     
@@ -122,8 +179,11 @@
 
 - (void)connectToSocketServer
 {
-    self.socket = [[SocketIO alloc] initWithDelegate:self];
-    [self.socket connectToHost:@"devapi.buzzrd.io" onPort:5050];
+    if(self.socket == nil || !self.socket.isConnected)
+    {
+        self.socket = [[SocketIO alloc] initWithDelegate:self];
+        [self.socket connectToHost:@"devapi.buzzrd.io" onPort:5050];
+    }
 }
 
 - (void)sendMessage:(NSString *)message
@@ -154,7 +214,6 @@
 
 -(void)socketIODidConnect:(SocketIO *)socket
 {
-    NSLog(@"Websocket connected");
     NSLog(@"Joining room: %@", self.room.id);
     [self.socket sendEvent:@"join" withData:self.room.id];
 }
@@ -173,7 +232,5 @@
         [self receiveMessage:message];
     }            
 }
-
-
 
 @end
