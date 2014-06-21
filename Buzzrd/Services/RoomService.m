@@ -7,13 +7,12 @@
 //
 
 #import "RoomService.h"
-#import "Room.h"
 #import "AFHTTPSessionManager.h"
 
 @implementation RoomService
 
 -(void)createRoom:(Room *)newRoom
-          success:(void (^)(Room *createdRoom))success
+          success:(void (^)(Venue *venue, Room *createdRoom))success
           failure:(void (^)(NSError *error))failure;
 
 {
@@ -30,8 +29,10 @@
         if([responseObject[@"success"] boolValue])
         {
             NSDictionary *json = responseObject[@"results"];
-            Room *room = [[Room alloc]initWithJson:json];
-            success(room);
+            Venue *venue = [[Venue alloc] initWithJson:json[@"venue"]];
+            Room *room = [[Room alloc]initWithJson:json[@"room"]];
+            NSLog(@"%@", json[@"room"]);
+            success(venue, room);
             
         } else {
             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];

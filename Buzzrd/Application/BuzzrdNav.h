@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "room.h"
+#import "Venue.h"
+#import "Room.h"
 #import "JoinBuzzrdViewController.h"
 #import "CreateAccountTableViewController.h"
 #import "ProfileImageViewController.h"
@@ -17,7 +18,7 @@
 +(UIViewController *) createLoginViewController;
 +(UIViewController *) createHomeViewController;
 +(UIViewController *) createRoomViewController:(Room *)room;
-+(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback;
++(UIViewController *) createNewRoomViewController:(void (^)(Venue *venue, Room *newRoom))roomCreatedCallback;
 
 // Account Creation
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;

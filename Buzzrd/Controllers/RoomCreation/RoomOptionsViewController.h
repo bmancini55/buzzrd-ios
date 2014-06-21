@@ -14,9 +14,9 @@
 
 @interface RoomOptionsViewController : BaseTableViewController <UITextFieldDelegate>
 
--(id)initWithVenue:(Venue *)venue callback:(void (^)(Room *created))onRoomCreated;
+-(id)initWithVenue:(Venue *)venue callback:(void (^)(Venue *venue, Room *created))onRoomCreated;
 
-@property (strong, nonatomic) void(^onRoomCreated)(Room *created);
+@property (strong, nonatomic) void(^onRoomCreated)(Venue *venue, Room *created);
 @property (strong, nonatomic) Venue *venue;
 
 @end

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ServiceBase.h"
+#import "Venue.h"
 #import "Room.h"
 
 @interface RoomService : ServiceBase
 
 -(void)createRoom:(Room *)newRoom
-          success:(void (^)(Room *createdRoom))success
+          success:(void (^)(Venue *venue, Room *createdRoom))success
           failure:(void (^)(NSError *error))failure;
 
 @end

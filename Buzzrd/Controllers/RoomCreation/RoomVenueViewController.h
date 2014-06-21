@@ -7,12 +7,13 @@
 //
 
 #import "BaseTableViewController.h"
+#import "Venue.h"
 #import "Room.h"
 
 @interface RoomVenueViewController : BaseTableViewController
 
--(id)initWithCallback:(void (^)(Room *created))onRoomCreated;
+-(id)initWithCallback:(void (^)(Venue *venue, Room *created))onRoomCreated;
 
-@property (strong, nonatomic) void(^onRoomCreated)(Room *created);
+@property (strong, nonatomic) void(^onRoomCreated)(Venue *venue, Room *created);
 
 @end

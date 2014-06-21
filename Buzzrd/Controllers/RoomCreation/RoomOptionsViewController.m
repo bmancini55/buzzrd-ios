@@ -19,7 +19,7 @@
 
 @implementation RoomOptionsViewController
 
--(id)initWithVenue:(Venue *)venue callback:(void (^)(Room *created))onRoomCreated
+-(id)initWithVenue:(Venue *)venue callback:(void (^)(Venue *venue, Room *created))onRoomCreated
 {
     self = [self initWithStyle:UITableViewStyleGrouped];
     if(self != nil)
@@ -72,11 +72,11 @@
     
     [[BuzzrdAPI current].roomService
     createRoom:room
-    success:^(Room* createdRoom)
+    success:^(Venue *venue, Room *createdRoom)
      {
          NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
          [self dismissViewControllerAnimated:true completion:^{
-             self.onRoomCreated(createdRoom);
+             self.onRoomCreated(venue, createdRoom);
          }];         
      }
      failure:^(NSError *error) {

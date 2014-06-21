@@ -48,7 +48,7 @@
     return roomViewController;
 }
 
-+(UIViewController *) createNewRoomViewController:(void (^)(Room *))roomCreatedCallback
++(UIViewController *) createNewRoomViewController:(void (^)(Venue *, Room *))roomCreatedCallback
 {
     RoomVenueViewController *viewController = [[RoomVenueViewController alloc]initWithStyle:UITableViewStyleGrouped];
     viewController.onRoomCreated = roomCreatedCallback;

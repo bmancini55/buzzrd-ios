@@ -135,36 +135,60 @@
 
 -(void)addRoomTouch
 {
-    UIViewController *viewController = [BuzzrdNav createNewRoomViewController:^(Room *newRoom)
+    UIViewController *viewController = [BuzzrdNav createNewRoomViewController:^(Venue *venue, Room *newRoom)
                                        {
-                                           [self addRoomToTable:newRoom];
+                                           [self addRoomToTable:newRoom forVenue:venue];
                                            [self joinRoom:newRoom];
                                        }];
 
     [self presentViewController:viewController animated:true completion:nil];
 }
 
--(void)addRoomToTable:(Room *)room
+-(void)addRoomToTable:(Room *)room forVenue:(Venue *)venue;
 {
+    Venue *indexedVenue;
     int venueIndex;
-    Venue *venue;
+    bool venueFound = false;
     
     // find the venue
     for(venueIndex = 0; venueIndex < self.venues.count; venueIndex++)
     {
-        venue = self.venues[venueIndex];
-        if([venue.id isEqualToString:room.venueId])
+        indexedVenue = self.venues[venueIndex];
+        if([indexedVenue.id isEqualToString:room.venueId]) {
+            venueFound = true;
             break;
+        }
     }
     
-    // insert the room
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:venue.rooms];
-    [temp insertObject:room atIndex:0];
-    venue.rooms = [NSArray arrayWithArray:temp];
+    // insert venue
+    if(!venueFound) {
+        venue.rooms = @[ room ];
+        venue.roomCount = 1;
+        
+        // insert venue
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:self.venues];
+        [temp insertObject:venue atIndex:0];
+        self.venues = [NSArray arrayWithArray:temp];
+        
+        // insert the venue cell
+        [self.tableView beginUpdates];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+        [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
     
-    // insert the room cell
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:venueIndex];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    // update existing
+    else {
+    
+        // insert the room
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:indexedVenue.rooms];
+        [temp insertObject:room atIndex:0];
+        indexedVenue.rooms = [NSArray arrayWithArray:temp];
+        
+        // insert the room cell
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:venueIndex];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 @end

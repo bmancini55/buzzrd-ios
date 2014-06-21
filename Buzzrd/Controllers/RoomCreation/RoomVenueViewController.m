@@ -21,7 +21,7 @@
 
 @implementation RoomVenueViewController
 
--(id)initWithCallback:(void (^)(Room *created))onRoomCreated
+-(id)initWithCallback:(void (^)(Venue *venue, Room *created))onRoomCreated
 {
     self = [self initWithStyle:UITableViewStyleGrouped];
     if(self != nil)
@@ -146,11 +146,11 @@
             // create the default room
             [[BuzzrdAPI current].roomService
              createRoom:room
-             success:^(Room* createdRoom)
+             success:^(Venue *venue, Room* createdRoom)
              {
                  NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
                  [self dismissViewControllerAnimated:true completion:^{
-                     self.onRoomCreated(createdRoom);
+                     self.onRoomCreated(venue, createdRoom);
                   }];
              }
              failure:^(NSError *error) {
