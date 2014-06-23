@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) NSArray *venues;
 @property (strong, nonatomic) NSArray *searchResults;
-@property (strong, nonatomic) UISearchDisplayController *searchController;
+@property (strong, nonatomic) UISearchDisplayController *tempSearchController;
 
 @end
 
@@ -39,16 +39,20 @@
     
     self.title = NSLocalizedString(@"new_room", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self attachFooterToTableView:self.tableView];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    self.searchController.searchResultsDelegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.delegate = self;
+    self.tempSearchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = searchBar;
+    
+    
     
     [self loadVenuesForTable:self.tableView withSearch:nil];
 }
@@ -102,66 +106,44 @@
     return (Venue *)dataSource[indexPath.row];
 }
 
+// Helper to add foursquare attribution to a table as the footer
+- (void) attachFooterToTableView:(UITableView *)tableView;
+{
+    CGRect footerFrame = CGRectMake(0, 0, tableView.frame.size.width, 45);
+    FoursquareAttribution *footer =[[FoursquareAttribution alloc]initWithFrame:footerFrame];
+    tableView.tableFooterView = footer;
+}
 
 
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *dataSource = [self dataSourceForTableView:tableView];
-    
-    switch (section) {
-        case 0:
-            return dataSource.count;
-        case 1:
-            return 1;
-        default:
-            return 0;
-    }
+    return dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
-        case 0:
-        {
-            NSString *identifier = @"choose_venue_cell";
-            VenueCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            
-            // construct a new cell
-            if(cell == nil)
-            {
-                cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            }
-            
-            Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
-            CLLocation *location = [LocationService sharedInstance].currentLocation;
-            [cell setVenue:venue userLocation:location];
-            
-            return cell;
-        }
-        case 1:
-        {
-            NSString *identifier = @"foursquare_attribution";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            if(cell == nil)
-            {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-                cell.backgroundColor = [UIColor clearColor];
-
-                FoursquareAttribution *foursquareAttribution = [[FoursquareAttribution alloc]initWithFrame:cell.frame];
-                [cell addSubview:foursquareAttribution];
-            }
-            return cell;
-        }
-        default:
-            return nil;
+    NSString *identifier = @"choose_venue_cell";
+    VenueCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    // construct a new cell
+    if(cell == nil)
+    {
+        cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
+    CLLocation *location = [LocationService sharedInstance].currentLocation;
+    [cell setVenue:venue userLocation:location];
+    
+    return cell;
 }
 
 
@@ -172,35 +154,32 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     
-    if(indexPath.section == 0)
+    Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
+    Room *room = [[Room alloc]init];
+    room.name = venue.name;
+    room.venueId = venue.id;
+    
+    if(venue.roomCount == 0)
     {
-        Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
-        Room *room = [[Room alloc]init];
-        room.name = venue.name;
-        room.venueId = venue.id;
-        
-        if(venue.roomCount == 0)
-        {
-            // create the default room
-            [[BuzzrdAPI current].roomService
-             createRoom:room
-             success:^(Venue *venue, Room* createdRoom)
-             {
-                 NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
-                 [self dismissViewControllerAnimated:true completion:^{
-                     self.onRoomCreated(venue, createdRoom);
-                  }];
-             }
-             failure:^(NSError *error) {
-                 NSLog(@"%@", error);
-             }];
-        }
-        else
-        {
-            RoomOptionsViewController *viewController = [[RoomOptionsViewController alloc]initWithVenue:venue callback:self.onRoomCreated];
-            [self.navigationController pushViewController:viewController animated:true];
-        }
-    }    
+        // create the default room
+        [[BuzzrdAPI current].roomService
+         createRoom:room
+         success:^(Venue *venue, Room* createdRoom)
+         {
+             NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
+             [self dismissViewControllerAnimated:true completion:^{
+                 self.onRoomCreated(venue, createdRoom);
+              }];
+         }
+         failure:^(NSError *error) {
+             NSLog(@"%@", error);
+         }];
+    }
+    else
+    {
+        RoomOptionsViewController *viewController = [[RoomOptionsViewController alloc]initWithVenue:venue callback:self.onRoomCreated];
+        [self.navigationController pushViewController:viewController animated:true];
+    }
 }
 
 
@@ -213,8 +192,13 @@
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self loadVenuesForTable:self.searchController.searchResultsTableView withSearch:searchString];
+    [self loadVenuesForTable:self.searchDisplayController.searchResultsTableView withSearch:searchString];
     return false;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    [self attachFooterToTableView:tableView];
 }
 
 @end
