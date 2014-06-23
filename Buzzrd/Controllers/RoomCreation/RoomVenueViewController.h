@@ -10,7 +10,7 @@
 #import "Venue.h"
 #import "Room.h"
 
-@interface RoomVenueViewController : BaseTableViewController
+@interface RoomVenueViewController : BaseTableViewController <UISearchDisplayDelegate>
 
 -(id)initWithCallback:(void (^)(Venue *venue, Room *created))onRoomCreated;
 

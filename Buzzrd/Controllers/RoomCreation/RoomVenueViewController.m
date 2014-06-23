@@ -16,6 +16,7 @@
 @interface RoomVenueViewController ()
 
 @property (strong, nonatomic) NSArray *venues;
+@property (strong, nonatomic) UISearchDisplayController *searchController;
 
 @end
 
@@ -36,28 +37,34 @@
     [super loadView];
     
     self.title = NSLocalizedString(@"new_room", nil);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UISearchBar *searchBar = [[UISearchBar alloc]init];
+    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchController.searchResultsDelegate = self;
+    self.searchController.searchResultsDataSource = self;
+    self.searchController.delegate = self;
+    self.tableView.tableHeaderView = searchBar;
     
-    [self loadVenues];
+    [self loadVenuesForTable:self.tableView withSearch:nil];
 }
 
-- (void) loadVenues
+- (void) loadVenuesForTable:(UITableView *)tableView withSearch:(NSString *)search
 {
-    [self showActivityView];
+    //[self showActivityView];
     
     [[BuzzrdAPI current].venueService
      getVenues:[LocationService sharedInstance].currentLocation.coordinate
-     search:nil
+     search:search
      includeRooms:false
      success: ^(NSArray *theVenues) {
          NSLog(@"%lu venues were loaded", (unsigned long)theVenues.count);
          self.venues = theVenues;
          [self hideActivityView];
-         [self.tableView reloadData];
+         [tableView reloadData];
      }
      failure:^(NSError *error) {
          NSLog(@"%@", error);
@@ -128,11 +135,13 @@
     }
 }
 
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
     
     if(indexPath.section == 0)
     {
@@ -163,6 +172,20 @@
             [self.navigationController pushViewController:viewController animated:true];
         }
     }    
+}
+
+
+#pragma mark - Search display delegate
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    return false;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self loadVenuesForTable:self.searchController.searchResultsTableView withSearch:searchString];
+    return false;
 }
 
 @end
