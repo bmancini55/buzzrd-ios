@@ -16,6 +16,7 @@
 @interface RoomVenueViewController ()
 
 @property (strong, nonatomic) NSArray *venues;
+@property (strong, nonatomic) NSArray *searchResults;
 @property (strong, nonatomic) UISearchDisplayController *searchController;
 
 @end
@@ -62,7 +63,13 @@
      includeRooms:false
      success: ^(NSArray *theVenues) {
          NSLog(@"%lu venues were loaded", (unsigned long)theVenues.count);
-         self.venues = theVenues;
+         
+         if(search == nil) {
+             self.venues = theVenues;
+         } else {
+             self.searchResults = theVenues;
+         }
+         
          [self hideActivityView];
          [tableView reloadData];
      }
@@ -77,6 +84,26 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+// Helper function that retrieves a data source for the specified table view
+- (NSArray *) dataSourceForTableView:(UITableView *)tableView
+{
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.searchResults;
+    }
+    else {
+        return self.venues;
+    }
+}
+
+// Helper function that retrieves a value for a tableview and index path
+- (Venue *)venueForTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
+{
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    return (Venue *)dataSource[indexPath.row];
+}
+
+
+
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,9 +113,11 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    
     switch (section) {
         case 0:
-            return self.venues.count;
+            return dataSource.count;
         case 1:
             return 1;
         default:
@@ -110,7 +139,7 @@
                 cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             }
             
-            Venue *venue = self.venues[indexPath.row];
+            Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
             CLLocation *location = [LocationService sharedInstance].currentLocation;
             [cell setVenue:venue userLocation:location];
             
@@ -145,7 +174,7 @@
     
     if(indexPath.section == 0)
     {
-        Venue *venue = self.venues[indexPath.row];
+        Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
         Room *room = [[Room alloc]init];
         room.name = venue.name;
         room.venueId = venue.id;
