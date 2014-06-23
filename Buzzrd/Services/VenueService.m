@@ -17,11 +17,16 @@
          success:(void (^)(NSArray *theVenues))success
          failure:(void (^)(NSError *error))failure
 {
-    NSString *url = [self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/venues/?lat=%f&lng=%f&includeRooms=%d&search=%@", location.latitude, location.longitude, includeRooms, [NSString emptyStringIfNil:search]]];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+    [parameters setValue:[NSNumber numberWithFloat:location.latitude] forKey:@"lat"];
+    [parameters setValue:[NSNumber numberWithFloat:location.longitude] forKey:@"lng"];
+    [parameters setValue:[NSNumber numberWithBool:includeRooms] forKey:@"includeRooms"];
+    [parameters setValue:[NSString emptyStringIfNil:search] forKey:@"search"];
+    
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     [manager
-     GET:url
-     parameters:nil
+     GET:[self.apiURLBase stringByAppendingString:@"/api/venues/"]
+     parameters:parameters
      success:^(NSURLSessionDataTask *task, id responseObject) {
          
          if([responseObject[@"success"] boolValue])
