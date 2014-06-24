@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BuzzrdNav.h"
 #import "ThemeManager.h"
+#import "BuzzrdAPI.h"
 
 @implementation AppDelegate
 
@@ -17,7 +18,19 @@
     [ThemeManager setTheme: defaultStyle];
     
     // create root view
-    UIViewController *rootViewController = [BuzzrdNav createLoginViewController];
+    UIViewController *rootViewController;
+
+    // If user info is currently stored locally
+    if ([BuzzrdAPI current].authorization.bearerToken != nil) {
+        
+        // Got directly into the home view controller
+        rootViewController = [BuzzrdNav createHomeViewController];
+    }
+    else {
+        
+        // Go to the login view controller
+        rootViewController = [BuzzrdNav createLoginViewController];
+    }
     
     // initialize the window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -7,6 +7,7 @@
 //
 
 #import "UserOptionsViewController.h"
+#import "BuzzrdAPI.h"
 
 @interface UserOptionsViewController ()
 
@@ -31,8 +32,9 @@
 
 -(void)logoutTouch
 {
-    // TODO Perform logout... then do...
     [self dismissViewControllerAnimated:true completion:nil];
+    
+    [[BuzzrdAPI current].userService logout];
 }
 
 @end

@@ -9,11 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "ServiceBase.h"
 #import "User.h"
+#import "AFHTTPSessionManager.h"
 
 @interface UserService : ServiceBase
 
 -(void)getUsers:(void (^)(NSArray *theUsers))success
         failure:(void (^)(NSError *error))failure;
+
+-(void)getUser:(NSString *)username
+              success:(void (^)(User *user))success
+              failure:(void (^)(NSError *error, id responseObject))failure;
 
 -(void)createUser:(User *)newUser
           success:(void (^)(User *createdUser))success
@@ -27,5 +32,11 @@
                imageURI:(NSString *)imageURI
               success:(void (^)(NSString *userId))success
               failure:(void (^)(NSError *error))failure;
+
+-(void)login:(NSString *)username :(NSString *) password
+          success:(void (^)(User *user))success
+          failure:(void (^)(NSError *error, id responseObject))failure;
+
+-(void)logout;
 
 @end

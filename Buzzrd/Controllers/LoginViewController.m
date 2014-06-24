@@ -13,10 +13,10 @@
 
 @interface LoginViewController ()
 
-@property (strong, nonatomic) UIButton *loginButton;
-@property (strong, nonatomic) UITextField *usernameTextField;
-@property (strong, nonatomic) UITextField *passwordTextField;
-@property (strong, nonatomic) UIButton *createAccountButton;
+    @property (strong, nonatomic) UIButton *loginButton;
+    @property (strong, nonatomic) UITextField *usernameTextField;
+    @property (strong, nonatomic) UITextField *passwordTextField;
+    @property (strong, nonatomic) UIButton *createAccountButton;
 
 @end
 
@@ -45,6 +45,8 @@
     self.usernameTextField.returnKeyType = UIReturnKeyNext;
     self.usernameTextField.delegate = self;
     [self.view addSubview:self.usernameTextField];
+    [self.usernameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [self.view addSubview:self.usernameTextField];
     
     self.passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 171, self.view.frame.size.width - 20, 40)];
     self.passwordTextField.placeholder = NSLocalizedString(@"password", nil);
@@ -57,12 +59,14 @@
     self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordTextField.returnKeyType = UIReturnKeyDone;
     self.passwordTextField.delegate = self;
+    [self.passwordTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.passwordTextField];
     
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.loginButton.frame = CGRectMake(20, 230, self.view.frame.size.width-40, 35);
     [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [self.loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
+    self.loginButton.enabled = false;
     [self.view addSubview:self.loginButton];
     
     self.createAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -72,45 +76,25 @@
     [self.view addSubview:self.createAccountButton];
 }
 
-//- (void)loginTouch
-//{
-//    // TODO actual login... on callback do...
-//    UIViewController *homeController = [BuzzrdNav createHomeViewController];
-//    [self presentViewController:homeController animated:true completion:nil];
-//}
-//
-//- (void)createTouch
-//{
-//    UIViewController *createController = [BuzzrdNav joinBuzzrdViewController];
-//    [self presentViewController:createController animated:true completion:nil];
-//}
-
 -(void)textFieldDidChange :(UITextField *)theTextField{
     
     // Validate if username was filled in
-//    usernameTextField.text = [usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    
-//    if (usernameTextField.text.length == 0)
-//    {
-//        nextButton.enabled = false;
-//        return;
-//    }
-//    
-//    // Validate password was filled in
-//    if (passwordTextField.text.length == 0)
-//    {
-//        nextButton.enabled = false;
-//        return;
-//    }
-//    
-//    // Validate that the passwords match
-//    if (![passwordTextField.text isEqualToString:password2TextField.text])
-//    {
-//        nextButton.enabled = false;
-//        return;
-//    }
-//    
-//    nextButton.enabled = true;
+    self.usernameTextField.text = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (self.usernameTextField.text.length == 0)
+    {
+        self.loginButton.enabled = false;
+        return;
+    }
+
+    // Validate password was filled in
+    if (self.passwordTextField.text.length == 0)
+    {
+        self.loginButton.enabled = false;
+        return;
+    }
+
+    self.loginButton.enabled = true;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -128,9 +112,18 @@
 
 - (void)loginTouch
 {
-    // TODO actual login... on callback do...
-    UIViewController *homeController = [BuzzrdNav createHomeViewController];
-    [self presentViewController:homeController animated:true completion:nil];
+    [[BuzzrdAPI current].userService
+     login:self.usernameTextField.text : self.passwordTextField.text
+     success:^(User* user)
+     {
+         UIViewController *homeController = [BuzzrdNav createHomeViewController];
+         [self presentViewController:homeController animated:true completion:nil];
+     }
+     failure:^(NSError *error, id responseObject) {
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(responseObject[@"error"], nil) message: NSLocalizedString(responseObject[@"error_description"], nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+         [alert show];
+     }];
 }
 
 - (void)createTouch

@@ -12,5 +12,4 @@
 
 @interface JoinBuzzrdViewController : BaseViewController
 
-
 @end

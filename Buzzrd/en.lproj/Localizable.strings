@@ -85,3 +85,7 @@
 "room_options" = "Room Options";
 
 "name" = "Name";
+
+"invalid_grant" = "Invalid Credentials";
+
+"User credentials are invalid" = "User credentials are invalid";
