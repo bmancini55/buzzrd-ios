@@ -70,7 +70,7 @@
              // show image
              [self showImage:(UIImage *)responseObject];
          }
-         failure:^(NSURLSessionDataTask *task, NSError *error) {
+         failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
              NSLog(@"Failed to load: %@", error);
          }];
 }
