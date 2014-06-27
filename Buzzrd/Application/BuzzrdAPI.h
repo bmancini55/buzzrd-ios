@@ -14,12 +14,15 @@
 #import "VenueService.h"
 #import "ImageService.h"
 
+#import "CommandDispatcher.h"
+
 #import "Authorization.h"
 #import "User.h"
 
 @interface BuzzrdAPI : NSObject
 
-+(BuzzrdAPI *) current;
++ (BuzzrdAPI *) current;
++ (CommandDispatcher *) dispatch;
 
 // Service Properties
 @property (strong, nonatomic) UserService *userService;
@@ -28,8 +31,13 @@
 @property (strong, nonatomic) VenueService *venueService;
 @property (strong, nonatomic) ImageService *imageService;
 
+// Command Dispatch Pattern
+@property (strong, nonatomic) CommandDispatcher *dispatch;
+
 // Data Properties
 @property (strong, nonatomic) Authorization *authorization;
 @property (strong, nonatomic) User *user;
+
+
 
 @end

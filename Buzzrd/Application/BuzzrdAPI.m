@@ -20,6 +20,11 @@
     return instance;
 }
 
++ (CommandDispatcher *) dispatch
+{
+    return [BuzzrdAPI current].dispatch;
+}
+
 @synthesize authorization = _authorization;
 @synthesize user = _user;
 
@@ -95,8 +100,13 @@
         self.messageService = [[MessageService alloc]init];
         self.venueService = [[VenueService alloc]init];
         self.imageService = [[ImageService alloc]init];
+        
+        self.dispatch = [[CommandDispatcher alloc]init];
     }
     return self;
 }
+
+
+
 
 @end

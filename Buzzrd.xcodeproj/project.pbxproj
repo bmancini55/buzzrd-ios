@@ -10,6 +10,10 @@
 		3504373D193DFB3100731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373C193DFB3100731968 /* VenueView.m */; };
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
+		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
+		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
+		353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */; };
+		353D6ECA195D050500AC1B62 /* BuzzrdError.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC9195D050500AC1B62 /* BuzzrdError.m */; };
 		355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */; };
 		355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */; };
 		355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */; };
@@ -99,6 +103,14 @@
 		3504373F193DFC5300731968 /* VenueRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomView.m; path = Views/Venues/VenueRoomView.m; sourceTree = "<group>"; };
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
+		353D6EBE195CE4C100AC1B62 /* CommandBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandBase.h; path = Commands/CommandBase.h; sourceTree = "<group>"; };
+		353D6EBF195CE4C100AC1B62 /* CommandBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandBase.m; path = Commands/CommandBase.m; sourceTree = "<group>"; };
+		353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandDispatcher.h; path = Application/CommandDispatcher.h; sourceTree = "<group>"; };
+		353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandDispatcher.m; path = Application/CommandDispatcher.m; sourceTree = "<group>"; };
+		353D6EC5195CEE1B00AC1B62 /* GetVenuesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenuesCommand.h; path = Commands/Venues/GetVenuesCommand.h; sourceTree = "<group>"; };
+		353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenuesCommand.m; path = Commands/Venues/GetVenuesCommand.m; sourceTree = "<group>"; };
+		353D6EC8195D050500AC1B62 /* BuzzrdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdError.h; path = Application/BuzzrdError.h; sourceTree = "<group>"; };
+		353D6EC9195D050500AC1B62 /* BuzzrdError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuzzrdError.m; path = Application/BuzzrdError.m; sourceTree = "<group>"; };
 		355F4711194CF4C500DF8388 /* RoomOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomOptionsViewController.h; path = Controllers/RoomCreation/RoomOptionsViewController.h; sourceTree = "<group>"; };
 		355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomOptionsViewController.m; path = Controllers/RoomCreation/RoomOptionsViewController.m; sourceTree = "<group>"; };
 		355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_white.png; sourceTree = "<group>"; };
@@ -265,6 +277,25 @@
 			name = Venues;
 			sourceTree = "<group>";
 		};
+		353D6EBD195CE49900AC1B62 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				353D6EC4195CEDB100AC1B62 /* Venues */,
+				353D6EBE195CE4C100AC1B62 /* CommandBase.h */,
+				353D6EBF195CE4C100AC1B62 /* CommandBase.m */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
+		353D6EC4195CEDB100AC1B62 /* Venues */ = {
+			isa = PBXGroup;
+			children = (
+				353D6EC5195CEE1B00AC1B62 /* GetVenuesCommand.h */,
+				353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */,
+			);
+			name = Venues;
+			sourceTree = "<group>";
+		};
 		3561B6AF194C87DF00EF1654 /* RoomCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +344,10 @@
 				35A46F3419328A2400B615A4 /* BuzzrdAPI.m */,
 				35A46F3519328A2400B615A4 /* BuzzrdNav.h */,
 				35A46F3619328A2400B615A4 /* BuzzrdNav.m */,
+				353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */,
+				353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */,
+				353D6EC8195D050500AC1B62 /* BuzzrdError.h */,
+				353D6EC9195D050500AC1B62 /* BuzzrdError.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -382,6 +417,7 @@
 		35BA0DFE18CF37A100F5B339 /* Buzzrd */ = {
 			isa = PBXGroup;
 			children = (
+				353D6EBD195CE49900AC1B62 /* Commands */,
 				C2FC0464193FF92E000183CC /* Themes */,
 				C2C6E557193823B700DBEEE6 /* Categories */,
 				C2C6E54E1936D71500DBEEE6 /* Common */,
@@ -630,7 +666,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = R6N6F654JB;
+						DevelopmentTeam = W7E8H67XME;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
@@ -721,7 +757,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
+				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				3504373D193DFB3100731968 /* VenueView.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
@@ -747,6 +785,8 @@
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
+				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
+				353D6ECA195D050500AC1B62 /* BuzzrdError.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,

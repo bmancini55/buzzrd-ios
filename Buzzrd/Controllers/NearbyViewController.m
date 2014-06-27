@@ -16,6 +16,8 @@
 #import "VenueRoomCell.h"
 #import "LocationService.h"
 
+#import "GetVenuesCommand.h"
+
 @interface NearbyViewController ()
 
 @property (strong, nonatomic) LocationService *locationService;
@@ -48,19 +50,24 @@
 
 - (void) loadVenues
 {
-    [[BuzzrdAPI current].venueService
-     getVenues:[LocationService sharedInstance].currentLocation.coordinate
-     search:nil
-     includeRooms:true
-     success: ^(NSArray *theVenues) {
-         NSLog(@"%lu venue were loaded", (unsigned long)theVenues.count);
-         self.venues = theVenues;
-         [self.tableView reloadData];
-     }
-     failure:^(NSError *error) {
-         NSLog(@"%@", error);
-     }];
+    GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
+    command.location = [LocationService sharedInstance].currentLocation.coordinate;
+    command.search = nil;
+    command.includeRooms = true;
+    [command listenForMyCompletion:self selector:@selector(venuesDidLoad:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
+
+- (void)venuesDidLoad:(NSNotification *) notif
+{
+    GetVenuesCommand *command = notif.object;
+    NSArray *venues = command.results;
+    
+    NSLog(@"%lu venue were loaded", (unsigned long)venues.count);
+    self.venues = venues;
+    [self.tableView reloadData];
+}
+
 
 - (void) joinRoom:(Room *)room
 {
