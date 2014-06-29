@@ -15,6 +15,7 @@
 #import "VenueRoomView.h"
 #import "VenueRoomCell.h"
 #import "LocationService.h"
+#import "FoursquareAttribution.h"
 
 #import "GetVenuesCommand.h"
 
@@ -31,11 +32,12 @@
     [super loadView];
     
     self.title = NSLocalizedString(@"nearby", nil);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self attachFooterToTableView:self.tableView];
     
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     [[LocationService sharedInstance] startUpdatingLocation];
@@ -73,6 +75,14 @@
 {
     UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
+- (void) attachFooterToTableView:(UITableView *)tableView;
+{
+    CGRect footerFrame = CGRectMake(0, 0, tableView.frame.size.width, 45);
+    FoursquareAttribution *footer =[[FoursquareAttribution alloc]initWithFrame:footerFrame];
+    tableView.tableFooterView = footer;
 }
 
 
