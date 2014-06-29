@@ -54,7 +54,7 @@
     command.location = [LocationService sharedInstance].currentLocation.coordinate;
     command.search = nil;
     command.includeRooms = true;
-    [command listenForMyCompletion:self selector:@selector(venuesDidLoad:)];
+    [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
     [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
 

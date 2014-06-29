@@ -25,6 +25,8 @@
         // set the default network timeout
         self.requestTimeoutInterval = [NSNumber numberWithInt:30];
         
+        self.removeListenerOnSuccess = true;
+        
         self.apiURLBase = @"http://devapi.buzzrd.io:5050";
     }
     
@@ -34,16 +36,19 @@
 
 
 // The notification name for any network error
-+ (NSString *)getNetworkErrorNotificationname {
++ (NSString *)getNetworkErrorNotificationName {
     return @"networkError";
 }
 
 
 // Add the listener as an observer of the completion of the command
-- (void) listenForMyCompletion:(id)listener selector:(SEL)selector {
+- (void) listenForCompletion:(id)listener selector:(SEL)selector {
     
     // Check to see that the listener does respond to the selector. It is easier to find selector typo's if it is checked here rather than when the notification fires
     if ([listener respondsToSelector:selector]) {
+        
+        // keep reference to listener for automatic removal
+        self.listener = listener;
         
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         // make sure the listener only gets 1 notification
@@ -57,7 +62,7 @@
 
 
 // Removes the listener as listening for command completion for this command
-- (void) stopListeningForMyCompletion:(id)listener {
+- (void) stopListeningForCompletion:(id)listener {
     [[NSNotificationCenter defaultCenter] removeObserver:listener name:self.completionNotificationName object:nil];
 }
 
@@ -65,6 +70,12 @@
 // Send a completion notification with the command object and the results in the userInfo property of the notification
 - (void) sendCompletionNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:self.completionNotificationName object:self userInfo:nil];
+    
+    // stop listening if we have this 
+    if(self.removeListenerOnSuccess)
+    {
+        [self stopListeningForCompletion:self.listener];
+    }
 }
 
 // Send a completion notification with a failure status.  The notification includes a copy of the command and the results, if any
@@ -78,8 +89,7 @@
 // Send a notification that a network error occured
 - (void) sendNetworkErrorNotification {
     CommandBase *copy = [self copy];
-    [[NSNotificationCenter defaultCenter] postNotificationName:[CommandBase getNetworkErrorNotificationname] object:copy userInfo:nil];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:[CommandBase getNetworkErrorNotificationName] object:copy userInfo:nil];
 }
 
 

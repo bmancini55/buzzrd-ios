@@ -15,7 +15,6 @@
 
 @property NSArray *venues;
 
--(void)addRoomToTable:(Room *)room;
 -(void)addRoomTouch;
 
 @end

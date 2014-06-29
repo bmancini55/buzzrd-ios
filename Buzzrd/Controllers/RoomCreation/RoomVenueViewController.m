@@ -12,6 +12,7 @@
 #import "LocationService.h"
 #import "RoomOptionsViewController.h"
 #import "FoursquareAttribution.h"
+#import "GetVenuesCommand.h"
 
 @interface RoomVenueViewController ()
 
@@ -59,28 +60,28 @@
 
 - (void) loadVenuesForTable:(UITableView *)tableView withSearch:(NSString *)search
 {
-    //[self showActivityView];
+    GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
+    command.location = [LocationService sharedInstance].currentLocation.coordinate;
+    command.search = search;
+    command.includeRooms = false;
+    [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)venuesDidLoad:(NSNotification *) notif
+{
+    GetVenuesCommand *command = notif.object;
+    NSArray *venues = command.results;
     
-    [[BuzzrdAPI current].venueService
-     getVenues:[LocationService sharedInstance].currentLocation.coordinate
-     search:search
-     includeRooms:false
-     success: ^(NSArray *theVenues) {
-         NSLog(@"%lu venues were loaded", (unsigned long)theVenues.count);
-         
-         if(search == nil) {
-             self.venues = theVenues;
-         } else {
-             self.searchResults = theVenues;
-         }
-         
-         [self hideActivityView];
-         [tableView reloadData];
-     }
-     failure:^(NSError *error) {
-         NSLog(@"%@", error);
-         [self hideActivityView];
-     }];
+    NSLog(@"%lu venues were loaded", (unsigned long)venues.count);
+    
+    if(command.search == nil) {
+        self.venues = venues;
+        [self.tableView reloadData];
+    } else {
+        self.searchResults = venues;
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }
 }
 
 - (void) cancelTouch

@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) NSString *apiURLBase;
 
+@property (nonatomic)         bool            removeListenerOnSuccess;
+@property (weak, nonatomic)   id              listener;
 @property (strong, nonatomic) id              results;
 @property (strong, nonatomic) NSString        *completionNotificationName;
 @property (nonatomic)         NSInteger       status;
@@ -28,14 +30,14 @@
 
 
 // Returns the default error notification name
-+ (NSString *)getNetworkErrorNotificationname;
++ (NSString *)getNetworkErrorNotificationName;
 
 // Registers the listener object as a listener for the completion of the operation.  When the notification is sent the listener's
 // selector is called
-- (void) listenForMyCompletion:(id)listener selector:(SEL)selector;
+- (void) listenForCompletion:(id)listener selector:(SEL)selector;
 
 // Remove the listener from observing for notifications for this command
-- (void) stopListeningForMyCompletion:(id)listener;
+- (void) stopListeningForCompletion:(id)listener;
 
 // Send the completion notification and response data on behalf of the operation
 - (void) sendCompletionNotification;
