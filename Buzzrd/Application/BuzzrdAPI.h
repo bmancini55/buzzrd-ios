@@ -11,7 +11,6 @@
 #import "RoomService.h"
 #import "LocationService.h"
 #import "MessageService.h"
-#import "VenueService.h"
 #import "ImageService.h"
 
 #import "CommandDispatcher.h"
@@ -28,7 +27,6 @@
 @property (strong, nonatomic) UserService *userService;
 @property (strong, nonatomic) RoomService *roomService;
 @property (strong, nonatomic) MessageService *messageService;
-@property (strong, nonatomic) VenueService *venueService;
 @property (strong, nonatomic) ImageService *imageService;
 
 // Command Dispatch Pattern

@@ -98,7 +98,6 @@
         self.userService = [[UserService alloc] init];
         self.roomService = [[RoomService alloc] init];
         self.messageService = [[MessageService alloc]init];
-        self.venueService = [[VenueService alloc]init];
         self.imageService = [[ImageService alloc]init];
         
         self.dispatch = [[CommandDispatcher alloc]init];
