@@ -61,7 +61,7 @@
 - (void) loadVenuesForTable:(UITableView *)tableView withSearch:(NSString *)search
 {
     GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
-    command.location = [LocationService sharedInstance].currentLocation.coordinate;
+    command.location = [LocationService currentLocation].coordinate;
     command.search = search;
     command.includeRooms = false;
     [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
@@ -141,7 +141,7 @@
     }
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
-    CLLocation *location = [LocationService sharedInstance].currentLocation;
+    CLLocation *location = [LocationService currentLocation];
     [cell setVenue:venue userLocation:location];
     
     return cell;

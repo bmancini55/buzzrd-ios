@@ -10,6 +10,7 @@
 		3504373D193DFB3100731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373C193DFB3100731968 /* VenueView.m */; };
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
+		3527766A1960E5D70095E51E /* RetryAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 352776691960E5D70095E51E /* RetryAlert.m */; };
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
 		353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */; };
@@ -54,6 +55,7 @@
 		35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* VenueLocation.m */; };
 		35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE0193C079900B615A4 /* VenueCategory.m */; };
 		35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE6193C103D00B615A4 /* NearbyViewController.m */; };
+		35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AD837C1960B4590035214F /* GetLocationCommand.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0DFB18CF37A100F5B339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */; };
 		35BA0DFD18CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
@@ -102,6 +104,8 @@
 		3504373F193DFC5300731968 /* VenueRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomView.m; path = Views/Venues/VenueRoomView.m; sourceTree = "<group>"; };
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
+		352776681960E5D70095E51E /* RetryAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RetryAlert.h; path = Controllers/Shared/RetryAlert.h; sourceTree = "<group>"; };
+		352776691960E5D70095E51E /* RetryAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RetryAlert.m; path = Controllers/Shared/RetryAlert.m; sourceTree = "<group>"; };
 		353D6EBE195CE4C100AC1B62 /* CommandBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandBase.h; path = Commands/CommandBase.h; sourceTree = "<group>"; };
 		353D6EBF195CE4C100AC1B62 /* CommandBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandBase.m; path = Commands/CommandBase.m; sourceTree = "<group>"; };
 		353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandDispatcher.h; path = Application/CommandDispatcher.h; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		35A46FE0193C079900B615A4 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCategory.m; path = Models/VenueCategory.m; sourceTree = "<group>"; };
 		35A46FE5193C103D00B615A4 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = Controllers/NearbyViewController.h; sourceTree = "<group>"; };
 		35A46FE6193C103D00B615A4 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = Controllers/NearbyViewController.m; sourceTree = "<group>"; };
+		35AD837B1960B4590035214F /* GetLocationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetLocationCommand.h; path = Commands/Location/GetLocationCommand.h; sourceTree = "<group>"; };
+		35AD837C1960B4590035214F /* GetLocationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetLocationCommand.m; path = Commands/Location/GetLocationCommand.m; sourceTree = "<group>"; };
 		35BA0DF518CF37A100F5B339 /* Buzzrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzzrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BA0DF818CF37A100F5B339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -277,6 +283,7 @@
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				35AD837A1960B4300035214F /* Location */,
 				353D6EC4195CEDB100AC1B62 /* Venues */,
 				353D6EBE195CE4C100AC1B62 /* CommandBase.h */,
 				353D6EBF195CE4C100AC1B62 /* CommandBase.m */,
@@ -376,6 +383,15 @@
 			);
 			name = SocketIO;
 			path = Libraries/SocketIO;
+			sourceTree = "<group>";
+		};
+		35AD837A1960B4300035214F /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				35AD837B1960B4590035214F /* GetLocationCommand.h */,
+				35AD837C1960B4590035214F /* GetLocationCommand.m */,
+			);
+			name = Location;
 			sourceTree = "<group>";
 		};
 		35BA0DEC18CF37A100F5B339 = {
@@ -573,6 +589,8 @@
 			children = (
 				C2C6E5481936D65E00DBEEE6 /* GenderPickerTableViewController.h */,
 				C2C6E5491936D65E00DBEEE6 /* GenderPickerTableViewController.m */,
+				352776681960E5D70095E51E /* RetryAlert.h */,
+				352776691960E5D70095E51E /* RetryAlert.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -776,6 +794,7 @@
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
+				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
@@ -785,6 +804,7 @@
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
+				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,

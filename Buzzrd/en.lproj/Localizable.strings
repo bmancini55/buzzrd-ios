@@ -89,3 +89,9 @@
 "invalid_grant" = "Invalid Credentials";
 
 "User credentials are invalid" = "User credentials are invalid";
+
+"retry" = "Retry";
+
+"location_error" = "Location Error";
+
+"location_error_message" = "There was an error retrieving your current location";

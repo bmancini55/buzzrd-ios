@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "NSString+string.h"
+#import "RetryAlert.h"
 
 @interface BaseTableViewController : UITableViewController
+
+@property (strong, nonatomic) RetryAlert *retryAlert;
 
 - (void) showActivityView;
 
 - (void) hideActivityView;
+
+- (void) showRetryAlertWithTitle:(NSString *)title
+                         message:(NSString *)message
+                  retryOperation:(NSOperation *)operation;
 
 @end

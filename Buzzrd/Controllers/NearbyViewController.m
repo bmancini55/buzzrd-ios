@@ -14,14 +14,16 @@
 #import "VenueView.h"
 #import "VenueRoomView.h"
 #import "VenueRoomCell.h"
-#import "LocationService.h"
 #import "FoursquareAttribution.h"
-
+#import "GetLocationCommand.h"
 #import "GetVenuesCommand.h"
+#import "RetryAlert.h"
 
 @interface NearbyViewController ()
 
-@property (strong, nonatomic) LocationService *locationService;
+@property (strong, nonatomic) NSArray *venues;
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) RetryAlert *alert;
 
 @end
 
@@ -38,22 +40,42 @@
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
-    
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    [[LocationService sharedInstance] startUpdatingLocation];
+    [self getUserLocation];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
+- (void)getUserLocation
 {
-    if([keyPath isEqualToString:@"currentLocation"]) {
+    GetLocationCommand *command = [[GetLocationCommand alloc]init];
+    [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)getLocationDidComplete:(NSNotification *)notif
+{
+    GetLocationCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        self.location = (CLLocation *)command.results;
         [self loadVenues];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
+                              message:NSLocalizedString(@"location_error_message", nil)
+                       retryOperation:command];
     }
 }
 
-- (void) loadVenues
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self getUserLocation];
+}
+
+
+- (void)loadVenues
 {
     GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
-    command.location = [LocationService sharedInstance].currentLocation.coordinate;
+    command.location = [LocationService currentLocation].coordinate;
     command.search = nil;
     command.includeRooms = true;
     [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
@@ -130,7 +152,7 @@
     Venue *venue = self.venues[section];
     
     VenueView *venueView = [[VenueView alloc]init];
-    [venueView setVenue:venue userLocation:[LocationService sharedInstance].currentLocation];
+    [venueView setVenue:venue userLocation:[LocationService currentLocation]];
     
     UIView *view = [[UIView alloc]init];
     [view addSubview:venueView];

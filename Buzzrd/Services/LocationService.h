@@ -13,11 +13,13 @@
 
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
-+(LocationService *) sharedInstance;
++(LocationService *) instance;
++ (CLLocation *) currentLocation;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *currentLocation;
 
 - (void)startUpdatingLocation;
+- (void)stopUpdatingLocation;
+- (CLLocation *) currentLocation;
 
 @end

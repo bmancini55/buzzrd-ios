@@ -11,10 +11,6 @@
 #import "Venue.h"
 #import "Room.h"
 
-@interface NearbyViewController : BaseTableViewController
-
-@property NSArray *venues;
-
--(void)addRoomTouch;
+@interface NearbyViewController : BaseTableViewController <UIAlertViewDelegate>
 
 @end
