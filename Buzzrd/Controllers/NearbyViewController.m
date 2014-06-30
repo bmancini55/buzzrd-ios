@@ -37,9 +37,19 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self attachFooterToTableView:self.tableView];
     
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
+    
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
+    [self.refreshControl beginRefreshing];
+    [self getUserLocation];
+}
+
+- (void)tableViewWillRefresh
+{
+    NSLog(@"Refreshing table");
     [self getUserLocation];
 }
 
@@ -84,6 +94,8 @@
 
 - (void)venuesDidLoad:(NSNotification *) notif
 {
+    [self.refreshControl endRefreshing];
+    
     GetVenuesCommand *command = notif.object;
     NSArray *venues = command.results;
     

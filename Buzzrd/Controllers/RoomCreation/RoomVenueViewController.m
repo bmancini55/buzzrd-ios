@@ -43,6 +43,9 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self attachFooterToTableView:self.tableView];
     
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
+    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
@@ -53,7 +56,14 @@
     self.searchDisplayController.delegate = self;
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = searchBar;
-    
+ 
+    [self.refreshControl beginRefreshing];
+    [self getUserLocation];
+}
+
+- (void)tableViewWillRefresh
+{
+    NSLog(@"Refreshing table");
     [self getUserLocation];
 }
 
@@ -92,6 +102,8 @@
 
 - (void)venuesDidLoad:(NSNotification *) notif
 {
+    [self.refreshControl endRefreshing];
+    
     GetVenuesCommand *command = notif.object;
     NSArray *venues = command.results;
     
