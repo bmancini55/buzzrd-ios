@@ -75,7 +75,7 @@
 - (void)loadVenues
 {
     GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
-    command.location = [LocationService currentLocation].coordinate;
+    command.location = self.location.coordinate;
     command.search = nil;
     command.includeRooms = true;
     [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
@@ -152,7 +152,7 @@
     Venue *venue = self.venues[section];
     
     VenueView *venueView = [[VenueView alloc]init];
-    [venueView setVenue:venue userLocation:[LocationService currentLocation]];
+    [venueView setVenue:venue userLocation:self.location];
     
     UIView *view = [[UIView alloc]init];
     [view addSubview:venueView];

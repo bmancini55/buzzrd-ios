@@ -9,13 +9,14 @@
 #import "RoomVenueViewController.h"
 #import "VenueCell.h"
 #import "BuzzrdAPI.h"
-#import "LocationService.h"
 #import "RoomOptionsViewController.h"
 #import "FoursquareAttribution.h"
 #import "GetVenuesCommand.h"
+#import "GetLocationCommand.h"
 
 @interface RoomVenueViewController ()
 
+@property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) NSArray *venues;
 @property (strong, nonatomic) NSArray *searchResults;
 @property (strong, nonatomic) UISearchDisplayController *tempSearchController;
@@ -53,15 +54,36 @@
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = searchBar;
     
-    
-    
-    [self loadVenuesForTable:self.tableView withSearch:nil];
+    [self getUserLocation];
+}
+
+- (void)getUserLocation
+{
+    GetLocationCommand *command = [[GetLocationCommand alloc]init];
+    [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)getLocationDidComplete:(NSNotification *)notif
+{
+    GetLocationCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        self.location = (CLLocation *)command.results;
+        [self loadVenuesForTable:self.tableView withSearch:nil];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
+                              message:NSLocalizedString(@"location_error_message", nil)
+                       retryOperation:command];
+    }
 }
 
 - (void) loadVenuesForTable:(UITableView *)tableView withSearch:(NSString *)search
 {
     GetVenuesCommand *command = [[GetVenuesCommand alloc] init];
-    command.location = [LocationService currentLocation].coordinate;
+    command.location = self.location.coordinate;
     command.search = search;
     command.includeRooms = false;
     [command listenForCompletion:self selector:@selector(venuesDidLoad:)];
@@ -141,8 +163,7 @@
     }
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
-    CLLocation *location = [LocationService currentLocation];
-    [cell setVenue:venue userLocation:location];
+    [cell setVenue:venue userLocation:self.location];
     
     return cell;
 }

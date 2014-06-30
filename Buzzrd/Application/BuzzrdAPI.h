@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "UserService.h"
 #import "RoomService.h"
-#import "LocationService.h"
 #import "MessageService.h"
 #import "ImageService.h"
 

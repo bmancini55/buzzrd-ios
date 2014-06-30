@@ -30,7 +30,6 @@
 		35A46F4919328A4C00B615A4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4319328A4C00B615A4 /* Message.m */; };
 		35A46F4A19328A4C00B615A4 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4519328A4C00B615A4 /* Room.m */; };
 		35A46F4B19328A4C00B615A4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4719328A4C00B615A4 /* User.m */; };
-		35A46F5619328A5E00B615A4 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4D19328A5E00B615A4 /* LocationService.m */; };
 		35A46F5719328A5E00B615A4 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4F19328A5E00B615A4 /* MessageService.m */; };
 		35A46F5819328A5E00B615A4 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5119328A5E00B615A4 /* RoomService.m */; };
 		35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5319328A5E00B615A4 /* ServiceBase.m */; };
@@ -142,8 +141,6 @@
 		35A46F4519328A4C00B615A4 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Room.m; path = Models/Room.m; sourceTree = "<group>"; };
 		35A46F4619328A4C00B615A4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
 		35A46F4719328A4C00B615A4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
-		35A46F4C19328A5E00B615A4 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationService.h; path = Services/LocationService.h; sourceTree = "<group>"; };
-		35A46F4D19328A5E00B615A4 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationService.m; path = Services/LocationService.m; sourceTree = "<group>"; };
 		35A46F4E19328A5E00B615A4 /* MessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageService.h; path = Services/MessageService.h; sourceTree = "<group>"; };
 		35A46F4F19328A5E00B615A4 /* MessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageService.m; path = Services/MessageService.m; sourceTree = "<group>"; };
 		35A46F5019328A5E00B615A4 /* RoomService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomService.h; path = Services/RoomService.h; sourceTree = "<group>"; };
@@ -502,8 +499,6 @@
 		35BA0E3018CF384500F5B339 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				35A46F4C19328A5E00B615A4 /* LocationService.h */,
-				35A46F4D19328A5E00B615A4 /* LocationService.m */,
 				35A46F4E19328A5E00B615A4 /* MessageService.h */,
 				35A46F4F19328A5E00B615A4 /* MessageService.m */,
 				35A46F5019328A5E00B615A4 /* RoomService.h */,
@@ -812,7 +807,6 @@
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
-				35A46F5619328A5E00B615A4 /* LocationService.m in Sources */,
 				C212FA8F194005D300D5514E /* BaseTheme.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
