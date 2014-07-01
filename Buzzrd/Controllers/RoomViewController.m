@@ -215,7 +215,14 @@
 -(void)socketIODidConnect:(SocketIO *)socket
 {
     NSLog(@"Joining room: %@", self.room.id);
-    [self.socket sendEvent:@"join" withData:self.room.id];
+    
+    NSDictionary *parameters = @{
+         @"roomId": self.room.id,
+         @"userId": [[[BuzzrdAPI current] user] iduser],
+         @"token": [[[BuzzrdAPI current] authorization] bearerToken]
+    };
+    
+    [self.socket sendEvent:@"join" withData:parameters];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
