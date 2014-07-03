@@ -214,15 +214,8 @@
 
 -(void)socketIODidConnect:(SocketIO *)socket
 {
-    NSLog(@"Joining room: %@", self.room.id);
-    
-    NSDictionary *parameters = @{
-         @"roomId": self.room.id,
-         @"userId": [[[BuzzrdAPI current] user] iduser],
-         @"token": [[[BuzzrdAPI current] authorization] bearerToken]
-    };
-    
-    [self.socket sendEvent:@"join" withData:parameters];
+    NSLog(@"Authenticating with socket server");
+    [self.socket sendEvent:@"authenticate" withData:[[[BuzzrdAPI current] authorization] bearerToken]];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
 {
@@ -238,7 +231,13 @@
     if([packet.name isEqualToString:@"message"]) {
         NSString *message = packet.args[0];
         [self receiveMessage:message];
-    }            
+    }
+    
+    else if([packet.name isEqualToString:@"authenticate"]) {
+        NSLog(@"Joining room: %@", self.room.id);
+        [self.socket sendEvent:@"join" withData:self.room.id];
+    }
+        
 }
 
 @end
