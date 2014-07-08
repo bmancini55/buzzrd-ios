@@ -27,6 +27,16 @@
 
     self.title = self.room.name;
     
+    // create hooks for keyboard to shrink table view on open/close
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShowOrHide:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShowOrHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
     [self loadRoom];
 }
 
@@ -98,6 +108,13 @@
 - (BOOL)canBecomeFirstResponder
 {
     return true;
+}
+
+
+// Scroll to bottom when keyboard is shown or hidden
+-(void)keyboardDidShowOrHide:(NSNotification *)notification
+{
+    [self scrollToBottom:false];
 }
 
 #pragma mark - Internal helper methods
