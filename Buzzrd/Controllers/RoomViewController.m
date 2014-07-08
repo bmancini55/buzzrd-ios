@@ -7,13 +7,13 @@
 //
 
 #import "RoomViewController.h"
-#import "RoomMainView.h"
 #import "SocketIOPacket.h"
 #import "BuzzrdAPI.h"
 #import "Message.h"
 
 @interface RoomViewController ()
 
+    @property (strong, nonatomic) KeyboardBarView *keyboardBar;
     @property (strong, nonatomic) SocketIO *socket;
     @property (strong, nonatomic) NSArray *messages;
 
@@ -27,22 +27,7 @@
 
     self.title = self.room.name;
     
-    // create the main view
-    CGRect frame = self.view.frame;
-    self.view = [[RoomMainView alloc]initWithFrame:frame
-                               keyboardBarDelegate:self
-                                 tableViewDelegate:self
-                               tableViewDataSource:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
-    
     [self loadRoom];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 // Fires on room exit
@@ -98,7 +83,22 @@
     }
 }
 
+// Reimplements inputAccessorView from UIResponder to dock keyboardBar at bottom
+- (UIView*)inputAccessoryView
+{
+    if (self.keyboardBar == nil) {
+        const int KEYBOARD_HEIGHT = 40;
+        self.keyboardBar = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,0,self.tableView.frame.size.width, KEYBOARD_HEIGHT)];
+        self.keyboardBar.delegate = self;
+    }
+    return self.keyboardBar;
+}
 
+// Enables the keyboard bar
+- (BOOL)canBecomeFirstResponder
+{
+    return true;
+}
 
 #pragma mark - Internal helper methods
 
@@ -110,14 +110,12 @@
         NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
         [mergeArray addObjectsFromArray:self.messages];
         self.messages = mergeArray;
-        
-        UITableView *tableView = ((RoomMainView *)self.view).tableView;
-        [tableView reloadData];
+        [self.tableView reloadData];
       
         // on fresh reload
         if (page == 1)
         {
-            [(RoomMainView *)self.view scrollToBottom:false];
+            [self scrollToBottom:false];
             [self connectToSocketServer];
         }
     };
@@ -132,6 +130,17 @@
                                                     page:page
                                                  success:success
                                                  failure:failure];
+}
+
+- (void)scrollToBottom:(BOOL)animated
+{
+    NSInteger lastSection = [self.tableView.dataSource numberOfSectionsInTableView:self.tableView] - 1;
+    NSInteger rowIndex = [self.tableView.dataSource tableView:self.tableView numberOfRowsInSection:lastSection] - 1;
+    
+    if(rowIndex >= 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:lastSection];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
 }
 
 
@@ -159,9 +168,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KeyboardBarView *keyboardBarView = ((RoomMainView *)self.view).keyboardBarView;
-    [keyboardBarView.textView endEditing:true];
-
+    [self.keyboardBar dismissKeyboard];
     [tableView deselectRowAtIndexPath:indexPath animated:false];
 }
 
@@ -201,12 +208,11 @@
     self.messages = [[NSArray alloc]initWithArray:mergeArray];
     
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
-    UITableView *tableView = ((RoomMainView *)self.view).tableView;
-    [tableView beginUpdates];
-    [tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
     
-    [(RoomMainView *)self.view scrollToBottom:true];
+    [self scrollToBottom:true];
 }
 
 

@@ -52,15 +52,6 @@ const int BUTTON_WIDTH = 52;
         [self.mainButton addTarget:self action:@selector(buttonTouchedAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.mainButton];
         
-        // create hooks for keyboard
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardDidShowOrHide:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardDidShowOrHide:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
     }
     return self;
 }
@@ -87,31 +78,6 @@ const int BUTTON_WIDTH = 52;
     // TODO reset the size of the textview
     
     [self.delegate keyboardBar:self buttonTouched:message];
-}
-
-
-#pragma mark - Keyboard methods
-
--(void)keyboardDidShowOrHide:(NSNotification *)notification
-{
-    NSDictionary *userInfo = [notification userInfo];
-    NSTimeInterval animationDuration;
-    UIViewAnimationCurve animationCurve;
-    CGRect keyboardEndFrame;
- 
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [UIView setAnimationCurve:animationCurve];
-    
-    CGRect newFrame = self.frame;
-    newFrame.origin.y = keyboardEndFrame.origin.y - newFrame.size.height;
-    self.frame = newFrame;
-    
-    [UIView commitAnimations];
 }
 
 

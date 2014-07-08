@@ -20,7 +20,6 @@
 @interface KeyboardBarView : UIView <UITextViewDelegate>
 
 @property (weak, nonatomic) id<KeyboardBarDelegate> delegate;
-@property (weak, nonatomic) id accordianRelated;
 @property (strong, nonatomic) UITextView *textView;
 
 -(void)dismissKeyboard;
