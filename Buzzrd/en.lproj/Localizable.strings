@@ -95,3 +95,7 @@
 "location_error" = "Location Error";
 
 "location_error_message" = "There was an error retrieving your current location";
+
+"Unexpected Error" = "Unexpected Error";
+
+"An unexpected error occurred while processing your request" = "An unexpected error occurred while processing your request";

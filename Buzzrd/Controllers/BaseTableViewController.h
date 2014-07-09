@@ -22,4 +22,6 @@
                          message:(NSString *)message
                   retryOperation:(NSOperation *)operation;
 
+- (void) showDefaultRetryAlert:(NSOperation *)operation;
+
 @end

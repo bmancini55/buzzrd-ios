@@ -10,6 +10,8 @@
 #import "BuzzrdAPI.h"
 #import "LoginViewController.h"
 #import "FrameUtils.h"
+#import "LoginCommand.h"
+#import "GetUserCommand.h"
 
 @interface LoginViewController ()
 
@@ -111,19 +113,48 @@
 
 
 - (void)loginTouch
+{    
+    LoginCommand *command = [[LoginCommand alloc]init];
+    command.username = self.usernameTextField.text;
+    command.password = self.passwordTextField.text;
+    
+    [command listenForCompletion:self selector:@selector(loginDidComplete:)];
+    
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)loginDidComplete:(NSNotification *)notif
 {
-    [[BuzzrdAPI current].userService
-     login:self.usernameTextField.text : self.passwordTextField.text
-     success:^(User* user)
-     {
-         UIViewController *homeController = [BuzzrdNav createHomeViewController];
-         [self presentViewController:homeController animated:true completion:nil];
-     }
-     failure:^(NSError *error, id responseObject) {
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(responseObject[@"error"], nil) message: NSLocalizedString(responseObject[@"error_description"], nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-         [alert show];
-     }];
+    LoginCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        [BuzzrdAPI current].authorization = (Authorization *)command.results;
+                
+        GetUserCommand *command = [[GetUserCommand alloc]init];
+        command.username = self.usernameTextField.text;
+        
+        [command listenForCompletion:self selector:@selector(getUserDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
+}
+
+- (void)getUserDidComplete:(NSNotification *)notif
+{
+    GetUserCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        UIViewController *homeController = [BuzzrdNav createHomeViewController];
+        [self presentViewController:homeController animated:true completion:nil];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
 }
 
 - (void)createTouch

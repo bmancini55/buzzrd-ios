@@ -17,4 +17,6 @@
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSNumber *genderId;
 
+-(id) initWithJson:(NSDictionary *)json;
+
 @end

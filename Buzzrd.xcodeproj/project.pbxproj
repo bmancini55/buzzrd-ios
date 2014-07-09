@@ -33,7 +33,6 @@
 		35A46F5719328A5E00B615A4 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4F19328A5E00B615A4 /* MessageService.m */; };
 		35A46F5819328A5E00B615A4 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5119328A5E00B615A4 /* RoomService.m */; };
 		35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5319328A5E00B615A4 /* ServiceBase.m */; };
-		35A46F5A19328A5E00B615A4 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5519328A5E00B615A4 /* UserService.m */; };
 		35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9119328A9F00B615A4 /* BaseTableViewController.m */; };
 		35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9319328A9F00B615A4 /* BaseViewController.m */; };
 		35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9519328A9F00B615A4 /* LoginViewController.m */; };
@@ -79,7 +78,13 @@
 		C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */; };
 		C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */; };
 		C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */; };
-		C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E55C193AB8C800DBEEE6 /* ImageService.m */; };
+		C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BA919624C16006510D9 /* LoginCommand.m */; };
+		C2C97BB119624F95006510D9 /* GetUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB019624F95006510D9 /* GetUserCommand.m */; };
+		C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB31963B035006510D9 /* GetUsersCommand.m */; };
+		C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */; };
+		C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */; };
+		C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */; };
+		C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BC0196B9963006510D9 /* LogoutCommand.m */; };
 		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
 		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
 		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
@@ -146,8 +151,6 @@
 		35A46F5119328A5E00B615A4 /* RoomService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomService.m; path = Services/RoomService.m; sourceTree = "<group>"; };
 		35A46F5219328A5E00B615A4 /* ServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceBase.h; path = Services/ServiceBase.h; sourceTree = "<group>"; };
 		35A46F5319328A5E00B615A4 /* ServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceBase.m; path = Services/ServiceBase.m; sourceTree = "<group>"; };
-		35A46F5419328A5E00B615A4 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserService.h; path = Services/UserService.h; sourceTree = "<group>"; };
-		35A46F5519328A5E00B615A4 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserService.m; path = Services/UserService.m; sourceTree = "<group>"; };
 		35A46F9019328A9F00B615A4 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableViewController.h; path = Controllers/BaseTableViewController.h; sourceTree = "<group>"; };
 		35A46F9119328A9F00B615A4 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableViewController.m; path = Controllers/BaseTableViewController.m; sourceTree = "<group>"; };
 		35A46F9219328A9F00B615A4 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Controllers/BaseViewController.h; sourceTree = "<group>"; };
@@ -223,8 +226,20 @@
 		C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageViewController.m; path = Controllers/AccountCreation/ProfileImageViewController.m; sourceTree = "<group>"; };
 		C2C6E5581938241100DBEEE6 /* UIImage+thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+thumbnail.h"; path = "Categories/UIImage+thumbnail.h"; sourceTree = "<group>"; };
 		C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+thumbnail.m"; path = "Categories/UIImage+thumbnail.m"; sourceTree = "<group>"; };
-		C2C6E55B193AB8C800DBEEE6 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageService.h; path = Services/ImageService.h; sourceTree = "<group>"; };
-		C2C6E55C193AB8C800DBEEE6 /* ImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageService.m; path = Services/ImageService.m; sourceTree = "<group>"; };
+		C2C97BA819624C16006510D9 /* LoginCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginCommand.h; path = Commands/Login/LoginCommand.h; sourceTree = "<group>"; };
+		C2C97BA919624C16006510D9 /* LoginCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginCommand.m; path = Commands/Login/LoginCommand.m; sourceTree = "<group>"; };
+		C2C97BAF19624F95006510D9 /* GetUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUserCommand.h; path = Commands/User/GetUserCommand.h; sourceTree = "<group>"; };
+		C2C97BB019624F95006510D9 /* GetUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUserCommand.m; path = Commands/User/GetUserCommand.m; sourceTree = "<group>"; };
+		C2C97BB21963B035006510D9 /* GetUsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUsersCommand.h; path = Commands/User/GetUsersCommand.h; sourceTree = "<group>"; };
+		C2C97BB31963B035006510D9 /* GetUsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUsersCommand.m; path = Commands/User/GetUsersCommand.m; sourceTree = "<group>"; };
+		C2C97BB51963B0D6006510D9 /* CreateUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateUserCommand.h; path = Commands/User/CreateUserCommand.h; sourceTree = "<group>"; };
+		C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateUserCommand.m; path = Commands/User/CreateUserCommand.m; sourceTree = "<group>"; };
+		C2C97BB81963B648006510D9 /* UpdateProfilePicCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateProfilePicCommand.h; path = Commands/User/UpdateProfilePicCommand.h; sourceTree = "<group>"; };
+		C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateProfilePicCommand.m; path = Commands/User/UpdateProfilePicCommand.m; sourceTree = "<group>"; };
+		C2C97BBC1963B6BA006510D9 /* UploadImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadImageCommand.h; path = Image/UploadImageCommand.h; sourceTree = "<group>"; };
+		C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadImageCommand.m; path = Image/UploadImageCommand.m; sourceTree = "<group>"; };
+		C2C97BBF196B9963006510D9 /* LogoutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoutCommand.h; path = Commands/Login/LogoutCommand.h; sourceTree = "<group>"; };
+		C2C97BC0196B9963006510D9 /* LogoutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoutCommand.m; path = Commands/Login/LogoutCommand.m; sourceTree = "<group>"; };
 		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
 		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
@@ -277,6 +292,9 @@
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				C2C97BBB1963B69D006510D9 /* Image */,
+				C2C97BAB19624C75006510D9 /* User */,
+				C2C97BA419624314006510D9 /* Login */,
 				35AD837A1960B4300035214F /* Location */,
 				353D6EC4195CEDB100AC1B62 /* Venues */,
 				353D6EBE195CE4C100AC1B62 /* CommandBase.h */,
@@ -491,10 +509,6 @@
 				35A46F5119328A5E00B615A4 /* RoomService.m */,
 				35A46F5219328A5E00B615A4 /* ServiceBase.h */,
 				35A46F5319328A5E00B615A4 /* ServiceBase.m */,
-				35A46F5419328A5E00B615A4 /* UserService.h */,
-				35A46F5519328A5E00B615A4 /* UserService.m */,
-				C2C6E55B193AB8C800DBEEE6 /* ImageService.h */,
-				C2C6E55C193AB8C800DBEEE6 /* ImageService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -594,6 +608,41 @@
 				C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		C2C97BA419624314006510D9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C2C97BA819624C16006510D9 /* LoginCommand.h */,
+				C2C97BA919624C16006510D9 /* LoginCommand.m */,
+				C2C97BBF196B9963006510D9 /* LogoutCommand.h */,
+				C2C97BC0196B9963006510D9 /* LogoutCommand.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		C2C97BAB19624C75006510D9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C2C97BAF19624F95006510D9 /* GetUserCommand.h */,
+				C2C97BB019624F95006510D9 /* GetUserCommand.m */,
+				C2C97BB21963B035006510D9 /* GetUsersCommand.h */,
+				C2C97BB31963B035006510D9 /* GetUsersCommand.m */,
+				C2C97BB51963B0D6006510D9 /* CreateUserCommand.h */,
+				C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */,
+				C2C97BB81963B648006510D9 /* UpdateProfilePicCommand.h */,
+				C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		C2C97BBB1963B69D006510D9 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C2C97BBC1963B6BA006510D9 /* UploadImageCommand.h */,
+				C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */,
+			);
+			name = Image;
 			sourceTree = "<group>";
 		};
 		C2FC0464193FF92E000183CC /* Themes */ = {
@@ -752,6 +801,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */,
+				C2C97BB119624F95006510D9 /* GetUserCommand.m in Sources */,
+				C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */,
+				C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
@@ -765,11 +817,13 @@
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
 				C2996C4E194A89940023D353 /* NSString+string.m in Sources */,
+				C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
+				C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */,
 				35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
@@ -780,14 +834,15 @@
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
+				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
 				353D6ECA195D050500AC1B62 /* BuzzrdError.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
-				C2C6E55D193AB8C800DBEEE6 /* ImageService.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
+				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				35A46F5719328A5E00B615A4 /* MessageService.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
@@ -804,7 +859,6 @@
 				C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
-				35A46F5A19328A5E00B615A4 /* UserService.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
 				35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */,
 			);

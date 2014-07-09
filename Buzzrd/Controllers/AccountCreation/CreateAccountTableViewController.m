@@ -11,6 +11,7 @@
 #import "CreateAccountTableViewController.h"
 #import "FrameUtils.h"
 #import "GenderPickerTableViewController.h"
+#import "CreateUserCommand.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -79,21 +80,29 @@
             self.user.genderId = [NSNumber numberWithInt:0];
         }
 
-        // Create the user
-        [[BuzzrdAPI current].userService
-         createUser:self.user
-         success:^(User* createdUser)
-         {
-             [self hideActivityView];
-             ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
-             profileImageController.user = createdUser;
-             [self.navigationController pushViewController:profileImageController animated:YES];
-         }
-         failure:^(NSError *error) {
-             [self hideActivityView];
-             UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
-             [alert show];
-         }];
+        CreateUserCommand *command = [[CreateUserCommand alloc]init];
+        command.user = self.user;
+        
+        [command listenForCompletion:self selector:@selector(createUserDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+- (void)createUserDidComplete:(NSNotification *)notif
+{
+    CreateUserCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+        profileImageController.user = command.results;
+        [self.navigationController pushViewController:profileImageController animated:YES];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
     }
 }
 

@@ -46,4 +46,18 @@
     return self;
 }
 
+-(id) initWithJson:(NSDictionary *)json
+{
+    self = [self init];
+    if(self) {
+        self.iduser = json[@"id"];
+        self.username = json[@"username"];
+        self.firstName = json[@"firstName"];
+        self.lastName = json[@"lastName"];
+        self.genderId = json[@"sex"];
+        
+    }
+    return self;
+}
+
 @end

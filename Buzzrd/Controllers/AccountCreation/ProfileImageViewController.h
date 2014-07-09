@@ -7,7 +7,6 @@
 //
 
 #import "BaseTableViewController.h"
-#import "ImageService.h"
 #import "User.h"
 
 @interface ProfileImageViewController : BaseTableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>

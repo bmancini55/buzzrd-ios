@@ -64,4 +64,11 @@
     [self.retryAlert show];
 }
 
+- (void) showDefaultRetryAlert:(NSOperation *)operation
+{
+    [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                          message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                   retryOperation:operation];
+}
+
 @end

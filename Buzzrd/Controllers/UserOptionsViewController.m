@@ -8,6 +8,7 @@
 
 #import "UserOptionsViewController.h"
 #import "BuzzrdAPI.h"
+#import "LogoutCommand.h"
 
 @interface UserOptionsViewController ()
 
@@ -32,9 +33,25 @@
 
 -(void)logoutTouch
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    LogoutCommand *command = [[LogoutCommand alloc]init];
     
-    [[BuzzrdAPI current].userService logout];
+    [command listenForCompletion:self selector:@selector(logoutDidComplete:)];
+    
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)logoutDidComplete:(NSNotification *)notif
+{
+    LogoutCommand *command = notif.object;
+    
+    if(command.status == kSuccess)
+    {
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
 }
 
 @end

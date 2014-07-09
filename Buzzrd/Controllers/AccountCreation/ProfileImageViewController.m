@@ -8,7 +8,10 @@
 
 #import "ProfileImageViewController.h"
 #import "UIImage+thumbnail.h"
+#import "BuzzrdNav.h"
 #import "BuzzrdAPI.h"
+#import "UploadImageCommand.h"
+#import "UpdateProfilePicCommand.h"
 
 @interface ProfileImageViewController ()
 
@@ -65,11 +68,11 @@
 
 - (void)profilePicContainerViewSingleTap:(UITapGestureRecognizer *)recognizer {
     
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        NSLog(@"No Camera Detected");
-        
-        return;
-    }
+//    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//        NSLog(@"No Camera Detected");
+//        
+//        return;
+//    }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles: NSLocalizedString(@"take_a_photo", nil), NSLocalizedString(@"use_photo_library", nil), nil];
     [actionSheet showInView:self.view];
@@ -95,7 +98,8 @@
     
     switch (buttonIndex) {
         case 0:
-            [self takePhotoWithCamera];
+            [self pickPhotoFromLibrary];
+            //[self takePhotoWithCamera];
             break;
         case 1:
             [self pickPhotoFromLibrary];
@@ -130,31 +134,54 @@
     [self showActivityView];
     
     if (_thumbnail != nil){
-        // upload the image to the buzzrd server
-        [[BuzzrdAPI current].imageService uploadImage:_thumbnail
-        success:^(NSString *imageURI) {
-            // Update the location of the user's profile pic
-            [[BuzzrdAPI current].userService updateProfilePic:self.user.iduser imageURI:imageURI
-             success:^(NSString *userId) {
-                [self hideActivityView];
-                [self dismissViewControllerAnimated:false completion:nil];
-             }
-             failure:^(NSError *error) {
-                 [self hideActivityView];
-                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
-                 [alert show];
-             }];
-        }
-        failure:^(NSError *error) {
-            [self hideActivityView];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle: error.localizedDescription message: error.localizedFailureReason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
-            [alert show];
-        }];
+        
+        UploadImageCommand *command = [[UploadImageCommand alloc]init];
+        command.image = _thumbnail;
+        [command listenForCompletion:self selector:@selector(getImageUploadDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
     else
     {
         [self hideActivityView];
         [self dismissViewControllerAnimated:false completion:nil];
+    }
+}
+
+- (void)getImageUploadDidComplete:(NSNotification *)notif
+{
+    UploadImageCommand *command = notif.object;
+    
+    if(command.status == kSuccess)
+    {
+        UpdateProfilePicCommand *profilePicCommand = [[UpdateProfilePicCommand alloc]init];
+        profilePicCommand.iduser = self.user.iduser;
+        profilePicCommand.imageURI = command.results;
+        [profilePicCommand listenForCompletion:self selector:@selector(updateProfilePicDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:profilePicCommand];
+        
+//        UIViewController *homeController = [BuzzrdNav createHomeViewController];
+//        [self presentViewController:homeController animated:true completion:nil];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
+}
+
+- (void)updateProfilePicDidComplete:(NSNotification *)notif
+{
+    UploadImageCommand *command = notif.object;
+    
+    if(command.status == kSuccess)
+    {
+        UIViewController *homeController = [BuzzrdNav createHomeViewController];
+        [self presentViewController:homeController animated:true completion:nil];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
     }
 }
 

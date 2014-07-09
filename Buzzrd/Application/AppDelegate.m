@@ -24,7 +24,8 @@
     if ([BuzzrdAPI current].authorization.bearerToken != nil) {
         
         // Got directly into the home view controller
-        rootViewController = [BuzzrdNav createHomeViewController];
+//        rootViewController = [BuzzrdNav createHomeViewController];
+        rootViewController = [BuzzrdNav createLoginViewController];
     }
     else {
         
