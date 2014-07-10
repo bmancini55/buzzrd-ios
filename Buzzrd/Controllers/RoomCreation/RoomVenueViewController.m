@@ -13,6 +13,7 @@
 #import "FoursquareAttribution.h"
 #import "GetVenuesCommand.h"
 #import "GetLocationCommand.h"
+#import "CreateRoomCommand.h"
 
 @interface RoomVenueViewController ()
 
@@ -150,6 +151,36 @@
     tableView.tableFooterView = footer;
 }
 
+- (void)createRoom:(Room *)room
+{
+    // Create the default room
+    CreateRoomCommand *command = [[CreateRoomCommand alloc]init];
+    command.room = room;
+    [command listenForCompletion:self selector:@selector(createRoomDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)createRoomDidComplete:(NSNotification *)info
+{
+    CreateRoomCommand *command = (CreateRoomCommand *)info.object;
+    if(command.status == kSuccess) {
+    
+        Venue *venue = command.results[@"venue"];
+        Room *room = command.results[@"room"];
+        
+        NSLog(@"Created room: %@, %@", room.id, room.name);
+        [self dismissViewControllerAnimated:true completion:^{
+            self.onRoomCreated(venue, room);
+        }];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -196,19 +227,7 @@
     
     if(venue.roomCount == 0)
     {
-        // create the default room
-        [[BuzzrdAPI current].roomService
-         createRoom:room
-         success:^(Venue *venue, Room* createdRoom)
-         {
-             NSLog(@"Created room: %@, %@", createdRoom.id, createdRoom.name);
-             [self dismissViewControllerAnimated:true completion:^{
-                 self.onRoomCreated(venue, createdRoom);
-              }];
-         }
-         failure:^(NSError *error) {
-             NSLog(@"%@", error);
-         }];
+        [self createRoom:room];
     }
     else
     {
@@ -216,6 +235,8 @@
         [self.navigationController pushViewController:viewController animated:true];
     }
 }
+
+
 
 
 #pragma mark - Search display delegate

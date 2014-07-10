@@ -10,6 +10,7 @@
 		3504373D193DFB3100731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373C193DFB3100731968 /* VenueView.m */; };
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
+		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		3527766A1960E5D70095E51E /* RetryAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 352776691960E5D70095E51E /* RetryAlert.m */; };
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
@@ -31,7 +32,6 @@
 		35A46F4A19328A4C00B615A4 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4519328A4C00B615A4 /* Room.m */; };
 		35A46F4B19328A4C00B615A4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4719328A4C00B615A4 /* User.m */; };
 		35A46F5719328A5E00B615A4 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F4F19328A5E00B615A4 /* MessageService.m */; };
-		35A46F5819328A5E00B615A4 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5119328A5E00B615A4 /* RoomService.m */; };
 		35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F5319328A5E00B615A4 /* ServiceBase.m */; };
 		35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9119328A9F00B615A4 /* BaseTableViewController.m */; };
 		35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9319328A9F00B615A4 /* BaseViewController.m */; };
@@ -107,6 +107,8 @@
 		3504373F193DFC5300731968 /* VenueRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomView.m; path = Views/Venues/VenueRoomView.m; sourceTree = "<group>"; };
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
+		351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomCommand.h; path = Commands/Room/CreateRoomCommand.h; sourceTree = "<group>"; };
+		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		352776681960E5D70095E51E /* RetryAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RetryAlert.h; path = Controllers/Shared/RetryAlert.h; sourceTree = "<group>"; };
 		352776691960E5D70095E51E /* RetryAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RetryAlert.m; path = Controllers/Shared/RetryAlert.m; sourceTree = "<group>"; };
 		353D6EBE195CE4C100AC1B62 /* CommandBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandBase.h; path = Commands/CommandBase.h; sourceTree = "<group>"; };
@@ -147,8 +149,6 @@
 		35A46F4719328A4C00B615A4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
 		35A46F4E19328A5E00B615A4 /* MessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageService.h; path = Services/MessageService.h; sourceTree = "<group>"; };
 		35A46F4F19328A5E00B615A4 /* MessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageService.m; path = Services/MessageService.m; sourceTree = "<group>"; };
-		35A46F5019328A5E00B615A4 /* RoomService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomService.h; path = Services/RoomService.h; sourceTree = "<group>"; };
-		35A46F5119328A5E00B615A4 /* RoomService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomService.m; path = Services/RoomService.m; sourceTree = "<group>"; };
 		35A46F5219328A5E00B615A4 /* ServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceBase.h; path = Services/ServiceBase.h; sourceTree = "<group>"; };
 		35A46F5319328A5E00B615A4 /* ServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceBase.m; path = Services/ServiceBase.m; sourceTree = "<group>"; };
 		35A46F9019328A9F00B615A4 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableViewController.h; path = Controllers/BaseTableViewController.h; sourceTree = "<group>"; };
@@ -289,9 +289,19 @@
 			name = Venues;
 			sourceTree = "<group>";
 		};
+		351036E6196EF55900AF5C39 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */,
+				351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */,
+			);
+			name = Room;
+			sourceTree = "<group>";
+		};
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				351036E6196EF55900AF5C39 /* Room */,
 				C2C97BBB1963B69D006510D9 /* Image */,
 				C2C97BAB19624C75006510D9 /* User */,
 				C2C97BA419624314006510D9 /* Login */,
@@ -505,8 +515,6 @@
 			children = (
 				35A46F4E19328A5E00B615A4 /* MessageService.h */,
 				35A46F4F19328A5E00B615A4 /* MessageService.m */,
-				35A46F5019328A5E00B615A4 /* RoomService.h */,
-				35A46F5119328A5E00B615A4 /* RoomService.m */,
 				35A46F5219328A5E00B615A4 /* ServiceBase.h */,
 				35A46F5319328A5E00B615A4 /* ServiceBase.m */,
 			);
@@ -809,7 +817,6 @@
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				3504373D193DFB3100731968 /* VenueView.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
-				35A46F5819328A5E00B615A4 /* RoomService.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
@@ -854,6 +861,7 @@
 				35A46F5919328A5E00B615A4 /* ServiceBase.m in Sources */,
 				35043740193DFC5300731968 /* VenueRoomView.m in Sources */,
 				355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */,
+				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
 				C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */,

@@ -95,7 +95,6 @@
     self = [super init];
     if(self)
     {
-        self.roomService = [[RoomService alloc] init];
         self.messageService = [[MessageService alloc]init];
         
         self.dispatch = [[CommandDispatcher alloc]init];

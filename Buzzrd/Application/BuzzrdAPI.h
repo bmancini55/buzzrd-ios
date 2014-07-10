@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RoomService.h"
 #import "MessageService.h"
 
 #import "CommandDispatcher.h"
@@ -21,7 +20,6 @@
 + (CommandDispatcher *) dispatch;
 
 // Service Properties
-@property (strong, nonatomic) RoomService *roomService;
 @property (strong, nonatomic) MessageService *messageService;
 
 // Command Dispatch Pattern
