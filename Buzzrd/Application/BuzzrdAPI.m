@@ -95,14 +95,9 @@
     self = [super init];
     if(self)
     {
-        self.messageService = [[MessageService alloc]init];
-        
         self.dispatch = [[CommandDispatcher alloc]init];
     }
     return self;
 }
-
-
-
 
 @end

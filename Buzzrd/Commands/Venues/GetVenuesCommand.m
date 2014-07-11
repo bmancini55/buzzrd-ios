@@ -39,7 +39,7 @@
 - (id) parser:(id)rawData
 {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for(NSDictionary *dic in rawData)
+    for(NSDictionary *dic in rawData[@"results"])
     {
         Venue* instance = [[Venue alloc]initWithJson:dic];
         [temp addObject:instance];

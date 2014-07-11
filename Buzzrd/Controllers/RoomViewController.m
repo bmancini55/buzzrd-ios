@@ -10,6 +10,7 @@
 #import "SocketIOPacket.h"
 #import "BuzzrdAPI.h"
 #import "Message.h"
+#import "GetMessagesForRoomCommand.h"
 
 @interface RoomViewController ()
 
@@ -121,32 +122,36 @@
 
 - (void)loadMessagesWithPage:(uint)page
 {
-    // success handler
-    void (^success)(NSArray *newMessages) = ^(NSArray *newMessages) {
-        
+    GetMessagesForRoomCommand *command = [[GetMessagesForRoomCommand alloc]init];
+    command.room = self.room;
+    command.page = page;
+    [command listenForCompletion:self selector:@selector(messageForRoomDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)messageForRoomDidComplete:(NSNotification *)notification
+{
+    GetMessagesForRoomCommand *command = notification.object;
+    if(command.status == kSuccess)
+    {
+        // merge results into table
+        NSArray *newMessages = command.results;
         NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
         [mergeArray addObjectsFromArray:self.messages];
         self.messages = mergeArray;
         [self.tableView reloadData];
-      
+        
         // on fresh reload
-        if (page == 1)
+        if (command.page == 1)
         {
             [self scrollToBottom:false];
             [self connectToSocketServer];
         }
-    };
-    
-    // failure handler
-    void (^failure)(NSError *error) = ^(NSError *error) {
-        NSLog(@"Error retrieving messages: %@", error);
-    };
-    
-    // retrive from API
-    [BuzzrdAPI.current.messageService getMessagesForRoom:self.room
-                                                    page:page
-                                                 success:success
-                                                 failure:failure];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
 }
 
 - (void)scrollToBottom:(BOOL)animated

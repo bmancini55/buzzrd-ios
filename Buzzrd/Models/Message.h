@@ -14,4 +14,6 @@
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *created;
 
+- (id)initWithJson:(NSDictionary *)json;
+
 @end

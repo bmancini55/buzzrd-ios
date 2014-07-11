@@ -23,4 +23,9 @@
     return [NSDate dateWithTimeInterval: seconds sinceDate: date];
 }
 
++ (NSDate *) parseMongoDateString:(NSString *)dateString
+{
+    return [DateUtils stringToLocalDate:dateString dateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+}
+
 @end

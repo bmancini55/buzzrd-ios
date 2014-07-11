@@ -10,6 +10,8 @@
 
 @interface DateUtils : NSObject
 
-+(NSDate *) stringToLocalDate:(NSString *)dateString dateFormat:(NSString *)dateFormat;
++ (NSDate *) stringToLocalDate:(NSString *)dateString dateFormat:(NSString *)dateFormat;
+
++ (NSDate *) parseMongoDateString:(NSString *)dateString;
 
 @end

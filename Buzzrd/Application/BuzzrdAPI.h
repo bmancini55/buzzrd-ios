@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MessageService.h"
-
 #import "CommandDispatcher.h"
-
 #import "Authorization.h"
 #import "User.h"
 
@@ -18,9 +15,6 @@
 
 + (BuzzrdAPI *) current;
 + (CommandDispatcher *) dispatch;
-
-// Service Properties
-@property (strong, nonatomic) MessageService *messageService;
 
 // Command Dispatch Pattern
 @property (strong, nonatomic) CommandDispatcher *dispatch;

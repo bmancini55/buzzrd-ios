@@ -152,7 +152,7 @@
              // execute parser selector
              IMP imp = [self methodForSelector:parser];
              id (*func)(id, SEL, id) = (void *)imp;
-             id parsedData = func(self, parser, responseObject[@"results"]);
+             id parsedData = func(self, parser, responseObject);
          
              // call success callback
              self.status = kSuccess;

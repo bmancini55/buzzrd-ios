@@ -7,8 +7,19 @@
 //
 
 #import "Message.h"
+#import "DateUtils.h"
 
 @implementation Message 
+
+- (id)initWithJson:(NSDictionary *)json
+{
+    Message *message = [[Message alloc] init];
+    message.idmessage = json[@"id"];
+    message.message = [NSString stringWithFormat:@"%@", json[@"message"]];
+    message.created = [DateUtils parseMongoDateString:json[@"created"]];
+    
+    return message;
+}
 
 - (id)copyWithZone:(NSZone *)zone
 {
