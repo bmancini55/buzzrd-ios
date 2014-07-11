@@ -169,7 +169,6 @@
          
      }
      failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
-         
          self.status = kFailure;
          self.results = responseObject;
          [self sendNetworkErrorNotification];

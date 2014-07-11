@@ -79,7 +79,7 @@
 		C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */; };
 		C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */; };
 		C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BA919624C16006510D9 /* LoginCommand.m */; };
-		C2C97BB119624F95006510D9 /* GetUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB019624F95006510D9 /* GetUserCommand.m */; };
+		C2C97BB119624F95006510D9 /* GetCurrentUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB019624F95006510D9 /* GetCurrentUserCommand.m */; };
 		C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB31963B035006510D9 /* GetUsersCommand.m */; };
 		C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */; };
 		C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */; };
@@ -228,8 +228,8 @@
 		C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+thumbnail.m"; path = "Categories/UIImage+thumbnail.m"; sourceTree = "<group>"; };
 		C2C97BA819624C16006510D9 /* LoginCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginCommand.h; path = Commands/Login/LoginCommand.h; sourceTree = "<group>"; };
 		C2C97BA919624C16006510D9 /* LoginCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginCommand.m; path = Commands/Login/LoginCommand.m; sourceTree = "<group>"; };
-		C2C97BAF19624F95006510D9 /* GetUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUserCommand.h; path = Commands/User/GetUserCommand.h; sourceTree = "<group>"; };
-		C2C97BB019624F95006510D9 /* GetUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUserCommand.m; path = Commands/User/GetUserCommand.m; sourceTree = "<group>"; };
+		C2C97BAF19624F95006510D9 /* GetCurrentUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetCurrentUserCommand.h; path = Commands/User/GetCurrentUserCommand.h; sourceTree = "<group>"; };
+		C2C97BB019624F95006510D9 /* GetCurrentUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetCurrentUserCommand.m; path = Commands/User/GetCurrentUserCommand.m; sourceTree = "<group>"; };
 		C2C97BB21963B035006510D9 /* GetUsersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUsersCommand.h; path = Commands/User/GetUsersCommand.h; sourceTree = "<group>"; };
 		C2C97BB31963B035006510D9 /* GetUsersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUsersCommand.m; path = Commands/User/GetUsersCommand.m; sourceTree = "<group>"; };
 		C2C97BB51963B0D6006510D9 /* CreateUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateUserCommand.h; path = Commands/User/CreateUserCommand.h; sourceTree = "<group>"; };
@@ -632,8 +632,8 @@
 		C2C97BAB19624C75006510D9 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				C2C97BAF19624F95006510D9 /* GetUserCommand.h */,
-				C2C97BB019624F95006510D9 /* GetUserCommand.m */,
+				C2C97BAF19624F95006510D9 /* GetCurrentUserCommand.h */,
+				C2C97BB019624F95006510D9 /* GetCurrentUserCommand.m */,
 				C2C97BB21963B035006510D9 /* GetUsersCommand.h */,
 				C2C97BB31963B035006510D9 /* GetUsersCommand.m */,
 				C2C97BB51963B0D6006510D9 /* CreateUserCommand.h */,
@@ -809,7 +809,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */,
-				C2C97BB119624F95006510D9 /* GetUserCommand.m in Sources */,
+				C2C97BB119624F95006510D9 /* GetCurrentUserCommand.m in Sources */,
 				C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */,
 				C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,

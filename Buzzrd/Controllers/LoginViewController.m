@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "FrameUtils.h"
 #import "LoginCommand.h"
-#import "GetUserCommand.h"
+#import "GetCurrentUserCommand.h"
 
 @interface LoginViewController ()
 
@@ -130,11 +130,8 @@
     {
         [BuzzrdAPI current].authorization = (Authorization *)command.results;
                 
-        GetUserCommand *command = [[GetUserCommand alloc]init];
-        command.username = self.usernameTextField.text;
-        
+        GetCurrentUserCommand *command = [[GetCurrentUserCommand alloc]init];
         [command listenForCompletion:self selector:@selector(getUserDidComplete:)];
-        
         [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
     else
@@ -145,9 +142,12 @@
 
 - (void)getUserDidComplete:(NSNotification *)notif
 {
-    GetUserCommand *command = notif.object;
+    GetCurrentUserCommand *command = notif.object;
     if(command.status == kSuccess)
     {
+        NSLog(@"%@", command.results);
+        [BuzzrdAPI current].user = (User *)command.results;
+        
         UIViewController *homeController = [BuzzrdNav createHomeViewController];
         [self presentViewController:homeController animated:true completion:nil];
     }

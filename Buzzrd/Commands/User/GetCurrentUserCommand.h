@@ -1,5 +1,5 @@
 //
-//  GetUserCommand.h
+//  GetCurrentUserCommand.h
 //  Buzzrd
 //
 //  Created by Robert Beck on 6/30/14.
@@ -9,8 +9,6 @@
 #import "CommandBase.h"
 #import "User.h"
 
-@interface GetUserCommand : CommandBase
-
-@property (strong, nonatomic) NSString *username;
+@interface GetCurrentUserCommand : CommandBase
 
 @end
