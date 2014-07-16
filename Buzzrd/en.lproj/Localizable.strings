@@ -88,7 +88,9 @@
 
 "invalid_grant" = "Invalid Credentials";
 
-"User credentials are invalid" = "User credentials are invalid";
+"Invalid credentials" = "Invalid credentials";
+
+"Check your username and password and try again" = "Check your username and password and try again";
 
 "retry" = "Retry";
 
@@ -99,3 +101,5 @@
 "Unexpected Error" = "Unexpected Error";
 
 "An unexpected error occurred while processing your request" = "An unexpected error occurred while processing your request";
+
+"Try again" = "Try again?";

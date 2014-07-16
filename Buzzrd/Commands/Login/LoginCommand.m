@@ -48,6 +48,24 @@
     return authorization;
 }
 
+- (NSError *) handleError:(NSError *)error
+           responseObject:(id)responseObject;
+{
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    
+    if ([responseObject[@"error"] isEqual: @"invalid_grant"]) {
+        [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+        [userInfo setObject:NSLocalizedString(@"Invalid credentials", nil) forKey:NSLocalizedDescriptionKey];
+        [userInfo setObject:NSLocalizedString(@"Check your username and password and try again", nil) forKey:NSLocalizedRecoverySuggestionErrorKey];
+        
+        return [[NSError alloc] initWithDomain: error.domain
+                                          code: error.code
+                                      userInfo:userInfo];
+    }
+    
+    return [super handleError:error responseObject:responseObject];
+}
+                  
 - (id) copyWithZone:(NSZone *)zone {
     LoginCommand *newOp = [super copyWithZone:zone];
     newOp.username = self.username;

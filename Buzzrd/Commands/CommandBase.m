@@ -109,6 +109,7 @@
     newOp.reason = self.reason;
     newOp.results = self.results;
     newOp.status = self.status;
+    newOp.error = self.error;
     return newOp;
 }
 
@@ -171,6 +172,7 @@
      failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
          self.status = kFailure;
          self.results = responseObject;
+         self.error = [self handleError:error responseObject:responseObject];
          [self sendNetworkErrorNotification];
      }];
 }
@@ -211,8 +213,39 @@
      failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
          self.status = kFailure;
          self.results = responseObject;
+         self.error = [self handleError:error responseObject:responseObject];
          [self sendNetworkErrorNotification];
      }];
+}
+
+- (NSError *) handleError:(NSError *)error
+           responseObject:(id)responseObject;
+{
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+    
+    NSString *defaultRecoverySuggestion = NSLocalizedString(@"Try again", nil);
+    
+    if ( [error.domain isEqualToString:NSURLErrorDomain] ) {
+            switch(error.code) {
+                case kCFURLErrorCannotConnectToHost:
+                {
+                    [userInfo setObject:error.localizedDescription forKey:NSLocalizedDescriptionKey];
+                    [userInfo setObject:defaultRecoverySuggestion forKey:NSLocalizedRecoverySuggestionErrorKey];
+
+                    return [[NSError alloc] initWithDomain: error.domain
+                                                      code: error.code
+                                                  userInfo:userInfo];
+                }
+            }
+    }
+    
+    [userInfo setObject:NSLocalizedString(@"Unexpected Error", nil) forKey:NSLocalizedDescriptionKey];
+    [userInfo setObject:defaultRecoverySuggestion forKey:NSLocalizedRecoverySuggestionErrorKey];
+    
+    return [[NSError alloc] initWithDomain: @"com.redturn.buzzrd"
+                                      code: 0
+                                  userInfo:userInfo];
 }
 
 @end

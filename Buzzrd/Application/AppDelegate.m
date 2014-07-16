@@ -17,6 +17,8 @@
 {
     [ThemeManager setTheme: defaultStyle];
     
+    [self initializeCommandDispatchListeners];
+    
     // create root view
     UIViewController *rootViewController;
 
@@ -24,8 +26,7 @@
     if ([BuzzrdAPI current].authorization.bearerToken != nil) {
         
         // Got directly into the home view controller
-//        rootViewController = [BuzzrdNav createHomeViewController];
-        rootViewController = [BuzzrdNav createLoginViewController];
+        rootViewController = [BuzzrdNav createHomeViewController];
     }
     else {
         
@@ -40,6 +41,33 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)initializeCommandDispatchListeners {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(networkError:)
+                                                name:[CommandBase getNetworkErrorNotificationName]
+                                                object:nil];
+}
+
+- (void) networkError:(NSNotification *)notif {
+    
+    CommandBase *command = notif.object;
+
+    [self showRetryAlertWithTitle:command.error.localizedDescription
+                                    message:command.error.localizedRecoverySuggestion
+                             retryOperation:command];
+}
+
+- (void) showRetryAlertWithTitle:(NSString *)title
+                         message:(NSString *)message
+                  retryOperation:(NSOperation *)operation
+{
+    self.retryAlert = [[RetryAlert alloc]init];
+    self.retryAlert.title = title;
+    self.retryAlert.message = message;
+    self.retryAlert.operation = operation;
+    [self.retryAlert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -16,14 +16,22 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.title
                                                     message:self.message
                                                    delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"retry", nil)
-                                          otherButtonTitles:nil];
+                                          cancelButtonTitle:NSLocalizedString(@"cancel", nil)
+                                          otherButtonTitles:@"Retry", nil];
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [[BuzzrdAPI dispatch] enqueueCommand:self.operation];
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+            [[BuzzrdAPI dispatch] enqueueCommand:self.operation];
+            break;
+        default:
+            break;
+    }
 }
 
 

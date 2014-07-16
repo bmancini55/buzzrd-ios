@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSString        *reason;
 @property (strong, nonatomic) NSNumber        *requestTimeoutInterval;
 
+@property (strong, nonatomic) NSError         *error;
 
 // Returns the default error notification name
 + (NSString *)getNetworkErrorNotificationName;
@@ -48,6 +49,8 @@
 // Send the completion notificaiton with an error status on behalf of the operation
 - (void) sendNetworkErrorNotification;
 
+- (NSError *) handleError:(NSError *)error
+           responseObject:(id)responseObject;
 
 - (NSString *) getAPIUrl:(NSString *)path;
 

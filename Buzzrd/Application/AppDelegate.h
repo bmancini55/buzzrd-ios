@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RetryAlert.h"
+#import "CommandBase.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) RetryAlert *retryAlert;
+
 @property (strong, nonatomic) UIWindow *window;
+
+- (void)initializeCommandDispatchListeners;
 
 @end
