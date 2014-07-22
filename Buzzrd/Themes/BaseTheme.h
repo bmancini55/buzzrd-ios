@@ -12,6 +12,12 @@
 
 @property (strong, nonatomic) UIColor *backgroundColor;
 
+@property (strong, nonatomic) UIColor *primaryColor;
+
+@property (strong, nonatomic) UIColor *secondaryColor;
+
+@property (strong, nonatomic) UIColor *primaryOrangeColor;
+
 -(BaseTheme *) init;
 
 @end

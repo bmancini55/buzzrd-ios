@@ -27,4 +27,16 @@ BaseTheme *currentTheme;
     return currentTheme.backgroundColor;
 }
 
++ (UIColor *) getPrimaryColor {
+    return currentTheme.primaryColor;
+}
+
++ (UIColor *) getSecondaryColor {
+    return currentTheme.secondaryColor;
+}
+
++ (UIColor *) getOrangeColor {
+    return currentTheme.primaryOrangeColor;
+}
+
 @end

@@ -12,6 +12,7 @@
 #import "FrameUtils.h"
 #import "LoginCommand.h"
 #import "GetCurrentUserCommand.h"
+#import "ThemeManager.h"
 
 @interface LoginViewController ()
 
@@ -28,16 +29,34 @@
 {
     [super loadView];
     
-    UIImage *buzzrdImage = [UIImage imageNamed:@"buzzrd.png"];
-    UIImageView *buzzrdImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    buzzrdImageView.contentMode = UIViewContentModeScaleAspectFill;
-    buzzrdImageView.image = buzzrdImage;
-    buzzrdImageView.frame = CGRectMake(0.0f, 50.0f, 200, 0);
-    [buzzrdImageView setCenter: CGPointMake(self.view.frame.size.width / 2, 80)];
-    [self.view addSubview:buzzrdImageView];
+    UIImage *buzzrdImage = [UIImage imageNamed:@"Buzzrd_Logo_with_Text.png"];
     
-    self.usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 130, self.view.frame.size.width - 20, 40)];
-    self.usernameTextField.placeholder = NSLocalizedString(@"username", nil);
+    UIImageView *buzzrdImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    buzzrdImageView.contentMode = UIViewContentModeScaleAspectFit;
+    buzzrdImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    buzzrdImageView.image = buzzrdImage;
+    [self.view addSubview:buzzrdImageView];
+
+    
+    
+    UIView *credentialsContainer = [[UIView alloc] init];
+    
+    credentialsContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:credentialsContainer];
+    
+    UIImage *loginAreaImage = [[UIImage imageNamed:@"Login_Area.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(40, 40, 40, 40)];
+    
+    UIImageView *loginAreaImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    loginAreaImageView.contentMode = UIViewContentModeScaleToFill;
+    loginAreaImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    loginAreaImageView.image = loginAreaImage;
+    [credentialsContainer addSubview:loginAreaImageView];
+    
+    self.usernameTextField = [[UITextField alloc] init];
+    self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc]
+                                                    initWithString: NSLocalizedString(@"username", nil)];
+    
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.usernameTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.usernameTextField.adjustsFontSizeToFitWidth = YES;
@@ -48,9 +67,11 @@
     self.usernameTextField.delegate = self;
     [self.view addSubview:self.usernameTextField];
     [self.usernameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:self.usernameTextField];
+    self.usernameTextField.translatesAutoresizingMaskIntoConstraints = NO;
+    [credentialsContainer addSubview:self.usernameTextField];
+
     
-    self.passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 171, self.view.frame.size.width - 20, 40)];
+    self.passwordTextField = [[UITextField alloc] init];
     self.passwordTextField.placeholder = NSLocalizedString(@"password", nil);
     self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -62,20 +83,67 @@
     self.passwordTextField.returnKeyType = UIReturnKeyDone;
     self.passwordTextField.delegate = self;
     [self.passwordTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:self.passwordTextField];
-    
-    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.loginButton.frame = CGRectMake(20, 230, self.view.frame.size.width-40, 35);
-    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    [self.loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
-    self.loginButton.enabled = false;
-    [self.view addSubview:self.loginButton];
+    self.passwordTextField.translatesAutoresizingMaskIntoConstraints = NO;
+    [credentialsContainer addSubview:self.passwordTextField];
+
     
     self.createAccountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.createAccountButton.frame = CGRectMake(20, self.view.frame.size.height-50, self.view.frame.size.width-40, 35);
-    [self.createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
+    [self.createAccountButton setTitle:NSLocalizedString(@"CREATE ACCOUNT", nil) forState:UIControlStateNormal];
     [self.createAccountButton addTarget:self action:@selector(createTouch) forControlEvents:UIControlEventTouchUpInside];
+    self.createAccountButton.layer.cornerRadius = 5; // this value vary as per your desire
+    self.createAccountButton.clipsToBounds = YES;
+    self.createAccountButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.createAccountButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:15.0];
     [self.view addSubview:self.createAccountButton];
+    
+    
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.loginButton setTitle: NSLocalizedString(@"LOGIN", nil) forState:UIControlStateNormal];
+    [self.loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
+    self.loginButton.enabled = false;
+    self.loginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loginButton.backgroundColor = [ThemeManager getOrangeColor];
+    self.loginButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
+    [credentialsContainer addSubview:self.loginButton];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[buzzrdImageView]-40-|" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[credentialsContainer]-20-|" options:0 metrics:nil views:@{ @"credentialsContainer" : credentialsContainer }]];
+
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[loginAreaImageView]-0-|" options:0 metrics:nil views:@{ @"loginAreaImageView" : loginAreaImageView }]];
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[usernameTextField]-15-|" options:0 metrics:nil views:@{ @"usernameTextField" : self.usernameTextField }]];
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[passwordTextField]-15-|" options:0 metrics:nil views:@{ @"passwordTextField" : self.passwordTextField }]];
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-2-[loginButton]-2-|" options:0 metrics:nil views:@{ @"loginButton" : self.loginButton }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[createAccountButton]-20-|" options:0 metrics:nil views:@{ @"createAccountButton" : self.createAccountButton }]];
+    
+    
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[createAccountButton]-20-|" options:0 metrics:nil views:@{ @"createAccountButton" : self.createAccountButton }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[buzzrdImageView]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
+
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[credentialsContainer]-30-[createAccountButton]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
+    
+
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[buzzrdImageView]-20-[credentialsContainer]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
+    
+    
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[loginAreaImageView]-0-|" options:0 metrics:nil views:@{ @"loginAreaImageView" : loginAreaImageView }]];
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[usernameTextField]-1-[passwordTextField]-20-[loginButton]" options:0 metrics:nil views:@{ @"usernameTextField" : self.usernameTextField, @"passwordTextField" : self.passwordTextField, @"loginButton" : self.loginButton }]];
+
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[createAccountButton(==40)]" options:0 metrics:nil views:@{ @"createAccountButton" : self.createAccountButton }]];
+    
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usernameTextField(==40)]" options:0 metrics:nil views:@{ @"usernameTextField" : self.usernameTextField }]];
+
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[passwordTextField(==40)]" options:0 metrics:nil views:@{ @"passwordTextField" : self.passwordTextField }]];
 }
 
 -(void)textFieldDidChange :(UITextField *)theTextField{

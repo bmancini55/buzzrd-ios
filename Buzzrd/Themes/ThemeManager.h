@@ -18,6 +18,12 @@ typedef enum
 
 + (UIColor *) getBackgroundColor;
 
++ (UIColor *) getPrimaryColor;
+
++ (UIColor *) getSecondaryColor;
+
++ (UIColor *) getOrangeColor;
+
 +(void) setTheme:(ThemeStyle) theme;
 
 @end
