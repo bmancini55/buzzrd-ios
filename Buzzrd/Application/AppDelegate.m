@@ -15,6 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+
     [ThemeManager setTheme: defaultStyle];
     
     [self initializeCommandDispatchListeners];

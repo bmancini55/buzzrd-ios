@@ -8,11 +8,11 @@
 
 "buzzrd" = "Buzzrd";
 
-"join_buzzrd" = "Join Buzzrd";
+"join_buzzrd" = "JOIN BUZZRD.";
 
-"join_buzzrd_summary" = "Create an account in a few easy steps";
+"join_buzzrd_summary" = "Create an account in a few easy steps.";
 
-"join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy, including our Cookie Use.";
+"join_buzzrd_detail" = "By signing up, you agree to our Buzzrd Terms and that you have read our Privacy Policy.";
 
 "username" = "Username";
 
@@ -22,7 +22,7 @@
 
 "create_password_help_text" = "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &).";
 
-"get_started" = "Get Started";
+"get_started" = "GET STARTED";
 
 "first_name" = "First Name";
 

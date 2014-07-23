@@ -67,6 +67,7 @@
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
 		C20A15D619761C590003B67E /* Buzzrd_Logo_with_Text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */; };
 		C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D7197A0F750003B67E /* Login_Area@2x.png */; };
+		C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */; };
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
@@ -204,6 +205,7 @@
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Logo_with_Text@2x.png"; sourceTree = "<group>"; };
 		C20A15D7197A0F750003B67E /* Login_Area@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login_Area@2x.png"; sourceTree = "<group>"; };
+		C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Megaphone@2x.png"; sourceTree = "<group>"; };
 		C212FA8D194005D300D5514E /* BaseTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTheme.h; path = Themes/BaseTheme.h; sourceTree = "<group>"; };
 		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */,
+				C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */,
 				C20A15D7197A0F750003B67E /* Login_Area@2x.png */,
 				355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */,
 				355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */,
@@ -755,6 +758,7 @@
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
 				35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */,
+				C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

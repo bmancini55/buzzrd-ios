@@ -16,13 +16,13 @@ typedef enum
 
 @interface ThemeManager : NSObject
 
-+ (UIColor *) getBackgroundColor;
++ (UIColor *) getPrimaryColorDark;
 
-+ (UIColor *) getPrimaryColor;
++ (UIColor *) getPrimaryColorMedium;
 
-+ (UIColor *) getSecondaryColor;
++ (UIColor *) getPrimaryColorLight;
 
-+ (UIColor *) getOrangeColor;
++ (UIColor *) getSecondaryColorMedium;
 
 +(void) setTheme:(ThemeStyle) theme;
 

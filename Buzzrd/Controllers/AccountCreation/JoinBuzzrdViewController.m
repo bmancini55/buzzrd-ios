@@ -8,6 +8,7 @@
 
 #import "BuzzrdNav.h"
 #import "JoinBuzzrdViewController.h"
+#import "ThemeManager.h"
 
 @interface JoinBuzzrdViewController ()
 
@@ -24,34 +25,67 @@
 {
     [super loadView];
     
+    [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
+    
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelItem;
     
-    self.joinBuzzrdLbl = [[UILabel alloc] initWithFrame:CGRectMake(0,100,self.view.frame.size.width,20)];
+    UIImage *megaphoneImage = [UIImage imageNamed:@"Buzzrd_Megaphone.png"];
+    
+    UIImageView *megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
+    megaphoneImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    megaphoneImageView.image = megaphoneImage;
+    [self.view addSubview:megaphoneImageView];
+    
+    self.joinBuzzrdLbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,20)];
     [self.joinBuzzrdLbl setText:NSLocalizedString(@"join_buzzrd", nil)];
     self.joinBuzzrdLbl.textAlignment = NSTextAlignmentCenter;
-    self.joinBuzzrdLbl.font = [UIFont boldSystemFontOfSize:17.0];
+    self.joinBuzzrdLbl.font = [UIFont fontWithName:@"AvenirNext-Bold" size:28.0];
+    self.joinBuzzrdLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    self.joinBuzzrdLbl.textColor = [ThemeManager getSecondaryColorMedium];
     [self.view addSubview:self.joinBuzzrdLbl];
     
-    self.createAccountSummaryLbl = [ [UILabel alloc] initWithFrame:CGRectMake(0,130,self.view.frame.size.width,20)];
+    self.createAccountSummaryLbl =  [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,20)];
     [self.createAccountSummaryLbl setText:NSLocalizedString(@"join_buzzrd_summary", nil)];
     self.createAccountSummaryLbl.textAlignment = NSTextAlignmentCenter;
-    self.createAccountSummaryLbl.font = [UIFont systemFontOfSize:14.0];
+    self.createAccountSummaryLbl.font = [UIFont fontWithName:@"AvenirNext-Regular" size:16.0];
+    self.createAccountSummaryLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    self.createAccountSummaryLbl.numberOfLines = 0;
+    self.createAccountSummaryLbl.textColor = [ThemeManager getPrimaryColorDark];
     [self.view addSubview:self.createAccountSummaryLbl];
     
-    self.createAccountDetailsLbl = [ [UILabel alloc] initWithFrame:CGRectMake(20.0,145,(self.view.frame.size.width-40.0),90)];
-    [self.createAccountDetailsLbl setText:NSLocalizedString(@"join_buzzrd_detail", nil)];
-    self.createAccountDetailsLbl.textAlignment = NSTextAlignmentCenter;
-    self.createAccountDetailsLbl.font = [UIFont systemFontOfSize:12.0];
-    self.createAccountDetailsLbl.numberOfLines = 0;
-    [self.view addSubview:self.createAccountDetailsLbl];
-    
     self.getStartedButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.getStartedButton.frame = CGRectMake(80, 235, 160, 40);
-    [self.getStartedButton setTitle:NSLocalizedString(@"get_started", nil) forState:UIControlStateNormal];
+    [self.getStartedButton setTitle: NSLocalizedString(@"get_started", nil) forState:UIControlStateNormal];
+    self.getStartedButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.getStartedButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
+    self.getStartedButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
+    [self.getStartedButton addTarget:self action:@selector(getStartedTouch) forControlEvents:UIControlEventTouchUpInside];
+    [self.getStartedButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
+    self.getStartedButton.layer.cornerRadius = 5; // this value vary as per your desire
     [self.view addSubview:self.getStartedButton];
     
-    [self.getStartedButton addTarget:self action:@selector(getStartedTouch) forControlEvents:UIControlEventTouchUpInside];
+    self.createAccountDetailsLbl = [ [UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,90)];
+    [self.createAccountDetailsLbl setText:NSLocalizedString(@"join_buzzrd_detail", nil)];
+    self.createAccountDetailsLbl.textAlignment = NSTextAlignmentCenter;
+    self.createAccountDetailsLbl.font = [UIFont fontWithName:@"AvenirNext-Regular" size:9.0];
+    self.createAccountDetailsLbl.numberOfLines = 0;
+    self.createAccountDetailsLbl.textColor = [ThemeManager getPrimaryColorDark];
+    self.createAccountDetailsLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.createAccountDetailsLbl];
+    
+    
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[megaphoneImageView]-40-|" options:0 metrics:nil views:@{ @"megaphoneImageView" : megaphoneImageView }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[getStartedButton]-20-|" options:0 metrics:nil views:@{ @"getStartedButton" : self.getStartedButton }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[createAccountSummaryLbl]-90-|" options:0 metrics:nil views:@{ @"createAccountSummaryLbl" : self.createAccountSummaryLbl }]];
+
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[createAccountDetailsLbl]-20-|" options:0 metrics:nil views:@{ @"createAccountDetailsLbl" : self.createAccountDetailsLbl }]];
+
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-125-[megaphoneImageView]-3-[joinBuzzrdLbl]-0-[createAccountSummaryLbl]-70-[getStartedButton]-8-[createAccountDetailsLbl]" options:0 metrics:nil views:@{ @"megaphoneImageView" : megaphoneImageView, @"joinBuzzrdLbl" : self.joinBuzzrdLbl, @"createAccountSummaryLbl" : self.createAccountSummaryLbl, @"getStartedButton" : self.getStartedButton, @"createAccountDetailsLbl" : self.createAccountDetailsLbl }]];
 }
 
 -(void) cancelTouch

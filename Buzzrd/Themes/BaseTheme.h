@@ -10,13 +10,13 @@
 
 @interface BaseTheme : NSObject
 
-@property (strong, nonatomic) UIColor *backgroundColor;
+@property (strong, nonatomic) UIColor *primaryColorDark;
 
-@property (strong, nonatomic) UIColor *primaryColor;
+@property (strong, nonatomic) UIColor *primaryColorMedium;
 
-@property (strong, nonatomic) UIColor *secondaryColor;
+@property (strong, nonatomic) UIColor *primaryColorLight;
 
-@property (strong, nonatomic) UIColor *primaryOrangeColor;
+@property (strong, nonatomic) UIColor *secondaryColorMedium;
 
 -(BaseTheme *) init;
 

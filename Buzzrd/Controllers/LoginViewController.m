@@ -102,7 +102,7 @@
     [self.loginButton addTarget:self action:@selector(loginTouch) forControlEvents:UIControlEventTouchUpInside];
     self.loginButton.enabled = false;
     self.loginButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.loginButton.backgroundColor = [ThemeManager getOrangeColor];
+    self.loginButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
     self.loginButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
     [credentialsContainer addSubview:self.loginButton];
     

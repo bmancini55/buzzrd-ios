@@ -23,20 +23,20 @@ BaseTheme *currentTheme;
     [currentTheme init];
 }
 
-+ (UIColor *) getBackgroundColor {
-    return currentTheme.backgroundColor;
++ (UIColor *) getPrimaryColorDark {
+    return currentTheme.primaryColorDark;
 }
 
-+ (UIColor *) getPrimaryColor {
-    return currentTheme.primaryColor;
++ (UIColor *) getPrimaryColorMedium {
+    return currentTheme.primaryColorMedium;
 }
 
-+ (UIColor *) getSecondaryColor {
-    return currentTheme.secondaryColor;
++ (UIColor *) getPrimaryColorLight {
+    return currentTheme.primaryColorLight;
 }
 
-+ (UIColor *) getOrangeColor {
-    return currentTheme.primaryOrangeColor;
++ (UIColor *) getSecondaryColorMedium {
+    return currentTheme.secondaryColorMedium;
 }
 
 @end
