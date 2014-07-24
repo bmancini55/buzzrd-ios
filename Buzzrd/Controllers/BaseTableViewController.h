@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NSString+string.h"
+#import "UIView+UIView_Borders.h"
 #import "RetryAlert.h"
 
 @interface BaseTableViewController : UITableViewController

@@ -68,9 +68,9 @@
 
 "users" = "users";
 
-"requiredInformation" = "Required Information";
+"requiredInformation" = "REQUIRED INFORMATION";
 
-"optionalInformation" = "Optional Information";
+"optionalInformation" = "OPTIONAL INFORMATION";
 
 "ok" = "OK";
 

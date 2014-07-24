@@ -70,6 +70,7 @@
 		C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */; };
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
+		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
 		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
@@ -210,6 +211,8 @@
 		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
+		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
+		C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+UIView_Borders.m"; path = "Categories/UIView+UIView_Borders.m"; sourceTree = "<group>"; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				C2996C4D194A89940023D353 /* NSString+string.m */,
 				C2C6E5581938241100DBEEE6 /* UIImage+thumbnail.h */,
 				C2C6E5591938241100DBEEE6 /* UIImage+thumbnail.m */,
+				C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */,
+				C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -821,6 +826,7 @@
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
+				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,

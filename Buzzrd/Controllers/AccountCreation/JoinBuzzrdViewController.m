@@ -65,7 +65,7 @@
     self.getStartedButton.layer.cornerRadius = 5; // this value vary as per your desire
     [self.view addSubview:self.getStartedButton];
     
-    self.createAccountDetailsLbl = [ [UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,90)];
+    self.createAccountDetailsLbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,90)];
     [self.createAccountDetailsLbl setText:NSLocalizedString(@"join_buzzrd_detail", nil)];
     self.createAccountDetailsLbl.textAlignment = NSTextAlignmentCenter;
     self.createAccountDetailsLbl.font = [UIFont fontWithName:@"AvenirNext-Regular" size:9.0];

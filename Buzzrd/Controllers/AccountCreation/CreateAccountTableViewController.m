@@ -12,6 +12,7 @@
 #import "FrameUtils.h"
 #import "GenderPickerTableViewController.h"
 #import "CreateUserCommand.h"
+#import "ThemeManager.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -308,24 +309,58 @@
     return 40;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *sectionName;
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    NSString *sectionName;
+//    
+//    switch (section)
+//    {
+//        case 0:
+//            sectionName = NSLocalizedString(@"requiredInformation", nil);
+//            break;
+//        case 1:
+//            sectionName = NSLocalizedString(@"optionalInformation", nil);
+//            break;
+//        default:
+//            sectionName = nil;
+//            break;
+//    }
+//    
+//    return sectionName;
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 30)];
+    
+    [headerView addBottomBorder:[ThemeManager getSecondaryColorMedium] width:2.0];
+    
+    UILabel *labelHeader = [[UILabel alloc] initWithFrame:CGRectMake (20,0,320,30)];
+    labelHeader.font = [UIFont fontWithName:@"AvenirNext-Bold" size:9.0];
+    labelHeader.textColor = [ThemeManager getPrimaryColorLight];
+                            
+    [headerView addSubview:labelHeader];
+    
+    [headerView setBackgroundColor:[ThemeManager getPrimaryColorMedium]];
     
     switch (section)
     {
         case 0:
-            sectionName = NSLocalizedString(@"requiredInformation", nil);
+            labelHeader.text = NSLocalizedString(@"requiredInformation", nil);
             break;
         case 1:
-            sectionName = NSLocalizedString(@"optionalInformation", nil);
+            labelHeader.text = NSLocalizedString(@"optionalInformation", nil);
             break;
         default:
-            sectionName = nil;
+            labelHeader.text = nil;
             break;
     }
     
-    return sectionName;
+    return headerView;
 }
-
+                            
 @end
