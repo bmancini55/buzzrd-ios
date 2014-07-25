@@ -7,7 +7,7 @@
 //
 
 #import "GenderPickerTableViewController.h"
-
+#import "ThemeManager.h"
 @interface GenderPickerTableViewController ()
 
 @property (strong, nonatomic) NSArray *genders;
@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
 
+    [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
+    
     self.genders = [StaticData listOfGenders];
     
     // Remove the extra row separators
@@ -66,7 +68,10 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-
+        cell.textLabel.font = [ThemeManager getPrimaryFontRegular:16.0];
+        cell.textLabel.textColor = [ThemeManager getPrimaryColorDark];
+        [cell setBackgroundColor: [ThemeManager getPrimaryColorLight]];
+        
         Gender *gender = self.genders[indexPath.row];
         
         NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", gender.idgender];
