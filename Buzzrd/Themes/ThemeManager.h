@@ -26,4 +26,10 @@ typedef enum
 
 +(void) setTheme:(ThemeStyle) theme;
 
++ (UIFont *) getPrimaryFontRegular:(float) fontSize;
+
++ (UIFont *) getPrimaryFontBold:(float) fontSize;
+
++ (UIFont *) getPrimaryFontDemiBold:(float) fontSize;
+
 @end

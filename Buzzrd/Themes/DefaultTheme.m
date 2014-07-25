@@ -16,6 +16,9 @@ UIColor *primaryColorLight;
 
 UIColor *secondaryColorMedium;
 
+NSString *primaryFontRegular;
+NSString *primaryFontBold;
+NSString *primaryFontDemiBold;
 
 -(DefaultTheme *) init
 {
@@ -29,6 +32,11 @@ UIColor *secondaryColorMedium;
     
     secondaryColorMedium = [UIColor colorWithRed:250.0f/255.0f green:168.0f/255.0f blue:25.0f/255.0f alpha:1.0];
     
+    primaryFontRegular = @"AvenirNext-Regular";
+    primaryFontBold = @"AvenirNext-Bold";
+    primaryFontDemiBold = @"AvenirNext-DemiBold";
+
+    
     [[UIButton appearance] setBackgroundColor: primaryColorMedium];
     [[UIButton appearance] setTitleColor: primaryColorDark forState: UIControlStateNormal];
     [[UIButton appearance] setTitleColor: primaryColorDark forState: UIControlStateSelected];
@@ -36,7 +44,7 @@ UIColor *secondaryColorMedium;
      setBackgroundColor: [UIColor whiteColor]];
     
     [[UITextField appearance] setBackgroundColor: [UIColor whiteColor]];
-    [[UITextField appearance] setFont: [UIFont fontWithName:@"AvenirNext-Regular" size:17.0]];
+    [[UITextField appearance] setFont: [UIFont fontWithName:primaryFontRegular size:17.0]];
     [[UITextField appearance] setTextColor: primaryColorDark];
     
     return self;
@@ -58,4 +66,15 @@ UIColor *secondaryColorMedium;
     return secondaryColorMedium;
 }
 
+- (NSString *) primaryFontRegular {
+    return primaryFontRegular;
+}
+
+- (NSString *) primaryFontBold {
+    return primaryFontBold;
+}
+
+- (NSString *) primaryFontDemiBold {
+    return primaryFontDemiBold;
+}
 @end

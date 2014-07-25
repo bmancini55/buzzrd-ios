@@ -39,4 +39,16 @@ BaseTheme *currentTheme;
     return currentTheme.secondaryColorMedium;
 }
 
++ (UIFont *) getPrimaryFontRegular:(float) fontSize {
+    return [UIFont fontWithName:currentTheme.primaryFontRegular size:fontSize];
+}
+
++ (UIFont *) getPrimaryFontBold:(float) fontSize {
+    return [UIFont fontWithName:currentTheme.primaryFontBold size:fontSize];
+}
+
++ (UIFont *) getPrimaryFontDemiBold:(float) fontSize {
+    return [UIFont fontWithName:currentTheme.primaryFontDemiBold size:fontSize];
+}
+
 @end

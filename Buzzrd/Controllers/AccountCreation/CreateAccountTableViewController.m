@@ -38,6 +38,8 @@
 -(void) loadView
 {
     [super loadView];
+ 
+    [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelItem;
@@ -119,6 +121,14 @@
     return 3;
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    cell.contentView.backgroundColor=[ThemeManager getPrimaryColorLight];
+//    cell.backgroundColor = [ThemeManager getPrimaryColorLight];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.accessoryView.backgroundColor=[UIColor redColor];
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = [NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row];
@@ -130,11 +140,17 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        
+        cell.textLabel.font = [ThemeManager getPrimaryFontRegular:16.0];
+        cell.textLabel.textColor = [ThemeManager getPrimaryColorDark];
+        cell.contentView.backgroundColor=[ThemeManager getPrimaryColorLight];
+        cell.backgroundColor = [ThemeManager getPrimaryColorLight];
+        cell.accessoryView.backgroundColor=[UIColor redColor];
+
         if(indexPath.section == 0) {
             switch (indexPath.row ) {
                 case 0: {
                     cell.textLabel.text = NSLocalizedString(@"username", nil);
+                    
                     tf = self.usernameTextField = [self makeTextField: self.user.username placeholder:nil];
                     [cell addSubview:self.usernameTextField];
                     break ;
@@ -180,11 +196,12 @@
                         NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", self.user.genderId];
                         
                         self.genderLabel.text = NSLocalizedString(genderString, nil);
+                        self.genderLabel.font = [ThemeManager getPrimaryFontDemiBold:16.0];
+                        self.genderLabel.textColor = [ThemeManager getPrimaryColorMedium];
                     }
                     
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                    
                     [cell addSubview:self.genderLabel];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     
                     break ;
                 }
@@ -196,6 +213,9 @@
     
     // Textfield dimensions
     tf.frame = CGRectMake(120, 0, 170, 40);
+    tf.font = [ThemeManager getPrimaryFontDemiBold:16.0];
+    tf.textColor = [ThemeManager getPrimaryColorMedium];
+    [tf setBackgroundColor:[ThemeManager getPrimaryColorLight]];
 	
     [tf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 	
@@ -234,6 +254,9 @@
         NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", genderId];
         
         self.genderLabel.text = NSLocalizedString(genderString, nil);
+        self.genderLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
+        self.genderLabel.textColor = [ThemeManager getPrimaryColorMedium];
+
         self.user.genderId = genderId;
     }
 }

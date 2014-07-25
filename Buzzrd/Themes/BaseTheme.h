@@ -18,6 +18,12 @@
 
 @property (strong, nonatomic) UIColor *secondaryColorMedium;
 
+@property (strong, nonatomic) NSString *primaryFontRegular;
+
+@property (strong, nonatomic) NSString *primaryFontBold;
+
+@property (strong, nonatomic) NSString *primaryFontDemiBold;
+
 -(BaseTheme *) init;
 
 @end
