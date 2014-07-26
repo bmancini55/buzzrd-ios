@@ -12,6 +12,7 @@
 
 UIColor *primaryColorDark;
 UIColor *primaryColorMedium;
+UIColor *primaryColorMediumLight;
 UIColor *primaryColorLight;
 
 UIColor *secondaryColorMedium;
@@ -27,6 +28,8 @@ NSString *primaryFontDemiBold;
     primaryColorDark = [UIColor colorWithRed:97.0f/255.0f green:98.0f/255.0f blue:100.0f/255.0f alpha:1.0];
 
     primaryColorMedium = [UIColor colorWithRed:135.0f/255.0f green:137.0f/255.0f blue:139.0f/255.0f alpha:1.0];
+    
+    primaryColorMediumLight = [UIColor colorWithRed:164.0f/255.0f green:164.0f/255.0f blue:166.0f/255.0f alpha:1.0];
 
     primaryColorLight = [UIColor colorWithRed:226/255.0f green:227/255.0f blue:228/255.0f alpha:1.0];
     
@@ -56,6 +59,10 @@ NSString *primaryFontDemiBold;
 
 - (UIColor *) primaryColorMedium {
     return primaryColorMedium;
+}
+
+- (UIColor *) primaryColorMediumLight {
+    return primaryColorMediumLight;
 }
 
 - (UIColor *) primaryColorLight {
