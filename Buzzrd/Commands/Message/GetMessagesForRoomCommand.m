@@ -33,7 +33,6 @@
 
 - (id)parser:(id)rawData
 {
-    NSLog(@"%@", rawData);
     NSArray *results = rawData[@"results"];
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for(NSDictionary *dic in results)
