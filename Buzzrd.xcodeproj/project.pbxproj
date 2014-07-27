@@ -12,6 +12,8 @@
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */; };
+		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
+		351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F31981FA0C00AF5C39 /* MessageBubble.m */; };
 		3527766A1960E5D70095E51E /* RetryAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 352776691960E5D70095E51E /* RetryAlert.m */; };
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
@@ -115,6 +117,10 @@
 		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		351036EB19705BF300AF5C39 /* GetMessagesForRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessagesForRoomCommand.h; path = Commands/Message/GetMessagesForRoomCommand.h; sourceTree = "<group>"; };
 		351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMessagesForRoomCommand.m; path = Commands/Message/GetMessagesForRoomCommand.m; sourceTree = "<group>"; };
+		351036EF1981F8D000AF5C39 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = Views/Message/MessageCell.h; sourceTree = "<group>"; };
+		351036F01981F8D000AF5C39 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = Views/Message/MessageCell.m; sourceTree = "<group>"; };
+		351036F21981FA0C00AF5C39 /* MessageBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBubble.h; path = Views/Message/MessageBubble.h; sourceTree = "<group>"; };
+		351036F31981FA0C00AF5C39 /* MessageBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageBubble.m; path = Views/Message/MessageBubble.m; sourceTree = "<group>"; };
 		352776681960E5D70095E51E /* RetryAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RetryAlert.h; path = Controllers/Shared/RetryAlert.h; sourceTree = "<group>"; };
 		352776691960E5D70095E51E /* RetryAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RetryAlert.m; path = Controllers/Shared/RetryAlert.m; sourceTree = "<group>"; };
 		353D6EBE195CE4C100AC1B62 /* CommandBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandBase.h; path = Commands/CommandBase.h; sourceTree = "<group>"; };
@@ -314,6 +320,17 @@
 			name = Message;
 			sourceTree = "<group>";
 		};
+		351036EE1981F89300AF5C39 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				351036EF1981F8D000AF5C39 /* MessageCell.h */,
+				351036F01981F8D000AF5C39 /* MessageCell.m */,
+				351036F21981FA0C00AF5C39 /* MessageBubble.h */,
+				351036F31981FA0C00AF5C39 /* MessageBubble.m */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +381,7 @@
 		359FBA2B192327A100704F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				351036EE1981F89300AF5C39 /* Message */,
 				3504373A193DFAF800731968 /* Venues */,
 				35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */,
 				35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */,
@@ -850,6 +868,7 @@
 				C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */,
 				35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
+				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,
@@ -865,6 +884,7 @@
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
+				351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */,
 				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
