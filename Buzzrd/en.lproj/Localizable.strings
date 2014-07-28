@@ -64,7 +64,13 @@
 
 "CREATE ACCOUNT" = "CREATE ACCOUNT";
 
-"account_created_successfully" = "You have successfully created your Buzzrd account. You can click on the image below to optionally add a profile picture or click Cancel to return to the Login screen.";
+"account_created_successfully" = "You've created your Buzzrd account. Click below to optionally add a profile picture.";
+
+"SUCCESS!" = "SUCCESS!";
+
+"SAVE PROFILE PICTURE" = "SAVE PROFILE PICTURE";
+
+"SEE WHAT'S BUZZING" = "SEE WHAT'S BUZZING";
 
 "users" = "users";
 

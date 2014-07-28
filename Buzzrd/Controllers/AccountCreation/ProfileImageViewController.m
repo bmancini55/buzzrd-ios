@@ -12,6 +12,7 @@
 #import "BuzzrdAPI.h"
 #import "UploadImageCommand.h"
 #import "UpdateProfilePicCommand.h"
+#import "ThemeManager.h"
 
 @interface ProfileImageViewController ()
 
@@ -27,34 +28,77 @@
 {
     [super loadView];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
-    self.navigationItem.leftBarButtonItem = cancelItem;
+    [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneTouch)];
-    self.navigationItem.rightBarButtonItem = doneButton;
+    self.navigationController.navigationBar.hidden = YES;
     
-    UILabel *accountSavedMessageLbl = [ [UILabel alloc] initWithFrame:CGRectMake(20.0,80,(self.view.frame.size.width-40.0),90)];
+    UILabel *successLbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,20)];
+    [successLbl setText:NSLocalizedString(@"SUCCESS!", nil)];
+    successLbl.textAlignment = NSTextAlignmentCenter;
+    successLbl.font = [ThemeManager getPrimaryFontBold:28.0];
+    successLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    successLbl.textColor = [ThemeManager getSecondaryColorMedium];
+    [self.view addSubview:successLbl];
+    
+    UILabel *accountSavedMessageLbl = [[UILabel alloc] init];
     [accountSavedMessageLbl setText:NSLocalizedString(@"account_created_successfully", nil)];
     accountSavedMessageLbl.textAlignment = NSTextAlignmentCenter;
-    accountSavedMessageLbl.font = [UIFont systemFontOfSize:14.0];
+    accountSavedMessageLbl.font = [ThemeManager getPrimaryFontRegular:16.0];
     accountSavedMessageLbl.numberOfLines = 0;
+    accountSavedMessageLbl.translatesAutoresizingMaskIntoConstraints = NO;
+    accountSavedMessageLbl.textColor = [ThemeManager getPrimaryColorDark];
     [self.view addSubview:accountSavedMessageLbl];
     
-    UIView *profilePicContainerView =[[UIView alloc] initWithFrame: CGRectMake(0, 0, 88, 88)];
-    profilePicContainerView.backgroundColor=[UIColor redColor];
-    profilePicContainerView.clipsToBounds = YES;
-    profilePicContainerView.contentMode = UIViewContentModeScaleAspectFill;
-    [profilePicContainerView setCenter: CGPointMake(self.view.frame.size.width / 2, 230)];
+    UIView *profilePicContainerView =[[UIView alloc] init];
+    profilePicContainerView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:profilePicContainerView];
     
-    self.profileImageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, 88, 88)];
-    self.profileImageView.image = [UIImage imageNamed:@"no_profile_pic.jpg"];
-    self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.profileImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
     [profilePicContainerView addSubview:self.profileImageView];
+    
     
     UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profilePicContainerViewSingleTap:)];
     [profilePicContainerView addGestureRecognizer:singleFingerTap];
+    
+    UIButton *savePicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [savePicButton setTitle: NSLocalizedString(@"SAVE PROFILE PICTURE", nil) forState:UIControlStateNormal];
+    savePicButton.translatesAutoresizingMaskIntoConstraints = NO;
+    savePicButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
+    savePicButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
+    [savePicButton addTarget:self action:@selector(savePicButtonTouch) forControlEvents:UIControlEventTouchUpInside];
+    [savePicButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
+    savePicButton.layer.cornerRadius = 5; // this value vary as per your desire
+    [self.view addSubview:savePicButton];
+    
+    UIButton *whatsBuzzingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [whatsBuzzingButton setTitle: NSLocalizedString(@"SEE WHAT'S BUZZING", nil) forState:UIControlStateNormal];
+    whatsBuzzingButton.translatesAutoresizingMaskIntoConstraints = NO;
+    whatsBuzzingButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
+    whatsBuzzingButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
+    //[whatsBuzzingButton addTarget:self action:@selector(getStartedTouch) forControlEvents:UIControlEventTouchUpInside];
+    [whatsBuzzingButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
+    whatsBuzzingButton.layer.cornerRadius = 5; // this value vary as per your desire
+    [self.view addSubview:whatsBuzzingButton];
+
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[successLbl]-40-|" options:0 metrics:nil views:@{ @"successLbl" : successLbl }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[accountSavedMessageLbl]-40-|" options:0 metrics:nil views:@{ @"accountSavedMessageLbl" : accountSavedMessageLbl }]];
+
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-110-[profilePicContainerView]-110-|" options:0 metrics:nil views:@{ @"profilePicContainerView" : profilePicContainerView }]];
+    
+    [profilePicContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[profileImageView]-0-|" options:0 metrics:nil views:@{ @"profileImageView" :self.profileImageView }]];
+    
+    [profilePicContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[profileImageView]-0-|" options:0 metrics:nil views:@{ @"profileImageView" :self.profileImageView }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[savePicButton]-20-|" options:0 metrics:nil views:@{ @"savePicButton" : savePicButton }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[whatsBuzzingButton]-20-|" options:0 metrics:nil views:@{ @"whatsBuzzingButton" : whatsBuzzingButton }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[successLbl]-15-[accountSavedMessageLbl]-20-[profilePicContainerView]-25-[savePicButton]-15-[whatsBuzzingButton]" options:0 metrics:nil views:@{ @"successLbl" : successLbl, @"accountSavedMessageLbl" : accountSavedMessageLbl, @"profilePicContainerView" : profilePicContainerView, @"savePicButton" : savePicButton, @"whatsBuzzingButton" : whatsBuzzingButton }]];
 }
 
 - (UIImagePickerController *) imagePicker {
@@ -78,6 +122,16 @@
     [actionSheet showInView:self.view];
 }
 
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    for (UIView *subview in actionSheet.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            [button setTitleColor:[ThemeManager getSecondaryColorMedium] forState:UIControlStateNormal];
+        }
+    }
+}
+
 - (void) pickPhotoFromLibrary {
     
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -98,8 +152,8 @@
     
     switch (buttonIndex) {
         case 0:
-            [self pickPhotoFromLibrary];
-            //[self takePhotoWithCamera];
+            //[self pickPhotoFromLibrary];
+            [self takePhotoWithCamera];
             break;
         case 1:
             [self pickPhotoFromLibrary];
@@ -129,7 +183,7 @@
     [self dismissViewControllerAnimated:false completion:nil];
 }
 
--(void) doneTouch
+-(void) savePicButtonTouch
 {
     [self showActivityView];
     

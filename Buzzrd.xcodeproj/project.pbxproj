@@ -73,6 +73,7 @@
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
 		C29DDDEA1981F18400EA922F /* 120x120_Launch_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE91981F18400EA922F /* 120x120_Launch_Icon.png */; };
+		C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
 		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
@@ -217,6 +218,7 @@
 		C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+UIView_Borders.m"; path = "Categories/UIView+UIView_Borders.m"; sourceTree = "<group>"; };
 		C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Forward_Arrow@2x.png"; sourceTree = "<group>"; };
 		C29DDDE91981F18400EA922F /* 120x120_Launch_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120x120_Launch_Icon.png; sourceTree = "<group>"; };
+		C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_profile_pic@2x.png"; sourceTree = "<group>"; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 				C2FC045F193EB20E000183CC /* buzzrd@2x.png */,
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
 				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
+				C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */,
 				C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */,
 				35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */,
 			);
@@ -767,6 +770,7 @@
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
 				355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */,
 				C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */,
+				C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
 				35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */,

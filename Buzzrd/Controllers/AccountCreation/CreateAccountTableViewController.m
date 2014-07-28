@@ -121,14 +121,6 @@
     return 3;
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    cell.contentView.backgroundColor=[ThemeManager getPrimaryColorLight];
-//    cell.backgroundColor = [ThemeManager getPrimaryColorLight];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    cell.accessoryView.backgroundColor=[UIColor redColor];
-    
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = [NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row];
