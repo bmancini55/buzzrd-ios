@@ -30,8 +30,8 @@
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.textLabel];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[textLabel]-6-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[textLabel]-6-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[textLabel]-12-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[textLabel]-12-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
     }
     return self;
 }
