@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) NSString *primaryFontRegular;
 
+@property (strong, nonatomic) NSString *primaryFontMedium;
+
 @property (strong, nonatomic) NSString *primaryFontBold;
 
 @property (strong, nonatomic) NSString *primaryFontDemiBold;

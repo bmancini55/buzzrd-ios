@@ -18,6 +18,7 @@ UIColor *primaryColorLight;
 UIColor *secondaryColorMedium;
 
 NSString *primaryFontRegular;
+NSString *primaryFontMedium;
 NSString *primaryFontBold;
 NSString *primaryFontDemiBold;
 
@@ -36,6 +37,7 @@ NSString *primaryFontDemiBold;
     secondaryColorMedium = [UIColor colorWithRed:250.0f/255.0f green:168.0f/255.0f blue:25.0f/255.0f alpha:1.0];
     
     primaryFontRegular = @"AvenirNext-Regular";
+    primaryFontMedium = @"AvenirNext-Medium";
     primaryFontBold = @"AvenirNext-Bold";
     primaryFontDemiBold = @"AvenirNext-DemiBold";
 
@@ -75,6 +77,10 @@ NSString *primaryFontDemiBold;
 
 - (NSString *) primaryFontRegular {
     return primaryFontRegular;
+}
+
+- (NSString *) primaryFontMedium {
+    return primaryFontMedium;
 }
 
 - (NSString *) primaryFontBold {

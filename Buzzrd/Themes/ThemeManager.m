@@ -47,6 +47,10 @@ BaseTheme *currentTheme;
     return [UIFont fontWithName:currentTheme.primaryFontRegular size:fontSize];
 }
 
++ (UIFont *) getPrimaryFontMedium:(float) fontSize {
+    return [UIFont fontWithName:currentTheme.primaryFontMedium size:fontSize];
+}
+
 + (UIFont *) getPrimaryFontBold:(float) fontSize {
     return [UIFont fontWithName:currentTheme.primaryFontBold size:fontSize];
 }

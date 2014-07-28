@@ -30,6 +30,8 @@ typedef enum
 
 + (UIFont *) getPrimaryFontRegular:(float) fontSize;
 
++ (UIFont *) getPrimaryFontMedium:(float) fontSize;
+
 + (UIFont *) getPrimaryFontBold:(float) fontSize;
 
 + (UIFont *) getPrimaryFontDemiBold:(float) fontSize;
