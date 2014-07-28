@@ -105,8 +105,7 @@
 - (UIView*)inputAccessoryView
 {
     if (self.keyboardBar == nil) {
-        const int KEYBOARD_HEIGHT = 40;
-        self.keyboardBar = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,0,self.tableView.frame.size.width, KEYBOARD_HEIGHT)];
+        self.keyboardBar = [[KeyboardBarView alloc]init];
         self.keyboardBar.delegate = self;
     }
     return self.keyboardBar;
