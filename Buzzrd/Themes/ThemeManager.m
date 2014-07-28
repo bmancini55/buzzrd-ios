@@ -31,6 +31,10 @@ BaseTheme *currentTheme;
     return currentTheme.primaryColorMedium;
 }
 
++ (UIColor *) getPrimaryColorMediumLight {
+    return currentTheme.primaryColorMediumLight;
+}
+
 + (UIColor *) getPrimaryColorLight {
     return currentTheme.primaryColorLight;
 }

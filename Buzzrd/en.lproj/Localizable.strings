@@ -113,3 +113,5 @@
 "An unexpected error occurred while processing your request" = "An unexpected error occurred while processing your request";
 
 "Try again" = "Try again?";
+
+"post" = "POST";

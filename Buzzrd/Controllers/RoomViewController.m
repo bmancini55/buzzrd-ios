@@ -11,6 +11,7 @@
 #import "BuzzrdAPI.h"
 #import "Message.h"
 #import "GetMessagesForRoomCommand.h"
+#import "MessageCell.h"
 
 @interface RoomViewController ()
 
@@ -27,6 +28,12 @@
     [super loadView];
 
     self.title = self.room.name;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection = NO;
+    
+    // Setting the estimated row height prevents the table view from calling tableView:heightForRowAtIndexPath: for every row in the table on first load;
+    // it will only be called as cells are about to scroll onscreen. This is a major performance optimization.
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
     // create hooks for keyboard to shrink table view on open/close
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -98,8 +105,7 @@
 - (UIView*)inputAccessoryView
 {
     if (self.keyboardBar == nil) {
-        const int KEYBOARD_HEIGHT = 40;
-        self.keyboardBar = [[KeyboardBarView alloc] initWithFrame:CGRectMake(0,0,self.tableView.frame.size.width, KEYBOARD_HEIGHT)];
+        self.keyboardBar = [[KeyboardBarView alloc]init];
         self.keyboardBar.delegate = self;
     }
     return self.keyboardBar;
@@ -180,11 +186,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Room"];
+    Message *message = self.messages[indexPath.row];
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"message"];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Room"];
+        cell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"message"];
     }
-    cell.textLabel.text = ((Message *)self.messages[indexPath.row]).message;
+    [cell setMessage:message];
     return cell;
 }
 
@@ -192,6 +199,21 @@
 {
     [self.keyboardBar dismissKeyboard];
     [tableView deselectRowAtIndexPath:indexPath animated:false];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Message *message = self.messages[indexPath.row];
+    
+    MessageCell *cell = [[MessageCell alloc]init];
+    [cell setMessage:message];
+    
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return height;
 }
 
 
