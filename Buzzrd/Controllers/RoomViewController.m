@@ -242,13 +242,11 @@
     [self.socket sendEvent:@"message" withData:message];
 }
 
-- (void)receiveMessage:(NSString *)message;
+- (void)receiveMessage:(Message *)message;
 {
-    Message *messageInstance = [[Message alloc]init];
-    messageInstance.message = message;
     NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
     
-    [mergeArray addObject:messageInstance];
+    [mergeArray addObject:message];
     self.messages = [[NSArray alloc]initWithArray:mergeArray];
     
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
@@ -276,10 +274,11 @@
 {
     NSLog(@"Websocket error: %@", error);
 }
+
 -(void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
     if([packet.name isEqualToString:@"message"]) {
-        NSString *message = packet.args[0];
+        Message *message = [[Message alloc] initWithJson:packet.args[0]];
         [self receiveMessage:message];
     }
     
