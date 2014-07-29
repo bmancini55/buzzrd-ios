@@ -40,7 +40,7 @@
         self.textView.layer.masksToBounds = true;
         self.textView.layer.cornerRadius = 6.0f;
         self.textView.textContainerInset = UIEdgeInsetsMake(3, 1, 3, 1);
-        self.textView.tintColor = [UIColor colorWithRed:242.0f/255.0f green:114.0f/255.0f blue:78.0f/255.0f alpha:1.0];
+        self.textView.tintColor = [ThemeManager getTertiaryColorDark];
         [self addSubview:self.textView];
         
         // create the send button

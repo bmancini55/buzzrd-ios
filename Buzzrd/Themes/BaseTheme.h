@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) UIColor *secondaryColorMedium;
 
+@property (strong, nonatomic) UIColor *tertiaryColorDark;
+
 @property (strong, nonatomic) NSString *primaryFontRegular;
 
 @property (strong, nonatomic) NSString *primaryFontMedium;
