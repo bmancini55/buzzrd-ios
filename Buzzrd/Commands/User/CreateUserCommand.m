@@ -50,4 +50,22 @@
     return newOp;
 }
 
+- (NSError *) handleError:(NSError *)error
+           responseObject:(id)responseObject;
+{
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    
+    if ([responseObject[@"error"][@"message"] isEqual: @"The username you entered already exists."]) {
+        [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+        [userInfo setObject:NSLocalizedString(@"Username Already In Use", nil) forKey:NSLocalizedDescriptionKey];
+        [userInfo setObject:NSLocalizedString(@"The username you entered already exists.", nil) forKey:NSLocalizedRecoverySuggestionErrorKey];
+        
+        return [[NSError alloc] initWithDomain: error.domain
+                                          code: error.code
+                                      userInfo:userInfo];
+    }
+    
+    return [super handleError:error responseObject:responseObject];
+}
+
 @end
