@@ -13,11 +13,24 @@
 
 - (void)show
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.title
-                                                    message:self.message
-                                                   delegate:self
+    UIAlertView *alert;
+    
+    if (self.operation != nil) {
+    
+        alert = [[UIAlertView alloc] initWithTitle:self.title
+                                          message:self.message
+                                          delegate:self
                                           cancelButtonTitle:NSLocalizedString(@"cancel", nil)
                                           otherButtonTitles:@"Retry", nil];
+    }
+    else {
+        alert = [[UIAlertView alloc] initWithTitle:self.title
+                                          message:self.message
+                                          delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+                                          otherButtonTitles:nil, nil];
+    }
+    
     [alert show];
 }
 

@@ -55,10 +55,17 @@
 - (void) networkError:(NSNotification *)notif {
     
     CommandBase *command = notif.object;
-
-    [self showRetryAlertWithTitle:command.error.localizedDescription
+    
+    if (command.allowRetry) {
+        [self showRetryAlertWithTitle:command.error.localizedDescription
                                     message:command.error.localizedRecoverySuggestion
                              retryOperation:command];
+    }
+    else {
+        [self showRetryAlertWithTitle:command.error.localizedDescription
+                              message:command.error.localizedRecoverySuggestion
+                       retryOperation:nil];
+    }
 }
 
 - (void) showRetryAlertWithTitle:(NSString *)title

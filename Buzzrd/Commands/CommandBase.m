@@ -28,6 +28,8 @@
         self.removeListenerOnSuccess = true;
         
         self.apiURLBase = @"http://devapi.buzzrd.io:5050";
+        
+        self.allowRetry = true;
     }
     
     return self;

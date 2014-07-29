@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSNumber        *requestTimeoutInterval;
 
 @property (strong, nonatomic) NSError         *error;
+@property (nonatomic) bool                    allowRetry;
 
 // Returns the default error notification name
 + (NSString *)getNetworkErrorNotificationName;

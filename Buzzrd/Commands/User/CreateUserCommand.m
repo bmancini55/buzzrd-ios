@@ -16,7 +16,6 @@
     self = [super init];
     if(self) {
         self.completionNotificationName = @"createUserComplete";
-        
     }
     return self;
 }
@@ -47,6 +46,7 @@
 - (id) copyWithZone:(NSZone *)zone {
     CreateUserCommand *newOp = [super copyWithZone:zone];
     newOp.user = self.user;
+    newOp.allowRetry = self.allowRetry;
     return newOp;
 }
 
@@ -59,6 +59,8 @@
         [userInfo setObject:error forKey:NSUnderlyingErrorKey];
         [userInfo setObject:NSLocalizedString(@"Username Already In Use", nil) forKey:NSLocalizedDescriptionKey];
         [userInfo setObject:NSLocalizedString(@"The username you entered already exists.", nil) forKey:NSLocalizedRecoverySuggestionErrorKey];
+        
+        self.allowRetry = false;
         
         return [[NSError alloc] initWithDomain: error.domain
                                           code: error.code
