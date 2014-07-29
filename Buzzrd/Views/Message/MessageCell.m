@@ -10,6 +10,7 @@
 #import "MessageBubble.h"
 #import "ProfileImageView.h"
 #import "ThemeManager.h"
+#import "NSDate+Helpers.h"
 
 @interface MessageCell()
 
@@ -57,10 +58,25 @@
 
 - (void) setDate:(NSDate *)date {
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"M/d hh:mm a"];
+    NSString *dateString = nil;
+    if([date isToday]) {
+        dateString = @"";
+    } else if ([date isYesterday]) {
+        dateString = NSLocalizedString(@"Yesterday", nil);
+    } else if ([date daysAgo] < 7) {
+        dateString = [NSString stringWithFormat:@"%u %@", [date daysAgo], NSLocalizedString(@"DaysAgo", nil)];
+    } else {
+        NSDateFormatter *dateFormater = [[NSDateFormatter alloc]init];
+        [dateFormater setDateFormat:@"M/d"];
+        dateString = [dateFormater stringFromDate:date];
+    }
     
-    self.dateLabel.text = [formatter stringFromDate:date];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    [timeFormatter setDateFormat:@"hh:mm a"];
+    NSString *timeString = [timeFormatter stringFromDate:date];
+    
+    NSString *text = [NSString stringWithFormat:@"%@ %@", dateString, timeString ];
+    self.dateLabel.text = text;
 }
 
 
