@@ -17,6 +17,9 @@
     message.idmessage = json[@"id"];
     message.message = [NSString stringWithFormat:@"%@", json[@"message"]];
     message.created = [DateUtils parseMongoDateString:json[@"created"]];
+    message.revealed = [json[@"revealed"] boolValue];
+    message.userId = [NSString stringWithFormat:@"%@", json[@"user"][@"id"]];
+    message.userName = [NSString stringWithFormat:@"%@", json[@"user"][@"username"]];
     
     return message;
 }

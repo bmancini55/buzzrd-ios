@@ -13,6 +13,9 @@
 @property (strong, nonatomic) NSString *idmessage;
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *created;
+@property (nonatomic) bool revealed;
+@property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *userName;
 
 - (id)initWithJson:(NSDictionary *)json;
 

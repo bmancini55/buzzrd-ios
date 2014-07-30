@@ -38,25 +38,52 @@
         self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
         [self.contentView addSubview:self.dateLabel];
         
+        self.usernameLabel = [[UILabel alloc]init];
+        self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:12.0];
+        self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
+        [self.contentView addSubview:self.usernameLabel];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:@{ @"bubble": self.messageBubble }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[bubble]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"bubble": self.messageBubble }]];
-        
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"date": self.dateLabel }]];
-        
+        [self setNeedsUpdateConstraints];
     }
     return self;
 }
 
-- (void) setMessage:(Message *)message {
-    _message = message;
-    [self setDate:message.created];
-    [self.messageBubble setText:message.message];
+- (void) updateConstraints
+{
+    // remove all constraints
+    [self.contentView removeConstraints:self.contentView.constraints];
+    
+    // add constraints
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:@{ @"bubble": self.messageBubble }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"bubble": self.messageBubble }]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+    
+    if(self.message.revealed) {
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel, @"username": self.usernameLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"username": self.usernameLabel }]];
+    } else {
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"date": self.dateLabel }]];
+    }
+    
+    [super updateConstraints];
 }
 
-- (void) setDate:(NSDate *)date {
+
+
+- (void) setMessage:(Message *)message {
+    _message = message;
+    [self configureDate:message.created];
+    [self configureUsername:message];
+    [self.messageBubble setText:message.message];
+    
+    [self updateConstraints];
+}
+
+- (void) configureDate:(NSDate *)date {
     
     NSString *dateString = nil;
     if([date isToday]) {
@@ -77,6 +104,18 @@
     
     NSString *text = [NSString stringWithFormat:@"%@ %@", dateString, timeString ];
     self.dateLabel.text = text;
+}
+
+- (void) configureUsername:(Message *)message
+{
+    if (message.revealed) {
+        self.usernameLabel.text = message.userName;
+        self.usernameLabel.hidden = false;
+    }
+    else {
+        self.usernameLabel.text = @"";
+        self.usernameLabel.hidden = true;
+    }
 }
 
 

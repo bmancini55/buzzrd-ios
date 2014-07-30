@@ -31,7 +31,7 @@
         [self addSubview:self.textLabel];
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[textLabel]-12-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[textLabel]-12-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[textLabel]-18-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
     }
     return self;
 }
