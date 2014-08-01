@@ -44,6 +44,10 @@
         self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
         [self.contentView addSubview:self.usernameLabel];
         
+        self.profileImage = [[ProfileImageView alloc] init];
+        self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.profileImage];
+        
         [self setNeedsUpdateConstraints];
     }
     return self;
@@ -58,13 +62,19 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:@{ @"bubble": self.messageBubble }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"bubble": self.messageBubble }]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-    
     if(self.message.revealed) {
+
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(==27)]" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
+
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel, @"username": self.usernameLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"username": self.usernameLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-3-[image(==27)]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"image": self.profileImage }]];
+        
     } else {
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+        
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel }]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"date": self.dateLabel }]];
     }
@@ -81,6 +91,13 @@
     [self.messageBubble setText:message.message];
     
     [self updateConstraints];
+    [self layoutIfNeeded];
+    
+    // configure image after layout of bubble
+    [self configureImage:message];
+    
+    [self updateConstraints];
+    [self layoutIfNeeded];
 }
 
 - (void) configureDate:(NSDate *)date {
@@ -115,6 +132,19 @@
     else {
         self.usernameLabel.text = @"";
         self.usernameLabel.hidden = true;
+    }
+}
+
+- (void) configureImage:(Message *)message
+{
+    if (message.revealed) {
+        
+            NSLog(@"bubble left: %f, top: %f, width: %f, height: %f", self.messageBubble.frame.origin.x, self.messageBubble.frame.origin.y, self.messageBubble.frame.size.width, self.messageBubble.frame.size.height);
+        //self.profileImage.frame = CGRectMake(self.messageBubble.frame.origin.x, self.messageBubble.frame.origin.y + self.messageBubble.frame.size.height + 16, 26, 26);
+        [self.profileImage loadImage:[NSString stringWithFormat:@"http://devapi.buzzrd.io:5050/api/users/%@/pic", message.userId]];
+        self.profileImage.hidden = false;
+    } else {
+        self.profileImage.hidden = true;
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "ProfileImageView.h"
 #import "AFHTTPSessionManager.h"
+#import "BuzzrdAPI.h"
 
 @interface ProfileImageView()
 
@@ -49,7 +50,6 @@
     // check image cache and fetch from url if necessary
     UIImage *image = [[ProfileImageView imageCache] objectForKey:url];
     if(image == nil) {
-        NSLog(@"Loading image: %@", url);
         [self fetchImage:url];
     } else {
         [self showImage:image];
@@ -59,6 +59,13 @@
 -(void)fetchImage:(NSString *)url
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    if([[BuzzrdAPI current] authorization] != nil)
+    {
+        NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
+        [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
+    }
+    
     manager.responseSerializer = [AFImageResponseSerializer serializer];
     [manager GET:url
       parameters:nil
@@ -84,6 +91,7 @@
     
     // add the new view
     imageView = [[UIImageView alloc]initWithImage:(UIImage *)image];
+    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self addSubview:imageView];
 }
 
