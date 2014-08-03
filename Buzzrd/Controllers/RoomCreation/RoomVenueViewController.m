@@ -189,7 +189,7 @@
     return 1;
 }
 
-- (long)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *dataSource = [self dataSourceForTableView:tableView];
     return dataSource.count;

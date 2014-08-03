@@ -41,7 +41,6 @@
 		35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */; };
 		35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB119328ACC00B615A4 /* LoadingOverlay.m */; };
 		35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB319328ACC00B615A4 /* ProfileImageView.m */; };
-		35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35A46FBF19328B0100B615A4 /* Buzzrd-Info.plist */; };
 		35A46FC319328B0100B615A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FC119328B0100B615A4 /* main.m */; };
 		35A46FD119328B1500B615A4 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FC719328B1500B615A4 /* SocketIO.m */; };
 		35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FC919328B1500B615A4 /* SocketIOJSONSerialization.m */; };
@@ -796,7 +795,6 @@
 				C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
-				35A46FC219328B0100B615A4 /* Buzzrd-Info.plist in Resources */,
 				C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */,
 				C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */,
 			);
