@@ -27,7 +27,7 @@
     {
         // set view level properties
         self.backgroundColor = [ThemeManager getPrimaryColorMediumLight];
-        self.frame = CGRectMake(0, 0, 360, 15.0f + 12 + 12 );
+        self.frame = CGRectMake(0, 0, 360, 41 );
         
         // create the textbox
         self.textView = [[UITextView alloc] init];
@@ -39,7 +39,7 @@
         self.textView.font = [ThemeManager getPrimaryFontRegular:15.0f];
         self.textView.layer.masksToBounds = true;
         self.textView.layer.cornerRadius = 6.0f;
-        self.textView.textContainerInset = UIEdgeInsetsMake(3, 1, 3, 1);
+        self.textView.textContainerInset = UIEdgeInsetsMake(5, 1, 3, 1);
         self.textView.tintColor = [ThemeManager getTertiaryColorDark];
         [self addSubview:self.textView];
         
@@ -86,9 +86,9 @@
 
 - (void) layoutIfNeeded
 {
-    float singleLineHeight = 27.0;
-    float secondLineHeight = 15.0;
-    float baseBarHeight = 39.0;
+    float singleLineHeight = 29.0;
+    float secondLineHeight = 16.0;
+    float baseBarHeight = 41.0;
     
     if(self.textView.contentSize.height <= singleLineHeight || [self.textView.text isEqualToString:@""]) {
         CGRect frame = self.frame;
