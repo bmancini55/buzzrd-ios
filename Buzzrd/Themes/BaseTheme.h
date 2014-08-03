@@ -18,7 +18,11 @@
 
 @property (strong, nonatomic) UIColor *primaryColorLight;
 
+@property (strong, nonatomic) UIColor *secondaryColorDark;
+
 @property (strong, nonatomic) UIColor *secondaryColorMedium;
+
+@property (strong, nonatomic) UIColor *secondaryColorLight;
 
 @property (strong, nonatomic) UIColor *tertiaryColorDark;
 

@@ -24,7 +24,11 @@ typedef enum
 
 + (UIColor *) getPrimaryColorLight;
 
++ (UIColor *) getSecondaryColorDark;
+
 + (UIColor *) getSecondaryColorMedium;
+
++ (UIColor *) getSecondaryColorLight;
 
 + (UIColor *) getTertiaryColorDark;
 

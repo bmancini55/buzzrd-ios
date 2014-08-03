@@ -17,10 +17,8 @@ BaseTheme *currentTheme;
 {
     switch (theme) {
         default:
-            currentTheme = [DefaultTheme alloc];
+            currentTheme = [[DefaultTheme alloc] init];
     }
-    
-    [currentTheme init];
 }
 
 + (UIColor *) getPrimaryColorDark {
@@ -39,8 +37,16 @@ BaseTheme *currentTheme;
     return currentTheme.primaryColorLight;
 }
 
++ (UIColor *) getSecondaryColorDark {
+    return currentTheme.secondaryColorDark;
+}
+
 + (UIColor *) getSecondaryColorMedium {
     return currentTheme.secondaryColorMedium;
+}
+
++ (UIColor *) getSecondaryColorLight {
+    return currentTheme.secondaryColorLight;
 }
 
 + (UIColor *) getTertiaryColorDark {

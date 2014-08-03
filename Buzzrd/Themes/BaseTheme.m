@@ -10,4 +10,9 @@
 
 @implementation BaseTheme
 
+- (BaseTheme *)init
+{
+    return [super init];
+}
+
 @end
