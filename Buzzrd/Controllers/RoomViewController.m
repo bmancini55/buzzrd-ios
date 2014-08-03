@@ -45,7 +45,16 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
+    // Dismiss the keyboard be recognizing tab gesture
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    
     [self loadRoom];
+}
+
+- (void) hideKeyboard {
+    KeyboardBarView *keyboardBar = (KeyboardBarView *)self.inputAccessoryView;
+    [keyboardBar dismissKeyboard];
 }
 
 // Fires on room exit
