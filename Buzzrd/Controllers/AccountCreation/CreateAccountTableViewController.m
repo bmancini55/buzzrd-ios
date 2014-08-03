@@ -123,7 +123,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%ld%ld",indexPath.section,indexPath.row];
     
     UITextField *tf = nil;
     

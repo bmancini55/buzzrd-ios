@@ -50,7 +50,7 @@
             [today compare:self] == NSOrderedDescending;
 }
 
-- (int) daysAgo
+- (long) daysAgo
 {
     NSDate *today = [[NSDate date] getDate];
     NSDate *myDate = [self getDate];
