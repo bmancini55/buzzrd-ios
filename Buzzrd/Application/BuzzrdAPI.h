@@ -15,6 +15,7 @@
 
 + (BuzzrdAPI *) current;
 + (CommandDispatcher *) dispatch;
++ (NSString *) apiURLBase;
 
 // Command Dispatch Pattern
 @property (strong, nonatomic) CommandDispatcher *dispatch;

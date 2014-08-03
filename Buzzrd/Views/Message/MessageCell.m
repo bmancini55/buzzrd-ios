@@ -170,11 +170,8 @@
 
 - (void) configureImage:(Message *)message
 {
-    if (message.revealed) {
-        
-            NSLog(@"bubble left: %f, top: %f, width: %f, height: %f", self.messageBubble.frame.origin.x, self.messageBubble.frame.origin.y, self.messageBubble.frame.size.width, self.messageBubble.frame.size.height);
-        //self.profileImage.frame = CGRectMake(self.messageBubble.frame.origin.x, self.messageBubble.frame.origin.y + self.messageBubble.frame.size.height + 16, 26, 26);
-        [self.profileImage loadImage:[NSString stringWithFormat:@"http://devapi.buzzrd.io:5050/api/users/%@/pic", message.userId]];
+    if (message.revealed) {        
+        [self.profileImage loadImage:[NSString stringWithFormat:@"%@/api/users/%@/pic", [BuzzrdAPI apiURLBase], message.userId]];
         self.profileImage.hidden = false;
     } else {
         self.profileImage.hidden = true;

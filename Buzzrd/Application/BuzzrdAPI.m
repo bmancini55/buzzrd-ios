@@ -7,6 +7,7 @@
 //
 
 #import "BuzzrdAPI.h"
+#import "CommandBase.h"
 
 @implementation BuzzrdAPI
 
@@ -23,6 +24,11 @@
 + (CommandDispatcher *) dispatch
 {
     return [BuzzrdAPI current].dispatch;
+}
+
++ (NSString *) apiURLBase
+{
+    return [[[CommandBase alloc]init] apiURLBase];
 }
 
 @synthesize authorization = _authorization;
