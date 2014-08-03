@@ -10,6 +10,6 @@
 
 @interface MessageBubble : UIView
 
-@property (strong, nonatomic) NSString *text;
+- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment;
 
 @end

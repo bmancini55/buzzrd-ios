@@ -11,6 +11,7 @@
 #import "ProfileImageView.h"
 #import "ThemeManager.h"
 #import "NSDate+Helpers.h"
+#import "BuzzrdAPI.h"
 
 @interface MessageCell()
 
@@ -58,37 +59,66 @@
     // remove all constraints
     [self.contentView removeConstraints:self.contentView.constraints];
     
-    // add constraints
+    // add constraints for buble
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:@{ @"bubble": self.messageBubble }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"bubble": self.messageBubble }]];
     
     if(self.message.revealed) {
-
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(==27)]" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
-
+        
+        if([self isMine:self.message]) {
+            
+            // right align my messages
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[username]-48-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-48-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image(==27)]-6-|" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
+            
+        } else {
+            
+            // left align other messages
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(==27)]" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
+        }
+        
+        // set vertical constraints
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel, @"username": self.usernameLabel }]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"username": self.usernameLabel }]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-3-[image(==27)]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"image": self.profileImage }]];
         
     } else {
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+        
+        if([self isMine:self.message]) {
+
+            // right align my messages
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-50-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+            
+        } else {
+      
+            // left align other messages
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
+        
+        }
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel }]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"date": self.dateLabel }]];
+
     }
     
     [super updateConstraints];
 }
 
-
+- (bool) isMine:(Message *) message{
+    return [[BuzzrdAPI current].user.iduser isEqualToString:message.userId];
+}
 
 - (void) setMessage:(Message *)message {
     _message = message;
-    [self configureDate:message.created];
-    [self configureUsername:message];
-    [self.messageBubble setText:message.message];
+    
+    NSTextAlignment alignment = [self isMine:message] ? NSTextAlignmentRight : NSTextAlignmentLeft;
+    
+    [self configureDate:message.created textAlignment:alignment];
+    [self configureUsername:message textAlignment:alignment];
+    [self.messageBubble update:message.message textAlignment:alignment];
     
     [self updateConstraints];
     [self layoutIfNeeded];
@@ -100,7 +130,8 @@
     [self layoutIfNeeded];
 }
 
-- (void) configureDate:(NSDate *)date {
+- (void) configureDate:(NSDate *)date textAlignment:(NSTextAlignment)textAlignment
+{
     
     NSString *dateString = nil;
     if([date isToday]) {
@@ -121,12 +152,14 @@
     
     NSString *text = [NSString stringWithFormat:@"%@ %@", dateString, timeString ];
     self.dateLabel.text = text;
+    self.dateLabel.textAlignment = textAlignment;
 }
 
-- (void) configureUsername:(Message *)message
+- (void) configureUsername:(Message *)message textAlignment:(NSTextAlignment)textAlignment
 {
     if (message.revealed) {
         self.usernameLabel.text = message.userName;
+        self.usernameLabel.textAlignment = textAlignment;
         self.usernameLabel.hidden = false;
     }
     else {

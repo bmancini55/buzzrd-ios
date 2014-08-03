@@ -8,6 +8,7 @@
 
 #import "MessageBubble.h"
 #import "ThemeManager.h"
+#import "FrameUtils.h"
 
 @interface MessageBubble()
 
@@ -22,7 +23,7 @@
     self = [super init];
     if(self) {
         self.opaque = false;
-                
+        
         self.textLabel = [[UILabel alloc]init];
         self.textLabel.font = [ThemeManager getPrimaryFontRegular:15.0];
         self.textLabel.numberOfLines = 0;
@@ -36,9 +37,11 @@
     return self;
 }
 
-- (void) setText:(NSString *)text {
-    _text = text;
+- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment {
+    
     self.textLabel.text = text;
+    self.textLabel.textAlignment = textAlignment;
+    
 }
 
 - (CGPathRef) getPath:(CGRect)rect
@@ -78,7 +81,7 @@
                         rect.origin.y + rect.size.height,
                         cornerRadius);
     
-    // Triangle left
+    // Triangle
     CGPathAddLineToPoint(path, NULL,
                          rect.origin.x + triangleOffset + triangleSize.width,
                          rect.origin.y + rect.size.height);
@@ -88,7 +91,7 @@
     CGPathAddLineToPoint(path, NULL,
                          rect.origin.x + triangleOffset,
                          rect.origin.y + rect.size.height);
-
+    
     
 	// Bottom left corner
 	CGPathAddArcToPoint(path, NULL,
@@ -107,8 +110,12 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    float triangleOffset = 28.0;
+    if(self.textLabel.textAlignment == NSTextAlignmentRight)
+        triangleOffset = [FrameUtils getScreenSize].width - 28.0 - 26.0;
+    
     rect = CGRectInset(rect, 0, 6.0);
-    CGPathRef path = [self getPath:rect cornerRadius:6.0 triangleSize:CGSizeMake(14.0, 6.0) triangleOffset:28.0];
+    CGPathRef path = [self getPath:rect cornerRadius:6.0 triangleSize:CGSizeMake(14.0, 6.0) triangleOffset:triangleOffset];
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGFloat red, green, blue, alpha;
