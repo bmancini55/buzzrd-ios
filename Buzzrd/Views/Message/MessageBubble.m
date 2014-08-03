@@ -41,7 +41,7 @@
     
     self.textLabel.text = text;
     self.textLabel.textAlignment = textAlignment;
-    
+    [self setNeedsDisplay];        
 }
 
 - (CGPathRef) getPath:(CGRect)rect
