@@ -16,6 +16,7 @@
 @property (nonatomic) bool revealed;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *userName;
+@property (nonatomic) uint upvoteCount;
 
 - (id)initWithJson:(NSDictionary *)json;
 

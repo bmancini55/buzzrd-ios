@@ -20,6 +20,7 @@
     message.revealed = [json[@"revealed"] boolValue];
     message.userId = [NSString stringWithFormat:@"%@", json[@"user"][@"id"]];
     message.userName = [NSString stringWithFormat:@"%@", json[@"user"][@"username"]];
+    message.upvoteCount = (uint)[json[@"upvoteCount"] unsignedIntegerValue];
     
     return message;
 }

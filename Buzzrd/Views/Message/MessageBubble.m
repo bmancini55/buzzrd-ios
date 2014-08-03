@@ -13,6 +13,7 @@
 @interface MessageBubble()
 
 @property (strong, nonatomic) UILabel *textLabel;
+@property (strong, nonatomic) UIColor *color;
 
 @end
 
@@ -37,10 +38,11 @@
     return self;
 }
 
-- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment {
+- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment color:(UIColor *)color {
     
     self.textLabel.text = text;
     self.textLabel.textAlignment = textAlignment;
+    self.color = color;
     [self setNeedsDisplay];        
 }
 
@@ -119,7 +121,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGFloat red, green, blue, alpha;
-    [[ThemeManager getPrimaryColorLight] getRed:&red green:&green blue:&blue alpha:&alpha];
+    [self.color getRed:&red green:&green blue:&blue alpha:&alpha];
     
     CGContextSetRGBFillColor(context, red, green, blue, alpha);
     CGContextAddPath(context, path);

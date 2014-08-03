@@ -111,14 +111,26 @@
     return [[BuzzrdAPI current].user.iduser isEqualToString:message.userId];
 }
 
+- (UIColor *) getBubbleColor:(Message *)message {
+    if (message.upvoteCount >= 5)
+        return [ThemeManager getSecondaryColorDark];
+    else if (message.upvoteCount >= 3 )
+        return [ThemeManager getSecondaryColorMedium];
+    else if (message.upvoteCount >= 1)
+        return [ThemeManager getSecondaryColorLight];
+    else
+        return [ThemeManager getPrimaryColorLight];
+}
+
 - (void) setMessage:(Message *)message {
     _message = message;
     
     NSTextAlignment alignment = [self isMine:message] ? NSTextAlignmentRight : NSTextAlignmentLeft;
+    UIColor *color = [self getBubbleColor:message];
     
     [self configureDate:message.created textAlignment:alignment];
     [self configureUsername:message textAlignment:alignment];
-    [self.messageBubble update:message.message textAlignment:alignment];
+    [self.messageBubble update:message.message textAlignment:alignment color:color];
     
     [self updateConstraints];
     [self layoutIfNeeded];
