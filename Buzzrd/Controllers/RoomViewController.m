@@ -18,6 +18,8 @@
     @property (strong, nonatomic) KeyboardBarView *keyboardBar;
     @property (strong, nonatomic) SocketIO *socket;
     @property (strong, nonatomic) NSArray *messages;
+    @property (nonatomic) uint page;
+    @property (nonatomic) uint loading;
 
 @end
 
@@ -137,24 +139,37 @@
 
 - (void)loadMessagesWithPage:(uint)page
 {
-    GetMessagesForRoomCommand *command = [[GetMessagesForRoomCommand alloc]init];
-    command.room = self.room;
-    command.page = page;
-    [command listenForCompletion:self selector:@selector(messageForRoomDidComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    if(!self.loading)
+    {
+        self.loading = true;
+        self.page = page;
+        GetMessagesForRoomCommand *command = [[GetMessagesForRoomCommand alloc]init];
+        command.room = self.room;
+        command.page = page;
+        [command listenForCompletion:self selector:@selector(messageForRoomDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
 }
 
 - (void)messageForRoomDidComplete:(NSNotification *)notification
 {
+    self.loading = false;
     GetMessagesForRoomCommand *command = notification.object;
     if(command.status == kSuccess)
     {
+        // keep scroll position
+        float height = self.tableView.contentSize.height;
+        
         // merge results into table
         NSArray *newMessages = command.results;
-        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
-        [mergeArray addObjectsFromArray:self.messages];
+        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
+        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, newMessages.count)];
+        [mergeArray insertObjects:newMessages atIndexes:indexSet];
         self.messages = mergeArray;
         [self.tableView reloadData];
+        
+        // reatin the previous scroll position
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - height);
         
         // on fresh reload
         if (command.page == 1)
@@ -223,6 +238,16 @@
     
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     return height;
+}
+
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSLog(@"%f", targetContentOffset->y);
+    if(targetContentOffset -> y <= 0)
+    {
+        [self loadMessagesWithPage:self.page + 1];
+    }
 }
 
 
