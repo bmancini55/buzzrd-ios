@@ -57,6 +57,16 @@ NSString *primaryFontDemiBold;
     [[UITextField appearance] setFont: [UIFont fontWithName:primaryFontRegular size:17.0]];
     [[UITextField appearance] setTextColor: primaryColorDark];
     
+    // set navigation appearance for app
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0]];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+      primaryColorDark, NSForegroundColorAttributeName,
+      [UIFont fontWithName:primaryFontRegular size:17.0], NSFontAttributeName,
+      nil]];
+    [[UINavigationBar appearance] setTintColor:tertiaryColorDark];    
+
+    
     return self;
 }
 
