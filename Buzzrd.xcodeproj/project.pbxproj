@@ -15,6 +15,7 @@
 		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
 		351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F31981FA0C00AF5C39 /* MessageBubble.m */; };
 		3527766A1960E5D70095E51E /* RetryAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 352776691960E5D70095E51E /* RetryAlert.m */; };
+		3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 353471491991B6B900D3C1F5 /* PlaceholderTextView.m */; };
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
 		353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */; };
@@ -124,6 +125,8 @@
 		351036F31981FA0C00AF5C39 /* MessageBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageBubble.m; path = Views/Message/MessageBubble.m; sourceTree = "<group>"; };
 		352776681960E5D70095E51E /* RetryAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RetryAlert.h; path = Controllers/Shared/RetryAlert.h; sourceTree = "<group>"; };
 		352776691960E5D70095E51E /* RetryAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RetryAlert.m; path = Controllers/Shared/RetryAlert.m; sourceTree = "<group>"; };
+		353471481991B6B900D3C1F5 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceholderTextView.h; path = Views/PlaceholderTextView.h; sourceTree = "<group>"; };
+		353471491991B6B900D3C1F5 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceholderTextView.m; path = Views/PlaceholderTextView.m; sourceTree = "<group>"; };
 		353D6EBE195CE4C100AC1B62 /* CommandBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandBase.h; path = Commands/CommandBase.h; sourceTree = "<group>"; };
 		353D6EBF195CE4C100AC1B62 /* CommandBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandBase.m; path = Commands/CommandBase.m; sourceTree = "<group>"; };
 		353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandDispatcher.h; path = Application/CommandDispatcher.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				35A46FB319328ACC00B615A4 /* ProfileImageView.m */,
 				355F4718194F120900DF8388 /* FoursquareAttribution.h */,
 				355F4719194F120900DF8388 /* FoursquareAttribution.m */,
+				353471481991B6B900D3C1F5 /* PlaceholderTextView.h */,
+				353471491991B6B900D3C1F5 /* PlaceholderTextView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
+				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,

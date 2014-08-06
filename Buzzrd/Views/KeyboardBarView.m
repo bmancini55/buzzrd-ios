@@ -30,7 +30,7 @@
         self.frame = CGRectMake(0, 0, 360, 41 );
         
         // create the textbox
-        self.textView = [[UITextView alloc] init];
+        self.textView = [[PlaceholderTextView alloc] init];
         self.textView.translatesAutoresizingMaskIntoConstraints = NO;
         self.textView.editable = true;
         self.textView.keyboardType = UIKeyboardTypeDefault;
@@ -41,6 +41,7 @@
         self.textView.layer.cornerRadius = 6.0f;
         self.textView.textContainerInset = UIEdgeInsetsMake(5, 1, 3, 1);
         self.textView.tintColor = [ThemeManager getTertiaryColorDark];
+        self.textView.placeholder = NSLocalizedString(@"keyboard_bar_placeholder", nil);
         [self addSubview:self.textView];
         
         // create the send button

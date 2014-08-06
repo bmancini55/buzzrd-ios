@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaceholderTextView.h"
 
 @class KeyboardBarView;
 
@@ -20,7 +21,7 @@
 @interface KeyboardBarView : UIView <UITextViewDelegate>
 
 @property (weak, nonatomic) id<KeyboardBarDelegate> delegate;
-@property (strong, nonatomic) UITextView *textView;
+@property (strong, nonatomic) PlaceholderTextView *textView;
 
 -(void)dismissKeyboard;
 
