@@ -12,6 +12,7 @@
 #import "Message.h"
 #import "GetMessagesForRoomCommand.h"
 #import "MessageCell.h"
+#import "UserInfoCustomBarButton.h"
 
 @interface RoomViewController ()
 
@@ -20,6 +21,7 @@
     @property (strong, nonatomic) NSArray *messages;
     @property (nonatomic) uint page;
     @property (nonatomic) uint loading;
+    @property (strong, nonatomic) UserInfoCustomBarButton *rightBar;
 
 @end
 
@@ -46,6 +48,12 @@
                                              selector:@selector(keyboardDidShowOrHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    // Add the info for the right bar menu
+    self.rightBar = [[UserInfoCustomBarButton alloc]initWithFrame:CGRectMake(0, 0, 75, self.navigationController.navigationBar.frame.size.height)];
+    [self.rightBar setUserCount:self.room.userCount];
+    self.navigationItem .rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBar];
+
     
     // Dismiss the keyboard be recognizing tab gesture
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
