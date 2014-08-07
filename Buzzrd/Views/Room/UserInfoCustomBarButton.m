@@ -55,6 +55,7 @@
         self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
         self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.lurkerLabel];
+        
     }
     return self;
 }
@@ -76,6 +77,13 @@
 - (void) setUserCount:(uint)userCount
 {
     _userCount = userCount;
+    
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3;
+    animation.type = kCATransitionFade;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [self.userCountLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
+    
     self.userCountLabel.text = [NSString stringWithFormat:@"%i", (int)_userCount];
 }
 

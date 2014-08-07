@@ -299,6 +299,17 @@
     [self scrollToBottom:true];
 }
 
+- (void)receiveJoin:(uint)users;
+{
+    
+    self.rightBar.userCount = users;
+}
+
+- (void)receiveLeave:(uint)users;
+{
+    self.rightBar.userCount = users;
+}
+
 
 #pragma mark - SocketIODelegate
 
@@ -324,8 +335,15 @@
         [self receiveMessage:message];
     }
     
+    else if([packet.name isEqualToString:@"userjoin"]) {
+        [self receiveJoin:[packet.args[0] unsignedIntegerValue]];
+    }
+    
+    else if([packet.name isEqualToString:@"userleave"]) {
+        [self receiveLeave:[packet.args[0] unsignedIntegerValue]];
+    }
+    
     else if([packet.name isEqualToString:@"authenticate"]) {
-        NSLog(@"Joining room: %@", self.room.id);
         [self.socket sendEvent:@"join" withData:self.room.id];
     }
         
