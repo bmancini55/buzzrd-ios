@@ -31,21 +31,16 @@
         return;
     
     [UIView animateWithDuration:0.1 animations:^{
-        if(self.text.length == 0)
-           [self showPlaceholder];
-        else
-            [self hidePlaceholder];
+        [self showOrHidePlaceholder];
     }];
 }
 
-- (void)showPlaceholder
+- (void)showOrHidePlaceholder
 {
-    [self.placeholderLabel setAlpha:1.0];
-}
-
-- (void)hidePlaceholder
-{
-    [self.placeholderLabel setAlpha:0];
+    if(self.text.length == 0)
+        [self.placeholderLabel setAlpha:1.0];
+    else
+        [self.placeholderLabel setAlpha:0];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -63,10 +58,15 @@
         [self.placeholderLabel sizeToFit];
     }
     
-    if(self.text.length == 0 && self.placeholder.length > 0)
-       [self showPlaceholder];
+    [self showOrHidePlaceholder];
     
     [super drawRect:rect];
+}
+
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    [self showOrHidePlaceholder];
 }
 
 - (void)dealloc
