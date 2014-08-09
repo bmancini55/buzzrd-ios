@@ -1,15 +1,15 @@
 //
-//  UserInfoCustomBarButton.m
+//  UserCountBarButton.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 8/6/14.
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
-#import "UserInfoCustomBarButton.h"
+#import "UserCountBarButton.h"
 #import "ThemeManager.h"
 
-@interface UserInfoCustomBarButton()
+@interface UserCountBarButton()
 
 @property (strong, nonatomic) UILabel *userCountLabel;
 @property (strong, nonatomic) UILabel *userLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation UserInfoCustomBarButton
+@implementation UserCountBarButton
 
 - (id)initWithFrame:(CGRect)frame
 {

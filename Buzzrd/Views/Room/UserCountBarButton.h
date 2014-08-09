@@ -1,5 +1,5 @@
 //
-//  UserInfoCustomBarButton.h
+//  UserCountBarButton.h
 //  Buzzrd
 //
 //  Created by Brian Mancini on 8/6/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserInfoCustomBarButton : UIView
+@interface UserCountBarButton : UIView
 
 @property (nonatomic) uint userCount;
 @property (nonatomic) uint lurkerCount;
