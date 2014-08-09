@@ -154,12 +154,12 @@
         dateString = [NSString stringWithFormat:@"%u %@", [date daysAgo], NSLocalizedString(@"DaysAgo", nil)];
     } else {
         NSDateFormatter *dateFormater = [[NSDateFormatter alloc]init];
-        [dateFormater setDateFormat:@"M/d"];
+        [dateFormater setDateFormat:@"MMM d"];
         dateString = [dateFormater stringFromDate:date];
     }
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    [timeFormatter setDateFormat:@"hh:mm a"];
+    [timeFormatter setDateFormat:@"h:mm a"];
     NSString *timeString = [timeFormatter stringFromDate:date];
     
     NSString *text = [NSString stringWithFormat:@"%@ %@", dateString, timeString ];
