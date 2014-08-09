@@ -167,6 +167,7 @@
     {
         // keep scroll position
         float height = self.tableView.contentSize.height;
+        float offset = self.tableView.contentOffset.y;
         
         // merge results into table
         NSArray *newMessages = command.results;
@@ -177,7 +178,7 @@
         [self.tableView reloadData];
         
         // reatin the previous scroll position
-        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - height);
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - height + offset);
         
         // on fresh reload
         if (command.page == 1)
@@ -249,11 +250,9 @@
 }
 
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"%f", targetContentOffset->y);
-    if(targetContentOffset -> y <= 0)
-    {
+    if(scrollView.contentOffset.y <= 10) {
         [self loadMessagesWithPage:self.page + 1];
     }
 }
