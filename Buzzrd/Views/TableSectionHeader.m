@@ -22,7 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[ThemeManager getPrimaryColorMedium]];
+        [self setBackgroundColor:[ThemeManager getPrimaryColorDark]];
         [self addBottomBorder:[ThemeManager getSecondaryColorMedium] width:2.0];
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, frame.size.width - 14, frame.size.height)];

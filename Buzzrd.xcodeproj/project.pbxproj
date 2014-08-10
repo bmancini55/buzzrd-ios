@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3504373D193DFB3100731968 /* VenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373C193DFB3100731968 /* VenueView.m */; };
 		35043740193DFC5300731968 /* VenueRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3504373F193DFC5300731968 /* VenueRoomView.m */; };
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
@@ -114,8 +113,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3504373B193DFB3100731968 /* VenueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueView.h; path = Views/Venues/VenueView.h; sourceTree = "<group>"; };
-		3504373C193DFB3100731968 /* VenueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueView.m; path = Views/Venues/VenueView.m; sourceTree = "<group>"; };
 		3504373E193DFC5300731968 /* VenueRoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomView.h; path = Views/Venues/VenueRoomView.h; sourceTree = "<group>"; };
 		3504373F193DFC5300731968 /* VenueRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomView.m; path = Views/Venues/VenueRoomView.m; sourceTree = "<group>"; };
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
@@ -310,8 +307,6 @@
 		3504373A193DFAF800731968 /* Venues */ = {
 			isa = PBXGroup;
 			children = (
-				3504373B193DFB3100731968 /* VenueView.h */,
-				3504373C193DFB3100731968 /* VenueView.m */,
 				3561B6B6194C8C1500EF1654 /* VenueCell.h */,
 				3561B6B7194C8C1500EF1654 /* VenueCell.m */,
 				3504373E193DFC5300731968 /* VenueRoomView.h */,
@@ -891,7 +886,6 @@
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
-				3504373D193DFB3100731968 /* VenueView.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,

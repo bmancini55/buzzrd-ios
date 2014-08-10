@@ -11,13 +11,14 @@
 #import "BuzzrdAPI.h"
 #import "BuzzrdNav.h"
 #import "FrameUtils.h"
-#import "VenueView.h"
+#import "VenueCell.h"
 #import "VenueRoomView.h"
 #import "VenueRoomCell.h"
 #import "FoursquareAttribution.h"
 #import "GetLocationCommand.h"
 #import "GetVenuesCommand.h"
 #import "RetryAlert.h"
+#import "TableSectionHeader.h"
 
 @interface NearbyViewController ()
 
@@ -134,17 +135,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Venue *venue = (Venue *)self.venues[indexPath.section];
-    Room *room = venue.rooms[indexPath.row];
-    
-    VenueRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueRoom"];
+    Venue *venue = (Venue *)self.venues[indexPath.row];
+    VenueCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Venue"];
     if(cell == nil)
     {
-        cell = [[VenueRoomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VenueRoom"];
+        cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Venue"];
     }
 
-    [cell.roomView setRoom:room];
-
+    [cell setVenue:venue userLocation:self.location];
     return cell;
 }
 
@@ -152,8 +150,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Venue *venue = self.venues[indexPath.section];
-    Room *room = venue.rooms[indexPath.row];
+    Venue *venue = self.venues[indexPath.row];
+    Room *room = venue.rooms[0];
     [self joinRoom:room];
 }
 
@@ -161,25 +159,31 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    Venue *venue = self.venues[section];
+    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    TableSectionHeader *headerView = [[TableSectionHeader alloc]initWithFrame:frame];
     
-    VenueView *venueView = [[VenueView alloc]init];
-    [venueView setVenue:venue userLocation:self.location];
-    
-    UIView *view = [[UIView alloc]init];
-    [view addSubview:venueView];
-    return view;
+    NSString *titleText;
+    switch(section)
+    {
+        case 0:
+//            titleText = NSLocalizedString(@"recently_visited_rooms", nil);
+//            break;
+//        case 1:
+            titleText = NSLocalizedString(@"nearby_rooms", nil);
+            break;
+    }
+    headerView.titleText = titleText;
+    return headerView;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 42;
+    return 44;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
 }
 
 #pragma mark - controller interaction methods
