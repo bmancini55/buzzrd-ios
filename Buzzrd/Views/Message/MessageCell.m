@@ -28,6 +28,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        self.backgroundColor = [UIColor clearColor];
 
         self.messageBubble = [[MessageBubble alloc]init];
         self.messageBubble.translatesAutoresizingMaskIntoConstraints = NO;

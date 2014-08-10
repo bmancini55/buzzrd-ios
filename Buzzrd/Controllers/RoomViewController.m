@@ -13,6 +13,7 @@
 #import "GetMessagesForRoomCommand.h"
 #import "MessageCell.h"
 #import "UserCountBarButton.h"
+#import "BuzzrdBackgroundView.h"
 
 @interface RoomViewController ()
 
@@ -34,6 +35,8 @@
     self.title = self.room.name;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
+    self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
+    
     
     // Setting the estimated row height prevents the table view from calling tableView:heightForRowAtIndexPath: for every row in the table on first load;
     // it will only be called as cells are about to scroll onscreen. This is a major performance optimization.

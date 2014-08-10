@@ -55,6 +55,8 @@
 		35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C1FF1987209800528D77 /* NSDate+Helpers.m */; };
 		35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A8F8E21992568000D54383 /* UserCountBarButton.m */; };
 		35A8F8E51996E6C300D54383 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A8F8E41996E6C300D54383 /* Camera@2x.png */; };
+		35A8F8EE1996F53800D54383 /* BuzzrdBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A8F8ED1996F53800D54383 /* BuzzrdBackgroundView.m */; };
+		35A8F8F01996F93700D54383 /* Buzzrd_Silhouette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */; };
 		35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AD837C1960B4590035214F /* GetLocationCommand.m */; };
 		35BA0DF918CF37A100F5B339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DF818CF37A100F5B339 /* Foundation.framework */; };
 		35BA0DFB18CF37A100F5B339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFA18CF37A100F5B339 /* CoreGraphics.framework */; };
@@ -206,6 +208,9 @@
 		35A8F8E11992568000D54383 /* UserCountBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCountBarButton.h; path = Views/Room/UserCountBarButton.h; sourceTree = "<group>"; };
 		35A8F8E21992568000D54383 /* UserCountBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCountBarButton.m; path = Views/Room/UserCountBarButton.m; sourceTree = "<group>"; };
 		35A8F8E41996E6C300D54383 /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@2x.png"; sourceTree = "<group>"; };
+		35A8F8EC1996F53800D54383 /* BuzzrdBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdBackgroundView.h; path = Views/BuzzrdBackgroundView.h; sourceTree = "<group>"; };
+		35A8F8ED1996F53800D54383 /* BuzzrdBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuzzrdBackgroundView.m; path = Views/BuzzrdBackgroundView.m; sourceTree = "<group>"; };
+		35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Silhouette@2x.png"; sourceTree = "<group>"; };
 		35AD837B1960B4590035214F /* GetLocationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetLocationCommand.h; path = Commands/Location/GetLocationCommand.h; sourceTree = "<group>"; };
 		35AD837C1960B4590035214F /* GetLocationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetLocationCommand.m; path = Commands/Location/GetLocationCommand.m; sourceTree = "<group>"; };
 		35BA0DF518CF37A100F5B339 /* Buzzrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzzrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,6 +411,8 @@
 				355F4719194F120900DF8388 /* FoursquareAttribution.m */,
 				353471481991B6B900D3C1F5 /* PlaceholderTextView.h */,
 				353471491991B6B900D3C1F5 /* PlaceholderTextView.m */,
+				35A8F8EC1996F53800D54383 /* BuzzrdBackgroundView.h */,
+				35A8F8ED1996F53800D54383 /* BuzzrdBackgroundView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -600,6 +607,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */,
 				35A8F8E41996E6C300D54383 /* Camera@2x.png */,
 				C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */,
 				C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */,
@@ -805,6 +813,7 @@
 			files = (
 				C20A15D619761C590003B67E /* Buzzrd_Logo_with_Text@2x.png in Resources */,
 				C29DDDEA1981F18400EA922F /* 120x120_Launch_Icon.png in Resources */,
+				35A8F8F01996F93700D54383 /* Buzzrd_Silhouette@2x.png in Resources */,
 				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
 				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
@@ -905,6 +914,7 @@
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */,
+				35A8F8EE1996F53800D54383 /* BuzzrdBackgroundView.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
