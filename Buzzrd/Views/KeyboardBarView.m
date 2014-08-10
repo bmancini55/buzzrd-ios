@@ -12,6 +12,7 @@
 
 @interface KeyboardBarView()
 
+@property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIButton *mainButton;
 @property (nonatomic) bool hasConstraints;
 
@@ -29,6 +30,11 @@
         self.backgroundColor = [ThemeManager getPrimaryColorMediumLight];
         self.frame = CGRectMake(0, 0, 360, 41 );
         
+        // create the image
+        self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Camera.png"]];
+        self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.imageView];
+        
         // create the textbox
         self.textView = [[PlaceholderTextView alloc] init];
         self.textView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -43,6 +49,7 @@
         self.textView.tintColor = [ThemeManager getTertiaryColorDark];
         self.textView.placeholder = NSLocalizedString(@"keyboard_bar_placeholder", nil);
         [self addSubview:self.textView];
+        
         
         // create the send button
         self.mainButton = [[UIButton alloc]init];
@@ -70,9 +77,12 @@
     if(!self.hasConstraints) {
         self.hasConstraints = true;
         
-        // control constraints
-        NSDictionary *barConstraintViews = @{ @"textView": self.textView, @"mainButton": self.mainButton };
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[textView]-6-[mainButton]-6-|" options:0 metrics:nil views:barConstraintViews]];
+        // horizontal constraints
+        NSDictionary *hcon = @{ @"imageView": self.imageView, @"textView": self.textView, @"mainButton": self.mainButton };
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[imageView(26)]-6-[textView]-6-[mainButton]-6-|" options:0 metrics:nil views:hcon]];
+        
+        // vertical constraints
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[imageView(19.5)]" options:0 metrics:nil views:@{ @"imageView": self.imageView }]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[textView]-6-|" options:0 metrics:nil views:@{ @"textView": self.textView }]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[mainButton]-6-|" options:0 metrics:nil views:@{ @"mainButton": self.mainButton }]];
         
