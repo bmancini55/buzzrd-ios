@@ -154,7 +154,7 @@
     self.titleLabel.text = venue.name;
     
     // set address
-    self.addressLabel.text = @"Address goes here";
+    self.addressLabel.text = [self.venue.location prettyString];
     
     // set distance
     CLLocationDistance distance = [userLocation distanceFromLocation:venue.location.location];

@@ -11,13 +11,16 @@
 
 @interface VenueLocation : NSObject
 
-@property (strong,nonatomic) NSString *countryCode;
+@property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *city;
-@property (strong, nonatomic) NSString *country;
-@property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) NSString *state;
+@property (strong, nonatomic) NSString *country;
+@property (strong, nonatomic) NSString *countryCode;
+@property (strong, nonatomic) CLLocation *location;
 
 
 -(id) initWithJson:(NSDictionary *)json;
+
+- (NSString *) prettyString;
 
 @end
