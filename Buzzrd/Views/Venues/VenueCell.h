@@ -14,5 +14,6 @@
 @property (strong, nonatomic) Venue *venue;
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation;
+- (void)addBorder;
 
 @end

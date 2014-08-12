@@ -142,7 +142,7 @@
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Venue"];
     }
 
-    [cell setVenue:venue userLocation:self.location];
+    [cell setVenue:venue userLocation:self.location];    
     return cell;
 }
 
@@ -178,7 +178,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    Venue *venue = self.venues[indexPath.row];
+    VenueCell *cell = [[VenueCell alloc]init];
+    [cell setVenue:venue userLocation:self.location];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 2;
+    return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
