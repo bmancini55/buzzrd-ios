@@ -161,10 +161,10 @@
     self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance / 1000];
     
     // set counts
-    self.userCountLabel.text = [NSString stringWithFormat:@"%u", (uint)5];
+    self.userCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.userCount];
     self.userLabel.text = @"USERS";
     
-    self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)0];
+    self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.lurkerCount];
     self.lurkerLabel.text = @"LURKERS";
     
     [self updateConstraints];

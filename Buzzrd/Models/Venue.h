@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *referralId;
 @property (nonatomic) NSUInteger roomCount;
 @property (nonatomic) NSUInteger userCount;
+@property (nonatomic) NSUInteger lurkerCount;
 @property (strong, nonatomic) NSDate *updated;
 @property (nonatomic) bool verified;
 @property (nonatomic, strong) NSArray *rooms;

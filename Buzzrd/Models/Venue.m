@@ -35,6 +35,7 @@
         self.referralId = json[@"referralId"];
         self.roomCount = [json[@"roomCount"] unsignedIntegerValue];
         self.userCount = [json[@"userCount"] unsignedIntegerValue];
+        self.lurkerCount = [json[@"lurkerCount"] unsignedIntegerValue];
         self.verified = [json[@"verified"] boolValue];
         
         NSArray *rawRooms = json[@"rooms"];
