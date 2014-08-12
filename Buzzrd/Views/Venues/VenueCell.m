@@ -158,7 +158,11 @@
     
     // set distance
     CLLocationDistance distance = [userLocation distanceFromLocation:venue.location.location];
-    self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance / 1000];
+    CGFloat distanceInFeet = distance / 1609.344 * 5280;
+    if(distanceInFeet < 500)
+        self.distanceLabel.text = [NSString stringWithFormat:@"%1.f ft", distanceInFeet];
+    else
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", distanceInFeet / 5280];
     
     // set counts
     self.userCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.userCount];
