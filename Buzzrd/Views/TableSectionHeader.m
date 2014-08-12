@@ -26,7 +26,7 @@
         [self addBottomBorder:[ThemeManager getSecondaryColorMedium] width:2.0];
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, frame.size.width - 14, frame.size.height)];
-        self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:9.0];
+        self.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:10.0];
         self.titleLabel.textColor = [ThemeManager getPrimaryColorLight];
         [self addSubview:self.titleLabel];
     }

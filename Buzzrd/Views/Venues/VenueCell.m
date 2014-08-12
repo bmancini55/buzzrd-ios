@@ -57,44 +57,44 @@
     [self.contentView addSubview:self.categoryImage];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [ThemeManager getPrimaryFontRegular:16.0f];
+    self.titleLabel.font = [ThemeManager getPrimaryFontRegular:17.0f];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.titleLabel];
     
     self.addressLabel = [[UILabel alloc]init];
-    self.addressLabel.font = [ThemeManager getPrimaryFontMedium:7.0];
+    self.addressLabel.font = [ThemeManager getPrimaryFontMedium:9.0];
     self.addressLabel.textColor = [UIColor whiteColor];
     self.addressLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.addressLabel];
     
     self.distanceLabel = [[UILabel alloc] init];
-    self.distanceLabel.font = [ThemeManager getPrimaryFontRegular:10.0];
+    self.distanceLabel.font = [ThemeManager getPrimaryFontRegular:11.0];
     self.distanceLabel.textColor = [UIColor whiteColor];
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.distanceLabel];
     
     self.userCountLabel = [[UILabel alloc] init];
-    self.userCountLabel.font = [ThemeManager getPrimaryFontBold:9.0];
+    self.userCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
     self.userCountLabel.textColor = [UIColor whiteColor];
     self.userCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.userCountLabel];
     
     self.userLabel = [[UILabel alloc] init];
-    self.userLabel.font = [ThemeManager getPrimaryFontMedium:9.0];
+    self.userLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
     self.userLabel.textColor = [UIColor whiteColor];
     self.userLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.userLabel];
     
     self.lurkerCountLabel = [[UILabel alloc] init];
-    self.lurkerCountLabel.font = [ThemeManager getPrimaryFontBold:9.0];
+    self.lurkerCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
     self.lurkerCountLabel.textColor = [UIColor whiteColor];
     self.lurkerCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.lurkerCountLabel];
     
     self.lurkerLabel = [[UILabel alloc] init];
-    self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:9.0];
+    self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
     self.lurkerLabel.textColor = [UIColor whiteColor];
     self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.lurkerLabel];
@@ -106,16 +106,16 @@
     [self.contentView removeConstraints:self.contentView.constraints];
     
     // vertical spacing for the image from the top of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
     
     // vertical spacing for the title from the top of the container
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.titleLabel }]];
     
     // vertical spacing for title and address, align them vertically on the left edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-2)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"title": self.titleLabel, @"address":                                                                                                                                                  self.addressLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"title": self.titleLabel, @"address":                                                                                                                                                  self.addressLabel }]];
     
     // vertical spacing for address and user count, align them verticall on the left edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-1-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
     
     // vertical spacing for user and lurker counts from the bottom of the container
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
