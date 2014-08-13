@@ -204,6 +204,7 @@
     if(cell == nil)
     {
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.showCounts = false;
     }
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
@@ -217,6 +218,7 @@
     NSArray *dataSource = [self dataSourceForTableView:tableView];
     Venue *venue = dataSource[indexPath.row];
     VenueCell *cell = [[VenueCell alloc]init];
+    cell.showCounts = false;
     [cell setVenue:venue userLocation:self.location];
     
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 2;

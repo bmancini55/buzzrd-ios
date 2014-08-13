@@ -11,6 +11,7 @@
 
 @interface VenueCell : UITableViewCell
 
+@property (nonatomic) bool showCounts;
 @property (strong, nonatomic) Venue *venue;
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation;

@@ -50,7 +50,8 @@
 
 - (void) configure
 {
-    self.backgroundColor = [ThemeManager getPrimaryColorMedium];
+    self.backgroundColor = [ThemeManager getPrimaryColorMedium];    
+    self.showCounts = true;
     
     self.categoryImage = [[ProfileImageView alloc]init];
     self.categoryImage.translatesAutoresizingMaskIntoConstraints = NO;
@@ -98,6 +99,8 @@
     self.lurkerLabel.textColor = [UIColor whiteColor];
     self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.lurkerLabel];
+    
+
 }
 
 - (void) updateConstraints
@@ -105,8 +108,18 @@
     // remove all constraints
     [self.contentView removeConstraints:self.contentView.constraints];
     
-    // vertical spacing for the image from the top of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
+    if(self.showCounts) {
+        
+        // vertical spacing for the image from the top of the container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
+        
+    } else {
+        
+        // vertical spacing for the image from the top of the container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
+        
+    }
+
     
     // vertical spacing for the title from the top of the container
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.titleLabel }]];
@@ -114,14 +127,24 @@
     // vertical spacing for title and address, align them vertically on the left edge
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"title": self.titleLabel, @"address":                                                                                                                                                  self.addressLabel }]];
     
-    // vertical spacing for address and user count, align them verticall on the left edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
     
-    // vertical spacing for user and lurker counts from the bottom of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
+    if(self.showCounts) {
+    
+        // vertical spacing for address and user count, align them verticall on the left edge
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
+        
+        // vertical spacing for user and lurker counts from the bottom of the container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
+        
+    } else {
+        
+        // vertical spacing for address and bottom edge of container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-8-|" options:0 metrics:nil views:@{ @"address": self.addressLabel }]];
+        
+    }
     
 
     // horizontal spacing for image and title
@@ -133,8 +156,12 @@
     // horizontal spacing between address and distance, align them on the center
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"address": self.addressLabel, @"distance": self.distanceLabel }]];
     
-    // horizontal spacing for the user and lurker counts, align them on the top edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[users]-16-[lurkercount]-3-[lurkers]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"usercount": self.userCountLabel, @"users": self.userLabel, @"lurkercount": self.lurkerCountLabel, @"lurkers": self.lurkerLabel }]];
+    if(self.showCounts) {
+    
+        // horizontal spacing for the user and lurker counts, align them on the top edge
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[users]-16-[lurkercount]-3-[lurkers]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"usercount": self.userCountLabel, @"users": self.userLabel, @"lurkercount": self.lurkerCountLabel, @"lurkers": self.lurkerLabel }]];
+        
+    }
     
     
     [super updateConstraints];
@@ -175,6 +202,16 @@
     [self layoutIfNeeded];
     
     [self addBorder];
+}
+
+- (void)setShowCounts:(bool)showCounts
+{
+    _showCounts = showCounts;
+    
+    self.userCountLabel.hidden = true;
+    self.userLabel.hidden = true;
+    self.lurkerCountLabel.hidden = true;
+    self.lurkerLabel.hidden = true;
 }
 
 - (void)addBorder
