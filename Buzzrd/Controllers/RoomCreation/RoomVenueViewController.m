@@ -212,6 +212,17 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    Venue *venue = dataSource[indexPath.row];
+    VenueCell *cell = [[VenueCell alloc]init];
+    [cell setVenue:venue userLocation:self.location];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 2;
+    return height;
+}
+
 
 
 #pragma mark - Table view delegate
