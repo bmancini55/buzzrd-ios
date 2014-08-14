@@ -14,6 +14,7 @@
 #import "GetVenuesCommand.h"
 #import "GetLocationCommand.h"
 #import "CreateRoomCommand.h"
+#import "ThemeManager.h"
 
 @interface RoomVenueViewController ()
 
@@ -52,6 +53,7 @@
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
+    searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
     self.tempSearchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     self.searchDisplayController.searchResultsDelegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
