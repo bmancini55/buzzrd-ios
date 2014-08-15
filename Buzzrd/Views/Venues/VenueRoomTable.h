@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Venue.h"
 #import "Room.h"
+#import "VenueRoomTableDelegate.h"
 
 @interface VenueRoomTable : UITableView<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Venue *venue;
 @property (strong, nonatomic) NSArray *rooms;
+@property (weak, nonatomic) id<VenueRoomTableDelegate> roomTableDelegate;
 
 @end

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Venue.h"
+#import "VenueRoomTableDelegate.h"
 
 @interface VenueCell : UITableViewCell
 
 @property (nonatomic) bool showCounts;
 @property (strong, nonatomic) Venue *venue;
+@property (weak, nonatomic) id<VenueRoomTableDelegate> roomTableDelegate;
 
 - (CGFloat)calculateHeight;
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation;

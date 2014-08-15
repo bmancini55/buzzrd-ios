@@ -10,7 +10,8 @@
 #import "BaseTableViewController.h"
 #import "Venue.h"
 #import "Room.h"
+#import "VenueRoomTableDelegate.h"
 
-@interface NearbyViewController : BaseTableViewController <UIAlertViewDelegate>
+@interface NearbyViewController : BaseTableViewController <UIAlertViewDelegate, VenueRoomTableDelegate>
 
 @end

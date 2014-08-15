@@ -185,11 +185,18 @@
     [super updateConstraints];
 }
 
+- (void)setRoomTableDelegate:(id<VenueRoomTableDelegate>)roomTableDelegate
+{
+    _roomTableDelegate = roomTableDelegate;
+    self.roomsTable.roomTableDelegate = roomTableDelegate;
+}
+
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation
 {
     self.venue = venue;
+    
+    // configure the rooms
     [self.roomsTable setRooms:venue.rooms];
-    [self updateConstraints];
     
     // set category image
     if(venue.categories.count > 0) {
@@ -217,6 +224,8 @@
     
     self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.lurkerCount];
     self.lurkerLabel.text = @"LURKERS";
+    
+    [self updateConstraints];
     
     [self addBorder];
 }

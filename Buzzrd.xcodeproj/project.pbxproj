@@ -147,6 +147,7 @@
 		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
 		3576A83A199CE0880071FED5 /* VenueRoomTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomTable.h; path = Views/Venues/VenueRoomTable.h; sourceTree = "<group>"; };
 		3576A83B199CE0880071FED5 /* VenueRoomTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomTable.m; path = Views/Venues/VenueRoomTable.m; sourceTree = "<group>"; };
+		3576A840199EB8F60071FED5 /* VenueRoomTableDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueRoomTableDelegate.h; path = Views/Venues/VenueRoomTableDelegate.h; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -319,6 +320,7 @@
 				35043742193E01D700731968 /* VenueRoomCell.m */,
 				3576A83A199CE0880071FED5 /* VenueRoomTable.h */,
 				3576A83B199CE0880071FED5 /* VenueRoomTable.m */,
+				3576A840199EB8F60071FED5 /* VenueRoomTableDelegate.h */,
 			);
 			name = Venues;
 			sourceTree = "<group>";

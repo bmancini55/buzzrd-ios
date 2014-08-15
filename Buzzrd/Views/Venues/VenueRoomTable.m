@@ -9,12 +9,6 @@
 #import "VenueRoomTable.h"
 #import "VenueRoomCell.h"
 
-@interface VenueRoomTable ()
-
-@property (strong, nonatomic) UITableView *tableView;
-
-@end
-
 @implementation VenueRoomTable
 
 - (id)init
@@ -84,6 +78,14 @@
     
     CGFloat height = [cell calculateHeight];
     return height;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    Room *room = self.rooms[indexPath.row];
+    [self.roomTableDelegate roomSelected:room];
 }
 
 @end

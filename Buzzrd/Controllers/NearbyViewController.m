@@ -139,6 +139,7 @@
     if(cell == nil)
     {
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Venue"];
+        cell.roomTableDelegate = self;
     }
 
     [cell setVenue:venue userLocation:self.location];    
@@ -247,5 +248,13 @@
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
+
+#pragma VenueRoomTableDelegate
+
+- (void) roomSelected:(Room *)room
+{
+    [self joinRoom:room];
+}
+
 
 @end
