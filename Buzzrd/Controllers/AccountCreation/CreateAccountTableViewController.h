@@ -16,4 +16,6 @@
 
 - (id)init;
 
+@property (strong, nonatomic) UITapGestureRecognizer *keyboardDismissGestureRecognizer;
+
 @end

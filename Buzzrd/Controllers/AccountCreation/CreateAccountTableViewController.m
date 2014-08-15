@@ -56,9 +56,26 @@
     self.user = [[User alloc] init];
 }
 
+- (void) hideKeyboard {
+    [self.view endEditing:YES];
+    [self.view removeGestureRecognizer:self.keyboardDismissGestureRecognizer];
+    self.keyboardDismissGestureRecognizer = nil;
+}
+
 -(void) cancelTouch
 {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(self.keyboardDismissGestureRecognizer == nil)
+    {
+        self.keyboardDismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+        self.keyboardDismissGestureRecognizer.cancelsTouchesInView = NO;
+        
+        [self.view addGestureRecognizer:self.keyboardDismissGestureRecognizer];
+    }
 }
 
 -(void) nextTouch
