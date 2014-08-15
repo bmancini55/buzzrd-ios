@@ -14,6 +14,7 @@
 @property (nonatomic) bool showCounts;
 @property (strong, nonatomic) Venue *venue;
 
+- (CGFloat)calculateHeight;
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation;
 - (void)addBorder;
 

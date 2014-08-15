@@ -12,7 +12,6 @@
 #import "BuzzrdNav.h"
 #import "FrameUtils.h"
 #import "VenueCell.h"
-#import "VenueRoomView.h"
 #import "VenueRoomCell.h"
 #import "FoursquareAttribution.h"
 #import "GetLocationCommand.h"
@@ -181,9 +180,7 @@
     Venue *venue = self.venues[indexPath.row];
     VenueCell *cell = [[VenueCell alloc]init];
     [cell setVenue:venue userLocation:self.location];
-    
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 2;
-    return height;
+    return [cell calculateHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -10,7 +10,7 @@
 #import "FrameUtils.h"
 #import "ProfileImageView.h"
 #import "ThemeManager.h"
-#import "UIView+UIView_Borders.h"
+#import "VenueRoomTable.h"
 
 @interface VenueCell()
 
@@ -25,6 +25,8 @@
 @property (strong, nonatomic) UILabel *lurkerLabel;
 
 @property (strong, nonatomic) CALayer *bottomBorder;
+
+@property (strong, nonatomic) VenueRoomTable *roomsTable;
 
 @end
 
@@ -100,7 +102,9 @@
     self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.lurkerLabel];
     
-
+    self.roomsTable = [[VenueRoomTable alloc]init];
+    self.roomsTable.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.roomsTable];
 }
 
 - (void) updateConstraints
@@ -133,11 +137,26 @@
         // vertical spacing for address and user count, align them verticall on the left edge
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
         
-        // vertical spacing for user and lurker counts from the bottom of the container
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
+        if(self.venue.roomCount <= 1) {
+            
+            // vertical spacing for user and lurker counts from the bottom of the container
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
+            
+        } else {
+        
+            // vertical spacing for user and lurker counts from the bottom of the container
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-6-[roomtable]" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel, @"roomtable": self.roomsTable }]];
+
+            // vertical spacing for table
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[roomtable(height)]-0-|" options:0 metrics:@{ @"height":[NSNumber numberWithFloat:self.roomsTable.frame.size.height] } views:@{ @"roomtable": self.roomsTable }]];
+        
+            // horizontal spacing for table
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
+            
+        }
         
     } else {
         
@@ -163,13 +182,14 @@
         
     }
     
-    
     [super updateConstraints];
 }
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation
 {
     self.venue = venue;
+    [self.roomsTable setRooms:venue.rooms];
+    [self updateConstraints];
     
     // set category image
     if(venue.categories.count > 0) {
@@ -198,9 +218,6 @@
     self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.lurkerCount];
     self.lurkerLabel.text = @"LURKERS";
     
-    [self updateConstraints];
-    [self layoutIfNeeded];
-    
     [self addBorder];
 }
 
@@ -214,10 +231,18 @@
     self.lurkerLabel.hidden = true;
 }
 
+
+- (CGFloat)calculateHeight
+{
+    CGFloat borderWidth = 2;
+    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return contentHeight + borderWidth;
+}
+
 - (void)addBorder
 {
     CGFloat width = 2.0;
-    CGFloat height = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGFloat originY = [self calculateHeight];
     
     // create on new
     if(self.bottomBorder == nil) {
@@ -227,7 +252,7 @@
     }
     
     // adjust frame when reapplied
-    self.bottomBorder.frame = CGRectMake(0, height, self.frame.size.width, width);
+    self.bottomBorder.frame = CGRectMake(0, originY, self.frame.size.width, width);
 }
 
 @end

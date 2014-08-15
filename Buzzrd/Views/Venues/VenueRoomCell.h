@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VenueRoomView.h"
+#import "Room.h"
 
 @interface VenueRoomCell : UITableViewCell
 
-@property (strong, nonatomic) VenueRoomView *roomView;
+@property (strong, nonatomic) Room* room;
 
 @end
