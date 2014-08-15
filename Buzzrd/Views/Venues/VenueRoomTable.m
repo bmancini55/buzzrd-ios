@@ -33,6 +33,7 @@
     self.dataSource = self;
     self.delegate = self;
     self.scrollEnabled = false;
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
