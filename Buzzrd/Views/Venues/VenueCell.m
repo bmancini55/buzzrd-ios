@@ -242,7 +242,7 @@
 - (void)addBorder
 {
     CGFloat width = 2.0;
-    CGFloat originY = [self calculateHeight];
+    CGFloat originY = [self calculateHeight] - 2;
     
     // create on new
     if(self.bottomBorder == nil) {
