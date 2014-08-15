@@ -88,10 +88,10 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"title":                                                                                                                                                  self.nameLabel, @"usercount": self.userCountLabel }]];
     
     // vertical spacing for user and lurker counts from the bottom of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-6-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-6-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-6-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-6-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
     
     // horizontal spacing for the user and lurker counts, align them on the top edge
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[users]-16-[lurkercount]-3-[lurkers]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"usercount": self.userCountLabel, @"users": self.userLabel, @"lurkercount": self.lurkerCountLabel, @"lurkers": self.lurkerLabel }]];
@@ -126,7 +126,7 @@
 - (void)addBorder
 {
     CGFloat width = 2.0;
-    CGFloat originY = [self calculateHeight];
+    CGFloat originY = [self calculateHeight] - 2;
     
     // create on new
     if(self.bottomBorder == nil) {

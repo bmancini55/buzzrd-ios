@@ -82,7 +82,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
     
     Room *room = self.rooms[indexPath.row];
     [self.roomTableDelegate roomSelected:room];
