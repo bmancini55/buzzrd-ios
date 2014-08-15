@@ -77,6 +77,7 @@
 		C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */; };
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */; };
+		C213C04C199DB0C800B41A2A /* AccessoryIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -236,6 +237,8 @@
 		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
 		C213C047199B00EB00B41A2A /* UIWindow+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+Helpers.h"; path = "Categories/UIWindow+Helpers.h"; sourceTree = "<group>"; };
 		C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+Helpers.m"; path = "Categories/UIWindow+Helpers.m"; sourceTree = "<group>"; };
+		C213C04A199DB0C800B41A2A /* AccessoryIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryIndicatorView.h; path = Views/AccessoryIndicatorView.h; sourceTree = "<group>"; };
+		C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryIndicatorView.m; path = Views/AccessoryIndicatorView.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				35A8F8ED1996F53800D54383 /* BuzzrdBackgroundView.m */,
 				35A8F92F1997C4FC00D54383 /* TableSectionHeader.h */,
 				35A8F9301997C4FC00D54383 /* TableSectionHeader.m */,
+				C213C04A199DB0C800B41A2A /* AccessoryIndicatorView.h */,
+				C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
 				C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */,
+				C213C04C199DB0C800B41A2A /* AccessoryIndicatorView.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,

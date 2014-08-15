@@ -15,6 +15,7 @@
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
 #import "UIWindow+Helpers.h"
+#import "AccessoryIndicatorView.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -31,6 +32,10 @@
 @end
 
 @implementation CreateAccountTableViewController
+
+#define ACCESSORY_WIDTH 13.f
+#define ACCESSORY_HEIGHT 18.f
+#define CELL_PADDING 5.f
 
 -(id)init
 {
@@ -210,7 +215,7 @@
                     }
                     
                     [cell addSubview:self.genderLabel];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     
                     break ;
                 }
@@ -233,7 +238,6 @@
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
