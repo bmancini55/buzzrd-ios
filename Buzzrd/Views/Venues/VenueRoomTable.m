@@ -75,4 +75,14 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Room *room = self.rooms[indexPath.row];
+    VenueRoomCell *cell = [[VenueRoomCell alloc]init];
+    [cell setRoom:room];
+    
+    CGFloat height = [cell calculateHeight];
+    return height;
+}
+
 @end

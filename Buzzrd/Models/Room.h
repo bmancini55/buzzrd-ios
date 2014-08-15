@@ -14,9 +14,12 @@
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSDate *updated;
-@property (nonatomic) NSUInteger userCount;
+
 @property (nonatomic) bool venueDefault;
 @property (strong, nonatomic) NSString *venueId;
+
+@property (nonatomic) NSUInteger userCount;
+@property (nonatomic) NSUInteger lurkerCount;
 
 -(id) initWithJson:(NSDictionary *)json;
 

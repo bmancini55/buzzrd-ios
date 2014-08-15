@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) Room* room;
 
+- (CGFloat)calculateHeight;
+
 @end

@@ -19,9 +19,11 @@
         self.id = json[@"id"];
         self.name = json[@"name"];
         //self.updated = // USE DATE UTIL
-        self.userCount = [json[@"userCount"] unsignedIntegerValue];
         self.venueDefault = [json[@"venueDefault"] boolValue];
         self.venueId = json[@"venueId"];
+        
+        self.userCount = [json[@"userCount"] unsignedIntegerValue];
+        self.lurkerCount = [json[@"lurkerCount"] unsignedIntegerValue];
     }
     return self;
 }
