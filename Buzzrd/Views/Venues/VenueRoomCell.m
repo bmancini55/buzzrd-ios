@@ -79,7 +79,7 @@
 - (void) updateConstraints
 {
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[title]" options:0 metrics:nil views:@{ @"title": self.nameLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-3-[default]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"title": self.nameLabel, @"default": self.defaultLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-3-[default]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{ @"title": self.nameLabel, @"default": self.defaultLabel }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-|" options:0 metrics:nil views:@{ @"default": self.defaultLabel }]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.nameLabel }]];
