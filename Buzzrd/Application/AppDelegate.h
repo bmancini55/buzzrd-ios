@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RetryAlert.h"
 #import "CommandBase.h"
+#import "LoadingOverlay.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) RetryAlert *retryAlert;
+
+@property (strong, nonatomic) LoadingOverlay *loadingOverlay;
 
 @property (strong, nonatomic) UIWindow *window;
 

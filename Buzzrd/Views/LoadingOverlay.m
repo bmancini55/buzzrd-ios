@@ -53,9 +53,10 @@
     const CGFloat DEFAULT_WIDTH = 160;
     const CGFloat DEFAULT_HEIGHT = 120;
     CGRect frame = CGRectMake(self.superview.frame.size.width / 2 - DEFAULT_WIDTH / 2,
-                              self.superview.frame.size.height / 2 - DEFAULT_HEIGHT / 2,
+                              100,
                               DEFAULT_WIDTH,
                               DEFAULT_HEIGHT);
+    
     self.frame = frame;
     
     label.text = self.title;

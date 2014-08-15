@@ -76,6 +76,7 @@
 		C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D7197A0F750003B67E /* Login_Area@2x.png */; };
 		C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */; };
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
+		C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -233,6 +234,8 @@
 		C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Megaphone@2x.png"; sourceTree = "<group>"; };
 		C212FA8D194005D300D5514E /* BaseTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTheme.h; path = Themes/BaseTheme.h; sourceTree = "<group>"; };
 		C212FA8E194005D300D5514E /* BaseTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTheme.m; path = Themes/BaseTheme.m; sourceTree = "<group>"; };
+		C213C047199B00EB00B41A2A /* UIWindow+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+Helpers.h"; path = "Categories/UIWindow+Helpers.h"; sourceTree = "<group>"; };
+		C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+Helpers.m"; path = "Categories/UIWindow+Helpers.m"; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -678,6 +681,8 @@
 				C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */,
 				35A6C1FE1987209800528D77 /* NSDate+Helpers.h */,
 				35A6C1FF1987209800528D77 /* NSDate+Helpers.m */,
+				C213C047199B00EB00B41A2A /* UIWindow+Helpers.h */,
+				C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -937,6 +942,7 @@
 				35043743193E01D700731968 /* VenueRoomCell.m in Sources */,
 				35043740193DFC5300731968 /* VenueRoomView.m in Sources */,
 				355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */,
+				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,

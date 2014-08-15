@@ -10,6 +10,7 @@
 #import "BuzzrdNav.h"
 #import "ThemeManager.h"
 #import "BuzzrdAPI.h"
+#import "UIWindow+Helpers.h"
 
 @implementation AppDelegate
 
@@ -50,6 +51,16 @@
                                             selector:@selector(networkError:)
                                                 name:[CommandBase getNetworkErrorNotificationName]
                                                 object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showActivityView)
+                                                 name:[CommandBase getShowActivityViewNotificationName]
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideActivityView)
+                                                 name:[CommandBase getHideActivityViewNotificationName]
+                                               object:nil];
 }
 
 - (void) networkError:(NSNotification *)notif {
@@ -66,6 +77,23 @@
                               message:command.error.localizedRecoverySuggestion
                        retryOperation:nil];
     }
+}
+
+- (void) showActivityView {
+    UIViewController *visibleViewController = [self.window visibleViewController];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.loadingOverlay = [[LoadingOverlay alloc]init];
+        self.loadingOverlay.title = NSLocalizedString(@"Processing", nil);
+        [visibleViewController.view addSubview:self.loadingOverlay];
+        [self.loadingOverlay show];
+    });
+}
+
+- (void) hideActivityView {
+    
+    [self.loadingOverlay hide];
 }
 
 - (void) showRetryAlertWithTitle:(NSString *)title

@@ -30,9 +30,16 @@
 
 @property (strong, nonatomic) NSError         *error;
 @property (nonatomic) bool                    allowRetry;
+@property (nonatomic) bool                    showActivityIndicator;
 
 // Returns the default error notification name
 + (NSString *)getNetworkErrorNotificationName;
+
+// Returns the show activity view notification name
++ (NSString *)getShowActivityViewNotificationName;
+
+// Returns the hide activity view notification name
++ (NSString *)getHideActivityViewNotificationName;
 
 // Registers the listener object as a listener for the completion of the operation.  When the notification is sent the listener's
 // selector is called

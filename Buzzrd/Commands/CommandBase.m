@@ -42,6 +42,13 @@
     return @"networkError";
 }
 
++ (NSString *)getShowActivityViewNotificationName {
+    return @"showActivityView";
+}
+
++ (NSString *)getHideActivityViewNotificationName {
+    return @"hideActivityView";
+}
 
 // Add the listener as an observer of the completion of the command
 - (void) listenForCompletion:(id)listener selector:(SEL)selector {
@@ -94,6 +101,17 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:[CommandBase getNetworkErrorNotificationName] object:copy userInfo:nil];
 }
 
+- (void) sendShowActivityNotification {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:[CommandBase getShowActivityViewNotificationName] object:nil userInfo:nil];
+    
+}
+
+- (void) hideShowActivityNotification {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:[CommandBase getHideActivityViewNotificationName] object:nil userInfo:nil];
+    
+}
 
 // Stub main for the NSOperation command.
 - (void)main {
@@ -145,6 +163,8 @@
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
 {
+    if (self.showActivityIndicator) { [self sendShowActivityNotification]; }
+    
     [manager
      GET:url
      parameters:parameters
@@ -160,6 +180,7 @@
              // call success callback
              self.status = kSuccess;
              self.results = parsedData;
+             if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
              [self sendCompletionNotification];
          }
          else
@@ -167,6 +188,7 @@
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              self.status = kFailure;
              self.results = error;
+             if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
              [self sendCompletionFailureNotification];
          }
          
@@ -175,6 +197,7 @@
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
+         if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }
@@ -184,6 +207,8 @@
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
 {
+    if (self.showActivityIndicator) { [self sendShowActivityNotification]; }
+    
     [manager
      POST:url
      parameters:parameters
@@ -201,6 +226,7 @@
              // call success callback
              self.status = kSuccess;
              self.results = parsedData;
+             if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
              [self sendCompletionNotification];
          }
          else
@@ -208,6 +234,7 @@
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              self.status = kFailure;
              self.results = error;
+             if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
              [self sendCompletionFailureNotification];
          }
          
@@ -216,6 +243,7 @@
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
+         if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }

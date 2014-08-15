@@ -14,6 +14,7 @@
 #import "CreateUserCommand.h"
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
+#import "UIWindow+Helpers.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -61,8 +62,8 @@
 }
 
 -(void) nextTouch
-{
-    [self showActivityView];
+{    
+    [self.view endEditing:YES];
     
     if (![self.usernameTextField.text isAlphaNumeric]) {
         [self hideActivityView];
