@@ -16,7 +16,7 @@
     self = [super init];
     if(self) {
         self.completionNotificationName = @"getVenuesComplete";
-
+        self.showActivityIndicator = false;
     }
     return self;
 }

@@ -66,12 +66,10 @@
     [self.view endEditing:YES];
     
     if (![self.usernameTextField.text isAlphaNumeric]) {
-        [self hideActivityView];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"username", nil) message: NSLocalizedString(@"username_alphanumeric_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }
     else if (self.passwordTextField.text.length < 6) {
-        [self hideActivityView];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_length_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }

@@ -17,6 +17,7 @@
     if(self)
     {
         self.completionNotificationName = @"GetMessagesForRoomComplete";
+        self.showActivityIndicator = false;
     }
     return self;
 }
