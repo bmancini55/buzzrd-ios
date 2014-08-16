@@ -151,7 +151,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Venue *venue = self.venues[indexPath.row];
-    Room *room = venue.rooms[0];
+    Room *room = venue.defaultRoom;
     [self joinRoom:room];
 }
 

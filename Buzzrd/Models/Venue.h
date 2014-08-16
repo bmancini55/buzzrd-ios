@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSDate *updated;
 @property (nonatomic) bool verified;
 @property (nonatomic, strong) NSArray *rooms;
+@property (nonatomic, strong) Room* defaultRoom;
 
 -(id) initWithJson:(NSDictionary *)json;
 

@@ -23,11 +23,7 @@
             id tempCategory = [[VenueCategory alloc]initWithJson:rawCategory];
             [tempCategories addObject:tempCategory];
         }
-        self.categories = [[NSArray alloc]initWithArray:tempCategories];
-        
-        //double lat = [json[@"lat"] doubleValue];
-        //double lng = [json[@"lng"] doubleValue];
-        //self.coord = CLLocationCoordinate2DMake(lat, lng);
+        self.categories = [[NSArray alloc]initWithArray:tempCategories];                
 
         self.location = [[VenueLocation alloc]initWithJson:json[@"location"]];
         
@@ -46,6 +42,10 @@
         }
         self.rooms = [[NSArray alloc]initWithArray:tempRooms];
         
+        id rawDefaultRoom = json[@"defaultRoom"];
+        if(rawDefaultRoom) {
+            self.defaultRoom = [[Room alloc]initWithJson:rawDefaultRoom];
+        }
     }
     return self;
 }
