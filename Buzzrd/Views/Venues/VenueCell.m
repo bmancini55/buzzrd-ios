@@ -148,13 +148,13 @@
         } else {
         
             // vertical spacing for user and lurker counts from the bottom of the container
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-6-[roomtable]" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel, @"roomtable": self.roomsTable }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-6@500-[roomtable]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"usercount": self.userCountLabel, @"roomtable": self.roomsTable }]];
 
             // vertical spacing for table
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[roomtable(height)]-0-|" options:0 metrics:@{ @"height":[NSNumber numberWithFloat:self.roomsTable.frame.size.height] } views:@{ @"roomtable": self.roomsTable }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[roomtable(==height)]-0-|" options:0 metrics:@{ @"height":[NSNumber numberWithFloat:self.roomsTable.frame.size.height] } views:@{ @"roomtable": self.roomsTable }]];
         
             // horizontal spacing for table
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
             
         }
         
