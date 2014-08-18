@@ -196,8 +196,15 @@
     self.venue = venue;
     
     // configure the rooms
-    [self.roomsTable setRooms:venue.rooms];
+    if(venue.roomCount > 1) {
+        self.roomsTable.hidden = false;
+        [self.roomsTable setRooms:venue.rooms];
+    } else {
+        self.roomsTable.hidden = true;
+        [self.roomsTable setRooms:nil];
+    }
     
+
     // set category image
     if(venue.categories.count > 0) {
         VenueCategory *primaryCategory = venue.categories[0];
