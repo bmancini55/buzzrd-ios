@@ -37,11 +37,8 @@
     [self reloadData];
     
     CGRect frame = self.frame;
-    frame.size.width = 260;
     frame.size.height = self.contentSize.height;
     self.frame = frame;
-    
-    NSLog(@"Table content size: %@, frame size: %@", NSStringFromCGSize(self.contentSize), NSStringFromCGSize(self.frame.size));
 }
 
 
