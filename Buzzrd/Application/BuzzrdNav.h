@@ -12,6 +12,8 @@
 #import "JoinBuzzrdViewController.h"
 #import "CreateAccountTableViewController.h"
 #import "ProfileImageViewController.h"
+#import "TermsOfServiceViewController.h"
+#import "PrivacyPolicyViewController.h"
 
 @interface BuzzrdNav : NSObject
 
@@ -24,5 +26,7 @@
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;
 +(CreateAccountTableViewController *) createAccountTableViewController;
 +(ProfileImageViewController *) profileImageViewController;
++(TermsOfServiceViewController *) termsOfServiceViewController;
++(PrivacyPolicyViewController *) privacyPolicyViewController;
 
 @end

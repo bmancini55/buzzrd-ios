@@ -9,6 +9,7 @@
 #import "BuzzrdNav.h"
 #import "JoinBuzzrdViewController.h"
 #import "ThemeManager.h"
+#import "DisclaimerView.h"
 
 @interface JoinBuzzrdViewController ()
 
@@ -65,16 +66,13 @@
     self.getStartedButton.layer.cornerRadius = 5; // this value vary as per your desire
     [self.view addSubview:self.getStartedButton];
     
-    self.createAccountDetailsLbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,90)];
-    [self.createAccountDetailsLbl setText:NSLocalizedString(@"join_buzzrd_detail", nil)];
-    self.createAccountDetailsLbl.textAlignment = NSTextAlignmentCenter;
-    self.createAccountDetailsLbl.font = [UIFont fontWithName:@"AvenirNext-Regular" size:9.0];
-    self.createAccountDetailsLbl.numberOfLines = 0;
-    self.createAccountDetailsLbl.textColor = [ThemeManager getPrimaryColorDark];
-    self.createAccountDetailsLbl.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.createAccountDetailsLbl];
     
+    UIView *disclaimerContainerView = [[UIView alloc] initWithFrame:CGRectMake(20,200,self.view.frame.size.width-40,90)];
+    disclaimerContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:disclaimerContainerView];
     
+    UIView *disclaimerView = [[DisclaimerView alloc] initWithFrame:CGRectMake(0,0,disclaimerContainerView.frame.size.width,90)];
+    [disclaimerContainerView addSubview:disclaimerView];
     
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[megaphoneImageView]-40-|" options:0 metrics:nil views:@{ @"megaphoneImageView" : megaphoneImageView }]];
@@ -83,9 +81,9 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[createAccountSummaryLbl]-90-|" options:0 metrics:nil views:@{ @"createAccountSummaryLbl" : self.createAccountSummaryLbl }]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[createAccountDetailsLbl]-20-|" options:0 metrics:nil views:@{ @"createAccountDetailsLbl" : self.createAccountDetailsLbl }]];
-
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-125-[megaphoneImageView]-3-[joinBuzzrdLbl]-0-[createAccountSummaryLbl]-70-[getStartedButton]-8-[createAccountDetailsLbl]" options:0 metrics:nil views:@{ @"megaphoneImageView" : megaphoneImageView, @"joinBuzzrdLbl" : self.joinBuzzrdLbl, @"createAccountSummaryLbl" : self.createAccountSummaryLbl, @"getStartedButton" : self.getStartedButton, @"createAccountDetailsLbl" : self.createAccountDetailsLbl }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[disclaimerContainerView]-25-|" options:0 metrics:nil views:@{ @"disclaimerContainerView" :disclaimerContainerView }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-125-[megaphoneImageView]-3-[joinBuzzrdLbl]-0-[createAccountSummaryLbl]-70-[getStartedButton]-10-[disclaimerContainerView]-5-|" options:0 metrics:nil views:@{ @"megaphoneImageView" : megaphoneImageView, @"joinBuzzrdLbl" : self.joinBuzzrdLbl, @"createAccountSummaryLbl" : self.createAccountSummaryLbl, @"getStartedButton" : self.getStartedButton, @"disclaimerContainerView" : disclaimerContainerView }]];
 }
 
 -(void) cancelTouch

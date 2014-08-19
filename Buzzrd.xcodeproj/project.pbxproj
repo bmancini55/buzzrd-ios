@@ -78,6 +78,9 @@
 		C212FA8F194005D300D5514E /* BaseTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C212FA8E194005D300D5514E /* BaseTheme.m */; };
 		C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */; };
 		C213C04C199DB0C800B41A2A /* AccessoryIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */; };
+		C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C04E19A19A8600B41A2A /* DisclaimerView.m */; };
+		C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */; };
+		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -240,6 +243,12 @@
 		C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+Helpers.m"; path = "Categories/UIWindow+Helpers.m"; sourceTree = "<group>"; };
 		C213C04A199DB0C800B41A2A /* AccessoryIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryIndicatorView.h; path = Views/AccessoryIndicatorView.h; sourceTree = "<group>"; };
 		C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryIndicatorView.m; path = Views/AccessoryIndicatorView.m; sourceTree = "<group>"; };
+		C213C04D19A19A8600B41A2A /* DisclaimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclaimerView.h; path = Views/DisclaimerView.h; sourceTree = "<group>"; };
+		C213C04E19A19A8600B41A2A /* DisclaimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisclaimerView.m; path = Views/DisclaimerView.m; sourceTree = "<group>"; };
+		C213C05019A2E49E00B41A2A /* TermsOfServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermsOfServiceViewController.h; path = Controllers/AccountCreation/TermsOfServiceViewController.h; sourceTree = "<group>"; };
+		C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsOfServiceViewController.m; path = Controllers/AccountCreation/TermsOfServiceViewController.m; sourceTree = "<group>"; };
+		C213C05319A2EED300B41A2A /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/AccountCreation/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/AccountCreation/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -423,6 +432,8 @@
 				35A8F9301997C4FC00D54383 /* TableSectionHeader.m */,
 				C213C04A199DB0C800B41A2A /* AccessoryIndicatorView.h */,
 				C213C04B199DB0C800B41A2A /* AccessoryIndicatorView.m */,
+				C213C04D19A19A8600B41A2A /* DisclaimerView.h */,
+				C213C04E19A19A8600B41A2A /* DisclaimerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -645,6 +656,10 @@
 				C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */,
 				C2C6E554193811A600DBEEE6 /* ProfileImageViewController.h */,
 				C2C6E555193811A600DBEEE6 /* ProfileImageViewController.m */,
+				C213C05019A2E49E00B41A2A /* TermsOfServiceViewController.h */,
+				C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */,
+				C213C05319A2EED300B41A2A /* PrivacyPolicyViewController.h */,
+				C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */,
 			);
 			name = AccountCreation;
 			sourceTree = "<group>";
@@ -793,7 +808,7 @@
 				ORGANIZATIONNAME = Buzzrd;
 				TargetAttributes = {
 					35BA0DF418CF37A100F5B339 = {
-						DevelopmentTeam = W7E8H67XME;
+						DevelopmentTeam = R6N6F654JB;
 					};
 					35BA0E0F18CF37A100F5B339 = {
 						TestTargetID = 35BA0DF418CF37A100F5B339;
@@ -895,6 +910,7 @@
 				C2C97BB119624F95006510D9 /* GetCurrentUserCommand.m in Sources */,
 				C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */,
 				C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */,
+				C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
@@ -923,6 +939,7 @@
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,
+				C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */,
@@ -933,6 +950,7 @@
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
+				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,

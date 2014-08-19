@@ -80,4 +80,16 @@
     return viewController;
 }
 
++(TermsOfServiceViewController *) termsOfServiceViewController
+{
+    TermsOfServiceViewController *viewController = [[TermsOfServiceViewController alloc]init];
+    return viewController;
+}
+
++(PrivacyPolicyViewController *) privacyPolicyViewController;
+{
+    PrivacyPolicyViewController *viewController = [[PrivacyPolicyViewController alloc]init];
+    return viewController;
+}
+
 @end
