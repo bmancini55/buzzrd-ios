@@ -116,7 +116,7 @@
     
     [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[passwordTextField]-15-|" options:0 metrics:nil views:@{ @"passwordTextField" : self.passwordTextField }]];
     
-    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-2-[loginButton]-2-|" options:0 metrics:nil views:@{ @"loginButton" : self.loginButton }]];
+    [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[loginButton]-6-|" options:0 metrics:nil views:@{ @"loginButton" : self.loginButton }]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[createAccountButton]-20-|" options:0 metrics:nil views:@{ @"createAccountButton" : self.createAccountButton }]];
     
