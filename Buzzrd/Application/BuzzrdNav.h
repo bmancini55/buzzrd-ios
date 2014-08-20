@@ -19,8 +19,10 @@
 
 +(UIViewController *) createLoginViewController;
 +(UIViewController *) createHomeViewController;
++(UIViewController *) createSettingsController;
 +(UIViewController *) createRoomViewController:(Room *)room;
 +(UIViewController *) createNewRoomViewController:(void (^)(Venue *venue, Room *newRoom))roomCreatedCallback;
+
 
 // Account Creation
 +(JoinBuzzrdViewController *) joinBuzzrdViewController;

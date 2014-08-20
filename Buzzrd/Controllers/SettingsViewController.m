@@ -1,26 +1,26 @@
 //
-//  UserOptionsViewController.m
+//  SettingsViewController.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 5/14/14.
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
 //
 
-#import "UserOptionsViewController.h"
+#import "SettingsViewController.h"
 #import "BuzzrdAPI.h"
 #import "LogoutCommand.h"
 
-@interface UserOptionsViewController ()
+@interface SettingsViewController ()
 
 @end
 
-@implementation UserOptionsViewController
+@implementation SettingsViewController
 
 -(void)loadView
 {
     [super loadView];
     
-    self.title = @"Options";
+    self.title = NSLocalizedString(@"settings", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

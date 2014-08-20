@@ -43,13 +43,15 @@
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
+    self.navigationItem.leftBarButtonItem = settingsItem;
+    
     [self.refreshControl beginRefreshing];
     [self getUserLocation];
 }
 
 - (void)tableViewWillRefresh
 {
-    NSLog(@"Refreshing table");
     [self getUserLocation];
 }
 
@@ -120,6 +122,8 @@
 }
 
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -155,6 +159,9 @@
     [self joinRoom:room];
 }
 
+
+
+
 #pragma mark - UITableViewDelegate
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -189,7 +196,18 @@
     return 30;
 }
 
+
+
+
 #pragma mark - controller interaction methods
+
+- (void) settingsTouch
+{
+    UIViewController *viewController = [BuzzrdNav createSettingsController];
+    //[self presentViewController:viewController animated:true completion:nil];
+    [self.navigationController pushViewController:viewController animated:true];
+}
+
 
 -(void)addRoomTouch
 {

@@ -9,7 +9,7 @@
 #import "BuzzrdNav.h"
 #import "LoginViewController.h"
 #import "RoomViewController.h"
-#import "UserOptionsViewController.h"
+#import "SettingsViewController.h"
 #import "NearbyViewController.h"
 #import "RoomVenueViewController.h"
 #import "RoomOptionsViewController.h"
@@ -29,15 +29,25 @@
     NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
     UINavigationController *nearbyNavController = [[UINavigationController alloc] initWithRootViewController:nearbyViewController];
     
-    UserOptionsViewController *userOptionsViewController = [[UserOptionsViewController alloc]init];
-    UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:userOptionsViewController];
+    //SettingsViewController *SettingsViewController = [[SettingsViewController alloc]init];
+    //UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:SettingsViewController];
     
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[nearbyNavController, userOptionsNavController];
-    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
-    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"options", nil)];
+    //UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    //tabBarController.viewControllers = @[nearbyNavController, userOptionsNavController];
+    //[[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
+    //[[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"options", nil)];
     
-    return tabBarController;
+    //return tabBarController;
+    
+    return nearbyNavController;
+}
+
++(UIViewController *) createSettingsController
+{
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc]init];
+    //UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:SettingsViewController];
+    //return userOptionsNavController;
+    return settingsViewController;
 }
 
 +(UIViewController *) createRoomViewController:(Room *)room

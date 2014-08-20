@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
+		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */; };
 		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
@@ -38,7 +39,7 @@
 		35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9319328A9F00B615A4 /* BaseViewController.m */; };
 		35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9519328A9F00B615A4 /* LoginViewController.m */; };
 		35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9B19328A9F00B615A4 /* RoomViewController.m */; };
-		35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */; };
+		35A46FA419328A9F00B615A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F9D19328A9F00B615A4 /* SettingsViewController.m */; };
 		35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */; };
 		35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB119328ACC00B615A4 /* LoadingOverlay.m */; };
 		35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FB319328ACC00B615A4 /* ProfileImageView.m */; };
@@ -121,6 +122,7 @@
 /* Begin PBXFileReference section */
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
+		350AB59019A4C8AA0060D3C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomCommand.h; path = Commands/Room/CreateRoomCommand.h; sourceTree = "<group>"; };
 		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		351036EB19705BF300AF5C39 /* GetMessagesForRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessagesForRoomCommand.h; path = Commands/Message/GetMessagesForRoomCommand.h; sourceTree = "<group>"; };
@@ -179,8 +181,8 @@
 		35A46F9519328A9F00B615A4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controllers/LoginViewController.m; sourceTree = "<group>"; };
 		35A46F9A19328A9F00B615A4 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomViewController.h; path = Controllers/RoomViewController.h; sourceTree = "<group>"; };
 		35A46F9B19328A9F00B615A4 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomViewController.m; path = Controllers/RoomViewController.m; sourceTree = "<group>"; };
-		35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserOptionsViewController.h; path = Controllers/UserOptionsViewController.h; sourceTree = "<group>"; };
-		35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserOptionsViewController.m; path = Controllers/UserOptionsViewController.m; sourceTree = "<group>"; };
+		35A46F9C19328A9F00B615A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Controllers/SettingsViewController.h; sourceTree = "<group>"; };
+		35A46F9D19328A9F00B615A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Controllers/SettingsViewController.m; sourceTree = "<group>"; };
 		35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardBarView.h; path = Views/KeyboardBarView.h; sourceTree = "<group>"; };
 		35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardBarView.m; path = Views/KeyboardBarView.m; sourceTree = "<group>"; };
 		35A46FB019328ACC00B615A4 /* LoadingOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingOverlay.h; path = Views/LoadingOverlay.h; sourceTree = "<group>"; };
@@ -588,8 +590,8 @@
 				35A46F9519328A9F00B615A4 /* LoginViewController.m */,
 				35A46F9A19328A9F00B615A4 /* RoomViewController.h */,
 				35A46F9B19328A9F00B615A4 /* RoomViewController.m */,
-				35A46F9C19328A9F00B615A4 /* UserOptionsViewController.h */,
-				35A46F9D19328A9F00B615A4 /* UserOptionsViewController.m */,
+				35A46F9C19328A9F00B615A4 /* SettingsViewController.h */,
+				35A46F9D19328A9F00B615A4 /* SettingsViewController.m */,
 				35A46FE5193C103D00B615A4 /* NearbyViewController.h */,
 				35A46FE6193C103D00B615A4 /* NearbyViewController.m */,
 			);
@@ -630,6 +632,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				350AB59019A4C8AA0060D3C7 /* Settings@2x.png */,
 				3576A88219A442D80071FED5 /* SubRooms@2x.png */,
 				35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */,
 				35A8F8E41996E6C300D54383 /* Camera@2x.png */,
@@ -849,6 +852,7 @@
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
 				355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */,
 				35A8F8E51996E6C300D54383 /* Camera@2x.png in Resources */,
+				350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */,
 				C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
 				355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */,
@@ -960,7 +964,7 @@
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
-				35A46FA419328A9F00B615A4 /* UserOptionsViewController.m in Sources */,
+				35A46FA419328A9F00B615A4 /* SettingsViewController.m in Sources */,
 				351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */,
 				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,

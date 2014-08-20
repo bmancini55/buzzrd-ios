@@ -1,5 +1,5 @@
 //
-//  UserOptionsViewController.h
+//  SettingsViewController.h
 //  Buzzrd
 //
 //  Created by Brian Mancini on 5/14/14.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface UserOptionsViewController : BaseViewController
+@interface SettingsViewController : BaseViewController
 
 @end
