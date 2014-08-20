@@ -24,9 +24,13 @@
 @property (strong, nonatomic) UILabel *lurkerCountLabel;
 @property (strong, nonatomic) UILabel *lurkerLabel;
 
-@property (strong, nonatomic) CALayer *bottomBorder;
-
 @property (strong, nonatomic) VenueRoomTable *roomsTable;
+
+@property (strong, nonatomic) UIImageView *subroomArrow;
+@property (strong, nonatomic) UILabel *subroomCountLabel;
+@property (strong, nonatomic) UILabel *subroomsLabel;
+
+@property (strong, nonatomic) CALayer *bottomBorder;
 
 @end
 
@@ -105,6 +109,25 @@
     self.roomsTable = [[VenueRoomTable alloc]init];
     self.roomsTable.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.roomsTable];
+    
+    self.subroomArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"SubRooms.png"]];
+    self.subroomArrow.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.subroomArrow];
+    
+    self.subroomCountLabel = [[UILabel alloc]init];
+    self.subroomCountLabel.font = [ThemeManager getPrimaryFontBold:18.0];
+    self.subroomCountLabel.textColor = [UIColor whiteColor];
+    self.subroomCountLabel.textAlignment = NSTextAlignmentCenter;
+    self.subroomCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.subroomCountLabel];
+    
+    self.subroomsLabel = [[UILabel alloc]init];
+    self.subroomsLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
+    self.subroomsLabel.textColor = [UIColor whiteColor];
+    self.subroomsLabel.textAlignment = NSTextAlignmentCenter;
+    self.subroomsLabel.numberOfLines = 2;
+    self.subroomsLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.subroomsLabel];
 }
 
 - (void) updateConstraints
@@ -156,6 +179,12 @@
             // horizontal spacing for table
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
             
+            // horizontal spacing for arrow
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-22-[arrow(17)]-(>=12)-[roomtable]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"arrow": self.subroomArrow, @"roomtable": self.roomsTable } ]];
+            
+            // vertical spacing for subroom counts
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[arrow]-2-[count]-(-2)-[label]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:@{ @"arrow": self.subroomArrow, @"count": self.subroomCountLabel, @"label": self.subroomsLabel }]];
+            
         }
         
     } else {
@@ -199,9 +228,18 @@
     if(venue.roomCount > 1) {
         self.roomsTable.hidden = false;
         [self.roomsTable setRooms:venue.rooms];
+        
+        self.subroomArrow.hidden = false;
+        self.subroomCountLabel.hidden = false;
+        self.subroomsLabel.hidden = false;
+        
     } else {
         self.roomsTable.hidden = true;
         [self.roomsTable setRooms:nil];
+        
+        self.subroomArrow.hidden = true;
+        self.subroomCountLabel.hidden = true;
+        self.subroomsLabel.hidden = true;
     }
     
 
@@ -231,6 +269,10 @@
     
     self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.lurkerCount];
     self.lurkerLabel.text = @"LURKERS";
+    
+    // set subrooms
+    self.subroomsLabel.text = [NSString stringWithFormat:@"%@\r%@", NSLocalizedString(@"SUB", nil), NSLocalizedString(@"ROOMS", nil)];
+    self.subroomCountLabel.text = [NSString stringWithFormat:@"%u", (uint)venue.roomCount];
     
     [self updateConstraints];
     

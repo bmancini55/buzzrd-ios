@@ -24,6 +24,7 @@
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		3576A83C199CE0880071FED5 /* VenueRoomTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576A83B199CE0880071FED5 /* VenueRoomTable.m */; };
+		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
 		35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3619328A2400B615A4 /* BuzzrdNav.m */; };
@@ -151,6 +152,7 @@
 		3576A83A199CE0880071FED5 /* VenueRoomTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomTable.h; path = Views/Venues/VenueRoomTable.h; sourceTree = "<group>"; };
 		3576A83B199CE0880071FED5 /* VenueRoomTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomTable.m; path = Views/Venues/VenueRoomTable.m; sourceTree = "<group>"; };
 		3576A840199EB8F60071FED5 /* VenueRoomTableDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueRoomTableDelegate.h; path = Views/Venues/VenueRoomTableDelegate.h; sourceTree = "<group>"; };
+		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3576A88219A442D80071FED5 /* SubRooms@2x.png */,
 				35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */,
 				35A8F8E41996E6C300D54383 /* Camera@2x.png */,
 				C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */,
@@ -853,6 +856,7 @@
 				C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
+				3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */,
 				C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */,
 				C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */,
 			);
