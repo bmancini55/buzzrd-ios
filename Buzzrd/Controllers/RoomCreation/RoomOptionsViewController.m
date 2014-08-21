@@ -79,7 +79,6 @@
         Venue *venue = command.results[@"venue"];
         Room *room = command.results[@"room"];
         
-        NSLog(@"Created room: %@, %@", room.id, room.name);
         [self dismissViewControllerAnimated:true completion:^{
             self.onRoomCreated(venue, room);
         }];

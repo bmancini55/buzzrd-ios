@@ -214,7 +214,6 @@
     UIViewController *viewController = [BuzzrdNav createNewRoomViewController:^(Venue *venue, Room *newRoom)
                                        {
                                            [self addRoomToTable:newRoom forVenue:venue];
-                                           [self joinRoom:newRoom];
                                        }];
 
     [self presentViewController:viewController animated:true completion:nil];
@@ -238,6 +237,7 @@
     
     // insert venue
     if(!venueFound) {
+        venue.defaultRoom = room;
         venue.rooms = @[ room ];
         venue.roomCount = 1;
         
@@ -247,10 +247,11 @@
         self.venues = [NSArray arrayWithArray:temp];
         
         // insert the venue cell
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView beginUpdates];
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-        [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
     }
     
     // update existing
@@ -260,11 +261,17 @@
         NSMutableArray *temp = [NSMutableArray arrayWithArray:indexedVenue.rooms];
         [temp insertObject:room atIndex:0];
         indexedVenue.rooms = [NSArray arrayWithArray:temp];
+        indexedVenue.roomCount = indexedVenue.roomCount + 1;
         
         // insert the room cell
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:venueIndex];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:venueIndex inSection:0];
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
     }
+    
+    // join the room
+    [self joinRoom:room];
 }
 
 #pragma VenueRoomTableDelegate
