@@ -13,6 +13,8 @@
 @interface VenueCell : UITableViewCell
 
 @property (nonatomic) bool showCounts;
+@property (nonatomic) bool showSubrooms;
+
 @property (strong, nonatomic) Venue *venue;
 @property (weak, nonatomic) id<VenueRoomTableDelegate> roomTableDelegate;
 

@@ -58,6 +58,7 @@
 {
     self.backgroundColor = [ThemeManager getPrimaryColorMedium];    
     self.showCounts = true;
+    self.showSubrooms = true;
     
     self.categoryImage = [[ProfileImageView alloc]init];
     self.categoryImage.translatesAutoresizingMaskIntoConstraints = NO;
@@ -160,7 +161,7 @@
         // vertical spacing for address and user count, align them verticall on the left edge
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
         
-        if(self.venue.roomCount <= 1) {
+        if(self.venue.roomCount <= 1 || !self.showSubrooms) {
             
             // vertical spacing for user and lurker counts from the bottom of the container
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
@@ -225,7 +226,7 @@
     self.venue = venue;
     
     // configure the rooms
-    if(venue.roomCount > 1) {
+    if(venue.roomCount > 1 && self.showSubrooms) {
         self.roomsTable.hidden = false;
         [self.roomsTable setRooms:venue.rooms];
         

@@ -207,6 +207,7 @@
     {
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.showCounts = false;
+        cell.showSubrooms = false;
     }
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
