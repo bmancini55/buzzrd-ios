@@ -15,6 +15,7 @@
 #import "GetLocationCommand.h"
 #import "CreateRoomCommand.h"
 #import "ThemeManager.h"
+#import "TableSectionHeader.h"
 
 @interface RoomVenueViewController ()
 
@@ -184,18 +185,37 @@
 }
 
 
+
 #pragma mark - Table view data source
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    TableSectionHeader *headerView = [[TableSectionHeader alloc]initWithFrame:frame];
+    headerView.titleText = NSLocalizedString(@"select_venue", nil);
+    return headerView;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *dataSource = [self dataSourceForTableView:tableView];
     return dataSource.count;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -215,6 +235,7 @@
     
     return cell;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
