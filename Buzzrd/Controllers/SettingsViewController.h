@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface SettingsViewController : BaseViewController
+@interface SettingsViewController : BaseViewController <UIActionSheetDelegate>
 
 @end

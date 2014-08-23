@@ -34,11 +34,29 @@
 
 -(void)logoutTouch
 {
-    LogoutCommand *command = [[LogoutCommand alloc]init];
+    NSString *actionSheetTitle = NSLocalizedString(@"Logout Confirmation", nil);
+    NSString *destructiveTitle = NSLocalizedString(@"Log Out", nil);
+    NSString *cancelTitle = NSLocalizedString(@"cancel", nil);
     
-    [command listenForCompletion:self selector:@selector(logoutDidComplete:)];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:destructiveTitle
+                                  otherButtonTitles: nil, nil];
     
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0)
+    {
+        LogoutCommand *command = [[LogoutCommand alloc]init];
+        
+        [command listenForCompletion:self selector:@selector(logoutDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
 }
 
 - (void)logoutDidComplete:(NSNotification *)notif
