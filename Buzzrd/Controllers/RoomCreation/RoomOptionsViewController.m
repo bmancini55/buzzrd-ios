@@ -185,7 +185,7 @@
     CGRect viewFrame = CGRectMake(0, 0, tableView.frame.size.width, 80);
     UIView *view = [[UIView alloc]init];
     
-    CGRect buttonFrame = CGRectMake(viewFrame.size.width / 2 - 70, 30, 140, 33);
+    CGRect buttonFrame = CGRectMake(viewFrame.size.width / 2 - 70, 30, 140, 38);
     UIButton *createButton = [[UIButton alloc]initWithFrame:buttonFrame];
     [createButton setTitle:[NSLocalizedString(@"create_room", nil) uppercaseString] forState:UIControlStateNormal];
     [createButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
