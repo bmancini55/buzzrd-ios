@@ -43,7 +43,7 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"new_room", nil);
+    self.title = NSLocalizedString(@"create_room", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self attachFooterToTableView:self.tableView];
     

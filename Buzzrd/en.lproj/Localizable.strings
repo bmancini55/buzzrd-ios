@@ -90,7 +90,7 @@
 
 "use_photo_library" = "Use Photo Library";
 
-"new_room" = "New Room";
+"create_room" = "Create a Room";
 
 "select_venue" = "Select a venue";
 
@@ -145,3 +145,6 @@
 "Logout Confirmation" = "Are you sure you want to log out?";
 
 "Log Out" = "Log Out";
+
+"room_options" = "Room Options";
+

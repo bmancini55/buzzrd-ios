@@ -8,8 +8,9 @@
 
 #import "RoomOptionsViewController.h"
 #import "BuzzrdAPI.h"
-#import "FrameUtils.h"
 #import "CreateRoomCommand.h"
+#import "TableSectionHeader.h"
+#import "ThemeManager.h"
 
 @interface RoomOptionsViewController ()
 
@@ -35,11 +36,9 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"new_room", nil);
-    
-    self.doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTouch)];
-    self.doneButton.enabled = false;
-    self.navigationItem.rightBarButtonItem = self.doneButton;
+    self.title = NSLocalizedString(@"create_room", nil);
+    self.tableView.backgroundColor = [ThemeManager getPrimaryColorLight];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (bool) validateInput
@@ -97,25 +96,35 @@
 
 -(void)doneTouch
 {
-    Room *room = [[Room alloc]init];
-    room.name = self.nameTextField.text;
-    room.venueId = self.venue.id;
+    if(![self.nameTextField.text isEqualToString:@""]) {
+        
+        Room *room = [[Room alloc]init];
+        room.name = self.nameTextField.text;
+        room.venueId = self.venue.id;
     
-    [self createRoom:room];
+        [self createRoom:room];
+        
+    }
 }
 
 
 #pragma Table view data source
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
 }
 
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"room_options"];
-    
+    cell.textLabel.font = [ThemeManager getPrimaryFontRegular:16.0];
+    cell.textLabel.textColor = [ThemeManager getPrimaryColorDark];
+    cell.backgroundColor = [ThemeManager getPrimaryColorLight];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     switch(indexPath.section)
     {
         case 0:
@@ -123,22 +132,76 @@
             {
                 case 0:
                 {
-                    self.nameTextField = [[UITextField alloc]init];
-                    self.nameTextField.frame = CGRectMake(15, 5, cell.frame.size.width - 30, cell.frame.size.height - 10);
-                    self.nameTextField.placeholder = NSLocalizedString(@"name", nil);
+                    cell.textLabel.text = NSLocalizedString(@"name", nil);
+                    
+                    self.nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(80, 0, 170, 40)];
+                    self.nameTextField.font = [ThemeManager getPrimaryFontDemiBold:16.0];
+                    self.nameTextField.textColor = [ThemeManager getPrimaryColorMedium];
+                    self.nameTextField.backgroundColor = [ThemeManager getPrimaryColorLight];
+                    self.nameTextField.textAlignment = NSTextAlignmentLeft;
+                    self.nameTextField.tintColor = [ThemeManager getTertiaryColorDark];
                     self.nameTextField.enablesReturnKeyAutomatically = true;
                     self.nameTextField.returnKeyType = UIReturnKeyDone;
                     self.nameTextField.delegate = self;
                     [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-                    [cell addSubview:self.nameTextField];
+                    [cell.contentView addSubview:self.nameTextField];
+                    
+                    CALayer *border = [CALayer layer];
+                    border.backgroundColor = [ThemeManager getPrimaryColorMediumLight].CGColor;
+                    border.frame = CGRectMake(16, 39, cell.frame.size.width - 16, 0.5);
+                    [cell.layer addSublayer:border];
+                    
                     break;
                 }
             }
             break;
     }
+    
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
+
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGRect viewFrame = CGRectMake(0, 0, tableView.frame.size.width, 30);
+    TableSectionHeader *view = [[TableSectionHeader alloc]initWithFrame:viewFrame];
+    view.titleText = [NSLocalizedString(@"room_options", nil) uppercaseString];
+    return view;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    CGRect viewFrame = CGRectMake(0, 0, tableView.frame.size.width, 80);
+    UIView *view = [[UIView alloc]init];
+    
+    CGRect buttonFrame = CGRectMake(viewFrame.size.width / 2 - 70, 30, 140, 33);
+    UIButton *createButton = [[UIButton alloc]initWithFrame:buttonFrame];
+    [createButton setTitle:[NSLocalizedString(@"create_room", nil) uppercaseString] forState:UIControlStateNormal];
+    [createButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    createButton.titleLabel.font = [ThemeManager getPrimaryFontMedium:15.0];
+    createButton.backgroundColor = [ThemeManager getTertiaryColorDark];
+    createButton.layer.cornerRadius = 6;
+    [createButton addTarget:self action:@selector(doneTouch) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:createButton];
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 80;
+}
 
 
 #pragma Text field delegate
