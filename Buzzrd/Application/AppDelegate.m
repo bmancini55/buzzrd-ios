@@ -22,25 +22,10 @@
     
     [self initializeCommandDispatchListeners];
     
-    // create root view
-    UIViewController *rootViewController;
-
-    // If user info is currently stored locally
-    if ([BuzzrdAPI current].authorization.bearerToken != nil) {
-        
-        // Got directly into the home view controller
-        rootViewController = [BuzzrdNav createHomeViewController];
-    }
-    else {
-        
-        // Go to the login view controller
-        rootViewController = [BuzzrdNav createLoginViewController];
-    }
-    
     // initialize the window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = rootViewController;
-     
+    self.window.rootViewController = [BuzzrdNav createHomeViewController];
+    
     [self.window makeKeyAndVisible];
     
     return YES;

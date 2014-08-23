@@ -28,6 +28,8 @@
     
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
+    [self.navigationController setNavigationBarHidden:NO];
+    
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
     self.navigationItem.leftBarButtonItem = cancelItem;
     
@@ -88,11 +90,24 @@
 
 -(void) cancelTouch
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
+//    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(void) getStartedTouch
 {
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    
+    
+//    UIBarButtonItem *newBackButton =
+//    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+//                                     style:UIBarButtonItemStyleBordered
+//                                    target:nil
+//                                    action:nil];
+//    [[self navigationItem] setBackBarButtonItem:newBackButton];
+//    [newBackButton release];
+    
+    
     CreateAccountTableViewController *createAccountTableViewController = [BuzzrdNav createAccountTableViewController];
     [self.navigationController pushViewController:createAccountTableViewController animated:YES];
 }

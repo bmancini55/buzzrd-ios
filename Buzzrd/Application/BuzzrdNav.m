@@ -20,8 +20,9 @@
 
 +(UIViewController *) createLoginViewController
 {
-    LoginViewController *loginViewController = [[LoginViewController alloc]init];
-    return loginViewController;
+    LoginViewController *viewController = [[LoginViewController alloc]init];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
+    return navController;
 }
 
 +(UIViewController *) createHomeViewController
@@ -66,11 +67,10 @@
     return navController;
 }
 
-+(UINavigationController *) joinBuzzrdViewController
++(UIViewController *) joinBuzzrdViewController
 {
     JoinBuzzrdViewController *viewController = [[JoinBuzzrdViewController alloc]init];
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
-    return navController;
+    return viewController;
 }
 
 +(CreateAccountTableViewController *) createAccountTableViewController
@@ -81,11 +81,6 @@
 
 +(ProfileImageViewController *) profileImageViewController;
 {
-//    ProfileImageViewController *viewController = [[ProfileImageViewController alloc]init];
-//    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
-//    return navController;
-    
-    
     ProfileImageViewController *viewController = [[ProfileImageViewController alloc]init];
     return viewController;
 }

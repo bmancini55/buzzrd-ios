@@ -18,6 +18,7 @@
 #import "GetVenuesCommand.h"
 #import "RetryAlert.h"
 #import "TableSectionHeader.h"
+#import "LoginViewController.h"
 
 @interface NearbyViewController ()
 
@@ -45,9 +46,19 @@
     
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
     
-    [self.refreshControl beginRefreshing];
-    [self getUserLocation];
+    // If user info is currently stored locally
+    if ([BuzzrdAPI current].authorization.bearerToken != nil) {
+        [self.refreshControl beginRefreshing];
+        [self getUserLocation];
+    }
+    else {
+        // Show the login view controller
+        [self presentViewController:[BuzzrdNav createLoginViewController] animated:false completion:nil];
+    }
 }
 
 - (void)tableViewWillRefresh
@@ -204,7 +215,6 @@
 - (void) settingsTouch
 {
     UIViewController *viewController = [BuzzrdNav createSettingsController];
-    //[self presentViewController:viewController animated:true completion:nil];
     [self.navigationController pushViewController:viewController animated:true];
 }
 

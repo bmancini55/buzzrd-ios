@@ -7,6 +7,7 @@
 //
 
 #import "LogoutCommand.h"
+#import "BuzzrdAPI.h"
 
 @implementation LogoutCommand
 
@@ -24,6 +25,8 @@
 {
     // Clear the local storage
     [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    [[BuzzrdAPI current] clearAuthorization];
     
     self.status = kSuccess;
     [self sendCompletionNotification];

@@ -48,8 +48,9 @@
  
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
-    self.navigationItem.leftBarButtonItem = cancelItem;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTouch)];
+    self.navigationItem.leftBarButtonItem = backItem;
+
     
     self.nextButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(nextTouch)];
     self.nextButton.enabled = false;
@@ -67,9 +68,9 @@
     self.keyboardDismissGestureRecognizer = nil;
 }
 
--(void) cancelTouch
+-(void) backTouch
 {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField
@@ -84,7 +85,7 @@
 }
 
 -(void) nextTouch
-{    
+{
     [self.view endEditing:YES];
     
     if (![self.usernameTextField.text isAlphaNumeric]) {
@@ -121,6 +122,7 @@
     {
         ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
         profileImageController.user = command.results;
+        profileImageController.user.password = self.passwordTextField.text;
         [self.navigationController pushViewController:profileImageController animated:YES];
     }
     else

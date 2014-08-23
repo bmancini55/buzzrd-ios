@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "BuzzrdAPI.h"
 #import "LogoutCommand.h"
+#import "BuzzrdNav.h"
 
 @interface SettingsViewController ()
 
@@ -46,12 +47,16 @@
     
     if(command.status == kSuccess)
     {
-        [self dismissViewControllerAnimated:true completion:nil];
+        [self performSelectorOnMainThread:@selector(popToRootView) withObject:nil waitUntilDone:NO];
     }
     else
     {
         [self showDefaultRetryAlert:command];
     }
+}
+
+-(void)popToRootView {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

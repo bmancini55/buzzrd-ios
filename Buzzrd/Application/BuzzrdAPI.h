@@ -17,6 +17,8 @@
 + (CommandDispatcher *) dispatch;
 + (NSString *) apiURLBase;
 
+- (void) clearAuthorization;
+
 // Command Dispatch Pattern
 @property (strong, nonatomic) CommandDispatcher *dispatch;
 

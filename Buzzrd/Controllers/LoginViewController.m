@@ -146,6 +146,10 @@
     [credentialsContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[passwordTextField(==40)]" options:0 metrics:nil views:@{ @"passwordTextField" : self.passwordTextField }]];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 -(void)textFieldDidChange :(UITextField *)theTextField{
     
     // Validate if username was filled in
@@ -213,11 +217,9 @@
     GetCurrentUserCommand *command = notif.object;
     if(command.status == kSuccess)
     {
-        NSLog(@"%@", command.results);
         [BuzzrdAPI current].user = (User *)command.results;
         
-        UIViewController *homeController = [BuzzrdNav createHomeViewController];
-        [self presentViewController:homeController animated:true completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {
@@ -227,8 +229,21 @@
 
 - (void)createTouch
 {
-    UIViewController *createController = [BuzzrdNav joinBuzzrdViewController];
-    [self presentViewController:createController animated:true completion:nil];
+    UIViewController *joinBuzzrdController = [BuzzrdNav joinBuzzrdViewController];
+    [self.navigationController pushViewController:joinBuzzrdController animated:YES];
+
+//    UIViewController *parentViewController = self.parentViewController;
+//    
+//    [self dismissViewControllerAnimated:YES completion:^{ [parentViewController.navigationController pushViewController:joinBuzzrdController animated:YES]; }];
+    
+//    [self presentViewController:joinBuzzrdController animated:true completion:nil];
+    
+//    UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
+//    [self.navigationController pushViewController:viewController animated:YES];
+    
+
+//    CreateAccountTableViewController *createAccountTableViewController = [BuzzrdNav createAccountTableViewController];
+//    [self.navigationController pushViewController:createAccountTableViewController animated:YES];
 }
 
 @end

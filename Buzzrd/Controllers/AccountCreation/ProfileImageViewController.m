@@ -13,6 +13,7 @@
 #import "UploadImageCommand.h"
 #import "UpdateProfilePicCommand.h"
 #import "ThemeManager.h"
+#import "LoginCommand.h"
 
 @interface ProfileImageViewController ()
 
@@ -78,7 +79,7 @@
     whatsBuzzingButton.translatesAutoresizingMaskIntoConstraints = NO;
     whatsBuzzingButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
     whatsBuzzingButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
-    //[whatsBuzzingButton addTarget:self action:@selector(getStartedTouch) forControlEvents:UIControlEventTouchUpInside];
+    [whatsBuzzingButton addTarget:self action:@selector(whatsBuzzingTouch) forControlEvents:UIControlEventTouchUpInside];
     [whatsBuzzingButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
     whatsBuzzingButton.layer.cornerRadius = 5; // this value vary as per your desire
     [self.view addSubview:whatsBuzzingButton];
@@ -178,9 +179,9 @@
     self.profileImageView.image = _thumbnail;
 }
 
--(void) cancelTouch
+-(void) whatsBuzzingTouch
 {
-    [self dismissViewControllerAnimated:false completion:nil];
+    [self login];
 }
 
 -(void) savePicButtonTouch
@@ -214,9 +215,6 @@
         [profilePicCommand listenForCompletion:self selector:@selector(updateProfilePicDidComplete:)];
         
         [[BuzzrdAPI dispatch] enqueueCommand:profilePicCommand];
-        
-//        UIViewController *homeController = [BuzzrdNav createHomeViewController];
-//        [self presentViewController:homeController animated:true completion:nil];
     }
     else
     {
@@ -230,8 +228,38 @@
     
     if(command.status == kSuccess)
     {
-        UIViewController *homeController = [BuzzrdNav createHomeViewController];
-        [self presentViewController:homeController animated:true completion:nil];
+        [self login];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
+}
+
+-(void)dismissToRootView {
+    [self dismissViewControllerAnimated:true completion:^{ [self dismissViewControllerAnimated:true completion:nil]; }];
+}
+
+- (void)login {
+    LoginCommand *command = [[LoginCommand alloc]init];
+    command.username = self.user.username; //self.usernameTextField.text;
+    command.password = self.user.password; //self.passwordTextField.text;
+    
+    [command listenForCompletion:self selector:@selector(loginDidComplete:)];
+    
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)loginDidComplete:(NSNotification *)notif
+{
+    LoginCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        [BuzzrdAPI current].authorization = (Authorization *)command.results;
+
+        [BuzzrdAPI current].user = self.user;
+
+        [self performSelectorOnMainThread:@selector(dismissToRootView) withObject:nil waitUntilDone:NO];
     }
     else
     {

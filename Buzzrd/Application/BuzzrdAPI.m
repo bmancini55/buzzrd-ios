@@ -65,6 +65,10 @@
     [defaults synchronize];
 }
 
+- (void)clearAuthorization {
+    _authorization = nil;
+}
+
 - (User *) user {
     
     if(_user == nil)
