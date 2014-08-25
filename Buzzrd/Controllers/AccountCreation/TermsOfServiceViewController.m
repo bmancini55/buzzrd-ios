@@ -21,13 +21,7 @@
     
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-    UILabel *buzzrdTermsTitleLbL = [[UILabel alloc] init];
-    [buzzrdTermsTitleLbL setText:NSLocalizedString(@"BUZZRD TERMS", nil)];
-    buzzrdTermsTitleLbL.font = [UIFont fontWithName:@"AvenirNext-Regular" size:17.0];
-    buzzrdTermsTitleLbL.translatesAutoresizingMaskIntoConstraints = NO;
-    buzzrdTermsTitleLbL.textColor = [ThemeManager getPrimaryColorDark];
-    buzzrdTermsTitleLbL.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:buzzrdTermsTitleLbL];
+    self.title = NSLocalizedString(@"Buzzrd Terms", nil);
     
     UILabel *buzzrdTermsLbL = [[UILabel alloc] init];
     [buzzrdTermsLbL setText:NSLocalizedString(@"Some terms that we have to create that should be fairly long and wrap multiple lines.", nil)];
@@ -37,12 +31,9 @@
     buzzrdTermsLbL.numberOfLines = 0;
     [self.view addSubview:buzzrdTermsLbL];
     
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[buzzrdTermsTitleLbL]-20-|"  options:NSLayoutFormatAlignAllBaseline  metrics:nil  views:@{ @"buzzrdTermsTitleLbL" : buzzrdTermsTitleLbL }]];
-    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[buzzrdTermsLbL]-20-|"  options:NSLayoutFormatAlignAllBaseline  metrics:nil  views:@{ @"buzzrdTermsLbL" : buzzrdTermsLbL }]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[buzzrdTermsTitleLbL]-10-[buzzrdTermsLbL]" options:0 metrics:nil views:@{ @"buzzrdTermsTitleLbL" : buzzrdTermsTitleLbL, @"buzzrdTermsLbL" : buzzrdTermsLbL }]];
+        
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[buzzrdTermsLbL]" options:0 metrics:nil views:@{ @"buzzrdTermsLbL" : buzzrdTermsLbL }]];
 }
 
 @end
