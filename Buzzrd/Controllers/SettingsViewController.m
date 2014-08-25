@@ -13,16 +13,13 @@
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
 #import "AccessoryIndicatorView.h"
+#import "DisclaimersViewController.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
-
-#define ACCESSORY_WIDTH 13.f
-#define ACCESSORY_HEIGHT 18.f
-#define CELL_PADDING 5.f
 
 -(id)init
 {
@@ -97,8 +94,6 @@
                 }
             }
         }
-        
-
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -115,39 +110,16 @@
     return 0.0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    CGRect frame = CGRectMake(0,
-                              0,
-                              tableView.frame.size.width,
-                              [self tableView:tableView heightForHeaderInSection:section]);
-    TableSectionHeader *headerView = [[TableSectionHeader alloc]initWithFrame:frame];
-    switch (section)
-    {
-        case 0:
-            headerView.titleText = NSLocalizedString(@"PROFILE", nil);
-            break;
-        case 1:
-            headerView.titleText = NSLocalizedString(@"NOTIFICATIONS", nil);
-            break;
-        case 2:
-            headerView.titleText = NSLocalizedString(@"BUZZ COUNT", nil);
-            break;
-        case 3:
-            headerView.titleText = NSLocalizedString(@"BUZZRD DISCLAIMERS", nil);
-            break;
-        default:
-            headerView.titleText = nil;
-            break;
-    }
-    
-    return headerView;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    // 03 is the disclaimer cell
+    if ([cell.reuseIdentifier isEqual: @"03"])
+    {
+        DisclaimersViewController *viewController = [[DisclaimersViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
     // 04 is the log out cell
     if ([cell.reuseIdentifier isEqual: @"04"])
     {

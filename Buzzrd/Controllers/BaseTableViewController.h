@@ -13,6 +13,10 @@
 
 @interface BaseTableViewController : UITableViewController
 
+#define ACCESSORY_WIDTH 13.f
+#define ACCESSORY_HEIGHT 18.f
+#define CELL_PADDING 5.f
+
 @property (strong, nonatomic) RetryAlert *retryAlert;
 
 - (void) showActivityView;

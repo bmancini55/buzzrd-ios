@@ -104,6 +104,7 @@
 		C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */; };
 		C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */; };
 		C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BC0196B9963006510D9 /* LogoutCommand.m */; };
+		C2CBCD4D19AADAFB00FAE2DE /* DisclaimersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD4C19AADAFB00FAE2DE /* DisclaimersViewController.m */; };
 		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
 		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
 		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
@@ -290,6 +291,8 @@
 		C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadImageCommand.m; path = Image/UploadImageCommand.m; sourceTree = "<group>"; };
 		C2C97BBF196B9963006510D9 /* LogoutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoutCommand.h; path = Commands/Login/LogoutCommand.h; sourceTree = "<group>"; };
 		C2C97BC0196B9963006510D9 /* LogoutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoutCommand.m; path = Commands/Login/LogoutCommand.m; sourceTree = "<group>"; };
+		C2CBCD4B19AADAFB00FAE2DE /* DisclaimersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclaimersViewController.h; path = Controllers/Settings/DisclaimersViewController.h; sourceTree = "<group>"; };
+		C2CBCD4C19AADAFB00FAE2DE /* DisclaimersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisclaimersViewController.m; path = Controllers/Settings/DisclaimersViewController.m; sourceTree = "<group>"; };
 		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
 		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
@@ -579,6 +582,7 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2CBCD4A19AADACC00FAE2DE /* Settings */,
 				C2C6E5471936D61800DBEEE6 /* Shared */,
 				C29A6674192C4C29002421AF /* AccountCreation */,
 				3561B6AF194C87DF00EF1654 /* RoomCreation */,
@@ -748,6 +752,15 @@
 				C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */,
 			);
 			name = Image;
+			sourceTree = "<group>";
+		};
+		C2CBCD4A19AADACC00FAE2DE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2CBCD4B19AADAFB00FAE2DE /* DisclaimersViewController.h */,
+				C2CBCD4C19AADAFB00FAE2DE /* DisclaimersViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		C2FC0464193FF92E000183CC /* Themes */ = {
@@ -951,6 +964,7 @@
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */,
+				C2CBCD4D19AADAFB00FAE2DE /* DisclaimersViewController.m in Sources */,
 				35A8F8EE1996F53800D54383 /* BuzzrdBackgroundView.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
