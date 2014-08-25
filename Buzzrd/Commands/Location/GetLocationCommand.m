@@ -34,17 +34,26 @@
     self.locationManager.delegate = self;
     
     [self.locationManager startUpdatingLocation];
-    NSLog(@"starting location update");
     
     NSRunLoop *theRL = [NSRunLoop currentRunLoop];
-    while (self.shouldKeepRunning && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+    while (self.shouldKeepRunning && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:15]])
+    {
+        // exit after 15 seconds of trying
+        if(self.shouldKeepRunning) {
+            NSLog(@"Runloop exiting");
+            self.shouldKeepRunning = false;
+            self.status = kSuccess;
+            self.results = self.locationManager.location;
+            [self sendCompletionNotification];
+            [self.locationManager stopUpdatingLocation];
+        }
+    }
 }
 
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    NSLog(@"Location service failed with error %@", error);
     self.status = kFailure;
     self.results = error;
     [self sendCompletionFailureNotification];
@@ -57,21 +66,18 @@
 {
     CLLocation *location = [locations lastObject];
     
+    // ensure location is calculated with 5 seconds and less than 100 yards
     NSDate *eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    
-    if(abs(howRecent) < 15.0 && location.horizontalAccuracy < 100)
-    {    
-        NSLog(@"Latitude %+.6f, Longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
-        
+    if(abs(howRecent) < 5 && location.horizontalAccuracy < 100)
+    {
+        self.shouldKeepRunning = false;
         self.status = kSuccess;
         self.results = location;
         [self sendCompletionNotification];
         [self.locationManager stopUpdatingLocation];
-        self.shouldKeepRunning = false;
     }
 }
+
 
 @end

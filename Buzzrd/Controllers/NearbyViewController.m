@@ -112,7 +112,6 @@
     GetVenuesCommand *command = notif.object;
     NSArray *venues = command.results;
     
-    NSLog(@"%lu venue were loaded", (unsigned long)venues.count);
     self.venues = venues;
     [self.tableView reloadData];
 }
