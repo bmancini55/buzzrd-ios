@@ -13,6 +13,7 @@
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
 #import "AccessoryIndicatorView.h"
+#import "UpdateProfileViewController.h"
 #import "DisclaimersViewController.h"
 
 @interface SettingsViewController ()
@@ -115,13 +116,19 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     // 03 is the disclaimer cell
-    if ([cell.reuseIdentifier isEqual: @"03"])
+    if ([cell.reuseIdentifier isEqual: @"00"])
+    {
+        UpdateProfileViewController *viewController = [[UpdateProfileViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    // 03 is the disclaimer cell
+    else if ([cell.reuseIdentifier isEqual: @"03"])
     {
         DisclaimersViewController *viewController = [[DisclaimersViewController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     // 04 is the log out cell
-    if ([cell.reuseIdentifier isEqual: @"04"])
+    else if ([cell.reuseIdentifier isEqual: @"04"])
     {
         [self logoutTouch];
     }
