@@ -76,12 +76,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    if (section == 0) {
+        return 5;
+    }
+    else {
+        return 2;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,25 +117,18 @@
                     break ;
                 }
                 case 1: {
-                    cell.textLabel.text = NSLocalizedString(@"password", nil);
-                    tf = self.passwordTextField = [self makeTextField: nil placeholder:nil];
-                    self.passwordTextField.secureTextEntry = YES;
-                    [cell addSubview:self.passwordTextField];
-                    break ;
-                }
-                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"first_name", nil);
                     tf = self.firstNameTextField = [self makeTextField: [BuzzrdAPI current].user.firstName placeholder:nil];
                     [cell addSubview:self.firstNameTextField];
                     break ;
                 }
-                case 3: {
+                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"last_name", nil);
                     tf = self.lastNameTextField = [self makeTextField: [BuzzrdAPI current].user.lastName placeholder:nil];
                     [cell addSubview:self.lastNameTextField];
                     break ;
                 }
-                case 4: {
+                case 3: {
                     cell.textLabel.text = NSLocalizedString(@"gender", nil);
                     
                     self.genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 170, 40)];
@@ -149,7 +147,7 @@
                     
                     break ;
                 }
-                case 5: {
+                case 4: {
                     cell.textLabel.text = NSLocalizedString(@"Adjust Profile Picture", nil);
                     
                     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -164,6 +162,25 @@
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     
+                    break ;
+                }
+            }
+        }
+        else if (indexPath.section == 1) {
+            switch(indexPath.row)
+            {
+                case 0: {
+                    cell.textLabel.text = NSLocalizedString(@"password", nil);
+                    tf = self.passwordTextField = [self makeTextField: nil placeholder:nil];
+                    self.passwordTextField.secureTextEntry = YES;
+                    [cell addSubview:self.passwordTextField];
+                    break ;
+                }
+                case 1: {
+                    cell.textLabel.text = NSLocalizedString(@"verify", nil);
+                    tf = self.password2TextField = [self makeTextField: nil placeholder:nil];
+                    self.password2TextField.secureTextEntry = YES;
+                    [cell addSubview:self.password2TextField];
                     break ;
                 }
             }
@@ -192,8 +209,8 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    // 04 is the reuseIdentifier for the gender cell
-    if ([cell.reuseIdentifier isEqual: @"04"])
+    // 03 is the reuseIdentifier for the gender cell
+    if ([cell.reuseIdentifier isEqual: @"03"])
     {
         [self displayGenderPicker];
     }
@@ -309,6 +326,9 @@
     {
         case 0:
             headerView.titleText = NSLocalizedString(@"PROFILE", nil);
+            break;
+        case 1:
+            headerView.titleText = NSLocalizedString(@"PASSWORD", nil);
             break;
         default:
             headerView.titleText = nil;

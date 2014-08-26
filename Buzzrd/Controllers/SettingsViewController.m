@@ -71,25 +71,25 @@
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     break ;
                 }
+//                case 1: {
+//                    cell.textLabel.text = NSLocalizedString(@"Notifications", nil);
+//                    
+//                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
+//                    break ;
+//                }
                 case 1: {
-                    cell.textLabel.text = NSLocalizedString(@"Notifications", nil);
-                    
-                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
-                    break ;
-                }
-                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"Buzz Count", nil);
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     break ;
                 }
-                case 3: {
+                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"Buzzrd Disclaimers", nil);
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     break ;
                 }
-                case 4: {
+                case 3: {
                     cell.textLabel.text = NSLocalizedString(@"Log Out", nil);
                     break ;
                 }
@@ -122,13 +122,13 @@
         [self.navigationController pushViewController:viewController animated:YES];
     }
     // 03 is the disclaimer cell
-    else if ([cell.reuseIdentifier isEqual: @"03"])
+    else if ([cell.reuseIdentifier isEqual: @"02"])
     {
         DisclaimersViewController *viewController = [[DisclaimersViewController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     // 04 is the log out cell
-    else if ([cell.reuseIdentifier isEqual: @"04"])
+    else if ([cell.reuseIdentifier isEqual: @"03"])
     {
         [self logoutTouch];
     }
