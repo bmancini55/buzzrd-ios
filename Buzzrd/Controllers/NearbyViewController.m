@@ -77,7 +77,7 @@
 - (void) appDidBecomeActive
 {
     // check if it's been longer than XX seconds
-    float seconds = -5.0;
+    float seconds = -60.0;
     if(self.lastLoad && [self.lastLoad timeIntervalSinceNow] < seconds) {
         [self getUserLocation];
     }
