@@ -12,18 +12,18 @@
 #import "AccessoryIndicatorView.h"
 #import "GenderPickerTableViewController.h"
 #import "BuzzrdAPI.h"
+#import "UpdateUserCommand.h"
 
 @interface UpdateProfileViewController ()
 
-@property (strong, nonatomic) UIBarButtonItem *nextButton;
-@property (strong, nonatomic) UITextField *usernameTextField;
-@property (strong, nonatomic) UITextField *passwordTextField;
-@property (strong, nonatomic) UITextField *password2TextField;
-
 @property (strong, nonatomic) UIBarButtonItem *saveButton;
+@property (strong, nonatomic) UITextField *usernameTextField;
 @property (strong, nonatomic) UITextField *firstNameTextField;
 @property (strong, nonatomic) UITextField *lastNameTextField;
 @property (strong, nonatomic) UILabel *genderLabel;
+
+@property (strong, nonatomic) UITextField *passwordTextField;
+@property (strong, nonatomic) UITextField *password2TextField;
 
 @end
 
@@ -41,18 +41,14 @@
     
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTouch)];
-//    self.navigationItem.leftBarButtonItem = backItem;
-    
-    
-//    self.nextButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"next", nil) style:UIBarButtonItemStylePlain target:self action:@selector(nextTouch)];
-//    self.nextButton.enabled = false;
-//    self.navigationItem.rightBarButtonItem = self.nextButton;
+    self.saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveTouch)];
+    self.saveButton.enabled = false;
+    self.navigationItem.rightBarButtonItem = self.saveButton;
     
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    self.user = [[User alloc] init];
+        
+    self.user = [BuzzrdAPI current].user;
 }
 
 - (void) hideKeyboard {
@@ -111,20 +107,20 @@
                 case 0: {
                     cell.textLabel.text = NSLocalizedString(@"username", nil);
                     
-                    tf = self.usernameTextField = [self makeTextField: [BuzzrdAPI current].user.username placeholder:nil];
+                    tf = self.usernameTextField = [self makeTextField: self.user.username placeholder:nil];
                     tf.enabled = false;
                     [cell addSubview:self.usernameTextField];
                     break ;
                 }
                 case 1: {
                     cell.textLabel.text = NSLocalizedString(@"first_name", nil);
-                    tf = self.firstNameTextField = [self makeTextField: [BuzzrdAPI current].user.firstName placeholder:nil];
+                    tf = self.firstNameTextField = [self makeTextField: self.user.firstName placeholder:nil];
                     [cell addSubview:self.firstNameTextField];
                     break ;
                 }
                 case 2: {
                     cell.textLabel.text = NSLocalizedString(@"last_name", nil);
-                    tf = self.lastNameTextField = [self makeTextField: [BuzzrdAPI current].user.lastName placeholder:nil];
+                    tf = self.lastNameTextField = [self makeTextField: self.user.lastName placeholder:nil];
                     [cell addSubview:self.lastNameTextField];
                     break ;
                 }
@@ -133,9 +129,9 @@
                     
                     self.genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, 170, 40)];
                     
-                    if ([BuzzrdAPI current].user.genderId != nil)
+                    if (self.user.genderId != nil)
                     {
-                        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", [BuzzrdAPI current].user.genderId];
+                        NSString *genderString = [NSMutableString stringWithFormat:@"gender_%@", self.user.genderId];
                         
                         self.genderLabel.text = NSLocalizedString(genderString, nil);
                         self.genderLabel.font = [ThemeManager getPrimaryFontDemiBold:16.0];
@@ -237,6 +233,8 @@
         self.genderLabel.textColor = [ThemeManager getPrimaryColorMedium];
         
         self.user.genderId = genderId;
+        
+        self.saveButton.enabled = [self isFormValid];
     }
 }
 
@@ -254,32 +252,101 @@
 
 -(void)textFieldDidChange :(UITextField *)theTextField{
     
-    // Validate if username was filled in
-    self.usernameTextField.text = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if (self.usernameTextField.text.length == 0)
-    {
-        self.nextButton.enabled = false;
-        return;
-    }
-    
-    // Validate password was filled in
-    if (self.passwordTextField.text.length == 0)
-    {
-        self.nextButton.enabled = false;
-        return;
-    }
-    
-    // Validate that the passwords match
-    if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
-    {
-        self.nextButton.enabled = false;
-        return;
-    }
-    
-    self.nextButton.enabled = true;
+    self.saveButton.enabled = [self isFormValid];
 }
 
+-(bool) isFormValid
+{
+    bool isDirty = false;
+    bool isValid = true;
+    
+    if (![self.firstNameTextField.text isEqualToString:[BuzzrdAPI current].user.firstName])
+    {
+        isDirty = true;
+    }
+    
+    if (![self.lastNameTextField.text isEqualToString:[BuzzrdAPI current].user.lastName])
+    {
+        isDirty = true;
+    }
+    
+    if ([self.user.genderId intValue] != [[BuzzrdAPI current].user.genderId intValue])
+    {
+        isDirty = true;
+    }
+    
+    if ((self.passwordTextField.text.length > 0) || (self.password2TextField.text.length > 0))
+    {
+        isDirty = true;
+        
+        if (self.passwordTextField.text.length < 6)
+        {
+            isValid = false;
+        }
+        
+        // The passwords must match before the save button is enabled
+        if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
+        {
+            isValid = false;
+        }
+    }
+
+    if (isDirty == false)
+    {
+        return false;
+    }
+    else {
+        return isValid;
+    }
+}
+
+-(void) saveTouch
+{
+    [self.view endEditing:YES];
+    
+    if ((self.passwordTextField.text.length > 0) && (self.passwordTextField.text.length < 6)) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_length_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        self.user.username = self.usernameTextField.text;
+
+        self.user.firstName = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        self.user.lastName = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if (self.user.genderId == nil) {
+            self.user.genderId = [NSNumber numberWithInt:0];
+        }
+        
+        if (self.passwordTextField.text.length > 0)
+        {
+            self.user.password = self.passwordTextField.text;
+        }
+
+        UpdateUserCommand *command = [[UpdateUserCommand alloc]init];
+        command.user = self.user;
+        
+        [command listenForCompletion:self selector:@selector(updateUserDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+- (void)updateUserDidComplete:(NSNotification *)notif
+{
+    UpdateUserCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        [BuzzrdAPI current].user = command.results;
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

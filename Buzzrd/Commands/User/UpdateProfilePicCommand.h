@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSString *iduser;
 @property (strong, nonatomic) NSString *imageURI;
 
+-(bool) isFormValid;
+
 @end
