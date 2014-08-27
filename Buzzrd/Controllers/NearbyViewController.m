@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSArray *venues;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) RetryAlert *alert;
+@property (strong, nonatomic) NSDate *lastLoad;
 
 @end
 
@@ -40,24 +41,45 @@
     
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
     
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRoomTouch)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    // Load the user info and locations
+    [self getUserLocation];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    
-    // If user info is currently stored locally
-    if ([BuzzrdAPI current].authorization.bearerToken != nil) {
-        [self.refreshControl beginRefreshing];
-        [self getUserLocation];
-    }
-    else {
-        // Show the login view controller
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Show the login view controller
+    if ([BuzzrdAPI current].authorization.bearerToken == nil) {
         [self presentViewController:[BuzzrdNav createLoginViewController] animated:false completion:nil];
+    }
+}
+
+
+// Fires with NotificationCenter event UIApplicationDidBecomeActiveNotification
+// Load the latest user location and venue list when we restore the application
+- (void) appDidBecomeActive
+{
+    // check if it's been longer than XX seconds
+    float seconds = -5.0;
+    if(self.lastLoad && [self.lastLoad timeIntervalSinceNow] < seconds) {
+        [self getUserLocation];
     }
 }
 
@@ -68,6 +90,13 @@
 
 - (void)getUserLocation
 {
+    // flag last load time as now
+    self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    // start the spinner
+    [self.refreshControl beginRefreshing];
+    
+    // build and dispatch the command
     GetLocationCommand *command = [[GetLocationCommand alloc]init];
     [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
     [[BuzzrdAPI dispatch] enqueueCommand:command];
@@ -107,13 +136,12 @@
 
 - (void)venuesDidLoad:(NSNotification *) notif
 {
-    [self.refreshControl endRefreshing];
-    
     GetVenuesCommand *command = notif.object;
     NSArray *venues = command.results;
     
     self.venues = venues;
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 
@@ -133,7 +161,6 @@
 
 
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,6 +172,16 @@
 {
     return self.venues.count;
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Venue *venue = self.venues[indexPath.row];
+    VenueCell *cell = [[VenueCell alloc]init];
+    [cell setVenue:venue userLocation:self.location];
+    return [cell calculateHeight];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -160,6 +197,7 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -170,9 +208,10 @@
 }
 
 
-
-
-#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -193,18 +232,8 @@
     return headerView;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Venue *venue = self.venues[indexPath.row];
-    VenueCell *cell = [[VenueCell alloc]init];
-    [cell setVenue:venue userLocation:self.location];
-    return [cell calculateHeight];
-}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
+
 
 
 
