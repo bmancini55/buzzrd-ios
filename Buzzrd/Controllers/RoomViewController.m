@@ -70,6 +70,7 @@
     [keyboardBar dismissKeyboard];
 }
 
+
 // Fires on room exit
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -77,23 +78,6 @@
     [self disconnect];
 }
 
-// Fires when app is restored
-- (void)appDidBecomeActive
-{
-    [self connectToSocketServer];
-    [self reconnect];
-}
-
-// Fires when app goes to background
-- (void)appWillResignActive
-{
-    // Not sure if we want to disconnect or let timeout occur
-    // probably want to let timeout naturally occur in the event
-    // that a user briefly steps away from the app, it shouldn't
-    // reload the entire chat...
-    
-    //[self disconnect];
-}
 
 
 - (void)loadRoom
