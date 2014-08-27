@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) VenueRoomTable *roomsTable;
 
+@property (strong, nonatomic) UIView *subroomInfoView;
 @property (strong, nonatomic) UIImageView *subroomArrow;
 @property (strong, nonatomic) UILabel *subroomCountLabel;
 @property (strong, nonatomic) UILabel *subroomsLabel;
@@ -111,16 +112,23 @@
     self.roomsTable.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.roomsTable];
     
+    
+    self.subroomInfoView = [[UIView alloc]init];
+    self.subroomInfoView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.subroomInfoView.userInteractionEnabled = true;
+    [self.subroomInfoView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreRoomsTapped)]];
+    [self.contentView addSubview:self.subroomInfoView];
+    
     self.subroomArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"SubRooms.png"]];
     self.subroomArrow.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.subroomArrow];
+    [self.subroomInfoView addSubview:self.subroomArrow];
     
     self.subroomCountLabel = [[UILabel alloc]init];
     self.subroomCountLabel.font = [ThemeManager getPrimaryFontBold:18.0];
     self.subroomCountLabel.textColor = [UIColor whiteColor];
     self.subroomCountLabel.textAlignment = NSTextAlignmentCenter;
     self.subroomCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.subroomCountLabel];
+    [self.subroomInfoView addSubview:self.subroomCountLabel];
     
     self.subroomsLabel = [[UILabel alloc]init];
     self.subroomsLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
@@ -128,7 +136,12 @@
     self.subroomsLabel.textAlignment = NSTextAlignmentCenter;
     self.subroomsLabel.numberOfLines = 2;
     self.subroomsLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.subroomsLabel];
+    [self.subroomInfoView addSubview:self.subroomsLabel];
+}
+
+- (void)moreRoomsTapped
+{
+    [self.delegate moreRoomsTapped:self];
 }
 
 - (void) updateConstraints
@@ -180,11 +193,17 @@
             // horizontal spacing for table
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
             
+            // horizontal alignment for subroom info
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subroomview]-0-[roomtable]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"subroomview": self.subroomInfoView, @"roomtable": self.roomsTable } ]];
+            
+            // vertical alignment for subroom info
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[subroomview]-0-|" options:0 metrics:nil views:@{ @"subroomview": self.subroomInfoView } ]];
+            
             // horizontal spacing for arrow
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-22-[arrow(17)]-(>=12)-[roomtable]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"arrow": self.subroomArrow, @"roomtable": self.roomsTable } ]];
+            [self.subroomInfoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-22-[arrow(17)]-(>=12)-|" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"arrow": self.subroomArrow, @"roomtable": self.roomsTable } ]];
             
             // vertical spacing for subroom counts
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[arrow]-2-[count]-(-2)-[label]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:@{ @"arrow": self.subroomArrow, @"count": self.subroomCountLabel, @"label": self.subroomsLabel }]];
+            [self.subroomInfoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[arrow]-2-[count]-(-2)-[label]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:@{ @"arrow": self.subroomArrow, @"count": self.subroomCountLabel, @"label": self.subroomsLabel }]];
             
         }
         

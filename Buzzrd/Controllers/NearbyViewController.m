@@ -16,6 +16,7 @@
 #import "FoursquareAttribution.h"
 #import "GetLocationCommand.h"
 #import "GetVenuesCommand.h"
+#import "GetVenueRoomsCommand.h"
 #import "RetryAlert.h"
 #import "TableSectionHeader.h"
 #import "LoginViewController.h"
@@ -160,6 +161,44 @@
 }
 
 
+- (void)moreRoomsTapped:(UITableViewCell *)cell
+{
+    VenueCell *venueCell = (VenueCell*)cell;
+    if(venueCell.venue.roomCount > 5)
+    {
+        GetVenueRoomsCommand *command = [[GetVenueRoomsCommand alloc]init];
+        command.venue = venueCell.venue;
+        command.page = 1;
+        command.pagesize = 100;
+        [command listenForCompletion:self selector:@selector(moreRoomsDidLoad:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+- (void)moreRoomsDidLoad:(NSNotification *)notif
+{
+    GetVenueRoomsCommand *command = notif.object;
+    Venue *venue = command.venue;
+    NSArray *rooms = command.results;
+    
+    // merge the rooms
+    venue.rooms = rooms;
+    
+    // get the cell index
+    uint index;
+    for(index = 0; index < self.venues.count; index++)
+    {
+        if(self.venues[index] == venue)
+            break;
+    }
+    
+    // update the table
+    NSIndexPath *path = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+}
 
 #pragma mark - Table view data source
 
@@ -191,6 +230,7 @@
     {
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Venue"];
         cell.roomTableDelegate = self;
+        cell.delegate = self;
     }
 
     [cell setVenue:venue userLocation:self.location];    

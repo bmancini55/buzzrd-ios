@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
+		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */; };
 		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
@@ -125,6 +126,9 @@
 		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
 		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
 		350AB59019A4C8AA0060D3C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
+		350AB59E19AD7F010060D3C7 /* VenueCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueCellDelegate.h; path = Views/Venues/VenueCellDelegate.h; sourceTree = "<group>"; };
+		350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenueRoomsCommand.h; path = Commands/Room/GetVenueRoomsCommand.h; sourceTree = "<group>"; };
+		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
 		351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomCommand.h; path = Commands/Room/CreateRoomCommand.h; sourceTree = "<group>"; };
 		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		351036EB19705BF300AF5C39 /* GetMessagesForRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessagesForRoomCommand.h; path = Commands/Message/GetMessagesForRoomCommand.h; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 			children = (
 				3561B6B6194C8C1500EF1654 /* VenueCell.h */,
 				3561B6B7194C8C1500EF1654 /* VenueCell.m */,
+				350AB59E19AD7F010060D3C7 /* VenueCellDelegate.h */,
 				35043741193E01D700731968 /* VenueRoomCell.h */,
 				35043742193E01D700731968 /* VenueRoomCell.m */,
 				3576A83A199CE0880071FED5 /* VenueRoomTable.h */,
@@ -350,6 +355,8 @@
 			children = (
 				351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */,
 				351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */,
+				350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */,
+				350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -974,6 +981,7 @@
 				35A8F8EE1996F53800D54383 /* BuzzrdBackgroundView.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
+				350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */,
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
