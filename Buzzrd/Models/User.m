@@ -60,4 +60,17 @@
     return self;
 }
 
+-(id) copyWithZone: (NSZone *) zone
+{
+    User *userCopy = [[User allocWithZone: zone] init];
+    
+    userCopy.iduser = self.iduser;
+    userCopy.username = self.username;
+    userCopy.firstName = self.firstName;
+    userCopy.lastName = self.lastName;
+    userCopy.genderId = self.genderId;
+    
+    return userCopy;
+}
+
 @end

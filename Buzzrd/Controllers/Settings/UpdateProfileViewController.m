@@ -48,7 +48,7 @@
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
         
-    self.user = [BuzzrdAPI current].user;
+    self.user = [[BuzzrdAPI current].user copy];
 }
 
 - (void) hideKeyboard {
@@ -339,6 +339,7 @@
     if(command.status == kSuccess)
     {
         [BuzzrdAPI current].user = command.results;
+        self.saveButton.enabled = [self isFormValid];
     }
     else
     {

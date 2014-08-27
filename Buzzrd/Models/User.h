@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject <NSCoding>
+@interface User : NSObject <NSCoding, NSCopying>
 
 @property (strong, nonatomic) NSString *iduser;
 @property (strong, nonatomic) NSString *username;
@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSNumber *genderId;
 
 -(id) initWithJson:(NSDictionary *)json;
+-(id) copyWithZone: (NSZone *) zone;
 
 @end
