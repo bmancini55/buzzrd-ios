@@ -70,7 +70,6 @@
 		35BA0E1418CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
 		35BA0E1C18CF37A100F5B339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35BA0E1A18CF37A100F5B339 /* InfoPlist.strings */; };
 		35BA0E1E18CF37A100F5B339 /* BuzzrdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */; };
-		35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */; };
 		35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */; };
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
@@ -236,7 +235,6 @@
 		35BA0E1918CF37A100F5B339 /* BuzzrdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuzzrdTests-Info.plist"; sourceTree = "<group>"; };
 		35BA0E1B18CF37A100F5B339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuzzrdTests.m; sourceTree = "<group>"; };
-		35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-568h@2x.png"; sourceTree = "<group>"; };
 		35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@2x.png"; sourceTree = "<group>"; };
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -652,7 +650,6 @@
 				355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */,
 				C2FC045F193EB20E000183CC /* buzzrd@2x.png */,
 				35BA0E0A18CF37A100F5B339 /* Images.xcassets */,
-				35CA8C8618D2DA5F00B35F23 /* LaunchImage-568h@2x.png */,
 				C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */,
 				C2C6E5521938115300DBEEE6 /* no_profile_pic.jpg */,
 				35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */,
@@ -866,7 +863,6 @@
 				C29DDDEA1981F18400EA922F /* 120x120_Launch_Icon.png in Resources */,
 				35A8F8F01996F93700D54383 /* Buzzrd_Silhouette@2x.png in Resources */,
 				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
-				35CA8C8818D2DA5F00B35F23 /* LaunchImage-568h@2x.png in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,
 				355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */,
 				35A8F8E51996E6C300D54383 /* Camera@2x.png in Resources */,
