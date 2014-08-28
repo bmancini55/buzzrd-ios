@@ -164,7 +164,7 @@
 - (void)moreRoomsTapped:(UITableViewCell *)cell
 {
     VenueCell *venueCell = (VenueCell*)cell;
-    if(venueCell.venue.roomCount > 5)
+    if(venueCell.venue.roomCount > 3)
     {
         GetVenueRoomsCommand *command = [[GetVenueRoomsCommand alloc]init];
         command.venue = venueCell.venue;
