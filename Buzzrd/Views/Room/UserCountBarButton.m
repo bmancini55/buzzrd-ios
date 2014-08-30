@@ -65,8 +65,8 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[userlabel]-(-10)-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel, @"userlabel": self.userLabel }]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lurkercount]-3-[lurkerlabel]-(-10)-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel, @"lurkerlabel": self.lurkerLabel }]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[userlabel]-(-3)-[lurkerlabel]" options:0 metrics:nil views:@{ @"userlabel": self.userLabel, @"lurkerlabel": self.lurkerLabel }]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[usercount]-(-3)-[lurkercount]" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel, @"lurkercount": self.lurkerCountLabel }]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[userlabel]" options:0 metrics:nil views:@{ @"userlabel": self.userLabel }]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[usercount]" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[userlabel][lurkerlabel]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"userlabel": self.userLabel, @"lurkerlabel": self.lurkerLabel }]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount][lurkercount]" options:NSLayoutFormatAlignAllRight metrics:nil views:@{ @"usercount": self.userCountLabel, @"lurkercount": self.lurkerCountLabel }]];

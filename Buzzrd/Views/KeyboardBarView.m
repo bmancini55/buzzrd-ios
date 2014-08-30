@@ -79,7 +79,7 @@
         
         // horizontal constraints
         NSDictionary *hcon = @{ @"imageView": self.imageView, @"textView": self.textView, @"mainButton": self.mainButton };
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[imageView(26)]-6-[textView]-6-[mainButton]-6-|" options:0 metrics:nil views:hcon]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[imageView(26)]-12-[textView]-6-[mainButton]-6-|" options:0 metrics:nil views:hcon]];
         
         // vertical constraints
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[imageView(19.5)]" options:0 metrics:nil views:@{ @"imageView": self.imageView }]];
