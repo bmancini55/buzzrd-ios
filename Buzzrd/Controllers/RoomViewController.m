@@ -36,6 +36,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     
     
     // Setting the estimated row height prevents the table view from calling tableView:heightForRowAtIndexPath: for every row in the table on first load;
@@ -44,14 +45,10 @@
     
     // create hooks for keyboard to shrink table view on open/close
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShowOrHide:)
+                                             selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShowOrHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    
+
     // Add the info for the right bar menu
     self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 75, self.navigationController.navigationBar.frame.size.height)];
     [self.rightBar setUserCount:self.room.userCount];
@@ -124,11 +121,38 @@
 }
 
 
-// Scroll to bottom when keyboard is shown or hidden
--(void)keyboardDidShowOrHide:(NSNotification *)notification
+// Scroll to bottom when keyboard is shown
+-(void)keyboardWillShow:(NSNotification *)notification
 {
-    [self scrollToBottom:false];
+    // however, only scroll if we are at the bottom of the scrollview
+    if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
+        
+        NSDictionary *userInfo = [notification userInfo];
+        NSTimeInterval animationDuration;
+        UIViewAnimationCurve animationCurve;
+        CGRect keyboardEndFrame;
+        
+        [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+        [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+        [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+        
+        [UIView animateKeyframesWithDuration:animationDuration delay:0 options:(animationCurve << 16) animations:^{
+            
+            // Adjust content offset to match the ending position of the table after the keyboard is shown.
+            // The additional -7 is needed to keep the contentOffset position from being larger than the scroll height.
+            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + keyboardEndFrame.origin.y - 7);
+            
+        } completion:^(BOOL finished) {
+            
+            // Finalize by scrolling any additional offset
+            [self scrollToBottom:true];
+        }];
+    }
 }
+
+
+
+
 
 #pragma mark - Internal helper methods
 
