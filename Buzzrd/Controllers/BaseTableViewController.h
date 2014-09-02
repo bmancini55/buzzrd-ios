@@ -19,10 +19,6 @@
 
 @property (strong, nonatomic) RetryAlert *retryAlert;
 
-- (void) showActivityView;
-
-- (void) hideActivityView;
-
 - (void) showRetryAlertWithTitle:(NSString *)title
                          message:(NSString *)message
                   retryOperation:(NSOperation *)operation;

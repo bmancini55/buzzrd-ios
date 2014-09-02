@@ -65,13 +65,12 @@
 }
 
 - (void) showActivityView {
-    UIViewController *visibleViewController = [self.window visibleViewController];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
         self.loadingOverlay = [[LoadingOverlay alloc]init];
         self.loadingOverlay.title = NSLocalizedString(@"Processing", nil);
-        [visibleViewController.view addSubview:self.loadingOverlay];
+        [self.window addSubview:self.loadingOverlay];
         [self.loadingOverlay show];
     });
 }
