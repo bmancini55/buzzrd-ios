@@ -51,7 +51,7 @@
 
     // Add the info for the right bar menu
     self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 75, self.navigationController.navigationBar.frame.size.height)];
-    [self.rightBar setUserCount:self.room.userCount];
+    [self.rightBar setUserCount:(uint)self.room.userCount];
     self.navigationItem .rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBar];
 
     
@@ -130,17 +130,21 @@
         NSDictionary *userInfo = [notification userInfo];
         NSTimeInterval animationDuration;
         UIViewAnimationCurve animationCurve;
+        CGRect keyboardBeginFrame;
         CGRect keyboardEndFrame;
         
         [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
         [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+        [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardBeginFrame];
         [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
         
         [UIView animateKeyframesWithDuration:animationDuration delay:0 options:(animationCurve << 16) animations:^{
             
-            // Adjust content offset to match the ending position of the table after the keyboard is shown.
-            // The additional -7 is needed to keep the contentOffset position from being larger than the scroll height.
-            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + keyboardEndFrame.origin.y - 7);
+            // Make the tableview scroll DOWN by the change in keyboard size.
+            // This causes the scroll position to match the change in table size 1 for 1
+            // since the animation is the same as the keyboard expansion
+            CGFloat keyboardHeightChange = (keyboardEndFrame.size.height - keyboardBeginFrame.size.height);
+            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + keyboardHeightChange);
             
         } completion:^(BOOL finished) {
             
