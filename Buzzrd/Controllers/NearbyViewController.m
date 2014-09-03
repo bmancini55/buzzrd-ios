@@ -50,11 +50,7 @@
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    // Load the user info and locations
-    [self getUserLocation];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 
@@ -66,22 +62,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Show the login view controller
+    // Show the login view controller when not authenticated
     if ([BuzzrdAPI current].authorization.bearerToken == nil) {
         [self presentViewController:[BuzzrdNav createLoginViewController] animated:false completion:nil];
     }
 }
 
-
-// Fires with NotificationCenter event UIApplicationDidBecomeActiveNotification
-// Load the latest user location and venue list when we restore the application
-- (void) appDidBecomeActive
+- (void)viewDidAppear:(BOOL)animated
 {
-    // check if it's been longer than XX seconds
-    float seconds = -60.0;
-    if(self.lastLoad && [self.lastLoad timeIntervalSinceNow] < seconds) {
-        [self getUserLocation];
-    }
+    [self getUserLocation];
+}
+
+- (void)appDidBecomeActive
+{
+    [self getUserLocation];
 }
 
 - (void)tableViewWillRefresh
@@ -91,16 +85,22 @@
 
 - (void)getUserLocation
 {
-    // flag last load time as now
-    self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
+    float seconds = -60.0;
     
-    // start the spinner
-    [self.refreshControl beginRefreshing];
-    
-    // build and dispatch the command
-    GetLocationCommand *command = [[GetLocationCommand alloc]init];
-    [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    // Load the locations if we're authenticated and we haven't loaded, or it's been more than XX seconds since we last loaded
+    if ([BuzzrdAPI current].authorization.bearerToken != nil && (self.lastLoad == nil || [self.lastLoad timeIntervalSinceNow] < seconds)) {
+        
+        // flag last load time as now
+        self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
+        
+        // start the spinner
+        [self.refreshControl beginRefreshing];
+        
+        // build and dispatch the command
+        GetLocationCommand *command = [[GetLocationCommand alloc]init];
+        [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
 }
 
 - (void)getLocationDidComplete:(NSNotification *)notif
