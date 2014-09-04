@@ -14,6 +14,7 @@
 #import "MessageCell.h"
 #import "UserCountBarButton.h"
 #import "BuzzrdBackgroundView.h"
+#import "UITableView+Helpers.h"
 
 @interface RoomViewController ()
 
@@ -124,8 +125,8 @@
 // Scroll to bottom when keyboard is shown
 -(void)keyboardWillShow:(NSNotification *)notification
 {
-    // however, only scroll if we are at the bottom of the scrollview
-    if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
+    // Only do the scrolling if we are at the bottom of the scrollview
+    if(self.tableView.scrolledToBottom) {
         
         NSDictionary *userInfo = [notification userInfo];
         NSTimeInterval animationDuration;
@@ -300,8 +301,9 @@
 
 - (void)receiveMessage:(Message *)message;
 {
-    NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
+    bool currentlyAtBottom = [self.tableView scrolledToBottom];
     
+    NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
     [mergeArray addObject:message];
     self.messages = [[NSArray alloc]initWithArray:mergeArray];
     
@@ -310,7 +312,15 @@
     [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
     
-    [self scrollToBottom:true];
+    // if we were at the bottom scroll position prior to adding a new row,
+    // we will now scroll to the bottom position again
+    if(currentlyAtBottom) {
+        
+        [self scrollToBottom:true];
+        
+    } else {
+        // todo create notification similar to Line or facebook
+    }
 }
 
 - (void)receiveJoin:(uint)users;

@@ -10,6 +10,7 @@
 		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
+		350AB5A419B889DD0060D3C7 /* UITableView+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A319B889DD0060D3C7 /* UITableView+Helpers.m */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */; };
 		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
@@ -129,6 +130,8 @@
 		350AB59E19AD7F010060D3C7 /* VenueCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueCellDelegate.h; path = Views/Venues/VenueCellDelegate.h; sourceTree = "<group>"; };
 		350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenueRoomsCommand.h; path = Commands/Room/GetVenueRoomsCommand.h; sourceTree = "<group>"; };
 		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
+		350AB5A219B889DD0060D3C7 /* UITableView+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Helpers.h"; path = "Categories/UITableView+Helpers.h"; sourceTree = "<group>"; };
+		350AB5A319B889DD0060D3C7 /* UITableView+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+Helpers.m"; path = "Categories/UITableView+Helpers.m"; sourceTree = "<group>"; };
 		351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomCommand.h; path = Commands/Room/CreateRoomCommand.h; sourceTree = "<group>"; };
 		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		351036EB19705BF300AF5C39 /* GetMessagesForRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessagesForRoomCommand.h; path = Commands/Message/GetMessagesForRoomCommand.h; sourceTree = "<group>"; };
@@ -725,6 +728,8 @@
 				35A6C1FF1987209800528D77 /* NSDate+Helpers.m */,
 				C213C047199B00EB00B41A2A /* UIWindow+Helpers.h */,
 				C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */,
+				350AB5A219B889DD0060D3C7 /* UITableView+Helpers.h */,
+				350AB5A319B889DD0060D3C7 /* UITableView+Helpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
 				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
+				350AB5A419B889DD0060D3C7 /* UITableView+Helpers.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				3576A83C199CE0880071FED5 /* VenueRoomTable.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
