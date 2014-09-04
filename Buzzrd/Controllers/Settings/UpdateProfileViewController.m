@@ -47,7 +47,7 @@
     
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
-        
+    
     self.user = [[BuzzrdAPI current].user copy];
 }
 
@@ -145,15 +145,16 @@
                 }
                 case 4: {
                     cell.textLabel.text = NSLocalizedString(@"Adjust Profile Picture", nil);
+                    cell.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
                     
                     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
                     profileImageView.contentMode = UIViewContentModeScaleAspectFit;
                     profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
                     profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
                     [cell addSubview: profileImageView];
-
-                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[cellLabel]-(-70)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": profileImageView }]];
-
+                    
+                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[cellLabel]-(50)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": profileImageView }]];
+                    
                     [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[profileImageView(27)]" options:0 metrics:nil views:@{ @"profileImageView": profileImageView }]];
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
@@ -191,9 +192,9 @@
         tf.font = [ThemeManager getPrimaryFontDemiBold:16.0];
         tf.textColor = [ThemeManager getPrimaryColorMedium];
         [tf setBackgroundColor:[ThemeManager getPrimaryColorLight]];
-	
+        
         [tf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-	
+        
         // We want to handle textFieldDidEndEditing
         tf.delegate = self;
     }
@@ -290,7 +291,7 @@
             isValid = false;
         }
     }
-
+    
     if (isDirty == false)
     {
         return false;
@@ -310,7 +311,7 @@
     }
     else {
         self.user.username = self.usernameTextField.text;
-
+        
         self.user.firstName = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         self.user.lastName = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -323,7 +324,7 @@
         {
             self.user.password = self.passwordTextField.text;
         }
-
+        
         UpdateUserCommand *command = [[UpdateUserCommand alloc]init];
         command.user = self.user;
         

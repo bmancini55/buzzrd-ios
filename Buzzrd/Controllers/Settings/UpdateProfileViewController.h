@@ -15,6 +15,8 @@
 
 - (id)init;
 
+-(bool) isFormValid;
+
 @property (strong, nonatomic) UITapGestureRecognizer *keyboardDismissGestureRecognizer;
 
 @end

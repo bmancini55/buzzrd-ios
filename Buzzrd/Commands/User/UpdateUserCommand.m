@@ -23,14 +23,17 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/users/"];
+    NSString *url = [self getAPIUrl:@"/api/users/update/"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:self.user.username forKey:@"username"];
-    [parameters setObject:self.user.password forKey:@"password"];
     [parameters setObject:self.user.firstName forKey:@"firstName"];
     [parameters setObject:self.user.lastName forKey:@"lastName"];
     [parameters setObject:self.user.genderId forKey:@"sex"];
+    
+    if (self.user.password != nil) {
+        [parameters setObject:self.user.password forKey:@"password"];
+    }
     
     [self httpPostWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }
