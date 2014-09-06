@@ -11,6 +11,6 @@
 @interface UITableView (ScrollHelpers)
 
 - (bool)scrolledToBottom;
-- (void)scrollToBottom:(BOOL)animated
+- (void)scrollToBottom:(BOOL)animated;
 
 @end
