@@ -1,5 +1,5 @@
 //
-//  UITableView+Helpers.h
+//  UITableView+ScrollHelpers.h
 //  Buzzrd
 //
 //  Created by Brian Mancini on 9/4/14.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITableView (Helpers)
+@interface UITableView (ScrollHelpers)
 
-- (bool) scrolledToBottom;
+- (bool)scrolledToBottom;
+- (void)scrollToBottom:(BOOL)animated
 
 @end

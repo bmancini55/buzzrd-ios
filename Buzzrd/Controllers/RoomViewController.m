@@ -14,7 +14,7 @@
 #import "MessageCell.h"
 #import "UserCountBarButton.h"
 #import "BuzzrdBackgroundView.h"
-#import "UITableView+Helpers.h"
+#import "UITableView+ScrollHelpers.h"
 
 @interface RoomViewController ()
 
@@ -150,7 +150,7 @@
         } completion:^(BOOL finished) {
             
             // Finalize by scrolling any additional offset
-            [self scrollToBottom:true];
+            [self.tableView scrollToBottom:true];
         }];
     }
 }
@@ -227,7 +227,7 @@
             // on fresh reload
             if (command.page == 1)
             {
-                [self scrollToBottom:false];
+                [self.tableView scrollToBottom:false];
                 [self connectToSocketServer];
             }
         }
@@ -238,16 +238,7 @@
     }
 }
 
-- (void)scrollToBottom:(BOOL)animated
-{
-    NSInteger lastSection = [self.tableView.dataSource numberOfSectionsInTableView:self.tableView] - 1;
-    NSInteger rowIndex = [self.tableView.dataSource tableView:self.tableView numberOfRowsInSection:lastSection] - 1;
-    
-    if(rowIndex >= 0) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:lastSection];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
-    }
-}
+
 
 
 #pragma mark - Table view data source
@@ -345,7 +336,7 @@
     // we will now scroll to the bottom position again
     if(currentlyAtBottom) {
         
-        [self scrollToBottom:true];
+        [self.tableView scrollToBottom:true];
         
     } else {
         // todo create notification similar to Line or facebook
