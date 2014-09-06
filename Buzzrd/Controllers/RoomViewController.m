@@ -170,37 +170,66 @@
         GetMessagesForRoomCommand *command = [[GetMessagesForRoomCommand alloc]init];
         command.room = self.room;
         command.page = page;
-        [command listenForCompletion:self selector:@selector(messageForRoomDidComplete:)];
+        [command listenForCompletion:self selector:@selector(messagesForRoomDidComplete:)];
         [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
 }
 
-- (void)messageForRoomDidComplete:(NSNotification *)notification
+- (void)messagesForRoomDidComplete:(NSNotification *)notification
 {
     self.loading = false;
     GetMessagesForRoomCommand *command = notification.object;
     if(command.status == kSuccess)
     {
-        // keep scroll position
-        float height = self.tableView.contentSize.height;
-        float offset = self.tableView.contentOffset.y;
-        
         // merge results into table
         NSArray *newMessages = command.results;
-        NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
-        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, newMessages.count)];
-        [mergeArray insertObjects:newMessages atIndexes:indexSet];
-        self.messages = mergeArray;
-        [self.tableView reloadData];
         
-        // reatin the previous scroll position
-        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - height + offset);
-        
-        // on fresh reload
-        if (command.page == 1)
+        // only update if there are results
+        if(newMessages.count > 0)
         {
-            [self scrollToBottom:false];
-            [self connectToSocketServer];
+            // slot new rows at the beginning of the array
+            NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
+            [mergeArray addObjectsFromArray:self.messages];
+            self.messages = mergeArray;
+            
+            // turn off animations for the update block
+            [UIView setAnimationsEnabled:false];
+            
+            // perform row additions in the table
+            [self.tableView beginUpdates];
+
+            CGPoint tableViewOffset = [self.tableView contentOffset];
+            NSMutableArray *indexPaths = [[NSMutableArray alloc]init];
+            
+            // for each message...
+            for(int index = 0; index < newMessages.count; index++) {
+                
+                // insert the row
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+                [indexPaths addObject:indexPath];
+                
+                // calculate the row height
+                tableViewOffset.y += [self tableView:self.tableView heightForRowAtIndexPath:indexPath];
+            }
+
+            // insert the rows at the index paths
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+            
+            // end animations
+            [self.tableView endUpdates];
+            
+            // enable animations
+            [UIView setAnimationsEnabled:true];
+            
+            // move scroll to previous position
+            [self.tableView setContentOffset:tableViewOffset animated:false];
+            
+            // on fresh reload
+            if (command.page == 1)
+            {
+                [self scrollToBottom:false];
+                [self connectToSocketServer];
+            }
         }
     }
     else
