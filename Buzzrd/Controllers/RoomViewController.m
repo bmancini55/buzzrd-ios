@@ -39,11 +39,6 @@
     self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     
-    
-    // Setting the estimated row height prevents the table view from calling tableView:heightForRowAtIndexPath: for every row in the table on first load;
-    // it will only be called as cells are about to scroll onscreen. This is a major performance optimization.
-    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
-    
     // create hooks for keyboard to shrink table view on open/close
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -177,6 +172,7 @@
 
 - (void)messagesForRoomDidComplete:(NSNotification *)notification
 {
+    NSDate *timer = [NSDate date];
     self.loading = false;
     GetMessagesForRoomCommand *command = notification.object;
     if(command.status == kSuccess)
@@ -230,6 +226,8 @@
                 [self.tableView scrollToBottom:false];
                 [self connectToSocketServer];
             }
+                
+            NSLog(@"Rendered in: %f", [timer timeIntervalSinceNow] * -1000.0);
         }
     }
     else
@@ -277,10 +275,6 @@
     
     MessageCell *cell = [[MessageCell alloc]init];
     [cell setMessage:message];
-    
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     return height;
 }
