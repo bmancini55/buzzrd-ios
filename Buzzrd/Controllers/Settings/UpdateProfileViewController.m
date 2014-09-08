@@ -13,6 +13,7 @@
 #import "GenderPickerTableViewController.h"
 #import "BuzzrdAPI.h"
 #import "UpdateUserCommand.h"
+#import "UpdateProfileImageViewController.h"
 
 @interface UpdateProfileViewController ()
 
@@ -211,6 +212,11 @@
     {
         [self displayGenderPicker];
     }
+    // 04 is the reuseIdentifer for the profile image cell
+    else if ([cell.reuseIdentifier isEqual: @"04"])
+    {
+        [self displayProfileImagePicker];
+    }
 }
 
 - (void) displayGenderPicker
@@ -220,6 +226,13 @@
     viewController.onGenderSelected = ^(NSNumber *genderId) {
         [self setGender:genderId];
     };
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void) displayProfileImagePicker
+{
+    UpdateProfileImageViewController *viewController = [[UpdateProfileImageViewController alloc]init];
+    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
