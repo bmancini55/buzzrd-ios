@@ -94,6 +94,10 @@
     self.createAccountButton.clipsToBounds = YES;
     self.createAccountButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.createAccountButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:15.0];
+    [self.createAccountButton setBackgroundColor: [ThemeManager getPrimaryColorMedium]];
+    [self.createAccountButton setTitleColor:[ThemeManager getPrimaryColorDark] forState:UIControlStateNormal];
+    [self.createAccountButton setTitleColor:[ThemeManager getPrimaryColorDark] forState:UIControlStateSelected];
+    
     [self.view addSubview:self.createAccountButton];
     
     
@@ -104,6 +108,8 @@
     self.loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.loginButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
     self.loginButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
+    [self.loginButton setTitleColor:[ThemeManager getPrimaryColorDark] forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[ThemeManager getPrimaryColorDark] forState:UIControlStateSelected];
     [credentialsContainer addSubview:self.loginButton];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[buzzrdImageView]-40-|" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView }]];

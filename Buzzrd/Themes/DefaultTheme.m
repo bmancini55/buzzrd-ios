@@ -46,25 +46,21 @@ NSString *primaryFontDemiBold;
     primaryFontBold = @"AvenirNext-Bold";
     primaryFontDemiBold = @"AvenirNext-DemiBold";
 
-    
-    [[UIButton appearance] setBackgroundColor: primaryColorMedium];
-    [[UIButton appearance] setTitleColor: primaryColorDark forState: UIControlStateNormal];
-    [[UIButton appearance] setTitleColor: primaryColorDark forState: UIControlStateSelected];
-    [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil]
-     setBackgroundColor: [UIColor whiteColor]];
-    
+    // set text tint colors
     [[UITextField appearance] setBackgroundColor: [UIColor whiteColor]];
     [[UITextField appearance] setFont: [UIFont fontWithName:primaryFontRegular size:17.0]];
     [[UITextField appearance] setTextColor: primaryColorDark];
+    [[UITextField appearance] setTintColor:tertiaryColorDark];
     
     // set navigation appearance for app
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0]];
-    
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
       primaryColorDark, NSForegroundColorAttributeName,
       [UIFont fontWithName:primaryFontRegular size:17.0], NSFontAttributeName,
       nil]];
-    [[UINavigationBar appearance] setTintColor:tertiaryColorDark];    
+    [[UINavigationBar appearance] setTintColor:tertiaryColorDark];
+    
+    
 
     
     return self;
