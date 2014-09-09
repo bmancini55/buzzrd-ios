@@ -183,48 +183,54 @@
         // only update if there are results
         if(newMessages.count > 0)
         {
-            // slot new rows at the beginning of the array
-            NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
-            [mergeArray addObjectsFromArray:self.messages];
-            self.messages = mergeArray;
-            
-            // turn off animations for the update block
-            [UIView setAnimationsEnabled:false];
-            
-            // perform row additions in the table
-            [self.tableView beginUpdates];
-
-            CGPoint tableViewOffset = [self.tableView contentOffset];
-            NSMutableArray *indexPaths = [[NSMutableArray alloc]init];
-            
-            // for each message...
-            for(int index = 0; index < newMessages.count; index++) {
-                
-                // insert the row
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-                [indexPaths addObject:indexPath];
-                
-                // calculate the row height
-                tableViewOffset.y += [self tableView:self.tableView heightForRowAtIndexPath:indexPath];
-            }
-
-            // insert the rows at the index paths
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-            
-            // end animations
-            [self.tableView endUpdates];
-            
-            // enable animations
-            [UIView setAnimationsEnabled:true];
-            
-            // move scroll to previous position
-            [self.tableView setContentOffset:tableViewOffset animated:false];
-            
             // on fresh reload
             if (command.page == 1)
             {
+                self.messages = newMessages;
+                [self.tableView reloadData];                
                 [self.tableView scrollToBottom:false];
                 [self connectToSocketServer];
+            }
+            // on page load
+            else
+            {
+                // slot new rows at the beginning of the array
+                NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
+                [mergeArray addObjectsFromArray:self.messages];
+                self.messages = mergeArray;
+                
+                // turn off animations for the update block
+                [UIView setAnimationsEnabled:false];
+                
+                // perform row additions in the table
+                [self.tableView beginUpdates];
+
+                CGPoint tableViewOffset = [self.tableView contentOffset];
+                NSMutableArray *indexPaths = [[NSMutableArray alloc]init];
+                
+                // for each message...
+                for(int index = 0; index < newMessages.count; index++) {
+                    
+                    // insert the row
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+                    [indexPaths addObject:indexPath];
+                    
+                    // calculate the row height
+                    tableViewOffset.y += [self tableView:self.tableView heightForRowAtIndexPath:indexPath];
+                }
+
+                // insert the rows at the index paths
+                [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+                
+                // end animations
+                [self.tableView endUpdates];
+                
+                // enable animations
+                [UIView setAnimationsEnabled:true];
+                
+                // move scroll to previous position
+                [self.tableView setContentOffset:tableViewOffset animated:false];
+                
             }
                 
             NSLog(@"Rendered in: %f", [timer timeIntervalSinceNow] * -1000.0);
