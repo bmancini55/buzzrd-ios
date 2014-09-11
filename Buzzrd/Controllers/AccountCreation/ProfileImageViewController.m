@@ -186,8 +186,6 @@
 
 -(void) savePicButtonTouch
 {
-    [self showActivityView];
-    
     if (_thumbnail != nil){
         
         UploadImageCommand *command = [[UploadImageCommand alloc]init];
@@ -213,6 +211,8 @@
         profilePicCommand.iduser = self.user.iduser;
         profilePicCommand.imageURI = command.results;
         [profilePicCommand listenForCompletion:self selector:@selector(updateProfilePicDidComplete:)];
+        
+        self.user.profilePic = command.results;
         
         [[BuzzrdAPI dispatch] enqueueCommand:profilePicCommand];
     }
