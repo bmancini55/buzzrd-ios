@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSNumber *genderId;
+@property (strong, nonatomic) NSString *profilePic;
 
 -(id) initWithJson:(NSDictionary *)json;
 -(id) copyWithZone: (NSZone *) zone;

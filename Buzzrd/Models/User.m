@@ -28,6 +28,7 @@
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
     [coder encodeObject:self.genderId forKey:@"genderId"];
+    [coder encodeObject:self.profilePic forKey:@"profilePic"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder;
@@ -41,6 +42,7 @@
         self.firstName = [coder decodeObjectForKey:@"firstName"];
         self.lastName = [coder decodeObjectForKey:@"lastName"];
         self.genderId = [coder decodeObjectForKey:@"genderId"];
+        self.profilePic = [coder decodeObjectForKey:@"profilePic"];
     }
     
     return self;
@@ -55,6 +57,7 @@
         self.firstName = json[@"firstName"];
         self.lastName = json[@"lastName"];
         self.genderId = json[@"sex"];
+        self.profilePic = json[@"profilePic"];
         
     }
     return self;
@@ -69,6 +72,7 @@
     userCopy.firstName = self.firstName;
     userCopy.lastName = self.lastName;
     userCopy.genderId = self.genderId;
+    userCopy.profilePic = self.profilePic;
     
     return userCopy;
 }

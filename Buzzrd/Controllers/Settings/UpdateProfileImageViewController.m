@@ -13,12 +13,14 @@
 #import "UploadImageCommand.h"
 #import "UpdateProfilePicCommand.h"
 #import "ThemeManager.h"
+#import "DownloadImageCommand.h"
 
 @interface UpdateProfileImageViewController ()
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) UIImageView *profileImageView;
 @property (nonatomic, strong) UIImage *thumbnail;
+@property (nonatomic, strong) UIButton *savePicButton;
 
 @end
 
@@ -30,39 +32,57 @@
     
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-    UIView *profilePicContainerView =[[UIView alloc] init];
-    profilePicContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+    UIView *profilePicContainerView =[[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2) - (72),100,144,144)];
     [self.view addSubview:profilePicContainerView];
     
-    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,144,144)];
     self.profileImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
+    self.profileImageView.layer.borderColor = [ThemeManager getPrimaryColorMedium].CGColor;
+    self.profileImageView.layer.borderWidth = 1;
     [profilePicContainerView addSubview:self.profileImageView];
-    
     
     UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profilePicContainerViewSingleTap:)];
     [profilePicContainerView addGestureRecognizer:singleFingerTap];
     
-    UIButton *savePicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [savePicButton setTitle: NSLocalizedString(@"SAVE PROFILE PICTURE", nil) forState:UIControlStateNormal];
-    savePicButton.translatesAutoresizingMaskIntoConstraints = NO;
-    savePicButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
-    savePicButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
-    [savePicButton addTarget:self action:@selector(savePicButtonTouch) forControlEvents:UIControlEventTouchUpInside];
-    [savePicButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
-    savePicButton.layer.cornerRadius = 5; // this value vary as per your desire
-    [self.view addSubview:savePicButton];
+    self.savePicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.savePicButton setTitle: NSLocalizedString(@"SAVE PROFILE PICTURE", nil) forState:UIControlStateNormal];
+    self.savePicButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.savePicButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
+    self.savePicButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
+    [self.savePicButton addTarget:self action:@selector(savePicButtonTouch) forControlEvents:UIControlEventTouchUpInside];
+    [self.savePicButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
+    self.savePicButton.layer.cornerRadius = 5;
+    self.savePicButton.enabled = false;
+    [self.view addSubview:self.savePicButton];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-110-[profilePicContainerView]-110-|" options:0 metrics:nil views:@{ @"profilePicContainerView" : profilePicContainerView }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[savePicButton]-20-|" options:0 metrics:nil views:@{ @"savePicButton" : self.savePicButton }]];
     
-    [profilePicContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[profileImageView]-0-|" options:0 metrics:nil views:@{ @"profileImageView" :self.profileImageView }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[profilePicContainerView]-25-[savePicButton]" options:0 metrics:nil views:@{ @"profilePicContainerView" : profilePicContainerView, @"savePicButton" : self.savePicButton }]];
     
-    [profilePicContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[profileImageView]-0-|" options:0 metrics:nil views:@{ @"profileImageView" :self.profileImageView }]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[savePicButton]-20-|" options:0 metrics:nil views:@{ @"savePicButton" : savePicButton }]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[profilePicContainerView]-25-[savePicButton]" options:0 metrics:nil views:@{ @"profilePicContainerView" : profilePicContainerView, @"savePicButton" : savePicButton }]];
+    if ([BuzzrdAPI current].user.profilePic != nil) {
+        DownloadImageCommand *command = [[DownloadImageCommand alloc]init];
+        command.url = [BuzzrdAPI current].user.profilePic;
+        
+        [command listenForCompletion:self selector:@selector(downloadImageDidComplete:)];
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+- (void)downloadImageDidComplete:(NSNotification *)notif
+{
+    DownloadImageCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        self.profileImageView.image = command.results;
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
 }
 
 - (UIImagePickerController *) imagePicker {
@@ -133,12 +153,12 @@
     _thumbnail = [image createThumbnail:image withSide:side];
     
     self.profileImageView.image = _thumbnail;
+    
+    self.savePicButton.enabled = true;
 }
 
 -(void) savePicButtonTouch
 {
-    [self showActivityView];
-    
     if (_thumbnail != nil){
         
         UploadImageCommand *command = [[UploadImageCommand alloc]init];
@@ -164,6 +184,8 @@
         profilePicCommand.iduser = [BuzzrdAPI current].user.iduser;
         profilePicCommand.imageURI = command.results;
         [profilePicCommand listenForCompletion:self selector:@selector(updateProfilePicDidComplete:)];
+        
+        [BuzzrdAPI current].user.profilePic = command.results;
         
         [[BuzzrdAPI dispatch] enqueueCommand:profilePicCommand];
     }

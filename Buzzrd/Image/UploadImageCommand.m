@@ -7,7 +7,6 @@
 //
 
 #import "UploadImageCommand.h"
-#import "AFHTTPRequestOperationManager.h"
 
 @implementation UploadImageCommand
 
