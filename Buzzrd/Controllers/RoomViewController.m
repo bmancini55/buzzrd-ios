@@ -21,6 +21,7 @@
     @property (strong, nonatomic) KeyboardBarView *keyboardBar;
     @property (strong, nonatomic) SocketIO *socket;
     @property (strong, nonatomic) NSArray *messages;
+    @property (strong, nonatomic) NSMutableArray *messageHeights;
     @property (nonatomic) uint page;
     @property (nonatomic) uint loading;
     @property (strong, nonatomic) UserCountBarButton *rightBar;
@@ -77,6 +78,7 @@
 {
     // reset messages
     self.messages = [[NSArray alloc]init];
+    self.messageHeights = [[NSMutableArray alloc]init];
     
     // load recent messages
     [self loadMessagesWithPage:1];
@@ -183,7 +185,15 @@
         // on fresh reload
         if (command.page == 1)
         {
+            // set messages
             self.messages = newMessages;
+            
+            // reset height array
+            self.messageHeights = [[NSMutableArray alloc]init];
+            for(int i = 0; i < newMessages.count; i++)
+                [self.messageHeights addObject:[[NSNumber alloc]initWithFloat:0]];
+            
+            // reprocess table
             [self.tableView reloadData];
             [self.tableView scrollToBottom:false];
             [self connectToSocketServer];
@@ -198,6 +208,11 @@
                 NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
                 [mergeArray addObjectsFromArray:self.messages];
                 self.messages = mergeArray;
+                
+                // slot blank heights at beginning of the height array
+                [self.messageHeights insertObjects:newMessages atIndexes: [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, newMessages.count)]];
+                for(int i = 0; i < newMessages.count; i++)
+                    [self.messageHeights setObject:[[NSNumber alloc]initWithFloat:0] atIndexedSubscript:i];
                 
                 // turn off animations for the update block
                 [UIView setAnimationsEnabled:false];
@@ -277,12 +292,21 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Message *message = self.messages[indexPath.row];
-    
-    MessageCell *cell = [[MessageCell alloc]init];
-    [cell setMessage:message];
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return height;
+    CGFloat cachedValue = [self.messageHeights[indexPath.row] floatValue];
+    if(cachedValue > 0)
+    {
+        return cachedValue;
+    }
+    else
+    {
+        Message *message = self.messages[indexPath.row];
+        MessageCell *cell = [[MessageCell alloc]init];
+        [cell setMessage:message];
+        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        
+        [self.messageHeights replaceObjectAtIndex:indexPath.row withObject:[[NSNumber alloc] initWithFloat:height]];
+        return height;
+    }
 }
 
 
