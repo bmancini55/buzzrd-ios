@@ -27,7 +27,7 @@
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
     NSString *url = [self.apiURLBase stringByAppendingString:[NSString stringWithFormat:@"/api/rooms/%@/messages", self.room.id]];
-    NSDictionary *params = @{ @"page": [NSNumber numberWithInt:self.page], @"pagesize": [NSNumber numberWithInt:50] };
+    NSDictionary *params = @{ @"page": [NSNumber numberWithInt:self.page], @"pagesize": [NSNumber numberWithInt:25] };
 
     [self httpGetWithManager:manager url:url parameters:params parser:@selector(parser:)];
 }
