@@ -180,19 +180,19 @@
         // merge results into table
         NSArray *newMessages = command.results;
         
-        // only update if there are results
-        if(newMessages.count > 0)
+        // on fresh reload
+        if (command.page == 1)
         {
-            // on fresh reload
-            if (command.page == 1)
-            {
-                self.messages = newMessages;
-                [self.tableView reloadData];                
-                [self.tableView scrollToBottom:false];
-                [self connectToSocketServer];
-            }
-            // on page load
-            else
+            self.messages = newMessages;
+            [self.tableView reloadData];
+            [self.tableView scrollToBottom:false];
+            [self connectToSocketServer];
+        }
+        // on additional pages loaded
+        else
+        {
+            // only update if there are results
+            if(newMessages.count > 0)
             {
                 // slot new rows at the beginning of the array
                 NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
@@ -230,11 +230,11 @@
                 
                 // move scroll to previous position
                 [self.tableView setContentOffset:tableViewOffset animated:false];
-                
             }
-                
-            NSLog(@"Rendered in: %f", [timer timeIntervalSinceNow] * -1000.0);
+            
         }
+            
+        NSLog(@"Rendered in: %f", [timer timeIntervalSinceNow] * -1000.0);
     }
     else
     {
