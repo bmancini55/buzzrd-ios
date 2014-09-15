@@ -33,6 +33,7 @@
 
 @synthesize authorization = _authorization;
 @synthesize user = _user;
+@synthesize profilePic = _profilePic;
 
 - (Authorization *) authorization {
     
@@ -97,6 +98,38 @@
     
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_user] forKey:@"user"];
         
+    [defaults synchronize];
+}
+
+
+- (UIImage *) profilePic {
+    
+    if(_profilePic == nil)
+    {
+        //1) Try and read the user from local storage
+        //2) If it is there, then instantiate the User
+        //3) Else, return nil
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSData * profilePicData = [defaults objectForKey:@"profilePic"];
+        
+        if(profilePicData != nil)
+        {
+            _profilePic = [NSKeyedUnarchiver unarchiveObjectWithData: profilePicData];
+        }
+    }
+    
+    return _profilePic;
+}
+
+- (void)setProfilePic:(UIImage *)newValue {
+    _profilePic = newValue;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_user] forKey:@"profilePic"];
+    
     [defaults synchronize];
 }
 

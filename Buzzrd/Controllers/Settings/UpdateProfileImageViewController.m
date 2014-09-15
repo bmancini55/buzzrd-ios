@@ -60,13 +60,18 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[profilePicContainerView]-25-[savePicButton]" options:0 metrics:nil views:@{ @"profilePicContainerView" : profilePicContainerView, @"savePicButton" : self.savePicButton }]];
     
-    if ([BuzzrdAPI current].user.profilePic != nil) {
-        DownloadImageCommand *command = [[DownloadImageCommand alloc]init];
-        command.url = [BuzzrdAPI current].user.profilePic;
-        
-        [command listenForCompletion:self selector:@selector(downloadImageDidComplete:)];
-        
-        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    if ([BuzzrdAPI current].user.profilePic != nil){
+        if ([BuzzrdAPI current].profilePic == nil) {
+            DownloadImageCommand *command = [[DownloadImageCommand alloc]init];
+            command.url = [BuzzrdAPI current].user.profilePic;
+            
+            [command listenForCompletion:self selector:@selector(downloadImageDidComplete:)];
+            
+            [[BuzzrdAPI dispatch] enqueueCommand:command];
+        }
+        else {
+            self.profileImageView.image = [BuzzrdAPI current].profilePic;
+        }
     }
 }
 
@@ -76,6 +81,7 @@
     if(command.status == kSuccess)
     {
         self.profileImageView.image = command.results;
+        [BuzzrdAPI current].profilePic = command.results;
     }
     else
     {

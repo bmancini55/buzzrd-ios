@@ -213,6 +213,7 @@
         [profilePicCommand listenForCompletion:self selector:@selector(updateProfilePicDidComplete:)];
         
         self.user.profilePic = command.results;
+        [BuzzrdAPI current].profilePic = command.results;
         
         [[BuzzrdAPI dispatch] enqueueCommand:profilePicCommand];
     }

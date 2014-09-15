@@ -13,6 +13,7 @@
 #import "LoginCommand.h"
 #import "GetCurrentUserCommand.h"
 #import "ThemeManager.h"
+#import "DownloadImageCommand.h"
 
 @interface LoginViewController ()
 
@@ -225,11 +226,37 @@
     {
         [BuzzrdAPI current].user = (User *)command.results;
         
+        if ([BuzzrdAPI current].user.profilePic != nil){
+            if ([BuzzrdAPI current].profilePic == nil) {
+                DownloadImageCommand *command = [[DownloadImageCommand alloc]init];
+                command.url = [BuzzrdAPI current].user.profilePic;
+                
+                [command listenForCompletion:self selector:@selector(downloadImageDidComplete:)];
+                
+                [[BuzzrdAPI dispatch] enqueueCommand:command];
+            }
+        }
+        
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {
         [self showDefaultRetryAlert:command];
+    }
+}
+
+- (void)downloadImageDidComplete:(NSNotification *)notif
+{
+    DownloadImageCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        [BuzzrdAPI current].profilePic = command.results;
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
     }
 }
 
