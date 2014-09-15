@@ -46,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,19 +77,19 @@
 //                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
 //                    break ;
 //                }
+//                case 1: {
+//                    cell.textLabel.text = NSLocalizedString(@"Buzz Count", nil);
+//                    
+//                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
+//                    break ;
+//                }
                 case 1: {
-                    cell.textLabel.text = NSLocalizedString(@"Buzz Count", nil);
-                    
-                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
-                    break ;
-                }
-                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"Buzzrd Disclaimers", nil);
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     break ;
                 }
-                case 3: {
+                case 2: {
                     cell.textLabel.text = NSLocalizedString(@"Log Out", nil);
                     break ;
                 }
@@ -121,14 +121,14 @@
         UpdateProfileViewController *viewController = [[UpdateProfileViewController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
     }
-    // 03 is the disclaimer cell
-    else if ([cell.reuseIdentifier isEqual: @"02"])
+    // 01 is the disclaimer cell
+    else if ([cell.reuseIdentifier isEqual: @"01"])
     {
         DisclaimersViewController *viewController = [[DisclaimersViewController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
     }
-    // 04 is the log out cell
-    else if ([cell.reuseIdentifier isEqual: @"03"])
+    // 02 is the log out cell
+    else if ([cell.reuseIdentifier isEqual: @"02"])
     {
         [self logoutTouch];
     }
