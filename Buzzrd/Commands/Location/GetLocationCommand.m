@@ -36,7 +36,7 @@
     [self.locationManager startUpdatingLocation];
     
     NSRunLoop *theRL = [NSRunLoop currentRunLoop];
-    while (self.shouldKeepRunning && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:15]])
+    while (self.shouldKeepRunning && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:5]])
     {
         // exit after 15 seconds of trying
         if(self.shouldKeepRunning) {

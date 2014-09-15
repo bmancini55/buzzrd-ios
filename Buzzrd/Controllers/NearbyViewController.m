@@ -84,11 +84,9 @@
 }
 
 - (void)getUserLocation
-{
-    float seconds = -60.0;
-    
+{    
     // Load the locations if we're authenticated and we haven't loaded, or it's been more than XX seconds since we last loaded
-    if ([BuzzrdAPI current].authorization.bearerToken != nil && (self.lastLoad == nil || [self.lastLoad timeIntervalSinceNow] < seconds)) {
+    if ([BuzzrdAPI current].authorization.bearerToken != nil && self.lastLoad == nil) {
         
         // flag last load time as now
         self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
