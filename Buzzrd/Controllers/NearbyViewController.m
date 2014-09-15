@@ -80,6 +80,7 @@
 
 - (void)tableViewWillRefresh
 {
+    self.lastLoad = nil;
     [self getUserLocation];
 }
 
