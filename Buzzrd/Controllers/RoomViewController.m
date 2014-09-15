@@ -350,6 +350,8 @@
     NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
     [mergeArray addObject:message];
     self.messages = [[NSArray alloc]initWithArray:mergeArray];
+    [self.messageHeights addObject:[[NSNumber alloc]initWithFloat:0]];
+    
     
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
     [self.tableView beginUpdates];
