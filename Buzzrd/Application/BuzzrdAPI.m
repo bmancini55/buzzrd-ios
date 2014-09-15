@@ -128,7 +128,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_user] forKey:@"profilePic"];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_profilePic] forKey:@"profilePic"];
     
     [defaults synchronize];
 }
