@@ -20,6 +20,8 @@
     @property (strong, nonatomic) UILabel *lurkerCountLabel;
     @property (strong, nonatomic) UILabel *lurkerLabel;
 
+    @property (strong, nonatomic) UILabel *distanceLabel;
+
     @property (strong, nonatomic) CALayer *bottomBorder;
 
 @end
@@ -74,13 +76,22 @@
     self.lurkerLabel.textColor = [ThemeManager getPrimaryColorDark];
     self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.lurkerLabel];
+    
+    self.distanceLabel = [[UILabel alloc] init];
+    self.distanceLabel.font = [ThemeManager getPrimaryFontRegular:11.0];
+    self.distanceLabel.textColor = [ThemeManager getPrimaryColorDark];
+    self.distanceLabel.textAlignment = NSTextAlignmentRight;
+    self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.distanceLabel];
 }
 
 - (void) updateConstraints
 {
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[title]" options:0 metrics:nil views:@{ @"title": self.nameLabel }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-3-[default]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{ @"title": self.nameLabel, @"default": self.defaultLabel }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-|" options:0 metrics:nil views:@{ @"default": self.defaultLabel }]];
+    //[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-|" options:0 metrics:nil views:@{ @"default": self.defaultLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"default": self.defaultLabel, @"distance": self.distanceLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-6-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"distance": self.distanceLabel }]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.nameLabel }]];
     
@@ -95,6 +106,7 @@
     
     // horizontal spacing for the user and lurker counts, align them on the top edge
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[users]-16-[lurkercount]-3-[lurkers]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"usercount": self.userCountLabel, @"users": self.userLabel, @"lurkercount": self.lurkerCountLabel, @"lurkers": self.lurkerLabel }]];
+    
     
     [super updateConstraints];
 }
@@ -118,6 +130,14 @@
     
     self.lurkerCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)room.lurkerCount];
     self.lurkerLabel.text = NSLocalizedString(@"LURKERS", nil);
+    
+    // set distance
+    CLLocationDistance distance = [userLocation distanceFromLocation:room.location];
+    CGFloat distanceInFeet = distance / 1609.344 * 5280;
+    if(distanceInFeet < 500)
+        self.distanceLabel.text = [NSString stringWithFormat:@"%1.f ft", distanceInFeet];
+    else
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", distanceInFeet / 5280];
     
     [self updateConstraints];
     [self addBorder];

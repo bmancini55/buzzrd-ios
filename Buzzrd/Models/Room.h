@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface Room : NSObject
 
@@ -20,6 +21,8 @@
 
 @property (nonatomic) NSUInteger userCount;
 @property (nonatomic) NSUInteger lurkerCount;
+
+@property (strong, nonatomic) CLLocation *location;
 
 -(id) initWithJson:(NSDictionary *)json;
 

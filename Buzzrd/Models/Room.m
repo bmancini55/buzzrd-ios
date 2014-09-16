@@ -24,6 +24,9 @@
         
         self.userCount = [json[@"userCount"] unsignedIntegerValue];
         self.lurkerCount = [json[@"lurkerCount"] unsignedIntegerValue];
+        
+        NSArray *coord = json[@"coord"];
+        self.location = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];
     }
     return self;
 }
