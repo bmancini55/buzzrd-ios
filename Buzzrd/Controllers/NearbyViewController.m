@@ -112,6 +112,7 @@
     }
     else
     {
+        [self.refreshControl endRefreshing];
         [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
                               message:NSLocalizedString(@"location_error_message", nil)
                        retryOperation:command];
