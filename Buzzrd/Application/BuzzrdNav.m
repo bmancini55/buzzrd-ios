@@ -11,6 +11,7 @@
 #import "RoomViewController.h"
 #import "SettingsViewController.h"
 #import "NearbyViewController.h"
+#import "NearbyRoomsViewController.h"
 #import "RoomVenueViewController.h"
 #import "RoomOptionsViewController.h"
 
@@ -27,8 +28,11 @@
 
 +(UIViewController *) createHomeViewController
 {
-    NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
-    UINavigationController *nearbyNavController = [[UINavigationController alloc] initWithRootViewController:nearbyViewController];
+    //NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
+    //UINavigationController *nearbyNavController = [[UINavigationController alloc] initWithRootViewController:nearbyViewController];
+    
+    NearbyRoomsViewController *nearbyRoomsViewController = [[NearbyRoomsViewController alloc]init];
+    UINavigationController *nearbyRoomsNavController = [[UINavigationController alloc] initWithRootViewController:nearbyRoomsViewController];
     
     //SettingsViewController *SettingsViewController = [[SettingsViewController alloc]init];
     //UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:SettingsViewController];
@@ -40,7 +44,8 @@
     
     //return tabBarController;
     
-    return nearbyNavController;
+    //return nearbyNavController;
+    return nearbyRoomsNavController;
 }
 
 +(UIViewController *) createSettingsController

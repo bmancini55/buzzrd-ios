@@ -11,6 +11,9 @@
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
 		350AB5A419B889DD0060D3C7 /* UITableView+ScrollHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */; };
+		350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A919C7BA3E0060D3C7 /* NearbyRoomsViewController.m */; };
+		350AB5AD19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5AC19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m */; };
+		350AB5B019C7BE800060D3C7 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5AF19C7BE800060D3C7 /* RoomCell.m */; };
 		351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */; };
 		351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036EC19705BF300AF5C39 /* GetMessagesForRoomCommand.m */; };
 		351036F11981F8D000AF5C39 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351036F01981F8D000AF5C39 /* MessageCell.m */; };
@@ -134,6 +137,12 @@
 		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
 		350AB5A219B889DD0060D3C7 /* UITableView+ScrollHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ScrollHelpers.h"; path = "Categories/UITableView+ScrollHelpers.h"; sourceTree = "<group>"; };
 		350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ScrollHelpers.m"; path = "Categories/UITableView+ScrollHelpers.m"; sourceTree = "<group>"; };
+		350AB5A819C7BA3E0060D3C7 /* NearbyRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyRoomsViewController.h; path = Controllers/NearbyRoomsViewController.h; sourceTree = "<group>"; };
+		350AB5A919C7BA3E0060D3C7 /* NearbyRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyRoomsViewController.m; path = Controllers/NearbyRoomsViewController.m; sourceTree = "<group>"; };
+		350AB5AB19C7BDA90060D3C7 /* GetNearbyRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetNearbyRoomsCommand.h; path = Commands/Room/GetNearbyRoomsCommand.h; sourceTree = "<group>"; };
+		350AB5AC19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetNearbyRoomsCommand.m; path = Commands/Room/GetNearbyRoomsCommand.m; sourceTree = "<group>"; };
+		350AB5AE19C7BE800060D3C7 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomCell.h; path = Views/Room/RoomCell.h; sourceTree = "<group>"; };
+		350AB5AF19C7BE800060D3C7 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomCell.m; path = Views/Room/RoomCell.m; sourceTree = "<group>"; };
 		351036E7196EF5A700AF5C39 /* CreateRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomCommand.h; path = Commands/Room/CreateRoomCommand.h; sourceTree = "<group>"; };
 		351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomCommand.m; path = Commands/Room/CreateRoomCommand.m; sourceTree = "<group>"; };
 		351036EB19705BF300AF5C39 /* GetMessagesForRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessagesForRoomCommand.h; path = Commands/Message/GetMessagesForRoomCommand.h; sourceTree = "<group>"; };
@@ -366,6 +375,8 @@
 				351036E8196EF5A700AF5C39 /* CreateRoomCommand.m */,
 				350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */,
 				350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */,
+				350AB5AB19C7BDA90060D3C7 /* GetNearbyRoomsCommand.h */,
+				350AB5AC19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -504,6 +515,8 @@
 			children = (
 				35A8F8E11992568000D54383 /* UserCountBarButton.h */,
 				35A8F8E21992568000D54383 /* UserCountBarButton.m */,
+				350AB5AE19C7BE800060D3C7 /* RoomCell.h */,
+				350AB5AF19C7BE800060D3C7 /* RoomCell.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -618,6 +631,8 @@
 				35A46F9D19328A9F00B615A4 /* SettingsViewController.m */,
 				35A46FE5193C103D00B615A4 /* NearbyViewController.h */,
 				35A46FE6193C103D00B615A4 /* NearbyViewController.m */,
+				350AB5A819C7BA3E0060D3C7 /* NearbyRoomsViewController.h */,
+				350AB5A919C7BA3E0060D3C7 /* NearbyRoomsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -957,7 +972,9 @@
 			files = (
 				353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */,
 				C2C97BB119624F95006510D9 /* GetCurrentUserCommand.m in Sources */,
+				350AB5AD19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m in Sources */,
 				C2C97BAA19624C16006510D9 /* LoginCommand.m in Sources */,
+				350AB5B019C7BE800060D3C7 /* RoomCell.m in Sources */,
 				C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */,
 				C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */,
 				35A46FDB1938444600B615A4 /* Venue.m in Sources */,
@@ -1022,6 +1039,7 @@
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
 				35043743193E01D700731968 /* VenueRoomCell.m in Sources */,
 				355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */,
+				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
