@@ -20,7 +20,7 @@
 
     @property (strong, nonatomic) KeyboardBarView *keyboardBar;
     @property (strong, nonatomic) SocketIO *socket;
-    @property (strong, nonatomic) NSArray *messages;
+    @property (strong, nonatomic) NSMutableArray *messages;
     @property (strong, nonatomic) NSMutableArray *messageHeights;
     @property (nonatomic) uint page;
     @property (nonatomic) uint loading;
@@ -77,7 +77,7 @@
 - (void)loadRoom
 {
     // reset messages
-    self.messages = [[NSArray alloc]init];
+    self.messages = [[NSMutableArray alloc]init];
     self.messageHeights = [[NSMutableArray alloc]init];
     
     // load recent messages
@@ -186,12 +186,10 @@
         if (command.page == 1)
         {
             // set messages
-            self.messages = newMessages;
-            
-            // reset height array
-            self.messageHeights = [[NSMutableArray alloc]init];
-            for(int i = 0; i < newMessages.count; i++)
+            for(int i = 0; i < newMessages.count; i++) {
+                [self.messages addObject:newMessages[i]];
                 [self.messageHeights addObject:[[NSNumber alloc]initWithFloat:0]];
+            }
             
             // reprocess table
             [self.tableView reloadData];
@@ -204,15 +202,11 @@
             // only update if there are results
             if(newMessages.count > 0)
             {
-                // slot new rows at the beginning of the array
-                NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:newMessages];
-                [mergeArray addObjectsFromArray:self.messages];
-                self.messages = mergeArray;
-                
-                // slot blank heights at beginning of the height array
-                [self.messageHeights insertObjects:newMessages atIndexes: [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, newMessages.count)]];
-                for(int i = 0; i < newMessages.count; i++)
-                    [self.messageHeights setObject:[[NSNumber alloc]initWithFloat:0] atIndexedSubscript:i];
+                // set messages
+                for(int i = 0; i < newMessages.count; i++) {
+                    [self.messages insertObject:newMessages[i] atIndex:i];
+                    [self.messageHeights insertObject:[[NSNumber alloc]initWithFloat:0] atIndex:i];
+                }
                 
                 // turn off animations for the update block
                 [UIView setAnimationsEnabled:false];
@@ -347,9 +341,7 @@
 {
     bool currentlyAtBottom = [self.tableView scrolledToBottom];
     
-    NSMutableArray *mergeArray = [[NSMutableArray alloc]initWithArray:self.messages];
-    [mergeArray addObject:message];
-    self.messages = [[NSArray alloc]initWithArray:mergeArray];
+    [self.messages addObject:message];
     [self.messageHeights addObject:[[NSNumber alloc]initWithFloat:0]];
     
     
