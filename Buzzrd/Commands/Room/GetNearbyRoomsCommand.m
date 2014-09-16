@@ -24,7 +24,7 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/rooms/"];
+    NSString *url = [self getAPIUrl:@"/api/rooms/nearby"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
     [parameters setValue:[NSNumber numberWithFloat:self.location.latitude] forKey:@"lat"];
