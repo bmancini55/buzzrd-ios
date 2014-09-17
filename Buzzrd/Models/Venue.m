@@ -7,6 +7,7 @@
 //
 
 #import "Venue.h"
+#import "Room.h"
 
 @implementation Venue
 

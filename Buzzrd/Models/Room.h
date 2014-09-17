@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+@class Venue;
+
 @interface Room : NSObject
 
 @property (strong, nonatomic) NSDate *created;
@@ -21,8 +23,10 @@
 
 @property (nonatomic) NSUInteger userCount;
 @property (nonatomic) NSUInteger lurkerCount;
+@property (nonatomic) NSUInteger messageCount;
 
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) Venue *venue;
 
 -(id) initWithJson:(NSDictionary *)json;
 

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "Room.h"
 #import "VenueLocation.h"
 #import "VenueCategory.h"
+
+@class Room;
 
 @interface Venue : NSObject
 

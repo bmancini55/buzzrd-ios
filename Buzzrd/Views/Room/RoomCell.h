@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Room.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Room.h"
+#import "Venue.h"
 
 
 @interface RoomCell : UITableViewCell

@@ -7,6 +7,7 @@
 //
 
 #import "Room.h"
+#import "Venue.h"
 
 @implementation Room : NSObject
 
@@ -24,9 +25,14 @@
         
         self.userCount = [json[@"userCount"] unsignedIntegerValue];
         self.lurkerCount = [json[@"lurkerCount"] unsignedIntegerValue];
+        self.messageCount = [json[@"messageCount"] unsignedIntegerValue];
         
         NSArray *coord = json[@"coord"];
         self.location = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];
+        
+        if(json[@"venue"]) {
+            self.venue = [[Venue alloc] initWithJson:json[@"venue"]];
+        }
     }
     return self;
 }
