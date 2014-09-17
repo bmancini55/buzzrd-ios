@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
-@interface NearbyRoomsViewController : BaseTableViewController
+@interface NearbyRoomsViewController : BaseTableViewController <UISearchDisplayDelegate>
 
 @end

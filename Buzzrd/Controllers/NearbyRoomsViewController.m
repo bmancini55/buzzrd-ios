@@ -17,6 +17,7 @@
 #import "TableSectionHeader.h"
 #import "LoginViewController.h"
 #import "RoomCell.h"
+#import "ThemeManager.h"
 
 @interface NearbyRoomsViewController ()
 
@@ -24,6 +25,10 @@
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) RetryAlert *alert;
 @property (strong, nonatomic) NSDate *lastLoad;
+
+@property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) UISearchDisplayController *tempSearchController;
+@property dispatch_source_t timer;
 
 @end
 
@@ -46,6 +51,16 @@
     
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
+    
+    
+    UISearchBar *searchBar = [[UISearchBar alloc]init];
+    searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
+    self.tempSearchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableHeaderView = searchBar;
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -104,7 +119,7 @@
     if(command.status == kSuccess)
     {
         self.location = (CLLocation *)command.results;
-        [self loadRooms];
+        [self loadRoomsWithSearch:nil];
     }
     else
     {
@@ -120,11 +135,11 @@
     [self getUserLocation];
 }
 
-- (void)loadRooms
+- (void)loadRoomsWithSearch:(NSString *)search
 {
     GetNearbyRoomsCommand *command = [[GetNearbyRoomsCommand alloc] init];
     command.location = self.location.coordinate;
-    command.search = nil;
+    command.search = search;
     [command listenForCompletion:self selector:@selector(roomsDidLoad:)];
     [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
@@ -133,10 +148,16 @@
 {
     GetNearbyRoomsCommand *command = notif.object;
     NSArray *rooms = command.results;
-    
-    self.rooms = rooms;
-    [self.tableView reloadData];
+
     [self.refreshControl endRefreshing];
+    
+    if(command.search == nil) {
+        self.rooms = rooms;
+        [self.tableView reloadData];
+    } else {
+        self.searchResults = rooms;
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }
 }
 
 - (void) joinRoom:(Room *)room
@@ -159,6 +180,17 @@
 
 #pragma mark - Table view data source
 
+// Helper function that retrieves a data source for the specified table view
+- (NSArray *) dataSourceForTableView:(UITableView *)tableView
+{
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.searchResults;
+    }
+    else {
+        return self.rooms;
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -166,14 +198,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.rooms.count;
+    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    return dataSource.count;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    Room *room = dataSource[indexPath.row];
+    
     // TODO OPTIMIZE WITH CACHE
-    Room *room = self.rooms[indexPath.row];
     RoomCell *cell = [[RoomCell alloc]init];
     [cell setRoom:room userLocation:self.location];
     return [cell calculateHeight];
@@ -182,7 +217,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Room *room = (Room *)self.rooms[indexPath.row];
+    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    Room *room = dataSource[indexPath.row];
+    
     RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"nearby_room"];
     if(cell == nil)
     {
@@ -196,8 +233,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    Room *room = dataSource[indexPath.row];
+ 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Room *room = self.rooms[indexPath.row];
     [self joinRoom:room];
 }
 
@@ -293,6 +332,42 @@
 //    
 //    // join the room
 //    [self joinRoom:room];
+}
+
+
+#pragma mark - Search display delegate
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    return false;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    float interval = 0.75;
+    
+    if(!self.timer) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_resume(timer);
+        self.timer = timer;
+    }
+    
+    dispatch_source_t timer = self.timer;
+    dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * interval), interval * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        dispatch_source_cancel(self.timer);
+        self.timer = nil;
+        [self loadRoomsWithSearch:searchString];
+    });
+    
+    
+    return false;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    [self attachFooterToTableView:tableView];
 }
 
 @end
