@@ -40,7 +40,7 @@
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
     
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.font = [ThemeManager getPrimaryFontRegular:14.0];
+    self.nameLabel.font = [ThemeManager getPrimaryFontDemiBold:14.0];
     self.nameLabel.textColor = [ThemeManager getPrimaryColorDark];
     self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.nameLabel];
@@ -105,7 +105,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[msg]-12-|" options:0 metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(2)-[venue]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(0)-[venue]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[venue]-(-1)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-6-|" options:0 metrics:nil views:views]];
     
