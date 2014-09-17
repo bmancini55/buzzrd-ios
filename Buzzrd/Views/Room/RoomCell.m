@@ -91,7 +91,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-3-[default]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{ @"title": self.nameLabel, @"default": self.defaultLabel }]];
     //[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-|" options:0 metrics:nil views:@{ @"default": self.defaultLabel }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[default]-(>=6)-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"default": self.defaultLabel, @"distance": self.distanceLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-6-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"distance": self.distanceLabel }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"distance": self.distanceLabel }]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.nameLabel }]];
     
@@ -145,8 +145,8 @@
 
 - (void)addBorder
 {
-    CGFloat width = 2.0;
-    CGFloat originY = [self calculateHeight] - 2;
+    CGFloat width = .5;
+    CGFloat originY = [self calculateHeight] - width;
     
     // create on new
     if(self.bottomBorder == nil) {
@@ -156,12 +156,12 @@
     }
     
     // adjust frame when reapplied
-    self.bottomBorder.frame = CGRectMake(0, originY, self.frame.size.width, width);
+    self.bottomBorder.frame = CGRectMake(12, originY, self.frame.size.width - 24, width);
 }
 
 - (CGFloat)calculateHeight
 {
-    CGFloat borderWidth = 2;
+    CGFloat borderWidth = .5;
     CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     return contentHeight + borderWidth;
 }  // Configure the view for the selected state
