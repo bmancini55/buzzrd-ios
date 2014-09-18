@@ -38,7 +38,7 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"nearby", nil);
+    self.title = NSLocalizedString(@"buzzrd", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self attachFooterToTableView:self.tableView];
     
