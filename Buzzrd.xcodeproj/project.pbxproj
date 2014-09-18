@@ -96,6 +96,7 @@
 		C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC60E19C12A3F00DB6BCC /* DownloadImageCommand.m */; };
 		C2BEC61B19CA695000DB6BCC /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */; };
 		C2BEC61E19CA6DD700DB6BCC /* GetRoomsBaseCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC61D19CA6DD700DB6BCC /* GetRoomsBaseCommand.m */; };
+		C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */; };
 		C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2C6E504192D9AC700DBEEE6 /* Localizable.strings */; };
 		C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */; };
 		C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C6E5421936D5B100DBEEE6 /* CreateAccountTableViewController.m */; };
@@ -289,6 +290,8 @@
 		C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomsViewController.m; path = Controllers/RoomsViewController.m; sourceTree = "<group>"; };
 		C2BEC61C19CA6DD700DB6BCC /* GetRoomsBaseCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetRoomsBaseCommand.h; path = Commands/Room/GetRoomsBaseCommand.h; sourceTree = "<group>"; };
 		C2BEC61D19CA6DD700DB6BCC /* GetRoomsBaseCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetRoomsBaseCommand.m; path = Commands/Room/GetRoomsBaseCommand.m; sourceTree = "<group>"; };
+		C2BEC61F19CA733700DB6BCC /* MyRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRoomsViewController.h; path = Controllers/MyRoomsViewController.h; sourceTree = "<group>"; };
+		C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRoomsViewController.m; path = Controllers/MyRoomsViewController.m; sourceTree = "<group>"; };
 		C2C6E503192D9AC700DBEEE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2C6E53E1936D51900DBEEE6 /* JoinBuzzrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinBuzzrdViewController.h; path = Controllers/AccountCreation/JoinBuzzrdViewController.h; sourceTree = "<group>"; };
 		C2C6E53F1936D51900DBEEE6 /* JoinBuzzrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinBuzzrdViewController.m; path = Controllers/AccountCreation/JoinBuzzrdViewController.m; sourceTree = "<group>"; };
@@ -643,6 +646,8 @@
 				350AB5A919C7BA3E0060D3C7 /* NearbyRoomsViewController.m */,
 				C2BEC61919CA695000DB6BCC /* RoomsViewController.h */,
 				C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */,
+				C2BEC61F19CA733700DB6BCC /* MyRoomsViewController.h */,
+				C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1015,6 +1020,7 @@
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
 				C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */,
+				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,

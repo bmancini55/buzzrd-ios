@@ -9,8 +9,11 @@
 #import "NearbyRoomsViewController.h"
 #import "BuzzrdAPI.h"
 #import "GetNearbyRoomsCommand.h"
+#import "ThemeManager.h"
 
 @interface NearbyRoomsViewController ()
+
+@property (strong, nonatomic) UISearchDisplayController *tempSearchController;
 
 @end
 
@@ -20,9 +23,18 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"buzzrd", nil);
+    self.title = NSLocalizedString(@"nearby", nil);
     
     self.sectionHeaderTitle = NSLocalizedString(@"nearby_rooms", nil);
+    
+    UISearchBar *searchBar = [[UISearchBar alloc]init];
+    searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
+    self.tempSearchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableHeaderView = searchBar;
 }
 
 - (void)loadRoomsWithSearch:(NSString *)search

@@ -23,7 +23,6 @@
 @property (strong, nonatomic) RetryAlert *alert;
 @property (strong, nonatomic) NSDate *lastLoad;
 
-@property (strong, nonatomic) UISearchDisplayController *tempSearchController;
 @property dispatch_source_t timer;
 
 @end
@@ -46,16 +45,6 @@
     
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
-    
-    
-    UISearchBar *searchBar = [[UISearchBar alloc]init];
-    searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
-    self.tempSearchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.delegate = self;
-    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableHeaderView = searchBar;
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 }

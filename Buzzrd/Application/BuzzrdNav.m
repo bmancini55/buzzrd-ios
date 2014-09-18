@@ -12,6 +12,7 @@
 #import "SettingsViewController.h"
 #import "NearbyViewController.h"
 #import "NearbyRoomsViewController.h"
+#import "MyRoomsViewController.h"
 #import "RoomVenueViewController.h"
 #import "RoomOptionsViewController.h"
 
@@ -33,14 +34,17 @@
     
     NearbyRoomsViewController *nearbyRoomsViewController = [[NearbyRoomsViewController alloc]init];
     UINavigationController *nearbyRoomsNavController = [[UINavigationController alloc] initWithRootViewController:nearbyRoomsViewController];
-    
+
+    MyRoomsViewController *myRoomsViewController = [[MyRoomsViewController alloc]init];
+    UINavigationController *myRoomsNavController = [[UINavigationController alloc] initWithRootViewController:myRoomsViewController];
+
     //SettingsViewController *SettingsViewController = [[SettingsViewController alloc]init];
     //UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:SettingsViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[nearbyRoomsNavController];
+    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController];
     [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
-    //[[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"options", nil)];
+    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"My Rooms", nil)];
     
     return tabBarController;
     
