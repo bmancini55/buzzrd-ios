@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
+#import "RoomsViewController.h"
 
-@interface NearbyRoomsViewController : BaseTableViewController <UISearchDisplayDelegate>
+@interface NearbyRoomsViewController : RoomsViewController <UISearchDisplayDelegate>
 
 @end
