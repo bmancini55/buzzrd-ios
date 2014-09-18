@@ -41,7 +41,7 @@
         self.username = [coder decodeObjectForKey:@"username"];
         self.firstName = [coder decodeObjectForKey:@"firstName"];
         self.lastName = [coder decodeObjectForKey:@"lastName"];
-        self.genderId = [coder decodeObjectForKey:@"genderId"];
+        self.genderId = [NSNumber numberWithInt:[[coder decodeObjectForKey:@"genderId"] intValue]];
         self.profilePic = [coder decodeObjectForKey:@"profilePic"];
     }
     
