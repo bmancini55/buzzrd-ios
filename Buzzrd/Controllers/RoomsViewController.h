@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSArray *searchResults;
 
 - (void)loadRoomsWithSearch:(NSString *)search;
+- (void) attachFooterToTableView:(UITableView *)tableView;
 
 @end

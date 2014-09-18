@@ -24,7 +24,6 @@
 @property (strong, nonatomic) RetryAlert *alert;
 @property (strong, nonatomic) NSDate *lastLoad;
 
-@property dispatch_source_t timer;
 
 @end
 
@@ -328,42 +327,6 @@
     //
     //    // join the room
     //    [self joinRoom:room];
-}
-
-
-#pragma mark - Search display delegate
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    return false;
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    float interval = 0.75;
-    
-    if(!self.timer) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-        dispatch_resume(timer);
-        self.timer = timer;
-    }
-    
-    dispatch_source_t timer = self.timer;
-    dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, NSEC_PER_SEC * interval), interval * NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_cancel(self.timer);
-        self.timer = nil;
-        [self loadRoomsWithSearch:searchString];
-    });
-    
-    
-    return false;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
-{
-    [self attachFooterToTableView:tableView];
 }
 
 @end
