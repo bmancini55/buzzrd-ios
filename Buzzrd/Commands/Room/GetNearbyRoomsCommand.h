@@ -9,10 +9,10 @@
 #import "CommandBase.h"
 #import <CoreLocation/CoreLocation.h>
 #import "Room.h"
-#import "GetRoomsBaseCommand.h"
 
-@interface GetNearbyRoomsCommand : GetRoomsBaseCommand
+@interface GetNearbyRoomsCommand : CommandBase
 
 @property (nonatomic) CLLocationCoordinate2D location;
+@property (strong, nonatomic) NSString *search;
 
 @end

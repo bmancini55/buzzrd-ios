@@ -1,5 +1,5 @@
 //
-//  GetRoomsBaseCommand.h
+//  GetMyRoomsCommand.h
 //  Buzzrd
 //
 //  Created by Robert Beck on 9/17/14.
@@ -7,9 +7,8 @@
 //
 
 #import "CommandBase.h"
+#import "Room.h"
 
-@interface GetRoomsBaseCommand : CommandBase
-
-@property (strong, nonatomic) NSString *search;
+@interface GetMyRoomsCommand : CommandBase
 
 @end

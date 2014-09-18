@@ -16,7 +16,8 @@
 #import "LoginViewController.h"
 #import "RoomCell.h"
 #import "ThemeManager.h"
-#import "GetRoomsBaseCommand.h"
+#import "GetNearbyRoomsCommand.h"
+#import "GetMyRoomsCommand.h"
 
 @interface RoomsViewController ()
 
@@ -128,17 +129,30 @@
 
 - (void)roomsDidLoad:(NSNotification *) notif
 {
-    GetRoomsBaseCommand *command = notif.object;
-    NSArray *rooms = command.results;
-    
-    [self.refreshControl endRefreshing];
-    
-    if(command.search == nil) {
+    if ([notif.object isKindOfClass:[GetNearbyRoomsCommand class]])
+    {
+        GetNearbyRoomsCommand *command = notif.object;
+        NSArray *rooms = command.results;
+        
+        [self.refreshControl endRefreshing];
+        
+        if(command.search == nil) {
+            self.rooms = rooms;
+            [self.tableView reloadData];
+        } else {
+            self.searchResults = rooms;
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        }
+    }
+    else if ([notif.object isKindOfClass:[GetMyRoomsCommand class]])
+    {
+        GetMyRoomsCommand *command = notif.object;
+        NSArray *rooms = command.results;
+        
+        [self.refreshControl endRefreshing];
+        
         self.rooms = rooms;
         [self.tableView reloadData];
-    } else {
-        self.searchResults = rooms;
-        [self.searchDisplayController.searchResultsTableView reloadData];
     }
 }
 
