@@ -37,15 +37,15 @@
     //SettingsViewController *SettingsViewController = [[SettingsViewController alloc]init];
     //UINavigationController *userOptionsNavController = [[UINavigationController alloc]initWithRootViewController:SettingsViewController];
     
-    //UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    //tabBarController.viewControllers = @[nearbyNavController, userOptionsNavController];
-    //[[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[nearbyRoomsNavController];
+    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby", nil)];
     //[[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"options", nil)];
     
-    //return tabBarController;
+    return tabBarController;
     
     //return nearbyNavController;
-    return nearbyRoomsNavController;
+//    return nearbyRoomsNavController;
 }
 
 +(UIViewController *) createSettingsController
