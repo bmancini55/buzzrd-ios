@@ -112,8 +112,6 @@
     GetVenuesCommand *command = notif.object;
     NSArray *venues = command.results;
     
-    NSLog(@"%lu venues were loaded", (unsigned long)venues.count);
-    
     if(command.search == nil) {
         self.venues = venues;
         [self.tableView reloadData];
@@ -226,8 +224,6 @@
     if(cell == nil)
     {
         cell = [[VenueCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.showCounts = false;
-        cell.showSubrooms = false;
     }
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
@@ -242,7 +238,6 @@
     NSArray *dataSource = [self dataSourceForTableView:tableView];
     Venue *venue = dataSource[indexPath.row];
     VenueCell *cell = [[VenueCell alloc]init];
-    cell.showCounts = false;
     [cell setVenue:venue userLocation:self.location];
     
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 2;

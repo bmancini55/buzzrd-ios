@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35043743193E01D700731968 /* VenueRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35043742193E01D700731968 /* VenueRoomCell.m */; };
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
 		350AB5A419B889DD0060D3C7 /* UITableView+ScrollHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */; };
@@ -29,7 +28,6 @@
 		355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4719194F120900DF8388 /* FoursquareAttribution.m */; };
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
-		3576A83C199CE0880071FED5 /* VenueRoomTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576A83B199CE0880071FED5 /* VenueRoomTable.m */; };
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
@@ -57,7 +55,6 @@
 		35A46FDB1938444600B615A4 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDA1938444600B615A4 /* Venue.m */; };
 		35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* VenueLocation.m */; };
 		35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE0193C079900B615A4 /* VenueCategory.m */; };
-		35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE6193C103D00B615A4 /* NearbyViewController.m */; };
 		35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C1FF1987209800528D77 /* NSDate+Helpers.m */; };
 		35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A8F8E21992568000D54383 /* UserCountBarButton.m */; };
 		35A8F8E51996E6C300D54383 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A8F8E41996E6C300D54383 /* Camera@2x.png */; };
@@ -132,10 +129,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		35043741193E01D700731968 /* VenueRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomCell.h; path = Views/Venues/VenueRoomCell.h; sourceTree = "<group>"; };
-		35043742193E01D700731968 /* VenueRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomCell.m; path = Views/Venues/VenueRoomCell.m; sourceTree = "<group>"; };
 		350AB59019A4C8AA0060D3C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
-		350AB59E19AD7F010060D3C7 /* VenueCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueCellDelegate.h; path = Views/Venues/VenueCellDelegate.h; sourceTree = "<group>"; };
 		350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenueRoomsCommand.h; path = Commands/Room/GetVenueRoomsCommand.h; sourceTree = "<group>"; };
 		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
 		350AB5A219B889DD0060D3C7 /* UITableView+ScrollHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ScrollHelpers.h"; path = "Categories/UITableView+ScrollHelpers.h"; sourceTree = "<group>"; };
@@ -174,9 +168,6 @@
 		3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomVenueViewController.m; path = Controllers/RoomCreation/RoomVenueViewController.m; sourceTree = "<group>"; };
 		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
 		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
-		3576A83A199CE0880071FED5 /* VenueRoomTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueRoomTable.h; path = Views/Venues/VenueRoomTable.h; sourceTree = "<group>"; };
-		3576A83B199CE0880071FED5 /* VenueRoomTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueRoomTable.m; path = Views/Venues/VenueRoomTable.m; sourceTree = "<group>"; };
-		3576A840199EB8F60071FED5 /* VenueRoomTableDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VenueRoomTableDelegate.h; path = Views/Venues/VenueRoomTableDelegate.h; sourceTree = "<group>"; };
 		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
@@ -232,8 +223,6 @@
 		35A46FDD193C01E100B615A4 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueLocation.m; path = Models/VenueLocation.m; sourceTree = "<group>"; };
 		35A46FDF193C079900B615A4 /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCategory.h; path = Models/VenueCategory.h; sourceTree = "<group>"; };
 		35A46FE0193C079900B615A4 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCategory.m; path = Models/VenueCategory.m; sourceTree = "<group>"; };
-		35A46FE5193C103D00B615A4 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = Controllers/NearbyViewController.h; sourceTree = "<group>"; };
-		35A46FE6193C103D00B615A4 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = Controllers/NearbyViewController.m; sourceTree = "<group>"; };
 		35A6C1FE1987209800528D77 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helpers.h"; path = "Categories/NSDate+Helpers.h"; sourceTree = "<group>"; };
 		35A6C1FF1987209800528D77 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Helpers.m"; path = "Categories/NSDate+Helpers.m"; sourceTree = "<group>"; };
 		35A8F8E11992568000D54383 /* UserCountBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCountBarButton.h; path = Views/Room/UserCountBarButton.h; sourceTree = "<group>"; };
@@ -367,12 +356,6 @@
 			children = (
 				3561B6B6194C8C1500EF1654 /* VenueCell.h */,
 				3561B6B7194C8C1500EF1654 /* VenueCell.m */,
-				350AB59E19AD7F010060D3C7 /* VenueCellDelegate.h */,
-				35043741193E01D700731968 /* VenueRoomCell.h */,
-				35043742193E01D700731968 /* VenueRoomCell.m */,
-				3576A83A199CE0880071FED5 /* VenueRoomTable.h */,
-				3576A83B199CE0880071FED5 /* VenueRoomTable.m */,
-				3576A840199EB8F60071FED5 /* VenueRoomTableDelegate.h */,
 			);
 			name = Venues;
 			sourceTree = "<group>";
@@ -640,8 +623,6 @@
 				35A46F9B19328A9F00B615A4 /* RoomViewController.m */,
 				35A46F9C19328A9F00B615A4 /* SettingsViewController.h */,
 				35A46F9D19328A9F00B615A4 /* SettingsViewController.m */,
-				35A46FE5193C103D00B615A4 /* NearbyViewController.h */,
-				35A46FE6193C103D00B615A4 /* NearbyViewController.m */,
 				350AB5A819C7BA3E0060D3C7 /* NearbyRoomsViewController.h */,
 				350AB5A919C7BA3E0060D3C7 /* NearbyRoomsViewController.m */,
 				C2BEC61919CA695000DB6BCC /* RoomsViewController.h */,
@@ -997,7 +978,6 @@
 				353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */,
 				350AB5A419B889DD0060D3C7 /* UITableView+ScrollHelpers.m in Sources */,
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
-				3576A83C199CE0880071FED5 /* VenueRoomTable.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
@@ -1054,7 +1034,6 @@
 				C212FA8F194005D300D5514E /* BaseTheme.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
-				35043743193E01D700731968 /* VenueRoomCell.m in Sources */,
 				355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */,
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
@@ -1068,7 +1047,6 @@
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
-				35A46FE7193C103D00B615A4 /* NearbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

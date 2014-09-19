@@ -10,7 +10,6 @@
 #import "FrameUtils.h"
 #import "ProfileImageView.h"
 #import "ThemeManager.h"
-#import "VenueRoomTable.h"
 
 @interface VenueCell()
 
@@ -18,18 +17,6 @@
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UILabel *distanceLabel;
 @property (strong, nonatomic) ProfileImageView *categoryImage;
-
-@property (strong, nonatomic) UILabel *userCountLabel;
-@property (strong, nonatomic) UILabel *userLabel;
-@property (strong, nonatomic) UILabel *lurkerCountLabel;
-@property (strong, nonatomic) UILabel *lurkerLabel;
-
-@property (strong, nonatomic) VenueRoomTable *roomsTable;
-
-@property (strong, nonatomic) UIView *subroomInfoView;
-@property (strong, nonatomic) UIImageView *subroomArrow;
-@property (strong, nonatomic) UILabel *subroomCountLabel;
-@property (strong, nonatomic) UILabel *subroomsLabel;
 
 @property (strong, nonatomic) CALayer *bottomBorder;
 
@@ -57,9 +44,7 @@
 
 - (void) configure
 {
-    self.backgroundColor = [ThemeManager getPrimaryColorMedium];    
-    self.showCounts = true;
-    self.showSubrooms = true;
+    self.backgroundColor = [ThemeManager getPrimaryColorMedium];
     
     self.categoryImage = [[ProfileImageView alloc]init];
     self.categoryImage.translatesAutoresizingMaskIntoConstraints = NO;
@@ -83,138 +68,31 @@
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.distanceLabel];
-    
-    self.userCountLabel = [[UILabel alloc] init];
-    self.userCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
-    self.userCountLabel.textColor = [UIColor whiteColor];
-    self.userCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.userCountLabel];
-    
-    self.userLabel = [[UILabel alloc] init];
-    self.userLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
-    self.userLabel.textColor = [UIColor whiteColor];
-    self.userLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.userLabel];
-    
-    self.lurkerCountLabel = [[UILabel alloc] init];
-    self.lurkerCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
-    self.lurkerCountLabel.textColor = [UIColor whiteColor];
-    self.lurkerCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.lurkerCountLabel];
-    
-    self.lurkerLabel = [[UILabel alloc] init];
-    self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
-    self.lurkerLabel.textColor = [UIColor whiteColor];
-    self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.lurkerLabel];
-    
-    self.roomsTable = [[VenueRoomTable alloc]init];
-    self.roomsTable.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.roomsTable];
-    
-    
-    self.subroomInfoView = [[UIView alloc]init];
-    self.subroomInfoView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.subroomInfoView.userInteractionEnabled = true;
-    [self.subroomInfoView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreRoomsTapped)]];
-    [self.contentView addSubview:self.subroomInfoView];
-    
-    self.subroomArrow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"SubRooms.png"]];
-    self.subroomArrow.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.subroomInfoView addSubview:self.subroomArrow];
-    
-    self.subroomCountLabel = [[UILabel alloc]init];
-    self.subroomCountLabel.font = [ThemeManager getPrimaryFontBold:18.0];
-    self.subroomCountLabel.textColor = [UIColor whiteColor];
-    self.subroomCountLabel.textAlignment = NSTextAlignmentCenter;
-    self.subroomCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.subroomInfoView addSubview:self.subroomCountLabel];
-    
-    self.subroomsLabel = [[UILabel alloc]init];
-    self.subroomsLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
-    self.subroomsLabel.textColor = [UIColor whiteColor];
-    self.subroomsLabel.textAlignment = NSTextAlignmentCenter;
-    self.subroomsLabel.numberOfLines = 2;
-    self.subroomsLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.subroomInfoView addSubview:self.subroomsLabel];
-}
-
-- (void)moreRoomsTapped
-{
-    [self.delegate moreRoomsTapped:self];
 }
 
 - (void) updateConstraints
 {
-    // remove all constraints
-    [self.contentView removeConstraints:self.contentView.constraints];
     
-    if(self.showCounts) {
-        
-        // vertical spacing for the image from the top of the container
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
-        
-    } else {
-        
-        // vertical spacing for the image from the top of the container
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[image(44)]" options:0 metrics:nil views:@{ @"image": self.categoryImage }]];
-        
-    }
-
+    NSDictionary *views =
+        @{
+            @"image": self.categoryImage,
+            @"title": self.titleLabel,
+            @"address": self.addressLabel,
+            @"distance": self.distanceLabel
+          };
+    
+    // vertical spacing for the image from the top of the container
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[image(44)]" options:0 metrics:nil views:views]];
     
     // vertical spacing for the title from the top of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:@{ @"title": self.titleLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
     
     // vertical spacing for title and address, align them vertically on the left edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"title": self.titleLabel, @"address":                                                                                                                                                  self.addressLabel }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
     
+    // vertical spacing for address and bottom edge of container
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-8-|" options:0 metrics:nil views:views]];
     
-    if(self.showCounts) {
-    
-        // vertical spacing for address and user count, align them verticall on the left edge
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-2-[usercount]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"address":                                                                                                                                                  self.addressLabel, @"usercount": self.userCountLabel }]];
-        
-        if(self.venue.roomCount <= 1 || !self.showSubrooms) {
-            
-            // vertical spacing for user and lurker counts from the bottom of the container
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-8-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[users]-8-|" options:0 metrics:nil views:@{ @"users": self.userLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkercount]-8-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lurkers]-8-|" options:0 metrics:nil views:@{ @"lurkers": self.lurkerLabel }]];
-            
-        } else {
-        
-            // vertical spacing for user and lurker counts from the bottom of the container
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount]-6@500-[roomtable]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"usercount": self.userCountLabel, @"roomtable": self.roomsTable }]];
-
-            // vertical spacing for table
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[roomtable(==height)]-0-|" options:0 metrics:@{ @"height":[NSNumber numberWithFloat:self.roomsTable.frame.size.height] } views:@{ @"roomtable": self.roomsTable }]];
-        
-            // horizontal spacing for table
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[roomtable]-0-|" options:0 metrics:nil views:@{ @"roomtable": self.roomsTable }]];
-            
-            // horizontal alignment for subroom info
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subroomview]-0-[roomtable]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"subroomview": self.subroomInfoView, @"roomtable": self.roomsTable } ]];
-            
-            // vertical alignment for subroom info
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[subroomview]-0-|" options:0 metrics:nil views:@{ @"subroomview": self.subroomInfoView } ]];
-            
-            // horizontal spacing for arrow
-            [self.subroomInfoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-22-[arrow(17)]-(>=12)-|" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"arrow": self.subroomArrow, @"roomtable": self.roomsTable } ]];
-            
-            // vertical spacing for subroom counts
-            [self.subroomInfoView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[arrow]-2-[count]-(-2)-[label]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:@{ @"arrow": self.subroomArrow, @"count": self.subroomCountLabel, @"label": self.subroomsLabel }]];
-            
-        }
-        
-    } else {
-        
-        // vertical spacing for address and bottom edge of container
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-8-|" options:0 metrics:nil views:@{ @"address": self.addressLabel }]];
-        
-    }
-    
-
     // horizontal spacing for image and title
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[image(44)]-8-[title]-6-|" options:0 metrics:nil views:@{ @"image": self.categoryImage, @"title": self.titleLabel }]];
     
@@ -222,47 +100,15 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-6-|" options:0 metrics:nil views:@{ @"distance": self.distanceLabel }]];
     
     // horizontal spacing between address and distance, align them on the center
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{ @"address": self.addressLabel, @"distance": self.distanceLabel }]];
-    
-    if(self.showCounts) {
-    
-        // horizontal spacing for the user and lurker counts, align them on the top edge
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[users]-16-[lurkercount]-3-[lurkers]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"usercount": self.userCountLabel, @"users": self.userLabel, @"lurkercount": self.lurkerCountLabel, @"lurkers": self.lurkerLabel }]];
-        
-    }
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
     [super updateConstraints];
-}
-
-- (void)setRoomTableDelegate:(id<VenueRoomTableDelegate>)roomTableDelegate
-{
-    _roomTableDelegate = roomTableDelegate;
-    self.roomsTable.roomTableDelegate = roomTableDelegate;
 }
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation
 {
     self.venue = venue;
     
-    // configure the rooms
-    if(venue.roomCount > 1 && self.showSubrooms) {
-        self.roomsTable.hidden = false;
-        [self.roomsTable setRooms:venue.rooms];
-        
-        self.subroomArrow.hidden = false;
-        self.subroomCountLabel.hidden = false;
-        self.subroomsLabel.hidden = false;
-        
-    } else {
-        self.roomsTable.hidden = true;
-        [self.roomsTable setRooms:nil];
-        
-        self.subroomArrow.hidden = true;
-        self.subroomCountLabel.hidden = true;
-        self.subroomsLabel.hidden = true;
-    }
-    
-
     // set category image
     if(venue.categories.count > 0) {
         VenueCategory *primaryCategory = venue.categories[0];
@@ -283,44 +129,23 @@
     else
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", distanceInFeet / 5280];
     
-    // set counts
-    self.userCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.userCount];
-    self.userLabel.text = @"USERS";
-    
-    self.lurkerCountLabel.text = [NSString stringWithFormat:@"%u", (uint)self.venue.lurkerCount];
-    self.lurkerLabel.text = @"LURKERS";
-    
-    // set subrooms
-    self.subroomsLabel.text = [NSString stringWithFormat:@"%@\r%@", NSLocalizedString(@"SUB", nil), NSLocalizedString(@"ROOMS", nil)];
-    self.subroomCountLabel.text = [NSString stringWithFormat:@"%u", (uint)venue.roomCount];
-    
     [self updateConstraints];
     
     [self addBorder];
 }
 
-- (void)setShowCounts:(bool)showCounts
-{
-    _showCounts = showCounts;
-    
-    self.userCountLabel.hidden = true;
-    self.userLabel.hidden = true;
-    self.lurkerCountLabel.hidden = true;
-    self.lurkerLabel.hidden = true;
-}
-
 
 - (CGFloat)calculateHeight
 {
-    CGFloat borderWidth = 2;
+    CGFloat borderWidth = 0.5;
     CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     return contentHeight + borderWidth;
 }
 
 - (void)addBorder
 {
-    CGFloat width = 2.0;
-    CGFloat originY = [self calculateHeight] - 2;
+    CGFloat borderWidth = 0.5;
+    CGFloat originY = [self calculateHeight] - borderWidth;
     
     // create on new
     if(self.bottomBorder == nil) {
@@ -330,7 +155,7 @@
     }
     
     // adjust frame when reapplied
-    self.bottomBorder.frame = CGRectMake(0, originY, self.frame.size.width, width);
+    self.bottomBorder.frame = CGRectMake(0, originY, self.frame.size.width, borderWidth);
 }
 
 @end
