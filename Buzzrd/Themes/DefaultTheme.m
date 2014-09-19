@@ -60,8 +60,10 @@ NSString *primaryFontDemiBold;
       nil]];
     [[UINavigationBar appearance] setTintColor:tertiaryColorDark];
     
-    
-
+    // set searchbar appearance
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes:@{ NSForegroundColorAttributeName:  primaryColorDark }
+     forState:UIControlStateNormal];
     
     return self;
 }
