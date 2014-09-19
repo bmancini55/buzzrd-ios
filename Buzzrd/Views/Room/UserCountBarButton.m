@@ -30,14 +30,14 @@
         self.userCountLabel.text = @"0";
         self.userCountLabel.textColor = [ThemeManager getTertiaryColorDark];
         self.userCountLabel.textAlignment = NSTextAlignmentRight;
-        self.userCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
+        self.userCountLabel.font = [ThemeManager getPrimaryFontBold:12.0];
         self.userCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.userCountLabel];
         
         self.userLabel = [[UILabel alloc]init];
         self.userLabel.text = NSLocalizedString(@"USERS", nil);
         self.userLabel.textColor = [ThemeManager getPrimaryColorMedium];
-        self.userLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
+        self.userLabel.font = [ThemeManager getPrimaryFontMedium:12.0];
         self.userLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.userLabel];
         
@@ -56,20 +56,31 @@
         self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.lurkerLabel];
         
+        self.lurkerCountLabel.hidden = true;
+        self.lurkerLabel.hidden = true;
+        
     }
     return self;
 }
 
 - (void) updateConstraints
 {
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[userlabel]-(-10)-|" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel, @"userlabel": self.userLabel }]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lurkercount]-3-[lurkerlabel]-(-10)-|" options:0 metrics:nil views:@{ @"lurkercount": self.lurkerCountLabel, @"lurkerlabel": self.lurkerLabel }]];
+    NSDictionary *views =
+    @{
+        @"usercount": self.userCountLabel,
+        @"userlabel": self.userLabel,
+        @"lurkercount": self.lurkerCountLabel,
+        @"lurkerlabel": self.lurkerLabel
+    };
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[userlabel]" options:0 metrics:nil views:@{ @"userlabel": self.userLabel }]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[usercount]" options:0 metrics:nil views:@{ @"usercount": self.userCountLabel }]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[userlabel][lurkerlabel]" options:NSLayoutFormatAlignAllLeft metrics:nil views:@{ @"userlabel": self.userLabel, @"lurkerlabel": self.lurkerLabel }]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount][lurkercount]" options:NSLayoutFormatAlignAllRight metrics:nil views:@{ @"usercount": self.userCountLabel, @"lurkercount": self.lurkerCountLabel }]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[userlabel]-(-10)-|" options:0 metrics:nil views:views]];
+    //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lurkercount]-3-[lurkerlabel]-(-10)-|" options:0 metrics:nil views:views]];
+    //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[userlabel]" options:0 metrics:nil views:views]];
+    //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[usercount]" options:0 metrics:nil views:views]];
+    //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[userlabel][lurkerlabel]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+    //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount][lurkercount]" options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[usercount]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[userlabel]" options:0 metrics:nil views:views]];
     
     [super updateConstraints];
 }
@@ -85,6 +96,12 @@
     [self.userCountLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
     
     self.userCountLabel.text = [NSString stringWithFormat:@"%i", (int)_userCount];
+    
+    if(_userCount == 1) {
+        self.userLabel.text = NSLocalizedString(@"USER", nil);
+    } else {
+        self.userLabel.text = NSLocalizedString(@"USERS", nil);
+    }
 }
 
 @end

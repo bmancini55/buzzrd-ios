@@ -78,6 +78,8 @@
 
 "users" = "users";
 
+"user" = "user";
+
 "requiredInformation" = "REQUIRED INFORMATION";
 
 "optionalInformation" = "OPTIONAL INFORMATION";
