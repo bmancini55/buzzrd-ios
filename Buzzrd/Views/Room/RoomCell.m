@@ -138,7 +138,7 @@
     // create on new
     if(self.bottomBorder == nil) {
         self.bottomBorder = [CALayer layer];
-        self.bottomBorder.backgroundColor = [ThemeManager getSecondaryColorDark].CGColor;
+        self.bottomBorder.backgroundColor = [ThemeManager getSecondaryColorMedium].CGColor;
         [self.layer addSublayer:self.bottomBorder];
     }
     
