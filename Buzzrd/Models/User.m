@@ -56,7 +56,7 @@
         self.username = json[@"username"];
         self.firstName = json[@"firstName"];
         self.lastName = json[@"lastName"];
-        self.genderId = json[@"sex"];
+        self.genderId = [NSNumber numberWithInt:[json[@"sex"] intValue]];
         self.profilePic = json[@"profilePic"];
         
     }
