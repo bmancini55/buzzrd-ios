@@ -22,7 +22,7 @@
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
 		353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */; };
-		355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */; };
+		355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* CreateRoomViewController.m */; };
 		355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */; };
 		355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */; };
 		355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4719194F120900DF8388 /* FoursquareAttribution.m */; };
@@ -158,8 +158,8 @@
 		353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandDispatcher.m; path = Application/CommandDispatcher.m; sourceTree = "<group>"; };
 		353D6EC5195CEE1B00AC1B62 /* GetVenuesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenuesCommand.h; path = Commands/Venues/GetVenuesCommand.h; sourceTree = "<group>"; };
 		353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenuesCommand.m; path = Commands/Venues/GetVenuesCommand.m; sourceTree = "<group>"; };
-		355F4711194CF4C500DF8388 /* RoomOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomOptionsViewController.h; path = Controllers/RoomCreation/RoomOptionsViewController.h; sourceTree = "<group>"; };
-		355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomOptionsViewController.m; path = Controllers/RoomCreation/RoomOptionsViewController.m; sourceTree = "<group>"; };
+		355F4711194CF4C500DF8388 /* CreateRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomViewController.h; path = Controllers/RoomCreation/CreateRoomViewController.h; sourceTree = "<group>"; };
+		355F4712194CF4C500DF8388 /* CreateRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomViewController.m; path = Controllers/RoomCreation/CreateRoomViewController.m; sourceTree = "<group>"; };
 		355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_white.png; sourceTree = "<group>"; };
 		355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		355F4718194F120900DF8388 /* FoursquareAttribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareAttribution.h; path = Views/FoursquareAttribution.h; sourceTree = "<group>"; };
@@ -423,8 +423,8 @@
 		3561B6AF194C87DF00EF1654 /* RoomCreation */ = {
 			isa = PBXGroup;
 			children = (
-				355F4711194CF4C500DF8388 /* RoomOptionsViewController.h */,
-				355F4712194CF4C500DF8388 /* RoomOptionsViewController.m */,
+				355F4711194CF4C500DF8388 /* CreateRoomViewController.h */,
+				355F4712194CF4C500DF8388 /* CreateRoomViewController.m */,
 				3561B6B3194C88BD00EF1654 /* RoomVenueViewController.h */,
 				3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */,
 			);
@@ -1034,7 +1034,7 @@
 				C212FA8F194005D300D5514E /* BaseTheme.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
-				355F4713194CF4C500DF8388 /* RoomOptionsViewController.m in Sources */,
+				355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */,
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,

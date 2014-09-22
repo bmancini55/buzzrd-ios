@@ -9,7 +9,7 @@
 #import "RoomVenueViewController.h"
 #import "VenueCell.h"
 #import "BuzzrdAPI.h"
-#import "RoomOptionsViewController.h"
+#import "CreateRoomViewController.h"
 #import "FoursquareAttribution.h"
 #import "GetVenuesCommand.h"
 #import "GetLocationCommand.h"
@@ -255,17 +255,7 @@
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
     Room *room = [[Room alloc]init];
     room.name = venue.name;
-    room.venueId = venue.id;
-    
-    if(venue.roomCount == 0)
-    {
-        [self createRoom:room];
-    }
-    else
-    {
-        RoomOptionsViewController *viewController = [[RoomOptionsViewController alloc]initWithVenue:venue callback:self.onRoomCreated];
-        [self.navigationController pushViewController:viewController animated:true];
-    }
+    room.venueId = venue.id;    
 }
 
 

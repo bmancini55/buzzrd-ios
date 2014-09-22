@@ -265,16 +265,15 @@
 -(void)addRoomTouch
 {
     UIViewController *viewController =
-    [BuzzrdNav createNewRoomViewController:
-     ^(Venue *venue, Room *newRoom)
+    [BuzzrdNav createNewRoomViewController:^(Room *newRoom)
      {
-         [self addRoomToTable:newRoom forVenue:venue];
+         [self addRoomToTable:newRoom];
      }];
     
     [self presentViewController:viewController animated:true completion:nil];
 }
 
--(void)addRoomToTable:(Room *)room forVenue:(Venue *)venue;
+-(void)addRoomToTable:(Room *)room
 {
     //    Venue *indexedVenue;
     //    int venueIndex;

@@ -1,32 +1,30 @@
 //
-//  RoomOptionsViewController.m
+//  CreateRoomViewController.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 3/14/14.
 //  Copyright (c) 2014 Brian Mancini. All rights reserved.
 //
 
-#import "RoomOptionsViewController.h"
+#import "CreateRoomViewController.h"
 #import "BuzzrdAPI.h"
 #import "CreateRoomCommand.h"
 #import "TableSectionHeader.h"
 #import "ThemeManager.h"
 
-@interface RoomOptionsViewController ()
+@interface CreateRoomViewController ()
 
 @property (strong, nonatomic) UITextField *nameTextField;
-@property (strong, nonatomic) UIBarButtonItem *doneButton;
 
 @end
 
-@implementation RoomOptionsViewController
+@implementation CreateRoomViewController
 
--(id)initWithVenue:(Venue *)venue callback:(void (^)(Venue *venue, Room *created))onRoomCreated
+-(id)initWithCallback:(void (^)(Room *created))onRoomCreated
 {
     self = [self initWithStyle:UITableViewStyleGrouped];
     if(self != nil)
     {
-        self.venue = venue;
         self.onRoomCreated = onRoomCreated;
     }
     return self;
@@ -39,11 +37,15 @@
     self.title = NSLocalizedString(@"create_room", nil);
     self.tableView.backgroundColor = [ThemeManager getPrimaryColorLight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancelTouch)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTouch)];
+    self.navigationItem.rightBarButtonItem.enabled = false;
 }
 
 - (bool) validateInput
 {
-    if(self.nameTextField.text.length == 0) {
+    if(self.nameTextField.text.length < 4) {
         return false;
     }
     return true;
@@ -53,9 +55,9 @@
 {
     bool isValid = [self validateInput];
     if(isValid) {
-        self.doneButton.enabled = true;
+        self.navigationItem.rightBarButtonItem.enabled = true;
     } else {
-        self.doneButton.enabled = false;
+        self.navigationItem.rightBarButtonItem.enabled = false;
     }
     return isValid;
 }
@@ -75,11 +77,9 @@
     CreateRoomCommand *command = (CreateRoomCommand *)info.object;
     if(command.status == kSuccess) {
         
-        Venue *venue = command.results[@"venue"];
         Room *room = command.results[@"room"];
-        
         [self dismissViewControllerAnimated:true completion:^{
-            self.onRoomCreated(venue, room);
+            self.onRoomCreated(room);
         }];
     }
     else
@@ -94,13 +94,16 @@
 
 #pragma Button events
 
--(void)doneTouch
+-(void)onCancelTouch {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+-(void)onDoneTouch
 {
     if(![self.nameTextField.text isEqualToString:@""]) {
         
         Room *room = [[Room alloc]init];
         room.name = self.nameTextField.text;
-        room.venueId = self.venue.id;
     
         [self createRoom:room];
         
@@ -180,24 +183,6 @@
     return 30;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    CGRect viewFrame = CGRectMake(0, 0, tableView.frame.size.width, 80);
-    UIView *view = [[UIView alloc]init];
-    
-    CGRect buttonFrame = CGRectMake(viewFrame.size.width / 2 - 70, 30, 140, 38);
-    UIButton *createButton = [[UIButton alloc]initWithFrame:buttonFrame];
-    [createButton setTitle:[NSLocalizedString(@"create_room", nil) uppercaseString] forState:UIControlStateNormal];
-    [createButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    createButton.titleLabel.font = [ThemeManager getPrimaryFontMedium:15.0];
-    createButton.backgroundColor = [ThemeManager getTertiaryColorDark];
-    createButton.layer.cornerRadius = 6;
-    [createButton addTarget:self action:@selector(doneTouch) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:createButton];
-    
-    return view;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 80;
@@ -218,7 +203,7 @@
         // attempt to complete
         if([self enableDoneIfValid]) {
             [textField resignFirstResponder];
-            [self doneTouch];
+            [self onDoneTouch];
         }
     }
     return true;

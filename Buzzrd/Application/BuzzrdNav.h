@@ -21,7 +21,7 @@
 +(UIViewController *) createHomeViewController;
 +(UIViewController *) createSettingsController;
 +(UIViewController *) createRoomViewController:(Room *)room;
-+(UIViewController *) createNewRoomViewController:(void (^)(Venue *venue, Room *newRoom))roomCreatedCallback;
++(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback;
 
 
 // Account Creation

@@ -13,7 +13,7 @@
 #import "NearbyRoomsViewController.h"
 #import "MyRoomsViewController.h"
 #import "RoomVenueViewController.h"
-#import "RoomOptionsViewController.h"
+#import "CreateRoomViewController.h"
 
 #import "Room.h"
 
@@ -57,9 +57,9 @@
     return roomViewController;
 }
 
-+(UIViewController *) createNewRoomViewController:(void (^)(Venue *, Room *))roomCreatedCallback
++(UIViewController *) createNewRoomViewController:(void (^)(Room *))roomCreatedCallback
 {
-    RoomVenueViewController *viewController = [[RoomVenueViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    CreateRoomViewController *viewController = [[CreateRoomViewController alloc]initWithStyle:UITableViewStyleGrouped];
     viewController.onRoomCreated = roomCreatedCallback;
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:viewController];
     return navController;
