@@ -11,10 +11,14 @@
 #import "CreateRoomCommand.h"
 #import "TableSectionHeader.h"
 #import "ThemeManager.h"
+#import "AccessoryIndicatorView.h"
+#import "RoomVenueViewController.h"
 
 @interface CreateRoomViewController ()
 
 @property (strong, nonatomic) UITextField *nameTextField;
+@property (strong, nonatomic) UILabel *venueLabel;
+@property (strong, nonatomic) Venue *venue;
 
 @end
 
@@ -116,7 +120,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 
@@ -144,21 +148,34 @@
                     self.nameTextField.textAlignment = NSTextAlignmentLeft;
                     self.nameTextField.tintColor = [ThemeManager getTertiaryColorDark];
                     self.nameTextField.enablesReturnKeyAutomatically = true;
-                    self.nameTextField.returnKeyType = UIReturnKeyDone;
+                    self.nameTextField.returnKeyType = UIReturnKeyNext;
                     self.nameTextField.delegate = self;
                     [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                     [cell.contentView addSubview:self.nameTextField];
                     
-                    CALayer *border = [CALayer layer];
-                    border.backgroundColor = [ThemeManager getPrimaryColorMediumLight].CGColor;
-                    border.frame = CGRectMake(16, 39, cell.frame.size.width - 16, 0.5);
-                    [cell.layer addSublayer:border];
+                    break;
+                }
+                case 1:
+                {
+                    cell.textLabel.text = @"Place";
+                    cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     
+                    self.venueLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, cell.frame.size.width - 80 - ACCESSORY_WIDTH - CELL_PADDING - 12, 40)];
+                    self.venueLabel.font = [ThemeManager getPrimaryFontDemiBold:16.0];
+                    self.venueLabel.textColor = [ThemeManager getPrimaryColorMedium];
+                    self.venueLabel.backgroundColor = [ThemeManager getPrimaryColorLight];
+                    [cell.contentView addSubview:self.venueLabel];
                     break;
                 }
             }
             break;
     }
+    
+    // add the border
+    CALayer *border = [CALayer layer];
+    border.backgroundColor = [ThemeManager getPrimaryColorMediumLight].CGColor;
+    border.frame = CGRectMake(16, 39, cell.frame.size.width - 16, 0.5);
+    [cell.layer addSublayer:border];
     
     return cell;
 }
@@ -183,9 +200,16 @@
     return 30;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    if(indexPath.section == 0 && indexPath.row == 1) {
+        RoomVenueViewController *viewController = [[RoomVenueViewController alloc]initWithCallback:^(Venue *venue) {
+            self.venue = venue;
+            self.venueLabel.text = venue.name;
+        }];
+        [self.navigationController pushViewController:viewController animated:true];
+    }
 }
 
 
@@ -209,12 +233,7 @@
     return true;
 }
 
-#pragma Table view delegate
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return NSLocalizedString(@"room_options", nil);
-}
 
 
 @end

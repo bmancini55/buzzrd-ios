@@ -96,8 +96,6 @@
 
 "create_room" = "Create a Room";
 
-"select_venue" = "Select a venue";
-
 "room_options" = "Room Options";
 
 "name" = "Name";
@@ -144,7 +142,9 @@
 
 "settings" = "Settings";
 
-"select_venue" = "CHOOSE A LOCATION";
+"select_venue" = "Choose a Location";
+
+"SELECT_VENUE" = "CHOOSE A LOCATION";
 
 "Logout Confirmation" = "Are you sure you want to log out?";
 

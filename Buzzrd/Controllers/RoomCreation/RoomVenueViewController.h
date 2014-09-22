@@ -12,8 +12,8 @@
 
 @interface RoomVenueViewController : BaseTableViewController <UISearchDisplayDelegate>
 
--(id)initWithCallback:(void (^)(Venue *venue, Room *created))onRoomCreated;
+-(id)initWithCallback:(void (^)(Venue *venue))onVenueSelected;
 
-@property (strong, nonatomic) void(^onRoomCreated)(Venue *venue, Room *created);
+@property (strong, nonatomic) void(^onVenueSelected)(Venue *venue);
 
 @end

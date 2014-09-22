@@ -9,11 +9,9 @@
 #import "RoomVenueViewController.h"
 #import "VenueCell.h"
 #import "BuzzrdAPI.h"
-#import "CreateRoomViewController.h"
 #import "FoursquareAttribution.h"
 #import "GetVenuesCommand.h"
 #import "GetLocationCommand.h"
-#import "CreateRoomCommand.h"
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
 
@@ -29,12 +27,12 @@
 
 @implementation RoomVenueViewController
 
--(id)initWithCallback:(void (^)(Venue *venue, Room *created))onRoomCreated
+-(id)initWithCallback:(void (^)(Venue *venue))onVenueSelected
 {
     self = [self initWithStyle:UITableViewStyleGrouped];
     if(self != nil)
     {
-        self.onRoomCreated = onRoomCreated;
+        self.onVenueSelected = onVenueSelected;
     }
     return self;
 }
@@ -43,15 +41,12 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"create_room", nil);
+    self.title = NSLocalizedString(@"select_venue", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self attachFooterToTableView:self.tableView];
     
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
-    
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTouch)];
-    self.navigationItem.leftBarButtonItem = cancelButton;
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
     searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
@@ -68,7 +63,6 @@
 
 - (void)tableViewWillRefresh
 {
-    NSLog(@"Refreshing table");
     [self getUserLocation];
 }
 
@@ -152,36 +146,6 @@
     tableView.tableFooterView = footer;
 }
 
-- (void)createRoom:(Room *)room
-{
-    // Create the default room
-    CreateRoomCommand *command = [[CreateRoomCommand alloc]init];
-    command.room = room;
-    [command listenForCompletion:self selector:@selector(createRoomDidComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
-}
-
-- (void)createRoomDidComplete:(NSNotification *)info
-{
-    CreateRoomCommand *command = (CreateRoomCommand *)info.object;
-    if(command.status == kSuccess) {
-    
-        Venue *venue = command.results[@"venue"];
-        Room *room = command.results[@"room"];
-        
-        NSLog(@"Created room: %@, %@", room.id, room.name);
-        [self dismissViewControllerAnimated:true completion:^{
-            self.onRoomCreated(venue, room);
-        }];
-    }
-    else
-    {
-        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
-                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
-                       retryOperation:command];
-    }
-}
-
 
 
 #pragma mark - Table view data source
@@ -197,7 +161,7 @@
 {
     CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 30);
     TableSectionHeader *headerView = [[TableSectionHeader alloc]initWithFrame:frame];
-    headerView.titleText = NSLocalizedString(@"select_venue", nil);
+    headerView.titleText = NSLocalizedString(@"SELECT_VENUE", nil);
     return headerView;
 }
 
@@ -253,9 +217,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     
     Venue *venue = [self venueForTableView:tableView indexPath:indexPath];
-    Room *room = [[Room alloc]init];
-    room.name = venue.name;
-    room.venueId = venue.id;    
+    self.onVenueSelected(venue);
+    
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 
