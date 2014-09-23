@@ -22,6 +22,9 @@
 		353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EBF195CE4C100AC1B62 /* CommandBase.m */; };
 		353D6EC3195CE95D00AC1B62 /* CommandDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */; };
 		353D6EC7195CEE1B00AC1B62 /* GetVenuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */; };
+		3546E90C19D19C7A00A75E4C /* Pinpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90919D19C7A00A75E4C /* Pinpoint@2x.png */; };
+		3546E90D19D19C7A00A75E4C /* PrivateGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90A19D19C7A00A75E4C /* PrivateGroup@2x.png */; };
+		3546E90E19D19C7A00A75E4C /* Venue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90B19D19C7A00A75E4C /* Venue@2x.png */; };
 		355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* CreateRoomViewController.m */; };
 		355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */; };
 		355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */; };
@@ -158,6 +161,9 @@
 		353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommandDispatcher.m; path = Application/CommandDispatcher.m; sourceTree = "<group>"; };
 		353D6EC5195CEE1B00AC1B62 /* GetVenuesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenuesCommand.h; path = Commands/Venues/GetVenuesCommand.h; sourceTree = "<group>"; };
 		353D6EC6195CEE1B00AC1B62 /* GetVenuesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenuesCommand.m; path = Commands/Venues/GetVenuesCommand.m; sourceTree = "<group>"; };
+		3546E90919D19C7A00A75E4C /* Pinpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pinpoint@2x.png"; sourceTree = "<group>"; };
+		3546E90A19D19C7A00A75E4C /* PrivateGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PrivateGroup@2x.png"; sourceTree = "<group>"; };
+		3546E90B19D19C7A00A75E4C /* Venue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Venue@2x.png"; sourceTree = "<group>"; };
 		355F4711194CF4C500DF8388 /* CreateRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomViewController.h; path = Controllers/RoomCreation/CreateRoomViewController.h; sourceTree = "<group>"; };
 		355F4712194CF4C500DF8388 /* CreateRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomViewController.m; path = Controllers/RoomCreation/CreateRoomViewController.m; sourceTree = "<group>"; };
 		355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_white.png; sourceTree = "<group>"; };
@@ -667,6 +673,9 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3546E90919D19C7A00A75E4C /* Pinpoint@2x.png */,
+				3546E90A19D19C7A00A75E4C /* PrivateGroup@2x.png */,
+				3546E90B19D19C7A00A75E4C /* Venue@2x.png */,
 				350AB59019A4C8AA0060D3C7 /* Settings@2x.png */,
 				3576A88219A442D80071FED5 /* SubRooms@2x.png */,
 				35A8F8EF1996F93700D54383 /* Buzzrd_Silhouette@2x.png */,
@@ -908,9 +917,12 @@
 				C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */,
 				35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */,
 				355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */,
+				3546E90E19D19C7A00A75E4C /* Venue@2x.png in Resources */,
 				C2C6E5531938115300DBEEE6 /* no_profile_pic.jpg in Resources */,
 				C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */,
 				35BA0E0B18CF37A100F5B339 /* Images.xcassets in Resources */,
+				3546E90C19D19C7A00A75E4C /* Pinpoint@2x.png in Resources */,
+				3546E90D19D19C7A00A75E4C /* PrivateGroup@2x.png in Resources */,
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
 				3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */,
 				C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */,
