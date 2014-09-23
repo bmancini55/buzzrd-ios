@@ -16,6 +16,7 @@
 #import "TableSectionHeader.h"
 #import "UIWindow+Helpers.h"
 #import "AccessoryIndicatorView.h"
+#import "LoginCommand.h"
 
 @interface CreateAccountTableViewController ()
 
@@ -116,10 +117,12 @@
     CreateUserCommand *command = notif.object;
     if(command.status == kSuccess)
     {
-        ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
-        profileImageController.user = command.results;
-        profileImageController.user.password = self.passwordTextField.text;
-        [self.navigationController pushViewController:profileImageController animated:YES];
+//        ProfileImageViewController *profileImageController = [BuzzrdNav profileImageViewController];
+//        profileImageController.user = command.results;
+//        profileImageController.user.password = self.passwordTextField.text;
+//        [self.navigationController pushViewController:profileImageController animated:YES];
+        
+        [self login];
     }
     else
     {
@@ -128,6 +131,41 @@
                        retryOperation:command];
     }
 }
+
+
+
+
+-(void)dismissToRootView {
+    [self dismissViewControllerAnimated:true completion:^{ [self dismissViewControllerAnimated:true completion:nil]; }];
+}
+
+- (void)login {
+    LoginCommand *command = [[LoginCommand alloc]init];
+    command.username = self.user.username; //self.usernameTextField.text;
+    command.password = self.user.password; //self.passwordTextField.text;
+    
+    [command listenForCompletion:self selector:@selector(loginDidComplete:)];
+    
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)loginDidComplete:(NSNotification *)notif
+{
+    LoginCommand *command = notif.object;
+    if(command.status == kSuccess)
+    {
+        [BuzzrdAPI current].authorization = (Authorization *)command.results;
+        
+        [BuzzrdAPI current].user = self.user;
+        
+        [self performSelectorOnMainThread:@selector(dismissToRootView) withObject:nil waitUntilDone:NO];
+    }
+    else
+    {
+        [self showDefaultRetryAlert:command];
+    }
+}
+
 
 #pragma mark - Table view data source
 
