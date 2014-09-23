@@ -7,6 +7,7 @@
 //
 
 #import "GetLocationCommand.h"
+#import "BuzzrdAPI.h"
 
 @interface GetLocationCommand()
 
@@ -46,6 +47,9 @@
             self.results = self.locationManager.location;
             [self sendCompletionNotification];
             [self.locationManager stopUpdatingLocation];
+            
+            // cache this for now...
+            [BuzzrdAPI current].lastLocation = self.locationManager.location;
         }
     }
 }
@@ -76,6 +80,9 @@
         self.results = location;
         [self sendCompletionNotification];
         [self.locationManager stopUpdatingLocation];
+        
+        // cache this for now...
+        [BuzzrdAPI current].lastLocation = location;
     }
 }
 

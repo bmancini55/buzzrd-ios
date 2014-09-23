@@ -28,7 +28,10 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:self.room.name forKey:@"name"];
-    [parameters setObject:self.room.venueId forKey:@"venueId"];
+    [parameters setObject:[NSNumber numberWithFloat:self.room.location.coordinate.latitude] forKey:@"lat"];
+    [parameters setObject:[NSNumber numberWithFloat:self.room.location.coordinate.longitude] forKey:@"lng"];
+    if(self.room.venue)
+        [parameters setObject:self.room.venue.id forKey:@"venueId"];
     
     [self httpPostWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }
@@ -36,13 +39,8 @@
 - (id) parser:(id)rawData
 {
     NSDictionary *results = rawData[@"results"];
-    
-    Venue *venue = [[Venue alloc] initWithJson:results[@"venue"]];
-    Room *room = [[Room alloc]initWithJson:results[@"room"]];
-    
-    return @{ @"venue": venue,
-              @"room": room
-              };
+    Room *room = [[Room alloc]initWithJson:results];
+    return room;
 }
 
 - (id) copyWithZone:(NSZone *)zone {

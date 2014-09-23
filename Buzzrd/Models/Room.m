@@ -16,12 +16,10 @@
 {
     self = [self init];
     if(self) {
-        //self.created = // USE DATE UTIL
         self.id = json[@"id"];
         self.name = json[@"name"];
+        //self.created = // USE DATE UTIL
         //self.updated = // USE DATE UTIL
-        self.venueDefault = [json[@"venueDefault"] boolValue];
-        self.venueId = json[@"venueId"];
         
         self.userCount = [json[@"userCount"] unsignedIntegerValue];
         self.lurkerCount = [json[@"lurkerCount"] unsignedIntegerValue];
@@ -29,7 +27,7 @@
         
         NSArray *coord = json[@"coord"];
         self.location = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];
-        
+
         if(json[@"venue"]) {
             self.venue = [[Venue alloc] initWithJson:json[@"venue"]];
         }

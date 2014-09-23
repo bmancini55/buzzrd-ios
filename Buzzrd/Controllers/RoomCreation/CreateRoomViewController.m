@@ -81,7 +81,7 @@
     CreateRoomCommand *command = (CreateRoomCommand *)info.object;
     if(command.status == kSuccess) {
         
-        Room *room = command.results[@"room"];
+        Room *room = command.results;
         [self dismissViewControllerAnimated:true completion:^{
             self.onRoomCreated(room);
         }];
@@ -108,6 +108,10 @@
         
         Room *room = [[Room alloc]init];
         room.name = self.nameTextField.text;
+        room.location = [[BuzzrdAPI current] currentLocation];
+        if(self.venue) {
+            room.venue = self.venue;
+        }
     
         [self createRoom:room];
         

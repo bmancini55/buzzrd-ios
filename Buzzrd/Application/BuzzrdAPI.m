@@ -9,7 +9,12 @@
 #import "BuzzrdAPI.h"
 #import "CommandBase.h"
 
+@interface BuzzrdAPI()
+
+@end
+
 @implementation BuzzrdAPI
+
 
 +(BuzzrdAPI *) current
 {
@@ -141,6 +146,12 @@
         self.dispatch = [[CommandDispatcher alloc]init];
     }
     return self;
+}
+
+
+- (CLLocation *) currentLocation
+{
+    return self.lastLocation;
 }
 
 @end

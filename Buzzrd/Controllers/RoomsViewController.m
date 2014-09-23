@@ -275,57 +275,20 @@
 
 -(void)addRoomToTable:(Room *)room
 {
-    //    Venue *indexedVenue;
-    //    int venueIndex;
-    //    bool venueFound = false;
-    //
-    //    // find the venue
-    //    for(venueIndex = 0; venueIndex < self.venues.count; venueIndex++)
-    //    {
-    //        indexedVenue = self.venues[venueIndex];
-    //        if([indexedVenue.id isEqualToString:room.venueId]) {
-    //            venueFound = true;
-    //            break;
-    //        }
-    //    }
-    //
-    //    // insert venue
-    //    if(!venueFound) {
-    //        venue.defaultRoom = room;
-    //        venue.rooms = @[ room ];
-    //        venue.roomCount = 1;
-    //
-    //        // insert venue
-    //        NSMutableArray *temp = [NSMutableArray arrayWithArray:self.venues];
-    //        [temp insertObject:venue atIndex:0];
-    //        self.venues = [NSArray arrayWithArray:temp];
-    //
-    //        // insert the venue cell
-    //        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    //        [self.tableView beginUpdates];
-    //        [self.tableView insertRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-    //        [self.tableView endUpdates];
-    //        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
-    //    }
-    //
-    //    // update existing
-    //    else {
-    //
-    //        // insert the room
-    //        NSMutableArray *temp = [NSMutableArray arrayWithArray:indexedVenue.rooms];
-    //        [temp insertObject:room atIndex:0];
-    //        indexedVenue.rooms = [NSArray arrayWithArray:temp];
-    //        indexedVenue.roomCount = indexedVenue.roomCount + 1;
-    //
-    //        // insert the room cell
-    //        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:venueIndex inSection:0];
-    //        [self.tableView beginUpdates];
-    //        [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-    //        [self.tableView endUpdates];
-    //    }
-    //
-    //    // join the room
-    //    [self joinRoom:room];
+    // insert room
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.rooms];
+    [temp insertObject:room atIndex:0];
+    self.rooms = [NSArray arrayWithArray:temp];
+
+    // insert the room cell
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
+
+    // join the room
+    [self joinRoom:room];
 }
 
 @end
