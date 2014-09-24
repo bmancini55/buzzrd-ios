@@ -200,13 +200,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *dataSource =  [self dataSourceForTableView:tableView];
-    Room *room = dataSource[indexPath.row];
-    
-    // TODO OPTIMIZE WITH CACHE
-    RoomCell *cell = [[RoomCell alloc]init];
-    [cell setRoom:room userLocation:self.location];
-    return [cell calculateHeight];
+    // No need to calculate these, lets just hardcode it
+    return 66.5;
 }
 
 
