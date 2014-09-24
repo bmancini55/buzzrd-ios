@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "VenueLocation.h"
+#import "Location.h"
 #import "VenueCategory.h"
 
 @class Room;
@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSArray* categories;
 @property (strong, nonatomic) NSDate *created;
 @property (strong, nonatomic) NSString *id;
-@property (strong, nonatomic) VenueLocation *location;
+@property (strong, nonatomic) Location *location;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *referralId;
 @property (nonatomic) NSUInteger roomCount;

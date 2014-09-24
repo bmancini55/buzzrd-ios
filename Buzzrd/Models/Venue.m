@@ -26,7 +26,7 @@
         }
         self.categories = [[NSArray alloc]initWithArray:tempCategories];                
 
-        self.location = [[VenueLocation alloc]initWithJson:json[@"location"]];
+        self.location = [[Location alloc]initWithJson:json[@"location"]];
         
         self.name = json[@"name"];
         self.referralId = json[@"referralId"];

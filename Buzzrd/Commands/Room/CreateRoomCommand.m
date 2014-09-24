@@ -28,10 +28,10 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:self.room.name forKey:@"name"];
-    [parameters setObject:[NSNumber numberWithFloat:self.room.location.coordinate.latitude] forKey:@"lat"];
-    [parameters setObject:[NSNumber numberWithFloat:self.room.location.coordinate.longitude] forKey:@"lng"];
-    if(self.room.venue)
-        [parameters setObject:self.room.venue.id forKey:@"venueId"];
+    [parameters setObject:[NSNumber numberWithFloat:self.room.coord.coordinate.latitude] forKey:@"lat"];
+    [parameters setObject:[NSNumber numberWithFloat:self.room.coord.coordinate.longitude] forKey:@"lng"];
+    if(self.room.venueId && ![self.room.venueId isEqualToString:@""])
+        [parameters setObject:self.room.venueId forKey:@"venueId"];
     
     [self httpPostWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }

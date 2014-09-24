@@ -26,11 +26,13 @@
         self.messageCount = [json[@"messageCount"] unsignedIntegerValue];
         
         NSArray *coord = json[@"coord"];
-        self.location = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];
+        self.coord = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];
+        self.location = [[Location alloc]initWithJson:json[@"location"]];
 
-        if(json[@"venue"]) {
-            self.venue = [[Venue alloc] initWithJson:json[@"venue"]];
-        }
+        self.venueId = json[@"venueId"];
+        self.venueName = json[@"venueName"];
+        
+
     }
     return self;
 }

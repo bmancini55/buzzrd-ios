@@ -56,7 +56,7 @@
 		35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FCE19328B1500B615A4 /* SocketIOTransportWebsocket.m */; };
 		35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FD019328B1500B615A4 /* SocketIOTransportXHR.m */; };
 		35A46FDB1938444600B615A4 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDA1938444600B615A4 /* Venue.m */; };
-		35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* VenueLocation.m */; };
+		35A46FDE193C01E100B615A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FDD193C01E100B615A4 /* Location.m */; };
 		35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46FE0193C079900B615A4 /* VenueCategory.m */; };
 		35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C1FF1987209800528D77 /* NSDate+Helpers.m */; };
 		35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A8F8E21992568000D54383 /* UserCountBarButton.m */; };
@@ -225,8 +225,8 @@
 		35A46FD019328B1500B615A4 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
 		35A46FD91938444600B615A4 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = Models/Venue.h; sourceTree = "<group>"; };
 		35A46FDA1938444600B615A4 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = Models/Venue.m; sourceTree = "<group>"; };
-		35A46FDC193C01E100B615A4 /* VenueLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueLocation.h; path = Models/VenueLocation.h; sourceTree = "<group>"; };
-		35A46FDD193C01E100B615A4 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueLocation.m; path = Models/VenueLocation.m; sourceTree = "<group>"; };
+		35A46FDC193C01E100B615A4 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Location.h; path = Models/Location.h; sourceTree = "<group>"; };
+		35A46FDD193C01E100B615A4 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Location.m; path = Models/Location.m; sourceTree = "<group>"; };
 		35A46FDF193C079900B615A4 /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCategory.h; path = Models/VenueCategory.h; sourceTree = "<group>"; };
 		35A46FE0193C079900B615A4 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCategory.m; path = Models/VenueCategory.m; sourceTree = "<group>"; };
 		35A6C1FE1987209800528D77 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helpers.h"; path = "Categories/NSDate+Helpers.h"; sourceTree = "<group>"; };
@@ -654,8 +654,8 @@
 				C2C6E54C1936D6A300DBEEE6 /* Gender.m */,
 				35A46FD91938444600B615A4 /* Venue.h */,
 				35A46FDA1938444600B615A4 /* Venue.m */,
-				35A46FDC193C01E100B615A4 /* VenueLocation.h */,
-				35A46FDD193C01E100B615A4 /* VenueLocation.m */,
+				35A46FDC193C01E100B615A4 /* Location.h */,
+				35A46FDD193C01E100B615A4 /* Location.m */,
 				35A46FDF193C079900B615A4 /* VenueCategory.h */,
 				35A46FE0193C079900B615A4 /* VenueCategory.m */,
 			);
@@ -992,7 +992,7 @@
 				35A46FBD19328ACC00B615A4 /* ProfileImageView.m in Sources */,
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
-				35A46FDE193C01E100B615A4 /* VenueLocation.m in Sources */,
+				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,

@@ -1,14 +1,14 @@
 //
-//  VenueLocation.m
+//  Location.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 6/1/14.
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
-#import "VenueLocation.h"
+#import "Location.h"
 
-@implementation VenueLocation
+@implementation Location
 
 -(id) initWithJson:(NSDictionary *)json
 {

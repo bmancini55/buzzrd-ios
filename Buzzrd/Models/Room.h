@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Location.h"
 
 @class Venue;
 
@@ -22,8 +23,11 @@
 @property (nonatomic) NSUInteger lurkerCount;
 @property (nonatomic) NSUInteger messageCount;
 
-@property (strong, nonatomic) CLLocation *location;
-@property (strong, nonatomic) Venue *venue;
+@property (strong, nonatomic) CLLocation *coord;
+@property (strong, nonatomic) Location *location;
+
+@property (strong, nonatomic) NSString *venueId;
+@property (strong, nonatomic) NSString *venueName;
 
 -(id) initWithJson:(NSDictionary *)json;
 

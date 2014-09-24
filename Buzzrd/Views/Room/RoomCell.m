@@ -126,7 +126,7 @@
     self.messageLabel.text = NSLocalizedString(@"msgs", nil);
     
     // set distance
-    CLLocationDistance distance = [userLocation distanceFromLocation:room.location];
+    CLLocationDistance distance = [userLocation distanceFromLocation:room.coord];
     CGFloat distanceInFeet = distance / 1609.344 * 5280;
     if(distanceInFeet < 500)
         self.distanceLabel.text = [NSString stringWithFormat:@"(%1.f ft)", distanceInFeet];
@@ -134,14 +134,14 @@
         self.distanceLabel.text = [NSString stringWithFormat:@"(%.1f mi)", distanceInFeet / 5280];
     
     // set type information
-    if(room.venue) {
+    if(room.venueId != nil && ![room.venueId isEqualToString:@""]) {
         self.typeImage.image = [UIImage imageNamed:@"Venue.png"];
-        self.venueLabel.text = room.venue.name;
-        self.addressLabel.text = [room.venue.location prettyString];
+        self.venueLabel.text = room.venueName;
+        self.addressLabel.text = [room.location prettyString];
     } else {
         self.typeImage.image = [UIImage imageNamed:@"Pinpoint.png"];
-        self.venueLabel.text = @"Unknown Location";
-        self.addressLabel.text = @"Pittsburgh, PA";
+        self.venueLabel.text = @" ";
+        self.addressLabel.text = [room.location prettyString];
     }
     
     [self updateConstraints];

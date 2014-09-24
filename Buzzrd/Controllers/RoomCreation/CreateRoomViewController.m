@@ -108,9 +108,11 @@
         
         Room *room = [[Room alloc]init];
         room.name = self.nameTextField.text;
-        room.location = [[BuzzrdAPI current] currentLocation];
+        room.coord = [[BuzzrdAPI current] currentLocation];
         if(self.venue) {
-            room.venue = self.venue;
+            room.venueId = self.venue.id;
+            room.venueName = self.venue.name;
+            room.location = self.venue.location;
         }
     
         [self createRoom:room];

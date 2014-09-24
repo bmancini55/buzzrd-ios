@@ -1,5 +1,5 @@
 //
-//  VenueLocation.m
+//  Location.m
 //  Buzzrd
 //
 //  Created by Brian Mancini on 6/1/14.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface VenueLocation : NSObject
+@interface Location : NSObject
 
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *city;
