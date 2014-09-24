@@ -60,6 +60,7 @@
     self.messageCountLabel = [[UILabel alloc]init];
     self.messageCountLabel.font = [ThemeManager getPrimaryFontBold:20.0];
     self.messageCountLabel.textColor = [ThemeManager getTertiaryColorDark];
+    self.messageCountLabel.textAlignment = NSTextAlignmentRight;
     self.messageCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.messageCountLabel];
 
@@ -95,7 +96,7 @@
         };
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[image(17)]-6-[title]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msgCount]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msgCount(>=40)]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msg]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[msgCount]-12-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image]-6-[venue]-(>=6)-|" options:0 metrics:nil views:views]];
