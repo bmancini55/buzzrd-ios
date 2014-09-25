@@ -24,7 +24,7 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"nearby", nil);
+    self.title = NSLocalizedString(@"nearby_rooms", nil);
     
     self.sectionHeaderTitle = NSLocalizedString(@"nearby_rooms", nil);
     

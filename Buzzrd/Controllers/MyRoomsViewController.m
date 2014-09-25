@@ -20,7 +20,7 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"My Rooms", nil);
+    self.title = NSLocalizedString(@"MY ROOMS", nil);
     
     self.sectionHeaderTitle = NSLocalizedString(@"MY ROOMS", nil);
 }
