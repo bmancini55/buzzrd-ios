@@ -22,7 +22,6 @@
     @property (strong, nonatomic) SocketIO *socket;
     @property (strong, nonatomic) NSMutableArray *messages;
     @property (strong, nonatomic) NSMutableArray *messageHeights;
-    @property (nonatomic) uint page;
     @property (nonatomic) uint loading;
     @property (strong, nonatomic) UserCountBarButton *rightBar;
 
@@ -81,7 +80,7 @@
     self.messageHeights = [[NSMutableArray alloc]init];
     
     // load recent messages
-    [self loadMessagesWithPage:1];
+    [self loadMessages];
 }
 
 
@@ -158,15 +157,17 @@
 
 #pragma mark - Internal helper methods
 
-- (void)loadMessagesWithPage:(uint)page
+- (void)loadMessages
 {
     if(!self.loading)
     {
         self.loading = true;
-        self.page = page;
         GetMessagesForRoomCommand *command = [[GetMessagesForRoomCommand alloc]init];
         command.room = self.room;
-        command.page = page;
+
+        if(self.messages.count > 0)
+            command.after = ((Message *)self.messages[0]).idmessage;
+        
         [command listenForCompletion:self selector:@selector(messagesForRoomDidComplete:)];
         [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
@@ -183,7 +184,7 @@
         NSArray *newMessages = command.results;
         
         // on fresh reload
-        if (command.page == 1)
+        if (self.messages.count == 0)
         {
             // set messages
             for(int i = 0; i < newMessages.count; i++) {
@@ -307,7 +308,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if(scrollView.contentOffset.y <= 10) {
-        [self loadMessagesWithPage:self.page + 1];
+        [self loadMessages];
     }
 }
 

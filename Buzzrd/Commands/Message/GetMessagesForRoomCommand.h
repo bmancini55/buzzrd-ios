@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) Room *room;
 @property (nonatomic) int page;
+@property (strong, nonatomic) NSString *after;
 
 @end
