@@ -253,6 +253,7 @@
 - (void) settingsTouch
 {
     UIViewController *viewController = [BuzzrdNav createSettingsController];
+    viewController.hidesBottomBarWhenPushed = true;
     [self.navigationController pushViewController:viewController animated:true];
 }
 
