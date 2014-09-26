@@ -135,7 +135,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[buzzrdImageView]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
 
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[credentialsContainer]-30-[createAccountButton]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[credentialsContainer]-(>=30)-[createAccountButton]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
     
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[buzzrdImageView]-20-[credentialsContainer]" options:0 metrics:nil views:@{ @"buzzrdImageView" : buzzrdImageView, @"credentialsContainer": credentialsContainer, @"createAccountButton" : self.createAccountButton }]];
@@ -264,19 +264,6 @@
 {
     UIViewController *joinBuzzrdController = [BuzzrdNav joinBuzzrdViewController];
     [self.navigationController pushViewController:joinBuzzrdController animated:YES];
-
-//    UIViewController *parentViewController = self.parentViewController;
-//    
-//    [self dismissViewControllerAnimated:YES completion:^{ [parentViewController.navigationController pushViewController:joinBuzzrdController animated:YES]; }];
-    
-//    [self presentViewController:joinBuzzrdController animated:true completion:nil];
-    
-//    UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
-//    [self.navigationController pushViewController:viewController animated:YES];
-    
-
-//    CreateAccountTableViewController *createAccountTableViewController = [BuzzrdNav createAccountTableViewController];
-//    [self.navigationController pushViewController:createAccountTableViewController animated:YES];
 }
 
 @end
