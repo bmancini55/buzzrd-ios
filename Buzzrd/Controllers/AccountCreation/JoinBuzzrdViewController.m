@@ -81,6 +81,8 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[getStartedButton]-20-|" options:0 metrics:nil views:@{ @"getStartedButton" : self.getStartedButton }]];
     
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[joinBuzzrdLbl]-20-|" options:0 metrics:nil views:@{ @"joinBuzzrdLbl" : self.joinBuzzrdLbl }]];
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[createAccountSummaryLbl]-90-|" options:0 metrics:nil views:@{ @"createAccountSummaryLbl" : self.createAccountSummaryLbl }]];
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[disclaimerContainerView]-25-|" options:0 metrics:nil views:@{ @"disclaimerContainerView" :disclaimerContainerView }]];
