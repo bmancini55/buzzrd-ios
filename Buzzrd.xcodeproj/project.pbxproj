@@ -90,7 +90,6 @@
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
-		C29DDDEA1981F18400EA922F /* 120x120_Launch_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE91981F18400EA922F /* 120x120_Launch_Icon.png */; };
 		C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */; };
 		C2BEC60C19BD5C0600DB6BCC /* UpdateProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC60B19BD5C0600DB6BCC /* UpdateProfileImageViewController.m */; };
 		C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC60E19C12A3F00DB6BCC /* DownloadImageCommand.m */; };
@@ -275,7 +274,6 @@
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
 		C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+UIView_Borders.m"; path = "Categories/UIView+UIView_Borders.m"; sourceTree = "<group>"; };
 		C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Forward_Arrow@2x.png"; sourceTree = "<group>"; };
-		C29DDDE91981F18400EA922F /* 120x120_Launch_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120x120_Launch_Icon.png; sourceTree = "<group>"; };
 		C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_profile_pic@2x.png"; sourceTree = "<group>"; };
 		C2BEC60A19BD5C0600DB6BCC /* UpdateProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateProfileImageViewController.h; path = Controllers/Settings/UpdateProfileImageViewController.h; sourceTree = "<group>"; };
 		C2BEC60B19BD5C0600DB6BCC /* UpdateProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateProfileImageViewController.m; path = Controllers/Settings/UpdateProfileImageViewController.m; sourceTree = "<group>"; };
@@ -683,7 +681,6 @@
 				C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */,
 				C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */,
 				C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */,
-				C29DDDE91981F18400EA922F /* 120x120_Launch_Icon.png */,
 				C20A15D7197A0F750003B67E /* Login_Area@2x.png */,
 				355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */,
 				355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */,
@@ -907,7 +904,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20A15D619761C590003B67E /* Buzzrd_Logo_with_Text@2x.png in Resources */,
-				C29DDDEA1981F18400EA922F /* 120x120_Launch_Icon.png in Resources */,
 				35A8F8F01996F93700D54383 /* Buzzrd_Silhouette@2x.png in Resources */,
 				C2C6E502192D9AC700DBEEE6 /* Localizable.strings in Resources */,
 				35BA0E0318CF37A100F5B339 /* InfoPlist.strings in Resources */,

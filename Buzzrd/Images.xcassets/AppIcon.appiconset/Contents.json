@@ -3,20 +3,26 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "120x120_Launch_Icon.png",
+      "filename" : "Buzzrd_Launch_Icon.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "120x120_Launch_Icon-1.png",
+      "filename" : "Buzzrd_Launch_Icon-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120x120_Launch_Icon-2.png",
+      "filename" : "Buzzrd_Launch_Icon-2.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Buzzrd_Launch_Icon-3.png",
+      "scale" : "3x"
     },
     {
       "idiom" : "ipad",
