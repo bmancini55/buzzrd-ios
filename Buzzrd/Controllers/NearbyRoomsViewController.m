@@ -25,8 +25,8 @@
     [super loadView];
     
     self.title = NSLocalizedString(@"nearby_rooms", nil);
-    
-    self.sectionHeaderTitle = NSLocalizedString(@"nearby_rooms", nil);
+    self.navigationController.title = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
+    self.sectionHeaderTitle = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
     searchBar.barTintColor = [ThemeManager getPrimaryColorLight];

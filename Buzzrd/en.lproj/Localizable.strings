@@ -130,7 +130,7 @@
 
 "recently_visited_rooms" = "RECENTLY VISITED ROOMS";
 
-"nearby_rooms" = "NEARBY ROOMS";
+"nearby_rooms" = "Nearby Rooms";
 
 "Processing" = "Processing...";
 
@@ -156,8 +156,6 @@
 
 "msgs" = "msgs";
 
-"My Rooms" = "My Rooms";
-
-"MY ROOMS" = "MY ROOMS";
+"my_rooms" = "My Rooms";
 
 "messages" = "messages";

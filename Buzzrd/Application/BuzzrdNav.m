@@ -38,8 +38,8 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController];
     
-    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"nearby_rooms", nil)];
-    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"MY ROOMS", nil)];
+    [[tabBarController.tabBar.items objectAtIndex:0] setTitle:[NSLocalizedString(@"nearby_rooms", nil) uppercaseString]];
+    [[tabBarController.tabBar.items objectAtIndex:1] setTitle:[NSLocalizedString(@"my_rooms", nil) uppercaseString]];
     
     [[UITabBar appearance] setBarTintColor:[ThemeManager getPrimaryColorDark]];
     [[UITabBar appearance] setTintColor:([ThemeManager getSecondaryColorMedium])];

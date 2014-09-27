@@ -20,9 +20,9 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"MY ROOMS", nil);
-    
-    self.sectionHeaderTitle = NSLocalizedString(@"MY ROOMS", nil);
+    self.title = NSLocalizedString(@"my_rooms", nil);
+    self.navigationController.title = [NSLocalizedString(@"my_rooms", nil) uppercaseString];
+    self.sectionHeaderTitle = [NSLocalizedString(@"my_rooms", nil) uppercaseString];
 }
 
 - (void)loadRoomsWithSearch:(NSString *)search
