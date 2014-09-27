@@ -252,10 +252,6 @@
     }
 }
 
-- (bool) isMyMessage:(Message *) message{
-    return [[BuzzrdAPI current].user.iduser isEqualToString:message.userId];
-}
-
 
 #pragma mark - Table view data source
 
@@ -273,7 +269,7 @@
 {
     Message *message = self.messages[indexPath.row];
     
-    bool mine = [self isMyMessage:message];
+    bool mine = message.isMine;
     bool revealed = message.revealed;
     NSString *identifier = [NSString stringWithFormat:@"MessageCell-%@-%@",
                             (mine ? @"Mine" : @"Other"),
@@ -304,7 +300,7 @@
     else
     {
         Message *message = self.messages[indexPath.row];
-        MessageCell *cell = [[MessageCell alloc]initWithMyMessage:[self isMyMessage:message] revealedMessage:message.revealed];
+        MessageCell *cell = [[MessageCell alloc]initWithMyMessage:message.isMine revealedMessage:message.revealed];
         [cell setMessage:message];
         CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         
@@ -362,7 +358,7 @@
     
     // if we were at the bottom scroll position prior to adding a new row,
     // we will now scroll to the bottom position again
-    if(currentlyAtBottom) {
+    if(currentlyAtBottom || message) {
         
         [self.tableView scrollToBottom:true];
         

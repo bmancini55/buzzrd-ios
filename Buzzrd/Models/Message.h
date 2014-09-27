@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BuzzrdAPI.h"
 
 @interface Message : NSObject <NSCopying>
 
@@ -19,5 +20,7 @@
 @property (nonatomic) uint upvoteCount;
 
 - (id)initWithJson:(NSDictionary *)json;
+
+- (bool)isMine;
 
 @end

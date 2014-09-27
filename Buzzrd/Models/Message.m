@@ -37,4 +37,9 @@
     return message;
 }
 
+- (bool)isMine
+{
+    return [[BuzzrdAPI current].user.iduser isEqualToString:self.userId];
+}
+
 @end
