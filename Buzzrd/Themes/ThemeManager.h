@@ -32,6 +32,10 @@ typedef enum
 
 + (UIColor *) getTertiaryColorDark;
 
++ (UIColor *) getTertiaryColorMedium;
+
++ (UIColor *) getTertiaryColorLight;
+
 +(void) setTheme:(ThemeStyle) theme;
 
 + (UIFont *) getPrimaryFontRegular:(float) fontSize;

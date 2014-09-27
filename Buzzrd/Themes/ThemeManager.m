@@ -53,6 +53,14 @@ BaseTheme *currentTheme;
     return currentTheme.tertiaryColorDark;
 }
 
++ (UIColor *) getTertiaryColorMedium {
+    return currentTheme.tertiaryColorMedium;
+}
+
++ (UIColor *) getTertiaryColorLight {
+    return currentTheme.tertiaryColorLight;
+}
+
 + (UIFont *) getPrimaryFontRegular:(float) fontSize {
     return [UIFont fontWithName:currentTheme.primaryFontRegular size:fontSize];
 }

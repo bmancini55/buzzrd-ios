@@ -8,6 +8,7 @@
 
 #import "RoomCell.h"
 #import "ThemeManager.h"
+#import "UIImage+Alpha.h"
 
 @interface RoomCell()
 
@@ -61,7 +62,7 @@
     
     self.messageCountLabel = [[UILabel alloc]init];
     self.messageCountLabel.font = [ThemeManager getPrimaryFontBold:20.0];
-    self.messageCountLabel.textColor = [ThemeManager getTertiaryColorDark];
+    self.messageCountLabel.textColor = [ThemeManager getTertiaryColorMedium];
     self.messageCountLabel.textAlignment = NSTextAlignmentRight;
     self.messageCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.messageCountLabel];
@@ -142,12 +143,13 @@
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", distanceInFeet / 5280];
     
     // set type information
+    float imageAlpha = 0.75;
     if(room.venueId != nil && ![room.venueId isEqualToString:@""]) {
-        self.typeImage.image = [UIImage imageNamed:@"Venue.png"];
+        self.typeImage.image = [[UIImage imageNamed:@"Venue.png"] imageByApplyingAlpha:imageAlpha];
         self.venueLabel.text = room.venueName;
         self.addressLabel.text = [room.location prettyString];
     } else {
-        self.typeImage.image = [UIImage imageNamed:@"Pinpoint.png"];
+        self.typeImage.image = [[UIImage imageNamed:@"Pinpoint.png"] imageByApplyingAlpha:imageAlpha];
         self.venueLabel.text = @" ";
         self.addressLabel.text = [room.location prettyString];
     }

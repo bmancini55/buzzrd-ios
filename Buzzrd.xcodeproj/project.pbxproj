@@ -25,6 +25,7 @@
 		3546E90C19D19C7A00A75E4C /* Pinpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90919D19C7A00A75E4C /* Pinpoint@2x.png */; };
 		3546E90D19D19C7A00A75E4C /* PrivateGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90A19D19C7A00A75E4C /* PrivateGroup@2x.png */; };
 		3546E90E19D19C7A00A75E4C /* Venue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3546E90B19D19C7A00A75E4C /* Venue@2x.png */; };
+		3546E92319D64F2900A75E4C /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 3546E92219D64F2900A75E4C /* UIImage+Alpha.m */; };
 		355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355F4712194CF4C500DF8388 /* CreateRoomViewController.m */; };
 		355F4715194F10FC00DF8388 /* poweredByFoursquare_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */; };
 		355F4717194F115100DF8388 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 355F4716194F115100DF8388 /* poweredByFoursquare_gray.png */; };
@@ -163,6 +164,8 @@
 		3546E90919D19C7A00A75E4C /* Pinpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pinpoint@2x.png"; sourceTree = "<group>"; };
 		3546E90A19D19C7A00A75E4C /* PrivateGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PrivateGroup@2x.png"; sourceTree = "<group>"; };
 		3546E90B19D19C7A00A75E4C /* Venue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Venue@2x.png"; sourceTree = "<group>"; };
+		3546E92119D64F2900A75E4C /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "Categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
+		3546E92219D64F2900A75E4C /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
 		355F4711194CF4C500DF8388 /* CreateRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateRoomViewController.h; path = Controllers/RoomCreation/CreateRoomViewController.h; sourceTree = "<group>"; };
 		355F4712194CF4C500DF8388 /* CreateRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateRoomViewController.m; path = Controllers/RoomCreation/CreateRoomViewController.m; sourceTree = "<group>"; };
 		355F4714194F10FC00DF8388 /* poweredByFoursquare_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_white.png; sourceTree = "<group>"; };
@@ -753,6 +756,8 @@
 				C213C048199B00EB00B41A2A /* UIWindow+Helpers.m */,
 				350AB5A219B889DD0060D3C7 /* UITableView+ScrollHelpers.h */,
 				350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */,
+				3546E92119D64F2900A75E4C /* UIImage+Alpha.h */,
+				3546E92219D64F2900A75E4C /* UIImage+Alpha.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
+				3546E92319D64F2900A75E4C /* UIImage+Alpha.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
 				C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */,

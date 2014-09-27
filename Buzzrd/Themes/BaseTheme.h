@@ -26,6 +26,10 @@
 
 @property (strong, nonatomic) UIColor *tertiaryColorDark;
 
+@property (strong, nonatomic) UIColor *tertiaryColorMedium;
+
+@property (strong, nonatomic) UIColor *tertiaryColorLight;
+
 @property (strong, nonatomic) NSString *primaryFontRegular;
 
 @property (strong, nonatomic) NSString *primaryFontMedium;
