@@ -12,6 +12,8 @@
 
 @interface MessageBubble()
 
+@property (nonatomic) bool hasConstraints;
+
 @property (strong, nonatomic) UILabel *textLabel;
 @property (strong, nonatomic) UIColor *color;
 
@@ -33,10 +35,25 @@
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.textLabel];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[textLabel]-12-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[textLabel]-18-|" options:0 metrics:nil views:@{ @"textLabel": self.textLabel }]];
+        [self updateConstraints];
     }
     return self;
+}
+
+- (void) updateConstraints
+{
+    if(!self.hasConstraints) {
+        self.hasConstraints = true;
+        
+        NSDictionary *views =
+            @{
+              @"textLabel": self.textLabel
+            };
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[textLabel]-12-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[textLabel]-18-|" options:0 metrics:nil views:views]];
+    }
+
+    [super updateConstraints];
 }
 
 - (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment color:(UIColor *)color {

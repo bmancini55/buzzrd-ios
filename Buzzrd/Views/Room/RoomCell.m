@@ -11,6 +11,8 @@
 
 @interface RoomCell()
 
+@property (nonatomic) bool hasConstraints;
+
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *venueLabel;
 @property (strong, nonatomic) UILabel *addressLabel;
@@ -81,39 +83,45 @@
     self.typeImage.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.typeImage];
     
-    [self setConstraints];
+    [self updateConstraints];
 }
 
-- (void) setConstraints
+- (void) updateConstraints
 {
-    NSDictionary *views =
-        @{
-            @"title": self.nameLabel,
-            @"venue": self.venueLabel,
-            @"distance": self.distanceLabel,
-            @"address": self.addressLabel,
-            @"msgCount": self.messageCountLabel,
-            @"msg": self.messageLabel,
-            @"image": self.typeImage
-        };
+    if(!self.hasConstraints) {
+        self.hasConstraints = true;
+        
+        NSDictionary *views =
+            @{
+                @"title": self.nameLabel,
+                @"venue": self.venueLabel,
+                @"distance": self.distanceLabel,
+                @"address": self.addressLabel,
+                @"msgCount": self.messageCountLabel,
+                @"msg": self.messageLabel,
+                @"image": self.typeImage
+            };
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[image(17)]-6-[title]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msgCount(>=40)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msg]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[msgCount]-12-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image]-6-[venue]-(>=6)-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image]-6-[address]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-(>=6)-[distance]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[image(22)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[venue]-(-3)-[address]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-6-|" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[msgCount]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msgCount]-(-9)-[msg]" options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msg]-(>=6)-[distance]" options:0 metrics:nil views:views]];
+    }
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[image(17)]-6-[title]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msgCount(>=40)]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[title]-(>=6)-[msg]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[msgCount]-12-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image]-6-[venue]-(>=6)-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image]-6-[address]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-(>=6)-[distance]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[image(22)]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-1)-[venue]-(-3)-[address]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-6-|" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[msgCount]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msgCount]-(-9)-[msg]" options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msg]-(>=6)-[distance]" options:0 metrics:nil views:views]];
+    [super updateConstraints];
 }
 
 - (void)setRoom:(Room *)room userLocation:(CLLocation *)userLocation

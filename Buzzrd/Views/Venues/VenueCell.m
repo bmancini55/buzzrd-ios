@@ -13,6 +13,8 @@
 
 @interface VenueCell()
 
+@property (nonatomic) bool hasConstraints;
+
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UILabel *distanceLabel;
@@ -64,36 +66,41 @@
     self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.distanceLabel];
     
-    [self setConstraints];
+    [self updateConstraints];
 }
 
-- (void) setConstraints
+- (void) updateConstraints
 {
+    if(!self.hasConstraints) {
+        self.hasConstraints = true;
     
-    NSDictionary *views =
-        @{
-            @"title": self.titleLabel,
-            @"address": self.addressLabel,
-            @"distance": self.distanceLabel
-          };
+        NSDictionary *views =
+            @{
+                @"title": self.titleLabel,
+                @"address": self.addressLabel,
+                @"distance": self.distanceLabel
+              };
+        
+        // vertical spacing for the title from the top of the container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
+        
+        // vertical spacing for title and address, align them vertically on the left edge
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-0-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
+        
+        // vertical spacing for address and bottom edge of container
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-(>=6)-|" options:0 metrics:nil views:views]];
+        
+        // horizontal spacing for title
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[title]-6-|" options:0 metrics:nil views:views]];
+        
+        // horizontal spacing for distance to right container wall
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:0 metrics:nil views:views]];
+        
+        // horizontal spacing between address and distance, align them on the center
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    }
     
-    // vertical spacing for the title from the top of the container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]" options:0 metrics:nil views:views]];
-    
-    // vertical spacing for title and address, align them vertically on the left edge
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-(-3)-[address]" options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
-    
-    // vertical spacing for address and bottom edge of container
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[address]-8-|" options:0 metrics:nil views:views]];
-    
-    // horizontal spacing for title
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[title]-6-|" options:0 metrics:nil views:views]];
-    
-    // horizontal spacing for distance to right container wall
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:0 metrics:nil views:views]];
-    
-    // horizontal spacing between address and distance, align them on the center
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];    
+    [super updateConstraints];
 }
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation
@@ -118,17 +125,10 @@
 }
 
 
-- (CGFloat)calculateHeight
-{
-    CGFloat borderWidth = 0.5;
-    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return contentHeight + borderWidth;
-}
-
 - (void)addBorder
 {
     CGFloat borderWidth = 0.5;
-    CGFloat originY = [self calculateHeight] - borderWidth;
+    CGFloat originY = 48 - borderWidth;
     
     // create on new
     if(self.bottomBorder == nil) {
