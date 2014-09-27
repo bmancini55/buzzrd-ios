@@ -46,7 +46,7 @@
                                                object:nil];
 
     // Add the info for the right bar menu
-    self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 75, self.navigationController.navigationBar.frame.size.height)];
+    self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 50, self.navigationController.navigationBar.frame.size.height)];
     [self.rightBar setUserCount:(uint)self.room.userCount];
     self.navigationItem .rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBar];
 

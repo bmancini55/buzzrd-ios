@@ -29,7 +29,7 @@
     if (self) {
         
         self.userCountLabel = [[UILabel alloc]init];
-        self.userCountLabel.text = @"0";
+        self.userCountLabel.text = @"1";
         self.userCountLabel.textColor = [ThemeManager getTertiaryColorDark];
         self.userCountLabel.textAlignment = NSTextAlignmentRight;
         self.userCountLabel.font = [ThemeManager getPrimaryFontBold:12.0];
@@ -37,26 +37,26 @@
         [self addSubview:self.userCountLabel];
         
         self.userLabel = [[UILabel alloc]init];
-        self.userLabel.text = NSLocalizedString(@"USERS", nil);
+        self.userLabel.text = NSLocalizedString(@"USER", nil);
         self.userLabel.textColor = [ThemeManager getPrimaryColorMedium];
         self.userLabel.font = [ThemeManager getPrimaryFontMedium:12.0];
         self.userLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.userLabel];
         
-        self.lurkerCountLabel = [[UILabel alloc]init];
-        self.lurkerCountLabel.text = @"0";
-        self.lurkerCountLabel.textColor = [ThemeManager getTertiaryColorDark];
-        self.lurkerCountLabel.textAlignment = NSTextAlignmentRight;
-        self.lurkerCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
-        self.lurkerCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.lurkerCountLabel];
-        
-        self.lurkerLabel = [[UILabel alloc]init];
-        self.lurkerLabel.text = NSLocalizedString(@"LURKERS", nil);
-        self.lurkerLabel.textColor = [ThemeManager getPrimaryColorMedium];
-        self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
-        self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.lurkerLabel];
+        //self.lurkerCountLabel = [[UILabel alloc]init];
+        //self.lurkerCountLabel.text = @"0";
+        //self.lurkerCountLabel.textColor = [ThemeManager getTertiaryColorDark];
+        //self.lurkerCountLabel.textAlignment = NSTextAlignmentRight;
+        //self.lurkerCountLabel.font = [ThemeManager getPrimaryFontBold:10.0];
+        //self.lurkerCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        //[self addSubview:self.lurkerCountLabel];
+        //
+        //self.lurkerLabel = [[UILabel alloc]init];
+        //self.lurkerLabel.text = NSLocalizedString(@"LURKERS", nil);
+        //self.lurkerLabel.textColor = [ThemeManager getPrimaryColorMedium];
+        //self.lurkerLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
+        //self.lurkerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        //[self addSubview:self.lurkerLabel];
         
         self.lurkerCountLabel.hidden = true;
         self.lurkerLabel.hidden = true;
@@ -73,8 +73,8 @@
         @{
             @"usercount": self.userCountLabel,
             @"userlabel": self.userLabel,
-            @"lurkercount": self.lurkerCountLabel,
-            @"lurkerlabel": self.lurkerLabel
+            //@"lurkercount": self.lurkerCountLabel,
+            //@"lurkerlabel": self.lurkerLabel
         };
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[usercount]-3-[userlabel]-(-10)-|" options:0 metrics:nil views:views]];
