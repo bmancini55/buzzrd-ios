@@ -10,6 +10,6 @@
 
 @interface MessageBubble : UIView
 
-- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment color:(UIColor *)color;
+- (void) update:(NSString *)text alignment:(NSTextAlignment)alignment color:(UIColor *)color;
 
 @end

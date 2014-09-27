@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) UILabel *textLabel;
 @property (strong, nonatomic) UIColor *color;
+@property (nonatomic) NSTextAlignment alignment;
 
 @end
 
@@ -32,6 +33,7 @@
         self.textLabel.font = [ThemeManager getPrimaryFontRegular:15.0];
         self.textLabel.numberOfLines = 0;
         self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.textLabel.textAlignment = NSTextAlignmentLeft;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.textLabel];
         
@@ -56,10 +58,10 @@
     [super updateConstraints];
 }
 
-- (void) update:(NSString *)text textAlignment:(NSTextAlignment)textAlignment color:(UIColor *)color {
+- (void) update:(NSString *)text alignment:(NSTextAlignment)alignment color:(UIColor *)color {
     
+    self.alignment = alignment;
     self.textLabel.text = text;
-    self.textLabel.textAlignment = textAlignment;
     self.color = color;
 }
 
@@ -129,9 +131,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    float triangleOffset = 28.0;
-    if(self.textLabel.textAlignment == NSTextAlignmentRight)
-        triangleOffset = [FrameUtils getScreenSize].width - 28.0 - 26.0;
+    float triangleOffset = 28.0;    // image width
+    if(self.alignment == NSTextAlignmentRight)
+        triangleOffset = rect.size.width - 28.0 - 14.0; // image width + triange width
     
     rect = CGRectInset(rect, 0, 6.0);
     CGPathRef path = [self getPath:rect cornerRadius:6.0 triangleSize:CGSizeMake(14.0, 6.0) triangleOffset:triangleOffset];

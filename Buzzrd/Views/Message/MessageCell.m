@@ -89,45 +89,34 @@
             @"image": self.profileImage
           };
         
-        // add constraints for bubble
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:0 metrics:nil views:views]];
         
-        if(self.isRevealedMessage) {
+        if(self.isMyMessage) {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-32-[bubble]-6-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-50-|" options:0 metrics:nil views:views]];
             
-            if(self.isMyMessage) {
-                
-                // right align my messages
+            if(self.isRevealedMessage) {
                 [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[username]-48-|" options:0 metrics:nil views:views]];
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-48-|" options:0 metrics:nil views:views]];
                 [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image(27)]-6-|" options:0 metrics:nil views:views]];
-            } else {
-                
-                // left align other messages
+            }
+        } else {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-32-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:views]];
+            
+            if(self.isRevealedMessage) {
                 [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:views]];
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:views]];
                 [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(27)]" options:0 metrics:nil views:views]];
             }
-            
-            // set vertical constraints
+        }
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:0 metrics:nil views:views]];
+        
+        if(!self.isRevealedMessage) {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:0 metrics:nil views:views]];
+        } else {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:views]];
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:0 metrics:nil views:views]];
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-3-[image(==27)]" options:0 metrics:nil views:views]];
-            
-        } else {
-            
-            if(self.isMyMessage) {
-
-                // right align my messages
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-50-|" options:0 metrics:nil views:views]];
-            } else {
-          
-                // left align other messages
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:views]];
-            }
-            
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:views]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:0 metrics:nil views:views]];
         }
     }
     
@@ -152,7 +141,7 @@
     NSTextAlignment alignment = self.isMyMessage ? NSTextAlignmentRight : NSTextAlignmentLeft;
     UIColor *color = [self getBubbleColor:message];
     
-    [self.messageBubble update:message.message textAlignment:alignment color:color];
+    [self.messageBubble update:message.message alignment:alignment color:color];
     [self configureDate:message.created textAlignment:alignment];
     [self configureUsername:message textAlignment:alignment];
     [self configureImage:message];
