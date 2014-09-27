@@ -80,9 +80,11 @@
     self.typeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Venue.png"]];
     self.typeImage.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.typeImage];
+    
+    [self setConstraints];
 }
 
-- (void) updateConstraints
+- (void) setConstraints
 {
     NSDictionary *views =
         @{
@@ -112,8 +114,6 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[msgCount]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msgCount]-(-9)-[msg]" options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[msg]-(>=6)-[distance]" options:0 metrics:nil views:views]];
-    
-    [super updateConstraints];
 }
 
 - (void)setRoom:(Room *)room userLocation:(CLLocation *)userLocation
@@ -144,7 +144,6 @@
         self.addressLabel.text = [room.location prettyString];
     }
     
-    [self updateConstraints];
     [self addBorder];
 }
 

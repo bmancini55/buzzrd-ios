@@ -11,6 +11,9 @@
 
 @interface MessageCell : UITableViewCell
 
+- (id)initWithMyMessage:(bool)myMessage revealedMessage:(bool)revealedMessage;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier myMessage:(bool)myMessage revealedMessage:(bool)revealedMessage;
+
 @property (strong, nonatomic) Message *message;
 
 @end

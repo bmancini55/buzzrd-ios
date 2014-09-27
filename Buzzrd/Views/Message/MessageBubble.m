@@ -24,6 +24,7 @@
     self = [super init];
     if(self) {
         self.opaque = false;
+        self.contentMode = UIViewContentModeRedraw;
         
         self.textLabel = [[UILabel alloc]init];
         self.textLabel.font = [ThemeManager getPrimaryFontRegular:15.0];
@@ -43,7 +44,6 @@
     self.textLabel.text = text;
     self.textLabel.textAlignment = textAlignment;
     self.color = color;
-    [self setNeedsDisplay];        
 }
 
 - (CGPathRef) getPath:(CGRect)rect

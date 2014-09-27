@@ -63,9 +63,11 @@
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.distanceLabel];
+    
+    [self setConstraints];
 }
 
-- (void) updateConstraints
+- (void) setConstraints
 {
     
     NSDictionary *views =
@@ -87,14 +89,11 @@
     // horizontal spacing for title
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[title]-6-|" options:0 metrics:nil views:views]];
     
-    
     // horizontal spacing for distance to right container wall
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[distance]-12-|" options:0 metrics:nil views:views]];
     
     // horizontal spacing between address and distance, align them on the center
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-    
-    [super updateConstraints];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[address]-6-[distance]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];    
 }
 
 - (void)setVenue:(Venue *)venue userLocation:(CLLocation *)userLocation
@@ -114,8 +113,6 @@
         self.distanceLabel.text = [NSString stringWithFormat:@"%1.f ft", distanceInFeet];
     else
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1f mi", distanceInFeet / 5280];
-    
-    [self updateConstraints];
     
     [self addBorder];
 }

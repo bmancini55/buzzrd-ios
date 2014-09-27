@@ -20,98 +20,112 @@
 @property (strong, nonatomic) UILabel *dateLabel;
 @property (strong, nonatomic) UILabel *usernameLabel;
 
+@property (nonatomic) bool isMyMessage;
+@property (nonatomic) bool isRevealedMessage;
+
 @end
 
 @implementation MessageCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier myMessage:(bool)myMessage revealedMessage:(bool)revealedMessage
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        self.backgroundColor = [UIColor clearColor];
-
-        self.messageBubble = [[MessageBubble alloc]init];
-        self.messageBubble.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.messageBubble];
-        
-        self.dateLabel = [[UILabel alloc]init];
-        self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.dateLabel.font = [ThemeManager getPrimaryFontRegular:12.0];
-        self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
-        [self.contentView addSubview:self.dateLabel];
-        
-        self.usernameLabel = [[UILabel alloc]init];
-        self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:12.0];
-        self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
-        [self.contentView addSubview:self.usernameLabel];
-        
-        self.profileImage = [[ProfileImageView alloc] init];
-        self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.profileImage];
-        
-        [self setNeedsUpdateConstraints];
+        [self setupWithMyMessage:myMessage revealedMessage:revealedMessage];
     }
     return self;
 }
 
-- (void) updateConstraints
+- (id)initWithMyMessage:(bool)myMessage revealedMessage:(bool)revealedMessage
 {
-    // remove all constraints
-    [self.contentView removeConstraints:self.contentView.constraints];
+    self = [super init];
+    if (self) {
+        [self setupWithMyMessage:myMessage revealedMessage:revealedMessage];
+    }
+    return self;
+}
+
+- (void) setupWithMyMessage:(bool)myMessage revealedMessage:(bool)revealedMessage
+{
+    self.isMyMessage = myMessage;
+    self.isRevealedMessage = revealedMessage;
+    self.backgroundColor = [UIColor clearColor];
     
-    // add constraints for buble
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:@{ @"bubble": self.messageBubble }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{ @"bubble": self.messageBubble }]];
+    self.messageBubble = [[MessageBubble alloc]init];
+    self.messageBubble.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.messageBubble];
     
-    if(self.message.revealed) {
+    self.dateLabel = [[UILabel alloc]init];
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dateLabel.font = [ThemeManager getPrimaryFontRegular:12.0];
+    self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
+    [self.contentView addSubview:self.dateLabel];
+    
+    self.usernameLabel = [[UILabel alloc]init];
+    self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:12.0];
+    self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
+    [self.contentView addSubview:self.usernameLabel];
+    
+    self.profileImage = [[ProfileImageView alloc] init];
+    self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.profileImage];
+    
+    [self setConstraints];
+}
+
+- (void) setConstraints
+{
+    NSDictionary *views =
+    @{
+        @"bubble": self.messageBubble,
+        @"username": self.usernameLabel,
+        @"date": self.dateLabel,
+        @"image": self.profileImage
+      };
+    
+    // add constraints for bubble
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[bubble]-6-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bubble]" options:0 metrics:nil views:views]];
+    
+    if(self.isRevealedMessage) {
         
-        if([self isMine:self.message]) {
+        if(self.isMyMessage) {
             
             // right align my messages
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[username]-48-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-48-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image(==27)]-6-|" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
-            
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[username]-48-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-48-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[image(27)]-6-|" options:0 metrics:nil views:views]];
         } else {
             
             // left align other messages
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:@{ @"username": self.usernameLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(==27)]" options:0 metrics:nil views:@{ @"image": self.profileImage }]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[username]-6-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-48-[date]-6-|" options:0 metrics:nil views:views]];
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(27)]" options:0 metrics:nil views:views]];
         }
         
         // set vertical constraints
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel, @"username": self.usernameLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"username": self.usernameLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-3-[image(==27)]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"image": self.profileImage }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]-0-[username]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[username]-0-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-3-[image(==27)]" options:0 metrics:nil views:views]];
         
     } else {
         
-        if([self isMine:self.message]) {
+        if(self.isMyMessage) {
 
             // right align my messages
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-50-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-            
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[date]-50-|" options:0 metrics:nil views:views]];
         } else {
       
             // left align other messages
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:@{ @"date": self.dateLabel }]];
-        
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[date]-6-|" options:0 metrics:nil views:views]];
         }
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:@{ @"bubble": self.messageBubble, @"date": self.dateLabel }]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{ @"date": self.dateLabel }]];
-
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bubble]-0-[date]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-0-|" options:0 metrics:nil views:views]];
     }
-    
-    [super updateConstraints];
 }
 
-- (bool) isMine:(Message *) message{
-    return [[BuzzrdAPI current].user.iduser isEqualToString:message.userId];
-}
 
 - (UIColor *) getBubbleColor:(Message *)message {
     if (message.upvoteCount >= 5)
@@ -127,21 +141,17 @@
 - (void) setMessage:(Message *)message {
     _message = message;
     
-    NSTextAlignment alignment = [self isMine:message] ? NSTextAlignmentRight : NSTextAlignmentLeft;
+    NSTextAlignment alignment = self.isMyMessage ? NSTextAlignmentRight : NSTextAlignmentLeft;
     UIColor *color = [self getBubbleColor:message];
     
+    [self.messageBubble update:message.message textAlignment:alignment color:color];
     [self configureDate:message.created textAlignment:alignment];
     [self configureUsername:message textAlignment:alignment];
-    [self.messageBubble update:message.message textAlignment:alignment color:color];
-    
-    [self updateConstraints];
-    [self layoutIfNeeded];
-    
-    // configure image after layout of bubble
     [self configureImage:message];
     
-    [self updateConstraints];
+    [self setNeedsLayout];
     [self layoutIfNeeded];
+
 }
 
 - (void) configureDate:(NSDate *)date textAlignment:(NSTextAlignment)textAlignment

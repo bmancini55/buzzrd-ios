@@ -252,7 +252,9 @@
     }
 }
 
-
+- (bool) isMyMessage:(Message *) message{
+    return [[BuzzrdAPI current].user.iduser isEqualToString:message.userId];
+}
 
 
 #pragma mark - Table view data source
@@ -270,9 +272,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Message *message = self.messages[indexPath.row];
-    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"message"];
+    
+    bool mine = [self isMyMessage:message];
+    bool revealed = message.revealed;
+    NSString *identifier = [NSString stringWithFormat:@"MessageCell-%@-%@",
+                            (mine ? @"Mine" : @"Other"),
+                            (revealed ? @"Revealed": @"Hidden")];
+    
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-        cell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"message"];
+        cell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier myMessage:mine revealedMessage:revealed];
     }
     [cell setMessage:message];
     return cell;
@@ -295,7 +304,7 @@
     else
     {
         Message *message = self.messages[indexPath.row];
-        MessageCell *cell = [[MessageCell alloc]init];
+        MessageCell *cell = [[MessageCell alloc]initWithMyMessage:[self isMyMessage:message] revealedMessage:message.revealed];
         [cell setMessage:message];
         CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         
