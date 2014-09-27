@@ -73,7 +73,7 @@
     [self.contentView addSubview:self.messageLabel];
     
     self.distanceLabel = [[UILabel alloc] init];
-    self.distanceLabel.font = [ThemeManager getPrimaryFontMedium:10.0];
+    self.distanceLabel.font = [ThemeManager getPrimaryFontDemiBold:10.0];
     self.distanceLabel.textColor = [ThemeManager getPrimaryColorDark];
     self.distanceLabel.textAlignment = NSTextAlignmentRight;
     self.distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
