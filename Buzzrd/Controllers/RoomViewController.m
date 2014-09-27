@@ -18,12 +18,14 @@
 
 @interface RoomViewController ()
 
-    @property (strong, nonatomic) KeyboardBarView *keyboardBar;
-    @property (strong, nonatomic) SocketIO *socket;
-    @property (strong, nonatomic) NSMutableArray *messages;
-    @property (strong, nonatomic) NSMutableArray *messageHeights;
-    @property (nonatomic) uint loading;
-    @property (strong, nonatomic) UserCountBarButton *rightBar;
+@property (nonatomic) float keyboardHeightCache;
+
+@property (strong, nonatomic) KeyboardBarView *keyboardBar;
+@property (strong, nonatomic) SocketIO *socket;
+@property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) NSMutableArray *messageHeights;
+@property (nonatomic) uint loading;
+@property (strong, nonatomic) UserCountBarButton *rightBar;
 
 @end
 
@@ -39,12 +41,12 @@
     self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     
-    // create hooks for keyboard to shrink table view on open/close
+    // create hook for keyboard to expand table view on close
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
+                                             selector:@selector(keyboardWillChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
-
+    
     // Add the info for the right bar menu
     self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 50, self.navigationController.navigationBar.frame.size.height)];
     [self.rightBar setUserCount:(uint)self.room.userCount];
@@ -55,7 +57,12 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.tableView addGestureRecognizer:gestureRecognizer];
     
-    [self loadRoom];
+    [self initRoom];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) hideKeyboard {
@@ -73,7 +80,7 @@
 
 
 
-- (void)loadRoom
+- (void)initRoom
 {
     // reset messages
     self.messages = [[NSMutableArray alloc]init];
@@ -97,7 +104,7 @@
 - (void) reconnect
 {
     if(self.socket == nil || !self.socket.isConnected) {
-        [self loadRoom];
+        [self initRoom];
     }
 }
 
@@ -118,40 +125,30 @@
 }
 
 
-// Scroll to bottom when keyboard is shown
--(void)keyboardWillShow:(NSNotification *)notification
+// Scrolls the table by an appropriate amount
+-(void)keyboardWillChange:(NSNotification *)notification
 {
-    // Only do the scrolling if we are at the bottom of the scrollview
-    if(self.tableView.scrolledToBottom) {
+    CGRect beginFrame = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect endFrame =  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat delta = (endFrame.origin.y - beginFrame.origin.y);
+    //NSLog(@"Keyboard YDelta %f -> B: %@, E: %@", delta, NSStringFromCGRect(beginFrame), NSStringFromCGRect(endFrame));
+    
+    if(self.tableView.scrolledToBottom && fabs(delta) > 0.0) {
         
-        NSDictionary *userInfo = [notification userInfo];
-        NSTimeInterval animationDuration;
-        UIViewAnimationCurve animationCurve;
-        CGRect keyboardBeginFrame;
-        CGRect keyboardEndFrame;
-        
-        [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-        [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-        [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardBeginFrame];
-        [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-        
-        [UIView animateKeyframesWithDuration:animationDuration delay:0 options:(animationCurve << 16) animations:^{
+        NSTimeInterval duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+        UIViewAnimationOptions options = (curve << 16) | UIViewAnimationOptionBeginFromCurrentState;
+
+        [UIView animateWithDuration:duration delay:0 options:options animations:^{
             
-            // Make the tableview scroll DOWN by the change in keyboard size.
+            // Make the tableview scroll opposite the change in keyboard offset.
             // This causes the scroll position to match the change in table size 1 for 1
             // since the animation is the same as the keyboard expansion
-            CGFloat keyboardHeightChange = (keyboardEndFrame.size.height - keyboardBeginFrame.size.height);
-            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + keyboardHeightChange);
+            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y - delta);
             
-        } completion:^(BOOL finished) {
-            
-            // Finalize by scrolling any additional offset
-            [self.tableView scrollToBottom:true];
-        }];
+        } completion:nil];
     }
 }
-
-
 
 
 
@@ -340,7 +337,11 @@
 
 - (void)sendMessage:(NSString *)message
 {
-    [self.socket sendEvent:@"message" withData:message];
+    if(!self.socket.isConnected) {
+        NSLog(@"Failed to send a message... shit");
+    } else {
+        [self.socket sendEvent:@"message" withData:message];
+    }
 }
 
 - (void)receiveMessage:(Message *)message;
@@ -383,7 +384,6 @@
 
 -(void)socketIODidConnect:(SocketIO *)socket
 {
-    NSLog(@"Authenticating with socket server");
     [self.socket sendEvent:@"authenticate" withData:[[[BuzzrdAPI current] authorization] bearerToken]];
 }
 -(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
@@ -394,6 +394,7 @@
 -(void)socketIO:(SocketIO *)socket onError:(NSError *)error
 {
     NSLog(@"Websocket error: %@", error);
+    
 }
 
 -(void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
@@ -404,11 +405,11 @@
     }
     
     else if([packet.name isEqualToString:@"userjoin"]) {
-        [self receiveJoin:[packet.args[0] unsignedIntegerValue]];
+        [self receiveJoin:(uint)[packet.args[0] unsignedIntegerValue]];
     }
     
     else if([packet.name isEqualToString:@"userleave"]) {
-        [self receiveLeave:[packet.args[0] unsignedIntegerValue]];
+        [self receiveLeave:(uint)[packet.args[0] unsignedIntegerValue]];
     }
     
     else if([packet.name isEqualToString:@"authenticate"]) {
