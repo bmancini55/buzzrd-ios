@@ -124,10 +124,6 @@
     [super layoutIfNeeded];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma mark - Instance Methods
 
 - (void)dismissKeyboard

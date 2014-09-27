@@ -41,17 +41,10 @@
     self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     
-    // create hook for keyboard to expand table view on close
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification
-                                               object:nil];
-    
     // Add the info for the right bar menu
     self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 50, self.navigationController.navigationBar.frame.size.height)];
     [self.rightBar setUserCount:(uint)self.room.userCount];
     self.navigationItem .rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBar];
-
     
     // Dismiss the keyboard be recognizing tab gesture
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -60,22 +53,31 @@
     [self initRoom];
 }
 
-- (void)dealloc
+- (void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewWillAppear:animated];
+    
+    // create hook for keyboard to expand table view on close
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // Disconnect on room exit
+    [self disconnect];
+}
+
+
 
 - (void) hideKeyboard {
     KeyboardBarView *keyboardBar = (KeyboardBarView *)self.inputAccessoryView;
     [keyboardBar dismissKeyboard];
-}
-
-
-// Fires on room exit
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];    
-    [self disconnect];
 }
 
 
@@ -131,7 +133,7 @@
     CGRect beginFrame = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     CGRect endFrame =  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat delta = (endFrame.origin.y - beginFrame.origin.y);
-    //NSLog(@"Keyboard YDelta %f -> B: %@, E: %@", delta, NSStringFromCGRect(beginFrame), NSStringFromCGRect(endFrame));
+    NSLog(@"Keyboard YDelta %f -> B: %@, E: %@", delta, NSStringFromCGRect(beginFrame), NSStringFromCGRect(endFrame));
     
     if(self.tableView.scrolledToBottom && fabs(delta) > 0.0) {
         
