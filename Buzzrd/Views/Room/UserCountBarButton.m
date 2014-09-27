@@ -59,11 +59,12 @@
         self.lurkerCountLabel.hidden = true;
         self.lurkerLabel.hidden = true;
         
+        [self setConstraints];
     }
     return self;
 }
 
-- (void) updateConstraints
+- (void) setConstraints
 {
     NSDictionary *views =
     @{
@@ -81,8 +82,6 @@
     //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usercount][lurkercount]" options:NSLayoutFormatAlignAllRight metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[usercount]" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[userlabel]" options:0 metrics:nil views:views]];
-    
-    [super updateConstraints];
 }
 
 - (void) setUserCount:(uint)userCount
