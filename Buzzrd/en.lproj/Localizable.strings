@@ -159,3 +159,7 @@
 "my_rooms" = "My Rooms";
 
 "messages" = "messages";
+
+"message_send_failure" = "Message send failure";
+
+"message_send_failure_description" = "There was a problem sending your message. Please try again.";

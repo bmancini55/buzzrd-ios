@@ -131,20 +131,19 @@
     [self.textView resignFirstResponder];
 }
 
+- (void)clearText
+{
+    self.textView.text = @"";
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 #pragma mark -  Action Handlers
 
 
 -(void)buttonTouchedAction
 {
-    NSString *message = self.textView.text;
-    self.textView.text = @"";
-    
-    if(![message isEqualToString:@""]) {
-        [self.delegate keyboardBar:self buttonTouched:message];
-        
-        [self setNeedsLayout];
-        [self layoutIfNeeded];
-    }
+    [self.delegate keyboardBar:self buttonTouched:self.textView.text];
 }
 
 

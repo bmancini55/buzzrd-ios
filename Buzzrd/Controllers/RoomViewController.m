@@ -322,7 +322,17 @@
 
 - (void)keyboardBar:(KeyboardBarView *)keyboardBarView buttonTouched:(NSString *)text
 {
-    [self sendMessage:text];
+    // only send messages when there is text
+    if(![text isEqualToString:@""]) {
+        
+        // attempt to send the message
+        bool result = [self sendMessage:text];
+        
+        // if it successfully sent, clear the keyboard bar's text
+        if(result) {
+           [self.keyboardBar clearText];
+        }
+    }
 }
 
 
@@ -337,12 +347,16 @@
     }
 }
 
-- (void)sendMessage:(NSString *)message
+- (bool)sendMessage:(NSString *)message
 {
-    if(!self.socket.isConnected) {
-        NSLog(@"Failed to send a message... shit");
-    } else {
+    if(self.socket.isConnected) {
         [self.socket sendEvent:@"message" withData:message];
+        return true;
+    } else {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"message_send_failure", nil)
+                              message:NSLocalizedString(@"message_send_failure_description", nil)
+                       retryOperation:nil];
+        return false;
     }
 }
 
@@ -353,20 +367,19 @@
     [self.messages addObject:message];
     [self.messageHeights addObject:[[NSNumber alloc]initWithFloat:0]];
     
-    
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
     
-    // if we were at the bottom scroll position prior to adding a new row,
+    // If we were at the bottom scroll position prior to adding a new row,
     // we will now scroll to the bottom position again
     if(currentlyAtBottom || message) {
         
         [self.tableView scrollToBottom:true];
         
     } else {
-        // todo create notification similar to Line or facebook
+        // Status message near inputAccessory similar to Line/Facebook
     }
 }
 

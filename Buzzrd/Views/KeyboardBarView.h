@@ -24,5 +24,7 @@
 @property (strong, nonatomic) PlaceholderTextView *textView;
 
 -(void)dismissKeyboard;
+- (void)clearText;
+
 
 @end
