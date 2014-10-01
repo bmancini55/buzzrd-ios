@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, BZLocationManagerStatus) {
     BZLocationManagerStatusDisabled,
     BZLocationManagerStatusDenied,
-    BZLocationManagerStatusEnabled
+    BZLocationManagerStatusEnabled,
+    BZLocationManagerStatusNotDetermined
 };
 
 // Define the Notification Center Events

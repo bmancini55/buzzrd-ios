@@ -171,3 +171,7 @@
 "location_services_denied" = "Location Services Required";
 
 "location_services_denied_message" = "Location Services is currently disabled. This application requires Location Services to be enabled.\n\nTo continue, go to Settings > Privacy > Location Services and enable Location Services for Buzzrd.";
+
+"location_services_undetermined" = "Oops!";
+
+"location_services_undetermined_message" = "We couldn't determine your location. Let us try again...";

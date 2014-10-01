@@ -85,7 +85,8 @@
     // start the location request
     BZLocationManagerStatus status = [[BZLocationManager instance] requestLocation];
     if(status == BZLocationManagerStatusDisabled ||
-       status == BZLocationManagerStatusDenied)
+       status == BZLocationManagerStatusDenied ||
+       status == BZLocationManagerStatusNotDetermined)
     {
         [self shutdownCommand];
         [self sendError:nil status:status];

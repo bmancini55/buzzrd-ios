@@ -113,8 +113,14 @@
         NSDictionary *results = command.results;
         BZLocationManagerStatus status = [results[@"status"] intValue];
 
+        // when not determined
+        if (status == BZLocationManagerStatusNotDetermined) {
+            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_services_undetermined",nil)
+                                           message:NSLocalizedString(@"location_services_undetermined_message",nil)
+                                    retryOperation:command];
+        }
         // when disabled
-        if(status == BZLocationManagerStatusDisabled)
+        else if(status == BZLocationManagerStatusDisabled)
         {
             [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_services_disabled",nil)
                                   message:NSLocalizedString(@"location_services_disabled_message",nil)

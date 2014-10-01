@@ -96,14 +96,24 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
     if([CLLocationManager locationServicesEnabled]) {
         NSLog(@"  -> Location Services are enabled");
         
-        // show message about turning on location service
-        if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-            NSLog(@"  -> Location Services are allowed");
+        // when undetermined
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+            NSLog(@"  -> Location Service auth not determined");
+            
+            return BZLocationManagerStatusNotDetermined;
+        }
+        
+        // when denied
+        else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
+           [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+            NSLog(@"  -> Location Services auth denied");
             
             return BZLocationManagerStatusDenied;
         }
+        
+        // otherwise we're open for business
         else {
-            NSLog(@"  -> Location Services are allowed");
+            NSLog(@"  -> Location Services auth allowed");
             
             // start updating
             NSLog(@"  -> Starting CLLocationManager");
