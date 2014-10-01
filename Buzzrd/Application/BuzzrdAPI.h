@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
 #import "CommandDispatcher.h"
 #import "Authorization.h"
 #import "User.h"
+#import "BZLocationManager.h"
 
 @interface BuzzrdAPI : NSObject
 
@@ -19,7 +19,6 @@
 + (NSString *) apiURLBase;
 
 - (void) clearAuthorization;
-- (CLLocation *) currentLocation;
 
 // Command Dispatch Pattern
 @property (strong, nonatomic) CommandDispatcher *dispatch;
@@ -28,11 +27,5 @@
 @property (strong, nonatomic) Authorization *authorization;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) UIImage *profilePic;
-
-
-// This should be refactored out when we refactor location stuff...
-// For now, use it as a data cache for results from the command objects
-@property (strong, nonatomic) CLLocation *lastLocation;
-
 
 @end

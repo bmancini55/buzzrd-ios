@@ -7,89 +7,183 @@
 //
 
 #import "GetLocationCommand.h"
-#import "BuzzrdAPI.h"
 
 @interface GetLocationCommand()
 
-@property (nonatomic) bool shouldKeepRunning;
+@property (strong, nonatomic) NSTimer *timeoutTimer;
+@property (strong, nonatomic) NSThread *timerThread;
 
 @end
 
-@implementation GetLocationCommand
+@implementation GetLocationCommand {
+    bool executing;
+    bool finished;
+}
 
 - (id)init
 {
     self = [super init];
     if(self) {
         self.completionNotificationName = @"getLocationComplete";
-        self.shouldKeepRunning = true;
+        executing = false;
+        finished  = false;
     }
     return self;
 }
 
-- (void)main
-{
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 50; // meters
-    self.locationManager.delegate = self;
-    
-    // handle ios8 CL call
-    if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    
-    [self.locationManager startUpdatingLocation];
-    
-    NSRunLoop *theRL = [NSRunLoop currentRunLoop];
-    while (self.shouldKeepRunning && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:5]])
-    {
-        // exit after 15 seconds of trying
-        if(self.shouldKeepRunning) {
-            NSLog(@"Runloop exiting");
-            self.shouldKeepRunning = false;
-            self.status = kSuccess;
-            self.results = self.locationManager.location;
-            [self sendCompletionNotification];
-            [self.locationManager stopUpdatingLocation];
-            
-            // cache this for now...
-            [BuzzrdAPI current].lastLocation = self.locationManager.location;
-        }
-    }
+
+// iOS8 support for asynchronous NSOperations
+- (bool) isAsynchronous {
+    return true;
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
+// iOS7 support for asynchronous NSOperations
+- (bool) isConcurrent {
+    return true;
+}
+
+
+// Override for isExecuting, required by async NSOperations
+- (bool) isExecuting {
+    return executing;
+}
+
+
+// Overrivde for isFinished, required by async NSOperations
+- (bool) isFinished {
+    return finished;
+}
+
+
+// Required by async NSOperations
+// This will perform KVO for isExecuting property and call main
+- (void) start {
+    NSLog(@"%p:GetLocationCommand:start", self);
+    
+    [self willChangeValueForKey:@"isExecuting"];
+    [NSThread detachNewThreadSelector:@selector(main) toTarget:self withObject:nil];
+    executing = true;
+    [self didChangeValueForKey:@"isExecuting"];
+}
+
+
+// Main NSOperation code
+- (void) main {
+    NSLog(@"%p:GetLocationCommand:main", self);
+    
+    // start timeout mechanism
+    self.timerThread = [NSThread currentThread];
+    self.timeoutTimer = [NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(timeout) userInfo:nil repeats:false];
+    [[NSRunLoop currentRunLoop] addTimer:self.timeoutTimer forMode:NSDefaultRunLoopMode];
+    NSLog(@"  -> Scheduled timer %p", self.timeoutTimer);
+    
+    // add event handlers
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationUpdated:) name:BZLocationManagerUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationErrored:) name:BZLocationManagerErrored object:nil];
+    
+    // start the location request
+    [[BZLocationManager instance] requestLocation];
+    
+    // wait for timeout
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+}
+
+
+// Fires on deallocation
+- (void)dealloc {
+    NSLog(@"%p:GetLocationCommand:dealloc", self);
+}
+
+
+// Fires when after the elapsed timeout period
+- (void)timeout {
+    NSLog(@"%p:GetLocationCommand:timeout", self);
+    
+    CLLocation *lastLocation = [[BZLocationManager instance] requestLastLocation];
+    
+    if(lastLocation) {
+        NSLog(@"  -> Sending last location: (%f, %f)", lastLocation.coordinate.longitude, lastLocation.coordinate.latitude);
+        [self sendSuccess:lastLocation];
+    } else {
+        NSLog(@"  -> Sending error");
+        [self  sendError:[[NSError alloc] init]];
+    }
+    
+    [self shutdownCommand];
+}
+
+
+// Event handler for BZLocationManager errors
+- (void)locationErrored:(NSNotification *)notification {
+    NSLog(@"%p:GetLocationCommand:locationErrored", self);
+    
+    NSError *error = notification.userInfo[BZLocationManagerErroredErrorInfoKey];
+    [self sendError:error];
+    [self shutdownCommand];
+}
+
+
+// Event handler for BZLocationManager updates
+- (void)locationUpdated:(NSNotification *)notification {
+    NSLog(@"%p:GetLocationCommand:locationUpdated", self);
+    
+    CLLocation *location = notification.userInfo[BZLocationManagerUpdatedLocationInfoKey];
+    [self sendSuccess:location];
+    [self shutdownCommand];
+}
+
+
+// Triggers an error for the NSOperation
+- (void)sendError:(NSError*)error {
     self.status = kFailure;
     self.results = error;
     [self sendCompletionFailureNotification];
-    [self.locationManager stopUpdatingLocation];
-    self.shouldKeepRunning = false;
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray*)locations
-{
-    CLLocation *location = [locations lastObject];
+
+// Triggers a succses for the NSOperation
+- (void)sendSuccess:(CLLocation *)location {
+    self.status = kSuccess;
+    self.results = location;
+    [self sendCompletionNotification];
+}
+
+
+// Shuts down the NSOperation
+- (void)shutdownCommand {
+    NSLog(@"%p:GetLocationCommand:shutdownCommand", self);
     
-    // ensure location is calculated with 5 seconds and less than 100 yards
-    NSDate *eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if(abs(howRecent) < 5 && location.horizontalAccuracy < 100)
-    {
-        self.shouldKeepRunning = false;
-        self.status = kSuccess;
-        self.results = location;
-        [self sendCompletionNotification];
-        [self.locationManager stopUpdatingLocation];
-        
-        // cache this for now...
-        [BuzzrdAPI current].lastLocation = location;
-    }
+    // Clear out observers
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    // Invalidate the timeout
+    [self invalidateTimeout];
+    
+    // Execute KVO for isExecuting and isFinished properties
+    [self willChangeValueForKey:@"isFinished"];
+    [self willChangeValueForKey:@"isExecuting"];
+    
+    executing = false;
+    finished = true;
+    
+    [self didChangeValueForKey:@"isExecuting"];
+    [self didChangeValueForKey:@"isFinished"];
 }
 
+// Invalidates the timer used for timeout handling
+- (void)invalidateTimeout {
+    NSLog(@"%p:GetLocationCommand:invalidateTimeout", self);
+    
+    [self performSelector:@selector(doInvalidateTimeout) onThread:self.timerThread withObject:nil waitUntilDone:true];
+}
+
+- (void)doInvalidateTimeout {
+    
+    // using NSTimer
+    NSLog(@"  -> Invalidating timer %p", self.timeoutTimer);
+    [self.timeoutTimer invalidate];
+    self.timeoutTimer = nil;
+}
 
 @end

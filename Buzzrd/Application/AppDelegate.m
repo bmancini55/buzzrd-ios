@@ -11,6 +11,7 @@
 #import "ThemeManager.h"
 #import "BuzzrdAPI.h"
 #import "UIWindow+Helpers.h"
+#import "BZLocationManager.h"
 
 @implementation AppDelegate
 

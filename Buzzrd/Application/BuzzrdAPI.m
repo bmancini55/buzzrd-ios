@@ -16,6 +16,17 @@
 @implementation BuzzrdAPI
 
 
+-(id) init
+{
+    self = [super init];
+    if(self)
+    {
+        self.dispatch = [[CommandDispatcher alloc]init];
+    }
+    return self;
+}
+
+
 +(BuzzrdAPI *) current
 {
     static BuzzrdAPI *instance = nil;
@@ -138,20 +149,5 @@
     [defaults synchronize];
 }
 
--(id) init
-{
-    self = [super init];
-    if(self)
-    {
-        self.dispatch = [[CommandDispatcher alloc]init];
-    }
-    return self;
-}
-
-
-- (CLLocation *) currentLocation
-{
-    return self.lastLocation;
-}
 
 @end

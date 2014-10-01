@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3500365B19DBC83500E69508 /* BZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3500365A19DBC83500E69508 /* BZLocationManager.m */; };
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
 		350AB5A419B889DD0060D3C7 /* UITableView+ScrollHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */; };
@@ -132,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3500365919DBC83500E69508 /* BZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZLocationManager.h; path = Application/BZLocationManager.h; sourceTree = "<group>"; };
+		3500365A19DBC83500E69508 /* BZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZLocationManager.m; path = Application/BZLocationManager.m; sourceTree = "<group>"; };
 		350AB59019A4C8AA0060D3C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenueRoomsCommand.h; path = Commands/Room/GetVenueRoomsCommand.h; sourceTree = "<group>"; };
 		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				35A46F3419328A2400B615A4 /* BuzzrdAPI.m */,
 				35A46F3519328A2400B615A4 /* BuzzrdNav.h */,
 				35A46F3619328A2400B615A4 /* BuzzrdNav.m */,
+				3500365919DBC83500E69508 /* BZLocationManager.h */,
+				3500365A19DBC83500E69508 /* BZLocationManager.m */,
 				353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */,
 				353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */,
 			);
@@ -1060,6 +1065,7 @@
 				C2CBCD5019AAE26100FAE2DE /* UpdateProfileViewController.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
+				3500365B19DBC83500E69508 /* BZLocationManager.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

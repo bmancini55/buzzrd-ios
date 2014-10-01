@@ -108,7 +108,7 @@
         
         Room *room = [[Room alloc]init];
         room.name = self.nameTextField.text;
-        room.coord = [[BuzzrdAPI current] currentLocation];
+        room.coord = [[BZLocationManager instance] requestLastLocation];
         if(self.venue) {
             room.venueId = self.venue.id;
             room.venueName = self.venue.name;

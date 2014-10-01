@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "CommandBase.h"
+#import "BuzzrdAPI.h"
+#import "BZLocationManager.h"
 
 @interface GetLocationCommand : CommandBase <CLLocationManagerDelegate>
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
