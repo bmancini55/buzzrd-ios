@@ -144,6 +144,17 @@
     [self.retryAlert show];
 }
 
+- (void) showMandatoryRetryAlertWithTitle:(NSString *)title
+                                  message:(NSString *)message
+                           retryOperation:(NSOperation *)operation
+{
+    self.retryAlert = [[RetryAlert alloc]init];
+    self.retryAlert.title = title;
+    self.retryAlert.message = message;
+    self.retryAlert.operation = operation;
+    [self.retryAlert showRetryManadatory];
+}
+
 - (void) showDefaultRetryAlert:(NSOperation *)operation
 {
     [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)

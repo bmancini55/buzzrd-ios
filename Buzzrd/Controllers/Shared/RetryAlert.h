@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString *message;
 
 - (void)show;
+- (void)showRetryManadatory;
 
 @end

@@ -83,9 +83,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationErrored:) name:BZLocationManagerErrored object:nil];
     
     // start the location request
-    [[BZLocationManager instance] requestLocation];
+    BZLocationManagerStatus status = [[BZLocationManager instance] requestLocation];
+    if(status == BZLocationManagerStatusDisabled ||
+       status == BZLocationManagerStatusDenied)
+    {
+        [self shutdownCommand];
+        [self sendError:nil status:status];
+        return;
+    }
     
-    // wait for timeout
+    // wait for timeout to complete
     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 }
 
@@ -107,7 +114,7 @@
         [self sendSuccess:lastLocation];
     } else {
         NSLog(@"  -> Sending error");
-        [self  sendError:[[NSError alloc] init]];
+        [self  sendError:nil status:BZLocationManagerStatusEnabled];
     }
     
     [self shutdownCommand];
@@ -119,7 +126,7 @@
     NSLog(@"%p:GetLocationCommand:locationErrored", self);
     
     NSError *error = notification.userInfo[BZLocationManagerErroredErrorInfoKey];
-    [self sendError:error];
+    [self sendError:error status:BZLocationManagerStatusEnabled];
     [self shutdownCommand];
 }
 
@@ -135,9 +142,10 @@
 
 
 // Triggers an error for the NSOperation
-- (void)sendError:(NSError*)error {
+- (void)sendError:(NSError*)error status:(BZLocationManagerStatus)status {
     self.status = kFailure;
-    self.results = error;
+    self.error = error;
+    self.results = @{ @"status":[NSNumber numberWithInt:status] };
     [self sendCompletionFailureNotification];
 }
 
@@ -171,6 +179,7 @@
     [self didChangeValueForKey:@"isFinished"];
 }
 
+
 // Invalidates the timer used for timeout handling
 - (void)invalidateTimeout {
     NSLog(@"%p:GetLocationCommand:invalidateTimeout", self);
@@ -178,6 +187,8 @@
     [self performSelector:@selector(doInvalidateTimeout) onThread:self.timerThread withObject:nil waitUntilDone:true];
 }
 
+
+// Called on the timeoutThread to actually invalidate the timer
 - (void)doInvalidateTimeout {
     
     // using NSTimer

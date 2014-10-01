@@ -111,7 +111,7 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
             return BZLocationManagerStatusEnabled;
         }
     } else {
-        NSLog(@"  -> Location services are enabled");
+        NSLog(@"  -> Location services are disabled");
         
         // show message that app cannot be used because location services is disabled
         return BZLocationManagerStatusDisabled;

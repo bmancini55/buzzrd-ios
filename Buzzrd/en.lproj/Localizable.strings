@@ -108,7 +108,7 @@
 
 "retry" = "Retry";
 
-"location_error" = "Location Error";
+"location_error" = "Location Services Error";
 
 "location_error_message" = "There was an error retrieving your current location";
 
@@ -163,3 +163,11 @@
 "message_send_failure" = "Message send failure";
 
 "message_send_failure_description" = "There was a problem sending your message. Please try again.";
+
+"location_services_disabled" = "Location Services Required";
+
+"location_services_disabled_message" = "Location Services is currently disabled. This application requires Location Services to be enabled.\n\nTo continue, go to Settings > Privacy > Location Services and enable Location Services.";
+
+"location_services_denied" = "Location Services Required";
+
+"location_services_denied_message" = "Location Services is currently disabled. This application requires Location Services to be enabled.\n\nTo continue, go to Settings > Privacy > Location Services and enable Location Services for Buzzrd.";

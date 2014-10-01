@@ -25,7 +25,6 @@
 @property (strong, nonatomic) id              results;
 @property (strong, nonatomic) NSString        *completionNotificationName;
 @property (nonatomic)         NSInteger       status;
-@property (strong, nonatomic) NSString        *reason;
 @property (strong, nonatomic) NSNumber        *requestTimeoutInterval;
 
 @property (strong, nonatomic) NSError         *error;

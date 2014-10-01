@@ -9,14 +9,14 @@
 #import "RetryAlert.h"
 #import "BuzzrdAPI.h"
 
-@implementation RetryAlert
-
-- (void)show
-{
+@implementation RetryAlert {
     UIAlertView *alert;
-    
+    int retryIndex;
+}
+
+- (void)show {
     if (self.operation != nil) {
-    
+        retryIndex = 1;
         alert = [[UIAlertView alloc] initWithTitle:self.title
                                           message:self.message
                                           delegate:self
@@ -24,6 +24,7 @@
                                           otherButtonTitles:@"Retry", nil];
     }
     else {
+        retryIndex = -1;
         alert = [[UIAlertView alloc] initWithTitle:self.title
                                           message:self.message
                                           delegate:self
@@ -34,17 +35,28 @@
     [alert show];
 }
 
+- (void)showRetryManadatory {
+    retryIndex = 0;
+    alert = [[UIAlertView alloc] initWithTitle:self.title
+                                       message:self.message
+                                      delegate:self
+                             cancelButtonTitle:NSLocalizedString(@"Retry", nil)
+                             otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)dealloc {
+}
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0:
-            break;
-        case 1:
-            [[BuzzrdAPI dispatch] enqueueCommand:self.operation];
-            break;
-        default:
-            break;
+    // fire command if we have a retry
+    if(buttonIndex == retryIndex) {
+        [[BuzzrdAPI dispatch] enqueueCommand:self.operation];
     }
+    
+    // remove retain count
+    self.operation = nil;
 }
 
 

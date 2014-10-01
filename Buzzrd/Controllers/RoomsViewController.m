@@ -109,9 +109,32 @@
     else
     {
         [self.refreshControl endRefreshing];
-        [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
-                              message:NSLocalizedString(@"location_error_message", nil)
-                       retryOperation:command];
+        
+        NSDictionary *results = command.results;
+        BZLocationManagerStatus status = [results[@"status"] intValue];
+
+        // when disabled
+        if(status == BZLocationManagerStatusDisabled)
+        {
+            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_services_disabled",nil)
+                                  message:NSLocalizedString(@"location_services_disabled_message",nil)
+                           retryOperation:command];
+        }
+        // when denied
+        else if (status == BZLocationManagerStatusDenied)
+        {
+            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_services_denied",nil)
+                                           message:NSLocalizedString(@"location_services_denied_message",nil)
+                                    retryOperation:command];
+        }
+        // when error
+        else
+        {
+            [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
+                                  message:NSLocalizedString(@"location_error_message", nil)
+                           retryOperation:command];
+
+        }
     }
 }
 
