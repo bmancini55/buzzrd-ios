@@ -33,25 +33,25 @@
 
 
 // iOS8 support for asynchronous NSOperations
-- (bool) isAsynchronous {
+- (BOOL) isAsynchronous {
     return true;
 }
 
 
 // iOS7 support for asynchronous NSOperations
-- (bool) isConcurrent {
+- (BOOL) isConcurrent {
     return true;
 }
 
 
 // Override for isExecuting, required by async NSOperations
-- (bool) isExecuting {
+- (BOOL) isExecuting {
     return executing;
 }
 
 
 // Overrivde for isFinished, required by async NSOperations
-- (bool) isFinished {
+- (BOOL) isFinished {
     return finished;
 }
 
