@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface PrivacyPolicyViewController : UIViewController
+@interface PrivacyPolicyViewController : BaseViewController
 
 @end

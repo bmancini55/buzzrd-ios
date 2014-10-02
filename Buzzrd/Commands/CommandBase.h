@@ -73,4 +73,8 @@
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
 
+- (void) sendShowActivityNotification;
+
+- (void) hideShowActivityNotification;
+
 @end

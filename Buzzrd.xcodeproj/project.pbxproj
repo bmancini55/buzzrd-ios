@@ -89,6 +89,8 @@
 		C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C04E19A19A8600B41A2A /* DisclaimerView.m */; };
 		C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */; };
 		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
+		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
+		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -275,6 +277,10 @@
 		C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsOfServiceViewController.m; path = Controllers/AccountCreation/TermsOfServiceViewController.m; sourceTree = "<group>"; };
 		C213C05319A2EED300B41A2A /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/AccountCreation/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/AccountCreation/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTermsOfServiceCommand.h; path = Commands/Disclaimers/GetTermsOfServiceCommand.h; sourceTree = "<group>"; };
+		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
+		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
+		C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetPrivacyPolicyCommand.m; path = Commands/Disclaimers/GetPrivacyPolicyCommand.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -408,6 +414,7 @@
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				C290B9C119DCD90700F6C3B4 /* Disclaimers */,
 				351036EA19705BC000AF5C39 /* Message */,
 				351036E6196EF55900AF5C39 /* Room */,
 				C2C97BBB1963B69D006510D9 /* Image */,
@@ -700,6 +707,17 @@
 			);
 			path = Images;
 			sourceTree = SOURCE_ROOT;
+		};
+		C290B9C119DCD90700F6C3B4 /* Disclaimers */ = {
+			isa = PBXGroup;
+			children = (
+				C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */,
+				C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */,
+				C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */,
+				C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */,
+			);
+			name = Disclaimers;
+			sourceTree = "<group>";
 		};
 		C29A6674192C4C29002421AF /* AccountCreation */ = {
 			isa = PBXGroup;
@@ -1001,6 +1019,7 @@
 				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
+				C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
 				35A46FD119328B1500B615A4 /* SocketIO.m in Sources */,
@@ -1045,6 +1064,7 @@
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* SettingsViewController.m in Sources */,
+				C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */,
 				351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */,
 				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
