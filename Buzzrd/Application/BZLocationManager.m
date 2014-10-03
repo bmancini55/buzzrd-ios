@@ -88,10 +88,6 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
 - (BZLocationManagerStatus)start {
     NSLog(@"%p:LocationManager:start", self);
     
-    // handle ios8 CL call
-    if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
     
     if([CLLocationManager locationServicesEnabled]) {
         NSLog(@"  -> Location Services are enabled");
@@ -99,6 +95,17 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
         // when undetermined
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
             NSLog(@"  -> Location Service auth not determined");
+            
+            // trigger check on iOS8
+            if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+                [self.locationManager requestWhenInUseAuthorization];
+            }
+            
+            // trigger check pre iOS8
+            else {
+                [self.locationManager startUpdatingLocation];
+                [self.locationManager stopUpdatingLocation];
+            }
             
             return BZLocationManagerStatusNotDetermined;
         }

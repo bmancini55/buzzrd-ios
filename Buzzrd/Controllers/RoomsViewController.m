@@ -110,8 +110,8 @@
 
         // when not determined
         if (status == BZLocationManagerStatusNotDetermined) {
-            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_services_undetermined",nil)
-                                           message:NSLocalizedString(@"location_services_undetermined_message",nil)
+            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_error",nil)
+                                           message:NSLocalizedString(@"location_error_message",nil)
                                     retryOperation:command];
         }
         // when disabled

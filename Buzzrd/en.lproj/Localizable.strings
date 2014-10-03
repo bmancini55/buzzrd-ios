@@ -108,10 +108,6 @@
 
 "retry" = "Retry";
 
-"location_error" = "Location Services Error";
-
-"location_error_message" = "There was an error retrieving your current location";
-
 "Unexpected Error" = "Unexpected Error";
 
 "An unexpected error occurred while processing your request" = "An unexpected error occurred while processing your request";
@@ -172,6 +168,6 @@
 
 "location_services_denied_message" = "Location Services is currently disabled. This application requires Location Services to be enabled.\n\nTo continue, go to Settings > Privacy > Location Services and enable Location Services for Buzzrd.";
 
-"location_services_undetermined" = "Oops!";
+"location_error" = "Oops!";
 
-"location_services_undetermined_message" = "We couldn't determine your location. Let us try again...";
+"location_error_message" = "We couldn't determine your location. Let's try again...";
