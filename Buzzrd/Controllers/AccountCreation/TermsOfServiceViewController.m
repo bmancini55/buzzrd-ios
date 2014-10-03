@@ -14,6 +14,8 @@
 @interface TermsOfServiceViewController ()
 
 @property (strong, nonatomic) UILabel *buzzrdTermsLbL;
+@property (strong, nonatomic) UIScrollView *scrollView;
+@property CGRect fullScreenRect;
 
 @end
 
@@ -23,21 +25,21 @@
 {
     [super loadView];
     
+    self.fullScreenRect=[[UIScreen mainScreen] applicationFrame];
+    self.scrollView=[[UIScrollView alloc] initWithFrame:self.fullScreenRect];
+    
+    self.view = self.scrollView;
+    
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
     self.title = NSLocalizedString(@"Buzzrd Terms", nil);
     
     self.buzzrdTermsLbL = [[UILabel alloc] init];
     self.buzzrdTermsLbL.font = [UIFont fontWithName:@"AvenirNext-Regular" size:10.0];
-    self.buzzrdTermsLbL.translatesAutoresizingMaskIntoConstraints = NO;
     self.buzzrdTermsLbL.textColor = [ThemeManager getPrimaryColorDark];
     self.buzzrdTermsLbL.numberOfLines = 0;
     [self.view addSubview:self.buzzrdTermsLbL];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[buzzrdTermsLbL]-20-|"  options:NSLayoutFormatAlignAllBaseline  metrics:nil  views:@{ @"buzzrdTermsLbL" : self.buzzrdTermsLbL }]];
         
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[buzzrdTermsLbL]" options:0 metrics:nil views:@{ @"buzzrdTermsLbL" : self.buzzrdTermsLbL }]];
-    
     GetTermsOfServiceCommand *command = [[GetTermsOfServiceCommand alloc]init];
     
     [command listenForCompletion:self selector:@selector(getTermsOfServiceDidComplete:)];
@@ -51,7 +53,22 @@
     if(command.status == kSuccess)
     {
         [self.buzzrdTermsLbL setText:NSLocalizedString(command.results, nil)];
-    }
+        
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.buzzrdTermsLbL.text attributes:@ { NSFontAttributeName: self.buzzrdTermsLbL.font }];
+        
+        CGRect rect = [attributedText boundingRectWithSize:(CGSize){self.fullScreenRect.size.width-40,CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+        
+        CGSize labelsize = rect.size;
+        
+        int y=20;
+        self.buzzrdTermsLbL.frame=CGRectMake(20, y, self.fullScreenRect.size.width-40, labelsize.height);
+        [self.buzzrdTermsLbL setBackgroundColor:[UIColor clearColor]];
+        
+        self.scrollView.showsVerticalScrollIndicator = NO;
+        y+=labelsize.height;
+        [self.scrollView setContentSize:CGSizeMake(self.fullScreenRect.size.width-40,y+20)];
+        [self.scrollView addSubview:self.buzzrdTermsLbL];
+            }
     else
     {
         [self showDefaultRetryAlert:command];
