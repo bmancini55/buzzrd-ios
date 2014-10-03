@@ -121,9 +121,9 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
         // otherwise we're open for business
         else {
             NSLog(@"  -> Location Services auth allowed");
+            NSLog(@"  -> Starting CLLocationManager %p", self.locationManager);
             
             // start updating
-            NSLog(@"  -> Starting CLLocationManager");
             [self.locationManager startUpdatingLocation];
             return BZLocationManagerStatusEnabled;
         }
@@ -159,6 +159,7 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%p:LocationManager:didFailWithError", self);
     NSLog(@"  -> Triggering Errored notification");
+    NSLog(@"  -> %@", error);
     
     // send error notification
     NSDictionary *userInfo = @{ BZLocationManagerErroredErrorInfoKey: error };

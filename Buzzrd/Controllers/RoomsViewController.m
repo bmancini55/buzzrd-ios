@@ -131,7 +131,7 @@
         // when error
         else
         {
-            [self showRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
+            [self showMandatoryRetryAlertWithTitle:NSLocalizedString(@"location_error", nil)
                                   message:NSLocalizedString(@"location_error_message", nil)
                            retryOperation:command];
 
