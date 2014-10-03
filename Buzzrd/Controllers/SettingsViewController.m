@@ -171,7 +171,7 @@
     
     if(command.status == kSuccess)
     {
-        [self performSelectorOnMainThread:@selector(popToRootView) withObject:nil waitUntilDone:NO];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }
     else
     {

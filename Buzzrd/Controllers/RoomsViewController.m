@@ -52,11 +52,6 @@
 {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    // Show the login view controller when not authenticated
-    if ([BuzzrdAPI current].authorization.bearerToken == nil) {
-        [self presentViewController:[BuzzrdNav createLoginViewController] animated:false completion:nil];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -136,7 +136,7 @@
 
 
 -(void)dismissToRootView {
-    [self dismissViewControllerAnimated:true completion:^{ [self dismissViewControllerAnimated:true completion:nil]; }];
+    [self dismissViewControllerAnimated:false completion:^{ [self dismissViewControllerAnimated:true completion:nil]; }];
 }
 
 - (void)login {

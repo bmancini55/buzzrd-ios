@@ -12,6 +12,7 @@
 #import "BuzzrdAPI.h"
 #import "UIWindow+Helpers.h"
 #import "BZLocationManager.h"
+#import "RootViewController.h"
 
 @implementation AppDelegate
 
@@ -25,7 +26,9 @@
     
     // initialize the window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [BuzzrdNav createHomeViewController];
+    
+    RootViewController *viewController = [[RootViewController alloc] init];
+    self.window.rootViewController = viewController;
     
     [self.window makeKeyAndVisible];
     

@@ -91,6 +91,7 @@
 		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
+		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -281,6 +282,8 @@
 		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
 		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
 		C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetPrivacyPolicyCommand.m; path = Commands/Disclaimers/GetPrivacyPolicyCommand.m; sourceTree = "<group>"; };
+		C290B9C819DE3EA400F6C3B4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = Controllers/RootViewController.h; sourceTree = "<group>"; };
+		C290B9C919DE3EA400F6C3B4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Controllers/RootViewController.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -648,6 +651,8 @@
 				C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */,
 				C2BEC61F19CA733700DB6BCC /* MyRoomsViewController.h */,
 				C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */,
+				C290B9C819DE3EA400F6C3B4 /* RootViewController.h */,
+				C290B9C919DE3EA400F6C3B4 /* RootViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 				355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */,
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
+				C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				C2BEC62419CA7A0D00DB6BCC /* GetMyRoomsCommand.m in Sources */,
