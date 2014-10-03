@@ -22,6 +22,7 @@
     if(self)
     {
         self.dispatch = [[CommandDispatcher alloc]init];
+        self.config = [[BuzzrdConfig alloc]init];
     }
     return self;
 }

@@ -342,8 +342,16 @@
 {
     if(self.socket == nil || !self.socket.isConnected)
     {
+        bool isSecure = [BuzzrdAPI current].config.apiUseTLS;
+        NSString *host = [BuzzrdAPI current].config.apiHost;
+        long port = [BuzzrdAPI current].config.apiPort;
+        
         self.socket = [[SocketIO alloc] initWithDelegate:self];
-        [self.socket connectToHost:@"devapi.buzzrd.io" onPort:5050];
+        
+        if(isSecure) {
+            self.socket.useSecure = true;
+        }
+        [self.socket connectToHost:host onPort:port];
     }
 }
 

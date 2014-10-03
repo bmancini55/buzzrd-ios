@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3500365B19DBC83500E69508 /* BZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3500365A19DBC83500E69508 /* BZLocationManager.m */; };
+		3500365E19DF1A5300E69508 /* BuzzrdConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3500365D19DF1A5300E69508 /* BuzzrdConfig.m */; };
+		3500366019DF1A9300E69508 /* Buzzrd-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3500365F19DF1A9300E69508 /* Buzzrd-Config.plist */; };
 		350AB59119A4C8AA0060D3C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 350AB59019A4C8AA0060D3C7 /* Settings@2x.png */; };
 		350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */; };
 		350AB5A419B889DD0060D3C7 /* UITableView+ScrollHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */; };
@@ -138,6 +140,9 @@
 /* Begin PBXFileReference section */
 		3500365919DBC83500E69508 /* BZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZLocationManager.h; path = Application/BZLocationManager.h; sourceTree = "<group>"; };
 		3500365A19DBC83500E69508 /* BZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZLocationManager.m; path = Application/BZLocationManager.m; sourceTree = "<group>"; };
+		3500365C19DF1A5300E69508 /* BuzzrdConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdConfig.h; path = Application/BuzzrdConfig.h; sourceTree = "<group>"; };
+		3500365D19DF1A5300E69508 /* BuzzrdConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuzzrdConfig.m; path = Application/BuzzrdConfig.m; sourceTree = "<group>"; };
+		3500365F19DF1A9300E69508 /* Buzzrd-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Buzzrd-Config.plist"; path = "Supporting Files/Buzzrd-Config.plist"; sourceTree = "<group>"; };
 		350AB59019A4C8AA0060D3C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		350AB59F19AD82F90060D3C7 /* GetVenueRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetVenueRoomsCommand.h; path = Commands/Room/GetVenueRoomsCommand.h; sourceTree = "<group>"; };
 		350AB5A019AD82F90060D3C7 /* GetVenueRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetVenueRoomsCommand.m; path = Commands/Room/GetVenueRoomsCommand.m; sourceTree = "<group>"; };
@@ -497,6 +502,8 @@
 				35A46F3219328A2400B615A4 /* AppDelegate.m */,
 				35A46F3319328A2400B615A4 /* BuzzrdAPI.h */,
 				35A46F3419328A2400B615A4 /* BuzzrdAPI.m */,
+				3500365C19DF1A5300E69508 /* BuzzrdConfig.h */,
+				3500365D19DF1A5300E69508 /* BuzzrdConfig.m */,
 				35A46F3519328A2400B615A4 /* BuzzrdNav.h */,
 				35A46F3619328A2400B615A4 /* BuzzrdNav.m */,
 				3500365919DBC83500E69508 /* BZLocationManager.h */,
@@ -602,6 +609,7 @@
 		35BA0DFF18CF37A100F5B339 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3500365F19DF1A9300E69508 /* Buzzrd-Config.plist */,
 				35A46FBF19328B0100B615A4 /* Buzzrd-Info.plist */,
 				35A46FC019328B0100B615A4 /* Buzzrd-Prefix.pch */,
 				35A46FC119328B0100B615A4 /* main.m */,
@@ -956,6 +964,7 @@
 				3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */,
 				C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */,
 				C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */,
+				3500366019DF1A9300E69508 /* Buzzrd-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1079,7 @@
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* SettingsViewController.m in Sources */,
 				C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */,
+				3500365E19DF1A5300E69508 /* BuzzrdConfig.m in Sources */,
 				351036F41981FA0C00AF5C39 /* MessageBubble.m in Sources */,
 				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,

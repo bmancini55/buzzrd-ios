@@ -11,6 +11,7 @@
 #import "Authorization.h"
 #import "User.h"
 #import "BZLocationManager.h"
+#import "BuzzrdConfig.h"
 
 @interface BuzzrdAPI : NSObject
 
@@ -19,6 +20,9 @@
 + (NSString *) apiURLBase;
 
 - (void) clearAuthorization;
+
+// Configuration
+@property (strong, nonatomic) BuzzrdConfig *config;
 
 // Command Dispatch Pattern
 @property (strong, nonatomic) CommandDispatcher *dispatch;
