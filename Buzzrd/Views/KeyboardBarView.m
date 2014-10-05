@@ -94,12 +94,12 @@
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[imageView(19.5)]" options:0 metrics:nil views:@{ @"imageView": self.imageView }]];
         }
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[textView]-6-|" options:0 metrics:nil views:@{ @"textView": self.textView }]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[mainButton]-6-|" options:0 metrics:nil views:@{ @"mainButton": self.mainButton }]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=6)-[mainButton]-(6)-|" options:0 metrics:nil views:@{ @"mainButton": self.mainButton }]];
         
         // button label constraints
         NSDictionary *buttonConstraintView = @{ @"titleLabel": self.mainButton.titleLabel };
         [self.mainButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[titleLabel(44)]-6-|" options:0 metrics:nil views:buttonConstraintView]];
-        [self.mainButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[titleLabel]-6-|" options:0 metrics:nil views:buttonConstraintView]];
+        [self.mainButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(19)]-(>=5)-|" options:0 metrics:nil views:buttonConstraintView]];
     }
     
     [super updateConstraints];
@@ -108,19 +108,25 @@
 - (void) layoutIfNeeded
 {
     float singleLineHeight = 29.0;
-    float secondLineHeight = 16.0;
+    float maxHeight = 184.0;
     float baseBarHeight = 41.0;
-    
+
+    // reset when no text
     if(self.textView.contentSize.height <= singleLineHeight || [self.textView.text isEqualToString:@""]) {
         CGRect frame = self.frame;
         frame.size.height = baseBarHeight;
         self.frame = frame;
     }
-    else {
+    
+    // increase size as needed until height limit
+    else if (self.textView.contentSize.height < maxHeight){
         CGRect frame = self.frame;
-        frame.size.height = baseBarHeight + secondLineHeight;
+        frame.size.height = self.textView.contentSize.height + 12;
         self.frame = frame;
     }
+    
+    // scroll to the bottom
+    [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
     [super layoutIfNeeded];
 }
 
