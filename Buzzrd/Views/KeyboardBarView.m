@@ -30,8 +30,11 @@
     {
         // set view level properties
         self.backgroundColor = [ThemeManager getPrimaryColorMediumLight];
-        self.frame = CGRectMake(0, 0, 360, 41 );
-        self.pictureUpload = false;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        // needed for iOS7 to initialize inputAccessoryView in correct origin-Y
+        self.frame = CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 41);
+        
         
         // create the image
         self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Camera.png"]];
@@ -105,32 +108,53 @@
     [super updateConstraints];
 }
 
-- (void) layoutIfNeeded
-{
+
+- (CGSize)intrinsicContentSize {
+
     float singleLineHeight = 29.0;
     float maxHeight = 184.0;
     float baseBarHeight = 41.0;
-
+    float newHeight = baseBarHeight;
+    
     // reset when no text
     if(self.textView.contentSize.height <= singleLineHeight || [self.textView.text isEqualToString:@""]) {
-        CGRect frame = self.frame;
-        frame.size.height = baseBarHeight;
-        self.frame = frame;
+        newHeight = baseBarHeight;
     }
     
-    // increase size as needed until height limit
+    // increase size as needed
     else if (self.textView.contentSize.height < maxHeight){
-        CGRect frame = self.frame;
-        frame.size.height = self.textView.contentSize.height + 12;
-        self.frame = frame;
+        newHeight = self.textView.contentSize.height + 12;
+    }
+    
+    // stop at the height limit
+    else if (self.textView.contentSize.height >= maxHeight) {
+        newHeight = maxHeight;
     }
     
     // scroll to the bottom
     [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
-    [super layoutIfNeeded];
+    
+    return CGSizeMake(CGRectGetWidth(self.frame), newHeight);
+}
+
+
+- (void) layoutSubviews
+{
+    CGSize newSize = [self intrinsicContentSize];
+    CGRect frame = self.frame;
+    
+    frame.size.height = newSize.height;
+    self.frame = frame;
+    
+    [super layoutSubviews];
 }
 
 #pragma mark - Instance Methods
+
+-(void) resize {
+    [self invalidateIntrinsicContentSize];
+    [self layoutSubviews];
+}
 
 - (void)dismissKeyboard
 {
@@ -140,8 +164,7 @@
 - (void)clearText
 {
     self.textView.text = @"";
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    [self resize];
 }
 
 #pragma mark -  Action Handlers
@@ -167,10 +190,8 @@
 
 -(void)textViewDidChange:(UITextView *)textView
 {
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+    [self resize];
 }
-
 
 
 
