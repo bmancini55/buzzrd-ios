@@ -15,12 +15,12 @@
 #import "UserCountBarButton.h"
 #import "BuzzrdBackgroundView.h"
 #import "UITableView+ScrollHelpers.h"
+#import "KeyboardBarTableView.h"
 
 @interface RoomViewController ()
 
 @property (nonatomic) float keyboardHeightCache;
 
-@property (strong, nonatomic) KeyboardBarView *keyboardBar;
 @property (strong, nonatomic) SocketIO *socket;
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) NSMutableArray *messageHeights;
@@ -33,13 +33,14 @@
 
 - (void)loadView
 {
-    [super loadView];
-
     self.title = self.room.name;
+    
+    self.tableView = [[KeyboardBarTableView alloc]initWithDelegate:self];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundView = [[BuzzrdBackgroundView alloc]init];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    [self.tableView becomeFirstResponder];
     
     // Add the info for the right bar menu
     self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 50, self.navigationController.navigationBar.frame.size.height)];
@@ -51,6 +52,10 @@
     [self.tableView addGestureRecognizer:gestureRecognizer];
     
     [self initRoom];
+}
+
+- (void)dealloc {
+    NSLog(@"RoomViewController:dealloc");
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,7 +72,11 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // remove notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillChangeFrameNotification
+                                                  object:nil];
     
     // Disconnect on room exit
     [self disconnect];
@@ -76,8 +85,7 @@
 
 
 - (void) hideKeyboard {
-    KeyboardBarView *keyboardBar = (KeyboardBarView *)self.inputAccessoryView;
-    [keyboardBar dismissKeyboard];
+    [self.tableView becomeFirstResponder];
 }
 
 
@@ -108,22 +116,6 @@
     if(self.socket == nil || !self.socket.isConnected) {
         [self initRoom];
     }
-}
-
-// Reimplements inputAccessorView from UIResponder to dock keyboardBar at bottom
-- (UIView*)inputAccessoryView
-{
-    if (self.keyboardBar == nil) {
-        self.keyboardBar = [[KeyboardBarView alloc]init];
-        self.keyboardBar.delegate = self;
-    }
-    return self.keyboardBar;
-}
-
-// Enables the keyboard bar
-- (BOOL)canBecomeFirstResponder
-{
-    return true;
 }
 
 
@@ -282,12 +274,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.keyboardBar dismissKeyboard];
-    [tableView deselectRowAtIndexPath:indexPath animated:false];
-}
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -330,7 +316,7 @@
         
         // if it successfully sent, clear the keyboard bar's text
         if(result) {
-           [self.keyboardBar clearText];
+           [(KeyboardBarView *)self.tableView.inputAccessoryView clearText];
         }
     }
 }

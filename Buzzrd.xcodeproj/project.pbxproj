@@ -81,6 +81,7 @@
 		35BA0E1E18CF37A100F5B339 /* BuzzrdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */; };
 		35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */; };
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
+		35EB772619E18D72004B4EAD /* KeyboardBarTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EB772519E18D72004B4EAD /* KeyboardBarTableView.m */; };
 		35FC421318D4E33900C5CDEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC421218D4E33900C5CDEB /* CoreLocation.framework */; };
 		C20A15D619761C590003B67E /* Buzzrd_Logo_with_Text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */; };
 		C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20A15D7197A0F750003B67E /* Login_Area@2x.png */; };
@@ -266,6 +267,8 @@
 		35BA0E1B18CF37A100F5B339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuzzrdTests.m; sourceTree = "<group>"; };
 		35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@2x.png"; sourceTree = "<group>"; };
+		35EB772419E18D72004B4EAD /* KeyboardBarTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardBarTableView.h; path = Views/KeyboardBarTableView.h; sourceTree = "<group>"; };
+		35EB772519E18D72004B4EAD /* KeyboardBarTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardBarTableView.m; path = Views/KeyboardBarTableView.m; sourceTree = "<group>"; };
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Logo_with_Text@2x.png"; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				3504373A193DFAF800731968 /* Venues */,
 				35A46FAE19328ACC00B615A4 /* KeyboardBarView.h */,
 				35A46FAF19328ACC00B615A4 /* KeyboardBarView.m */,
+				35EB772419E18D72004B4EAD /* KeyboardBarTableView.h */,
+				35EB772519E18D72004B4EAD /* KeyboardBarTableView.m */,
 				35A46FB019328ACC00B615A4 /* LoadingOverlay.h */,
 				35A46FB119328ACC00B615A4 /* LoadingOverlay.m */,
 				35A46FB219328ACC00B615A4 /* ProfileImageView.h */,
@@ -1090,6 +1095,7 @@
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
 				355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */,
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
+				35EB772619E18D72004B4EAD /* KeyboardBarTableView.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
 				C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
