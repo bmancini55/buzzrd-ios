@@ -64,15 +64,15 @@
     UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profilePicContainerViewSingleTap:)];
     [profilePicContainerView addGestureRecognizer:singleFingerTap];
     
-    UIButton *savePicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [savePicButton setTitle: NSLocalizedString(@"SAVE PROFILE PICTURE", nil) forState:UIControlStateNormal];
-    savePicButton.translatesAutoresizingMaskIntoConstraints = NO;
-    savePicButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
-    savePicButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
-    [savePicButton addTarget:self action:@selector(savePicButtonTouch) forControlEvents:UIControlEventTouchUpInside];
-    [savePicButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
-    savePicButton.layer.cornerRadius = 5; // this value vary as per your desire
-    [self.view addSubview:savePicButton];
+    UIButton *selectPicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [selectPicButton setTitle: NSLocalizedString(@"SELECT PROFILE PICTURE", nil) forState:UIControlStateNormal];
+    selectPicButton.translatesAutoresizingMaskIntoConstraints = NO;
+    selectPicButton.backgroundColor = [ThemeManager getSecondaryColorMedium];
+    selectPicButton.titleLabel.font = [ThemeManager getPrimaryFontDemiBold:15.0];
+    [selectPicButton addTarget:self action:@selector(selectPicButtonTouch) forControlEvents:UIControlEventTouchUpInside];
+    [selectPicButton setTitleColor:[ThemeManager getPrimaryColorLight] forState:UIControlStateNormal];
+    selectPicButton.layer.cornerRadius = 5; // this value vary as per your desire
+    [self.view addSubview:selectPicButton];
     
     UIButton *whatsBuzzingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [whatsBuzzingButton setTitle: NSLocalizedString(@"SEE WHAT'S BUZZING", nil) forState:UIControlStateNormal];
@@ -95,11 +95,11 @@
     
     [profilePicContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[profileImageView]-0-|" options:0 metrics:nil views:@{ @"profileImageView" :self.profileImageView }]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[savePicButton]-20-|" options:0 metrics:nil views:@{ @"savePicButton" : savePicButton }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[selectPicButton]-20-|" options:0 metrics:nil views:@{ @"selectPicButton" : selectPicButton }]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[whatsBuzzingButton]-20-|" options:0 metrics:nil views:@{ @"whatsBuzzingButton" : whatsBuzzingButton }]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[successLbl]-15-[accountSavedMessageLbl]-20-[profilePicContainerView]-25-[savePicButton]-15-[whatsBuzzingButton]" options:0 metrics:nil views:@{ @"successLbl" : successLbl, @"accountSavedMessageLbl" : accountSavedMessageLbl, @"profilePicContainerView" : profilePicContainerView, @"savePicButton" : savePicButton, @"whatsBuzzingButton" : whatsBuzzingButton }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-85-[successLbl]-15-[accountSavedMessageLbl]-20-[profilePicContainerView]-25-[selectPicButton]-15-[whatsBuzzingButton]" options:0 metrics:nil views:@{ @"successLbl" : successLbl, @"accountSavedMessageLbl" : accountSavedMessageLbl, @"profilePicContainerView" : profilePicContainerView, @"selectPicButton" : selectPicButton, @"whatsBuzzingButton" : whatsBuzzingButton }]];
 }
 
 - (UIImagePickerController *) imagePicker {
@@ -177,6 +177,20 @@
     _thumbnail = [image createThumbnail:image withSide:side];
     
     self.profileImageView.image = _thumbnail;
+    
+    if (_thumbnail != nil){
+
+        UploadImageCommand *command = [[UploadImageCommand alloc]init];
+        command.image = _thumbnail;
+        [command listenForCompletion:self selector:@selector(getImageUploadDidComplete:)];
+
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    else
+    {
+        [self hideActivityView];
+    }
+
 }
 
 -(void) whatsBuzzingTouch
@@ -184,21 +198,10 @@
     [self login];
 }
 
--(void) savePicButtonTouch
+-(void) selectPicButtonTouch
 {
-    if (_thumbnail != nil){
-        
-        UploadImageCommand *command = [[UploadImageCommand alloc]init];
-        command.image = _thumbnail;
-        [command listenForCompletion:self selector:@selector(getImageUploadDidComplete:)];
-        
-        [[BuzzrdAPI dispatch] enqueueCommand:command];
-    }
-    else
-    {
-        [self hideActivityView];
-        [self dismissViewControllerAnimated:false completion:nil];
-    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) destructiveButtonTitle:nil otherButtonTitles: NSLocalizedString(@"take_a_photo", nil), NSLocalizedString(@"use_photo_library", nil), nil];
+    [actionSheet showInView:self.view];
 }
 
 - (void)getImageUploadDidComplete:(NSNotification *)notif
@@ -227,11 +230,7 @@
 {
     UploadImageCommand *command = notif.object;
     
-    if(command.status == kSuccess)
-    {
-        [self login];
-    }
-    else
+    if(command.status != kSuccess)
     {
         [self showDefaultRetryAlert:command];
     }
