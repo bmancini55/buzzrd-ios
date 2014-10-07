@@ -14,7 +14,6 @@
 @property (strong, nonatomic) NSString *apiHost;
 @property (nonatomic) long apiPort;
 @property (nonatomic) bool apiUseTLS;
-@property (nonatomic) bool apiAllowInvalidCerts;
 
 // Calculated properties
 @property (nonatomic) bool apiUsesStandardPort;

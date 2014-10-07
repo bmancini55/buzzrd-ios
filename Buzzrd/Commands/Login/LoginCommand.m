@@ -24,7 +24,6 @@
 - (void)main
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [self setSecurityRules:manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     
     NSString *url = [self getAPIUrl:@"/oauth/grant/"];

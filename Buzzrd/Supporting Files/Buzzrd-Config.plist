@@ -4,8 +4,6 @@
 <dict>
 	<key>API Use TLS</key>
 	<true/>
-	<key>API Allow Invalid Certs</key>
-	<true/>
 	<key>API Port</key>
 	<integer>443</integer>
 	<key>API Host</key>

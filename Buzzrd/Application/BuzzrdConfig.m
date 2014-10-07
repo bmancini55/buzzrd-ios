@@ -19,7 +19,6 @@
         self.apiHost = [plist objectForKey:@"API Host"];
         self.apiPort = [[plist objectForKey:@"API Port"] integerValue];
         self.apiUseTLS = [[plist objectForKey:@"API Use TLS"] boolValue];
-        self.apiAllowInvalidCerts = [[plist objectForKey:@"API Allow Invalid Certs"] boolValue];
     }
     return self;
 }

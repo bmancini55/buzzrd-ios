@@ -155,20 +155,7 @@
         [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
     }
     
-    // set security rules
-    [self setSecurityRules:manager];
-    
     return manager;
-}
-
-- (void) setSecurityRules:(AFHTTPSessionManager *)manager {
-    
-    // Allow insecure certs
-    if([BuzzrdAPI current].config.apiAllowInvalidCerts) {
-        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        securityPolicy.allowInvalidCertificates = YES;
-        manager.securityPolicy = securityPolicy;
-    }
 }
 
 

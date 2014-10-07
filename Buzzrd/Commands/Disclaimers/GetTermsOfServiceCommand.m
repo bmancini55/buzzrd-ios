@@ -24,7 +24,6 @@
 {
     // create new manager
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [self setSecurityRules:manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
