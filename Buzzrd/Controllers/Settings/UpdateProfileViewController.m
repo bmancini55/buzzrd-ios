@@ -79,7 +79,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 4;
+        return 5;
     }
     else {
         return 2;
@@ -149,12 +149,22 @@
                     cell.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
                     
                     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+                    
                     profileImageView.contentMode = UIViewContentModeScaleAspectFit;
                     profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
-                    profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
+                    
+                    if ([BuzzrdAPI current].profilePic != nil) {
+                        profileImageView.image = [BuzzrdAPI current].profilePic;
+                    }
+                    else {
+                        profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
+                    }
+                    
                     [cell addSubview: profileImageView];
                     
-                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[cellLabel]-(50)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": profileImageView }]];
+                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[cellLabel]-(50)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": profileImageView }]];
+                    
+                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[cellLabel]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel }]];
                     
                     [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[profileImageView(27)]" options:0 metrics:nil views:@{ @"profileImageView": profileImageView }]];
                     

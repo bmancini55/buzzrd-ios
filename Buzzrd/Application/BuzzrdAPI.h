@@ -19,7 +19,7 @@
 + (CommandDispatcher *) dispatch;
 + (NSString *) apiURLBase;
 
-- (void) clearAuthorization;
+- (void) clearLocalStorage;
 
 // Configuration
 @property (strong, nonatomic) BuzzrdConfig *config;

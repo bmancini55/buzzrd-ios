@@ -26,7 +26,7 @@
     // Clear the local storage
     [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];
     
-    [[BuzzrdAPI current] clearAuthorization];
+    [[BuzzrdAPI current] clearLocalStorage];
     
     self.status = kSuccess;
     [self sendCompletionNotification];

@@ -83,8 +83,9 @@
     [defaults synchronize];
 }
 
-- (void)clearAuthorization {
+- (void)clearLocalStorage {
     _authorization = nil;
+    _profilePic = nil;
 }
 
 - (User *) user {

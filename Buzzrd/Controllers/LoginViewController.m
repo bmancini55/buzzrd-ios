@@ -21,6 +21,7 @@
     @property (strong, nonatomic) UITextField *usernameTextField;
     @property (strong, nonatomic) UITextField *passwordTextField;
     @property (strong, nonatomic) UIButton *createAccountButton;
+    @property (strong, nonatomic) LoginViewController *loginViewControllerContext;
 
 @end
 
@@ -29,6 +30,8 @@
 - (void)loadView
 {
     [super loadView];
+    
+    self.loginViewControllerContext = self;
     
     UIImage *buzzrdImage = [UIImage imageNamed:@"Buzzrd_Logo_with_Text.png"];
     
@@ -231,9 +234,9 @@
             if ([BuzzrdAPI current].profilePic == nil) {
                 DownloadImageCommand *command = [[DownloadImageCommand alloc]init];
                 command.url = [BuzzrdAPI current].user.profilePic;
-                
-                [command listenForCompletion:self selector:@selector(downloadImageDidComplete:)];
-                
+
+                [command listenForCompletion:self.loginViewControllerContext selector:@selector(downloadImageDidComplete:)];
+        
                 [[BuzzrdAPI dispatch] enqueueCommand:command];
             }
         }
