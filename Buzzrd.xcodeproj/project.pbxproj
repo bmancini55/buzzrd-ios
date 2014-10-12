@@ -139,6 +139,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1138EA262389FA7808AE394C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3500365919DBC83500E69508 /* BZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZLocationManager.h; path = Application/BZLocationManager.h; sourceTree = "<group>"; };
 		3500365A19DBC83500E69508 /* BZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZLocationManager.m; path = Application/BZLocationManager.m; sourceTree = "<group>"; };
 		3500365C19DF1A5300E69508 /* BuzzrdConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdConfig.h; path = Application/BuzzrdConfig.h; sourceTree = "<group>"; };
@@ -271,6 +272,7 @@
 		35EB772519E18D72004B4EAD /* KeyboardBarTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardBarTableView.m; path = Views/KeyboardBarTableView.m; sourceTree = "<group>"; };
 		35FC421218D4E33900C5CDEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		39C2093481834847B1B173E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A329AFDB122019EEC91A7C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C20A15D519761C590003B67E /* Buzzrd_Logo_with_Text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Logo_with_Text@2x.png"; sourceTree = "<group>"; };
 		C20A15D7197A0F750003B67E /* Login_Area@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login_Area@2x.png"; sourceTree = "<group>"; };
 		C20A15D9197F3D080003B67E /* Buzzrd_Megaphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzzrd_Megaphone@2x.png"; sourceTree = "<group>"; };
@@ -349,7 +351,6 @@
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
 		C2FC0468193FF969000183CC /* DefaultTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultTheme.h; path = Themes/DefaultTheme.h; sourceTree = "<group>"; };
 		C2FC0469193FF969000183CC /* DefaultTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultTheme.m; path = Themes/DefaultTheme.m; sourceTree = "<group>"; };
-		E5DFDC6655324F998BFAE69B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,7 +566,7 @@
 				35BA0E1718CF37A100F5B339 /* BuzzrdTests */,
 				35BA0DF718CF37A100F5B339 /* Frameworks */,
 				35BA0DF618CF37A100F5B339 /* Products */,
-				E5DFDC6655324F998BFAE69B /* Pods.xcconfig */,
+				ACB4486C6B0244D220B28868 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -725,6 +726,15 @@
 			);
 			path = Images;
 			sourceTree = SOURCE_ROOT;
+		};
+		ACB4486C6B0244D220B28868 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A329AFDB122019EEC91A7C3 /* Pods.debug.xcconfig */,
+				1138EA262389FA7808AE394C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
 		};
 		C290B9C119DCD90700F6C3B4 /* Disclaimers */ = {
 			isa = PBXGroup;
@@ -996,7 +1006,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6110E04C20F48BFB1076A4F /* Check Pods Manifest.lock */ = {
@@ -1234,7 +1244,7 @@
 		};
 		35BA0E2218CF37A100F5B339 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5DFDC6655324F998BFAE69B /* Pods.xcconfig */;
+			baseConfigurationReference = 6A329AFDB122019EEC91A7C3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1253,7 +1263,7 @@
 		};
 		35BA0E2318CF37A100F5B339 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5DFDC6655324F998BFAE69B /* Pods.xcconfig */;
+			baseConfigurationReference = 1138EA262389FA7808AE394C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1280,7 +1290,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Buzzrd/Buzzrd-Prefix.pch";
+				GCC_PREFIX_HEADER = "Buzzrd/Supporting Files/Buzzrd-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1302,7 +1312,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Buzzrd/Buzzrd-Prefix.pch";
+				GCC_PREFIX_HEADER = "Buzzrd/Supporting Files/Buzzrd-Prefix.pch";
 				INFOPLIST_FILE = "BuzzrdTests/BuzzrdTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
