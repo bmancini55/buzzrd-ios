@@ -27,6 +27,7 @@
     self.title = NSLocalizedString(@"nearby_rooms", nil);
     self.navigationController.title = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
     self.sectionHeaderTitle = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
+    self.emptyNote = NSLocalizedString(@"nearbyrooms_empty_note", nil);
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
     searchBar.barTintColor = [ThemeManager getPrimaryColorLight];
@@ -75,11 +76,6 @@
     
     
     return false;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
-{
-    [self attachFooterToTableView:tableView];
-}
+}               
 
 @end

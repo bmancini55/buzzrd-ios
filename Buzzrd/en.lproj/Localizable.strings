@@ -171,3 +171,7 @@
 "location_error" = "Oops!";
 
 "location_error_message" = "We couldn't determine your location. Let's try again...";
+
+"nearbyrooms_empty_note" = "No conversations are going on nearby.\rGet started by creating a room!";
+
+"myrooms_empty_note" = "You have not joined any rooms.\rGet started by creating a room!";

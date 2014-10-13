@@ -23,6 +23,7 @@
     self.title = NSLocalizedString(@"my_rooms", nil);
     self.navigationController.title = [NSLocalizedString(@"my_rooms", nil) uppercaseString];
     self.sectionHeaderTitle = [NSLocalizedString(@"my_rooms", nil) uppercaseString];
+    self.emptyNote = NSLocalizedString(@"myrooms_empty_note", nil);
 }
 
 - (void)loadRoomsWithSearch:(NSString *)search

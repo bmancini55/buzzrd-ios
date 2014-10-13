@@ -9,8 +9,10 @@
 #import "BaseTableViewController.h"
 #import "GetLocationCommand.h"
 
+
 @interface RoomsViewController : BaseTableViewController
 
+@property (strong, nonatomic) NSString *emptyNote;
 @property (strong, nonatomic) NSArray *rooms;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) NSString *sectionHeaderTitle;
@@ -18,6 +20,5 @@
 @property (strong, nonatomic) NSArray *searchResults;
 
 - (void)loadRoomsWithSearch:(NSString *)search;
-- (void) attachFooterToTableView:(UITableView *)tableView;
 
 @end
