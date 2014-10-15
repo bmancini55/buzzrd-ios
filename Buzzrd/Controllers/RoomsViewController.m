@@ -76,14 +76,14 @@
 
 - (void)getUserLocation
 {
+    // prevent refresh control from hanging
+    [self.refreshControl endRefreshing];
+    
     // Load the locations if we're authenticated and we haven't loaded, or it's been more than XX seconds since we last loaded
     if ([BuzzrdAPI current].authorization.bearerToken != nil && self.lastLoad == nil) {
         
         // flag last load time as now
         self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
-        
-        // start the spinner
-        [self.refreshControl beginRefreshing];
         
         // build and dispatch the command
         GetLocationCommand *command = [[GetLocationCommand alloc]init];
@@ -102,8 +102,6 @@
     }
     else
     {
-        [self.refreshControl endRefreshing];
-        
         NSDictionary *results = command.results;
         BZLocationManagerStatus status = [results[@"status"] intValue];
 
@@ -157,8 +155,6 @@
         GetNearbyRoomsCommand *command = notif.object;
         NSArray *rooms = command.results;
         
-        [self.refreshControl endRefreshing];
-        
         if(command.search == nil) {
             self.rooms = rooms;
             [self.tableView reloadData];
@@ -172,8 +168,6 @@
     {
         GetMyRoomsCommand *command = notif.object;
         NSArray *rooms = command.results;
-        
-        [self.refreshControl endRefreshing];
         
         self.rooms = rooms;
         [self.tableView reloadData];

@@ -61,8 +61,7 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
     // attempt to use cached location
     CLLocation *location = self.lastLocation;
     if(self.lastLocation != nil &&
-       [self checkLocationFreshness:location freshness:60] &&
-       [self checkLocationAccuracy:location withAccuracy:100]) {
+       [self checkLocationFreshness:location freshness:10]) {
         
         NSLog(@"  -> Returning cached Location (%f, %f)", self.lastLocation.coordinate.longitude, self.lastLocation.coordinate.latitude);
         
@@ -155,7 +154,7 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
     return location.horizontalAccuracy < accuracy;
 }
 
-
+// Handles failures from the LocationManager
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%p:LocationManager:didFailWithError", self);
     NSLog(@"  -> Triggering Errored notification");
@@ -166,6 +165,7 @@ NSString * const BZLocationManagerErroredErrorInfoKey = @"BZLocationManagerError
     [[NSNotificationCenter defaultCenter] postNotificationName:BZLocationManagerErrored object:self userInfo:userInfo];
 }
 
+// Handles update events from the LocationMAnager
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
     NSLog(@"%p:LocationManager:didUpdateLocations", self);
 

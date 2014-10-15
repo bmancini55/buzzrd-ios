@@ -74,7 +74,7 @@
     
     // start timeout mechanism
     self.timerThread = [NSThread currentThread];
-    self.timeoutTimer = [NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(timeout) userInfo:nil repeats:false];
+    self.timeoutTimer = [NSTimer timerWithTimeInterval:10.0 target:self selector:@selector(timeout) userInfo:nil repeats:false];
     [[NSRunLoop currentRunLoop] addTimer:self.timeoutTimer forMode:NSDefaultRunLoopMode];
     NSLog(@"  -> Scheduled timer %p", self.timeoutTimer);
     
