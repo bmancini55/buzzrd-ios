@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSError         *error;
 @property (nonatomic) bool                    allowRetry;
 @property (nonatomic) bool                    showActivityIndicator;
+@property (strong, nonatomic) NSString        *activityIndicatorText;
 
 // Returns the default error notification name
 + (NSString *)getNetworkErrorNotificationName;
@@ -75,6 +76,6 @@
 
 - (void) sendShowActivityNotification;
 
-- (void) hideShowActivityNotification;
+- (void) sendHideActivityNotification;
 
 @end

@@ -49,8 +49,8 @@
 - (void)tableViewWillRefresh
 {
     NSLog(@"%p:RoomsViewController:tableViewWillRefresh", self);
-    [self getUserLocation];
     [self.refreshControl endRefreshing];
+    [self getUserLocation];
 }
 
 - (void)getUserLocation

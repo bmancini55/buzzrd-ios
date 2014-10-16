@@ -40,14 +40,14 @@
          // call success callback
          self.status = kSuccess;
          self.results = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-         if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
+         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendCompletionNotification];
      }
      failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
-         if (self.showActivityIndicator) { [self hideShowActivityNotification]; }
+         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }

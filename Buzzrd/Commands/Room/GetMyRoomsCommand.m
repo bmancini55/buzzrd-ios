@@ -15,7 +15,7 @@
     self = [super init];
     if(self) {
         self.completionNotificationName = @"getMyRoomsComplete";
-        self.showActivityIndicator = false;
+        self.activityIndicatorText = NSLocalizedString(@"Loading", nil);        
     }
     return self;
 }

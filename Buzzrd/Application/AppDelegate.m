@@ -42,7 +42,7 @@
                                                 object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showActivityView)
+                                             selector:@selector(showActivityView:)
                                                  name:[CommandBase getShowActivityViewNotificationName]
                                                object:nil];
     
@@ -68,12 +68,15 @@
     }
 }
 
-- (void) showActivityView {
+- (void) showActivityView:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *title = userInfo[@"title"];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
         self.loadingOverlay = [[LoadingOverlay alloc]init];
-        self.loadingOverlay.title = NSLocalizedString(@"Processing", nil);
+        self.loadingOverlay.title = title;
         [self.window addSubview:self.loadingOverlay];
         [self.loadingOverlay show];
     });

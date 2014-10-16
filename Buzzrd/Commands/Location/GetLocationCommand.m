@@ -25,6 +25,7 @@
     self = [super init];
     if(self) {
         self.completionNotificationName = @"getLocationComplete";
+        self.activityIndicatorText = NSLocalizedString(@"Loading", nil);
         executing = false;
         finished  = false;
     }
@@ -71,6 +72,9 @@
 // Main NSOperation code
 - (void) main {
     NSLog(@"%p:GetLocationCommand:main", self);
+    
+    // start the acitivty indicator
+    if (self.showActivityIndicator) [self sendShowActivityNotification];
     
     // start timeout mechanism
     self.timerThread = [NSThread currentThread];
@@ -162,6 +166,9 @@
 // Shuts down the NSOperation
 - (void)shutdownCommand {
     NSLog(@"%p:GetLocationCommand:shutdownCommand", self);
+    
+    // Stop the acitivty indicator
+    if (self.showActivityIndicator) [self sendHideActivityNotification];
     
     // Clear out observers
     [[NSNotificationCenter defaultCenter] removeObserver:self];
