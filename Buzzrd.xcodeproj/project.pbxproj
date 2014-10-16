@@ -95,6 +95,12 @@
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
+		C290B9CE19E38C0400F6C3B4 /* GetFriendsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9CD19E38C0400F6C3B4 /* GetFriendsCommand.m */; };
+		C290B9D119E4BC7700F6C3B4 /* CreateFriendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9D019E4BC7700F6C3B4 /* CreateFriendCommand.m */; };
+		C290B9D519E76B2D00F6C3B4 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9D419E76B2D00F6C3B4 /* FriendsViewController.m */; };
+		C290B9DC19E7710300F6C3B4 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9DB19E7710300F6C3B4 /* UserCell.m */; };
+		C290B9DF19E77C6B00F6C3B4 /* CreateFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */; };
+		C290B9E519EE20A600F6C3B4 /* GetPotentialFriendsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -294,6 +300,18 @@
 		C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetPrivacyPolicyCommand.m; path = Commands/Disclaimers/GetPrivacyPolicyCommand.m; sourceTree = "<group>"; };
 		C290B9C819DE3EA400F6C3B4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = Controllers/RootViewController.h; sourceTree = "<group>"; };
 		C290B9C919DE3EA400F6C3B4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Controllers/RootViewController.m; sourceTree = "<group>"; };
+		C290B9CC19E38C0400F6C3B4 /* GetFriendsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetFriendsCommand.h; path = Commands/Friends/GetFriendsCommand.h; sourceTree = "<group>"; };
+		C290B9CD19E38C0400F6C3B4 /* GetFriendsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetFriendsCommand.m; path = Commands/Friends/GetFriendsCommand.m; sourceTree = "<group>"; };
+		C290B9CF19E4BC7700F6C3B4 /* CreateFriendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateFriendCommand.h; path = Commands/Friends/CreateFriendCommand.h; sourceTree = "<group>"; };
+		C290B9D019E4BC7700F6C3B4 /* CreateFriendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateFriendCommand.m; path = Commands/Friends/CreateFriendCommand.m; sourceTree = "<group>"; };
+		C290B9D319E76B2D00F6C3B4 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendsViewController.h; path = Controllers/Friends/FriendsViewController.h; sourceTree = "<group>"; };
+		C290B9D419E76B2D00F6C3B4 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendsViewController.m; path = Controllers/Friends/FriendsViewController.m; sourceTree = "<group>"; };
+		C290B9DA19E7710300F6C3B4 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCell.h; path = Views/Friend/UserCell.h; sourceTree = "<group>"; };
+		C290B9DB19E7710300F6C3B4 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCell.m; path = Views/Friend/UserCell.m; sourceTree = "<group>"; };
+		C290B9DD19E77C6B00F6C3B4 /* CreateFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateFriendViewController.h; path = Controllers/Friends/CreateFriendViewController.h; sourceTree = "<group>"; };
+		C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateFriendViewController.m; path = Controllers/Friends/CreateFriendViewController.m; sourceTree = "<group>"; };
+		C290B9E319EE20A600F6C3B4 /* GetPotentialFriendsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPotentialFriendsCommand.h; path = Commands/Friends/GetPotentialFriendsCommand.h; sourceTree = "<group>"; };
+		C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetPotentialFriendsCommand.m; path = Commands/Friends/GetPotentialFriendsCommand.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -426,6 +444,7 @@
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				C290B9CB19E38BC500F6C3B4 /* Friends */,
 				C290B9C119DCD90700F6C3B4 /* Disclaimers */,
 				351036EA19705BC000AF5C39 /* Message */,
 				351036E6196EF55900AF5C39 /* Room */,
@@ -474,6 +493,7 @@
 		359FBA2B192327A100704F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C290B9D619E770AE00F6C3B4 /* Friend */,
 				35A8F8E01992564100D54383 /* Room */,
 				351036EE1981F89300AF5C39 /* Message */,
 				3504373A193DFAF800731968 /* Venues */,
@@ -645,6 +665,7 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C290B9D219E76B0C00F6C3B4 /* Friends */,
 				C2CBCD4A19AADACC00FAE2DE /* Settings */,
 				C2C6E5471936D61800DBEEE6 /* Shared */,
 				C29A6674192C4C29002421AF /* AccountCreation */,
@@ -745,6 +766,39 @@
 				C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */,
 			);
 			name = Disclaimers;
+			sourceTree = "<group>";
+		};
+		C290B9CB19E38BC500F6C3B4 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				C290B9CC19E38C0400F6C3B4 /* GetFriendsCommand.h */,
+				C290B9CD19E38C0400F6C3B4 /* GetFriendsCommand.m */,
+				C290B9CF19E4BC7700F6C3B4 /* CreateFriendCommand.h */,
+				C290B9D019E4BC7700F6C3B4 /* CreateFriendCommand.m */,
+				C290B9E319EE20A600F6C3B4 /* GetPotentialFriendsCommand.h */,
+				C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		C290B9D219E76B0C00F6C3B4 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				C290B9D319E76B2D00F6C3B4 /* FriendsViewController.h */,
+				C290B9D419E76B2D00F6C3B4 /* FriendsViewController.m */,
+				C290B9DD19E77C6B00F6C3B4 /* CreateFriendViewController.h */,
+				C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		C290B9D619E770AE00F6C3B4 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				C290B9DA19E7710300F6C3B4 /* UserCell.h */,
+				C290B9DB19E7710300F6C3B4 /* UserCell.m */,
+			);
+			name = Friend;
 			sourceTree = "<group>";
 		};
 		C29A6674192C4C29002421AF /* AccountCreation */ = {
@@ -1046,6 +1100,7 @@
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
+				C290B9CE19E38C0400F6C3B4 /* GetFriendsCommand.m in Sources */,
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */,
@@ -1055,8 +1110,10 @@
 				C2996C4E194A89940023D353 /* NSString+string.m in Sources */,
 				C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */,
 				351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */,
+				C290B9E519EE20A600F6C3B4 /* GetPotentialFriendsCommand.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
+				C290B9D119E4BC7700F6C3B4 /* CreateFriendCommand.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
 				3546E92319D64F2900A75E4C /* UIImage+Alpha.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
@@ -1087,7 +1144,9 @@
 				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,
 				C2BEC60C19BD5C0600DB6BCC /* UpdateProfileImageViewController.m in Sources */,
+				C290B9D519E76B2D00F6C3B4 /* FriendsViewController.m in Sources */,
 				C2CBCD5319AD6B0F00FAE2DE /* UpdateUserCommand.m in Sources */,
+				C290B9DF19E77C6B00F6C3B4 /* CreateFriendViewController.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
@@ -1119,6 +1178,7 @@
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				3500365B19DBC83500E69508 /* BZLocationManager.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
+				C290B9DC19E7710300F6C3B4 /* UserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

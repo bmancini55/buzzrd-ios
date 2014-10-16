@@ -171,3 +171,9 @@
 "location_error" = "Oops!";
 
 "location_error_message" = "We couldn't determine your location. Let's try again...";
+
+"Friends" = "Friends";
+
+"Select Friend" = "Select Friend";
+
+"Add Friend" = "Add Friend";

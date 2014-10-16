@@ -1,22 +1,21 @@
 //
-//  GetUsersCommand.m
+//  GetFriendsCommand.m
 //  Buzzrd
 //
-//  Created by Robert Beck on 7/1/14.
+//  Created by Robert Beck on 10/6/14.
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
-#import "GetUsersCommand.h"
+#import "GetFriendsCommand.h"
 #import "User.h"
 
-@implementation GetUsersCommand
+@implementation GetFriendsCommand
 
 - (id)init
 {
     self = [super init];
     if(self) {
-        self.completionNotificationName = @"getUsersComplete";
-        
+        self.completionNotificationName = @"getFriendsComplete";
     }
     return self;
 }
@@ -25,10 +24,9 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/users"];
+    NSString *url = [self getAPIUrl:@"/api/me/friends"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-    [parameters setValue:[NSString emptyStringIfNil:self.search] forKey:@"search"];
     
     [self httpGetWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }
