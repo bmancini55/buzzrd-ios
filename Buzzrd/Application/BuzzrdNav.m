@@ -16,6 +16,7 @@
 #import "CreateRoomViewController.h"
 #import "ThemeManager.h"
 #import "Room.h"
+#import "FriendsViewController.h"
 
 @implementation BuzzrdNav
 
@@ -34,12 +35,18 @@
     MyRoomsViewController *myRoomsViewController = [[MyRoomsViewController alloc]init];
     UINavigationController *myRoomsNavController = [[UINavigationController alloc] initWithRootViewController:myRoomsViewController];
 
+    FriendsViewController *friendsViewController = [[FriendsViewController alloc]init];
+    UINavigationController *friendsNavController = [[UINavigationController alloc] initWithRootViewController:friendsViewController];
+    
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController];
+    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController, friendsNavController];
     
     [[tabBarController.tabBar.items objectAtIndex:0] setTitle:[NSLocalizedString(@"nearby_rooms", nil) uppercaseString]];
+    
     [[tabBarController.tabBar.items objectAtIndex:1] setTitle:[NSLocalizedString(@"my_rooms", nil) uppercaseString]];
+    
+    [[tabBarController.tabBar.items objectAtIndex:2] setTitle:[NSLocalizedString(@"Friends", nil) uppercaseString]];
     
     [[UITabBar appearance] setBarTintColor:[ThemeManager getPrimaryColorDark]];
     [[UITabBar appearance] setTintColor:([ThemeManager getSecondaryColorMedium])];
