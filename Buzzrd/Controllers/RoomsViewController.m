@@ -22,8 +22,6 @@
 @interface RoomsViewController ()
 
 @property (strong, nonatomic) RetryAlert *alert;
-@property (strong, nonatomic) NSDate *lastLoad;
-
 
 @end
 
@@ -44,52 +42,24 @@
     
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(didTouchSettings)];
     self.navigationItem.leftBarButtonItem = settingsItem;
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self getUserLocation];
-}
-
-- (void) viewDidDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)appDidBecomeActive
-{
+    
     [self getUserLocation];
 }
 
 - (void)tableViewWillRefresh
 {
-    self.lastLoad = nil;
+    NSLog(@"%p:RoomsViewController:tableViewWillRefresh", self);
     [self getUserLocation];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)getUserLocation
 {
-    // prevent refresh control from hanging
-    [self.refreshControl endRefreshing];
-    
-    // Load the locations if we're authenticated and we haven't loaded, or it's been more than XX seconds since we last loaded
-    if ([BuzzrdAPI current].authorization.bearerToken != nil && self.lastLoad == nil) {
-        
-        // flag last load time as now
-        self.lastLoad = [NSDate dateWithTimeIntervalSinceNow:0];
-        
-        // build and dispatch the command
-        GetLocationCommand *command = [[GetLocationCommand alloc]init];
-        [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
-        [[BuzzrdAPI dispatch] enqueueCommand:command];
-    }
+    NSLog(@"%p:RoomsViewController:getUserLocation", self);
+    GetLocationCommand *command = [[GetLocationCommand alloc]init];
+    command.showActivityIndicator = true;
+    [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
 
 - (void)getLocationDidComplete:(NSNotification *)notif
