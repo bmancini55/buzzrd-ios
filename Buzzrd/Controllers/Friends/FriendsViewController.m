@@ -13,6 +13,7 @@
 #import "TableSectionHeader.h"
 #import "BuzzrdNav.h"
 #import "CreateFriendViewController.h"
+#import "RemoveFriendCommand.h"
 
 @interface FriendsViewController ()
 
@@ -36,6 +37,8 @@
     UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
     self.navigationItem.leftBarButtonItem = settingsItem;
     
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
     [self loadFriends];
 }
 
@@ -50,7 +53,7 @@
 - (void)friendsDidLoad:(NSNotification *) notif
 {
     GetFriendsCommand *command = notif.object;
-    NSArray *friends = command.results;
+    NSMutableArray *friends = command.results;
     
     [self.refreshControl endRefreshing];
     
@@ -61,7 +64,7 @@
 #pragma mark - Table view data source
 
 // Helper function that retrieves a data source for the specified table view
-- (NSArray *) dataSourceForTableView:(UITableView *)tableView
+- (NSMutableArray *) dataSourceForTableView:(UITableView *)tableView
 {
     return self.friends;
 }
@@ -73,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
     return dataSource.count;
 }
 
@@ -87,7 +90,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *dataSource =  [self dataSourceForTableView:tableView];
+    NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
     User *friend = dataSource[indexPath.row];
     
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friend_cell"];
@@ -113,7 +116,45 @@
     return headerView;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 #pragma mark - controller interaction methods
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        User *user = [self userForTableView:self.tableView indexPath:indexPath];
+        
+        RemoveFriendCommand *command = [[RemoveFriendCommand alloc]init];
+        command.user = user;
+        command.indexPath = indexPath;
+        [command listenForCompletion:self selector:@selector(removeFriendDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+// Helper function that retrieves a value for a tableview and index path
+- (User *)userForTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *dataSource = [self dataSourceForTableView:tableView];
+    return (User *)dataSource[indexPath.row];
+}
+
+- (void)removeFriendDidComplete:(NSNotification *)info
+{
+    RemoveFriendCommand *command = (RemoveFriendCommand *)info.object;
+    if(command.status == kSuccess) {
+        [self.friends removeObjectAtIndex:command.indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[command.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
+}
 
 - (void) settingsTouch
 {
@@ -140,7 +181,7 @@
     // insert friend
     NSMutableArray *temp = [NSMutableArray arrayWithArray:self.friends];
     [temp insertObject:friend atIndex:0];
-    self.friends = [NSArray arrayWithArray:temp];
+    self.friends = [NSMutableArray arrayWithArray:temp];
     
     // insert the friend cell
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];

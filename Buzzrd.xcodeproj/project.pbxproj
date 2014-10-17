@@ -102,6 +102,7 @@
 		C290B9DC19E7710300F6C3B4 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9DB19E7710300F6C3B4 /* UserCell.m */; };
 		C290B9DF19E77C6B00F6C3B4 /* CreateFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */; };
 		C290B9E519EE20A600F6C3B4 /* GetPotentialFriendsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */; };
+		C296B09E19F0AFFC00EF6B22 /* RemoveFriendCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C296B09D19F0AFFC00EF6B22 /* RemoveFriendCommand.m */; };
 		C2996C4E194A89940023D353 /* NSString+string.m in Sources */ = {isa = PBXBuildFile; fileRef = C2996C4D194A89940023D353 /* NSString+string.m */; };
 		C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = C29DDDE51980915C00EA922F /* UIView+UIView_Borders.m */; };
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
@@ -315,6 +316,8 @@
 		C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateFriendViewController.m; path = Controllers/Friends/CreateFriendViewController.m; sourceTree = "<group>"; };
 		C290B9E319EE20A600F6C3B4 /* GetPotentialFriendsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPotentialFriendsCommand.h; path = Commands/Friends/GetPotentialFriendsCommand.h; sourceTree = "<group>"; };
 		C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetPotentialFriendsCommand.m; path = Commands/Friends/GetPotentialFriendsCommand.m; sourceTree = "<group>"; };
+		C296B09C19F0AFFC00EF6B22 /* RemoveFriendCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoveFriendCommand.h; path = Commands/Friends/RemoveFriendCommand.h; sourceTree = "<group>"; };
+		C296B09D19F0AFFC00EF6B22 /* RemoveFriendCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoveFriendCommand.m; path = Commands/Friends/RemoveFriendCommand.m; sourceTree = "<group>"; };
 		C2996C4C194A89940023D353 /* NSString+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+string.h"; path = "Categories/NSString+string.h"; sourceTree = "<group>"; };
 		C2996C4D194A89940023D353 /* NSString+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+string.m"; path = "Categories/NSString+string.m"; sourceTree = "<group>"; };
 		C29DDDE41980915C00EA922F /* UIView+UIView_Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+UIView_Borders.h"; path = "Categories/UIView+UIView_Borders.h"; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 				C290B9D019E4BC7700F6C3B4 /* CreateFriendCommand.m */,
 				C290B9E319EE20A600F6C3B4 /* GetPotentialFriendsCommand.h */,
 				C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */,
+				C296B09C19F0AFFC00EF6B22 /* RemoveFriendCommand.h */,
+				C296B09D19F0AFFC00EF6B22 /* RemoveFriendCommand.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -1117,6 +1122,7 @@
 				351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */,
 				C290B9E519EE20A600F6C3B4 /* GetPotentialFriendsCommand.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
+				C296B09E19F0AFFC00EF6B22 /* RemoveFriendCommand.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				C290B9D119E4BC7700F6C3B4 /* CreateFriendCommand.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
