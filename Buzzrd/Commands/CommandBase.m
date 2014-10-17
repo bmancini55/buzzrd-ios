@@ -31,7 +31,8 @@
         
         self.allowRetry = true;
         
-        self.showActivityIndicator = true;
+        self.autoShowActivityIndicator = true;
+        self.autoHideActivityIndicator = true;
         
         self.activityIndicatorText = NSLocalizedString(@"Processing", nil);
     }
@@ -134,6 +135,9 @@
     newOp.status = self.status;
     newOp.results = self.results;
     newOp.error = self.error;
+    newOp.autoShowActivityIndicator = self.autoShowActivityIndicator;
+    newOp.autoHideActivityIndicator = self.autoHideActivityIndicator;
+    newOp.activityIndicatorText = self.activityIndicatorText;
     return newOp;
 }
 
@@ -167,7 +171,7 @@
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
 {
-    if (self.showActivityIndicator) { [self sendShowActivityNotification]; }
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
     
     [manager
      GET:url
@@ -184,7 +188,7 @@
              // call success callback
              self.status = kSuccess;
              self.results = parsedData;
-             if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionNotification];
          }
          else
@@ -192,7 +196,7 @@
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              self.status = kFailure;
              self.results = error;
-             if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionFailureNotification];
          }
          
@@ -201,7 +205,7 @@
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
-         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }
@@ -211,7 +215,7 @@
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
 {
-    if (self.showActivityIndicator) { [self sendShowActivityNotification]; }
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
     
     [manager
      POST:url
@@ -230,7 +234,7 @@
              // call success callback
              self.status = kSuccess;
              self.results = parsedData;
-             if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionNotification];
          }
          else
@@ -238,7 +242,7 @@
              NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
              self.status = kFailure;
              self.results = error;
-             if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionFailureNotification];
          }
          
@@ -247,7 +251,7 @@
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
-         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }

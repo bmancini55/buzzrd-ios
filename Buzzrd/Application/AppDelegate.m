@@ -14,7 +14,10 @@
 #import "BZLocationManager.h"
 #import "RootViewController.h"
 
-@implementation AppDelegate
+
+@implementation AppDelegate {
+    dispatch_queue_t _activityLock;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,6 +34,9 @@
     self.window.rootViewController = viewController;
     
     [self.window makeKeyAndVisible];
+    
+    // create activityLock
+    _activityLock = dispatch_queue_create("io.buzzrd.activitylock", nil);
     
     return YES;
 }
@@ -73,18 +79,40 @@
     NSDictionary *userInfo = notification.userInfo;
     NSString *title = userInfo[@"title"];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.loadingOverlay = [[LoadingOverlay alloc]init];
-        self.loadingOverlay.title = title;
-        [self.window addSubview:self.loadingOverlay];
-        [self.loadingOverlay show];
+    // queue these using GCD locking pattern
+    // http://www.raywenderlich.com/4295/multithreading-and-grand-central-dispatch-on-ios-for-beginners-tutorial
+    // http://www.fieryrobot.com/blog/2010/09/01/synchronization-using-grand-central-dispatch/
+    dispatch_async(_activityLock, ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            // create a new one if we have it
+            if(!self.loadingOverlay) {
+                self.loadingOverlay = [[LoadingOverlay alloc]init];
+                self.loadingOverlay.title = title;
+                [self.window addSubview:self.loadingOverlay];
+                [self.loadingOverlay show];
+            }
+            // otherwise change the title
+            // this will accommodate when commands don't have auto-hide enabled
+            // where we chain multiple commands together
+            else {
+                self.loadingOverlay.title = title;
+            }
+        });
     });
 }
 
 - (void) hideActivityView {
     
-    [self.loadingOverlay hide];
+    // queue these using GCD locking pattern
+    // http://www.raywenderlich.com/4295/multithreading-and-grand-central-dispatch-on-ios-for-beginners-tutorial
+    // http://www.fieryrobot.com/blog/2010/09/01/synchronization-using-grand-central-dispatch/
+    dispatch_async(_activityLock, ^{
+        dispatch_sync(dispatch_get_main_queue(), ^ {
+            [self.loadingOverlay hide];
+            self.loadingOverlay = nil;
+        });
+    });
 }
 
 - (void) showRetryAlertWithTitle:(NSString *)title

@@ -74,7 +74,7 @@
     NSLog(@"%p:GetLocationCommand:main", self);
     
     // start the acitivty indicator
-    if (self.showActivityIndicator) [self sendShowActivityNotification];
+    if (self.autoShowActivityIndicator) [self sendShowActivityNotification];
     
     // start timeout mechanism
     self.timerThread = [NSThread currentThread];
@@ -168,7 +168,7 @@
     NSLog(@"%p:GetLocationCommand:shutdownCommand", self);
     
     // Stop the acitivty indicator
-    if (self.showActivityIndicator) [self sendHideActivityNotification];
+    if (self.autoHideActivityIndicator) [self sendHideActivityNotification];
     
     // Clear out observers
     [[NSNotificationCenter defaultCenter] removeObserver:self];

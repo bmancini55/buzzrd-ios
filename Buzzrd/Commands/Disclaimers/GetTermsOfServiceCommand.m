@@ -30,7 +30,7 @@
     
     NSString *url = [self getAPIUrl:@"/api/disclaimers/termsofservice/"];
     
-    if (self.showActivityIndicator) { [self sendShowActivityNotification]; }
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
     
     [manager
      GET:url
@@ -40,14 +40,14 @@
          // call success callback
          self.status = kSuccess;
          self.results = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
         [self sendCompletionNotification];
      }
      failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
          self.status = kFailure;
          self.results = responseObject;
          self.error = [self handleError:error responseObject:responseObject];
-         if (self.showActivityIndicator) { [self sendHideActivityNotification]; }
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendNetworkErrorNotification];
      }];
 }

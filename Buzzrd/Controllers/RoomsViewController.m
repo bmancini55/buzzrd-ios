@@ -57,7 +57,7 @@
 {
     NSLog(@"%p:RoomsViewController:getUserLocation", self);
     GetLocationCommand *command = [[GetLocationCommand alloc]init];
-    command.showActivityIndicator = true;
+    command.autoHideActivityIndicator = false;  // disable hiding so it chains properly
     [command listenForCompletion:self selector:@selector(getLocationDidComplete:)];
     [[BuzzrdAPI dispatch] enqueueCommand:command];
 }

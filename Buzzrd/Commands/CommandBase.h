@@ -29,7 +29,8 @@
 
 @property (strong, nonatomic) NSError         *error;
 @property (nonatomic) bool                    allowRetry;
-@property (nonatomic) bool                    showActivityIndicator;
+@property (nonatomic) bool                    autoShowActivityIndicator;
+@property (nonatomic) bool                    autoHideActivityIndicator;
 @property (strong, nonatomic) NSString        *activityIndicatorText;
 
 // Returns the default error notification name
