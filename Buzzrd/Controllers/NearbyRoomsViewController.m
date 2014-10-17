@@ -24,9 +24,9 @@
 {
     [super loadView];
     
-    self.title = NSLocalizedString(@"nearby_rooms", nil);
-    self.navigationController.title = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
-    self.sectionHeaderTitle = [NSLocalizedString(@"nearby_rooms", nil) uppercaseString];
+    self.title = NSLocalizedString(@"nearby", nil);
+    self.navigationController.title = [NSLocalizedString(@"nearby", nil) uppercaseString];
+    self.sectionHeaderTitle = [NSLocalizedString(@"nearby", nil) uppercaseString];
     self.emptyNote = NSLocalizedString(@"nearbyrooms_empty_note", nil);
     
     UISearchBar *searchBar = [[UISearchBar alloc]init];
