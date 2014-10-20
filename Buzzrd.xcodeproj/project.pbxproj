@@ -36,6 +36,7 @@
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
+		3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
 		35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3619328A2400B615A4 /* BuzzrdNav.m */; };
@@ -191,6 +192,8 @@
 		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
 		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
 		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
+		3596A55419F4A20600180DF4 /* UpdateUserDeviceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateUserDeviceCommand.h; path = Commands/User/UpdateUserDeviceCommand.h; sourceTree = "<group>"; };
+		3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateUserDeviceCommand.m; path = Commands/User/UpdateUserDeviceCommand.m; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -842,6 +845,8 @@
 				C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */,
 				C2CBCD5119AD6B0F00FAE2DE /* UpdateUserCommand.h */,
 				C2CBCD5219AD6B0F00FAE2DE /* UpdateUserCommand.m */,
+				3596A55419F4A20600180DF4 /* UpdateUserDeviceCommand.h */,
+				3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1089,6 +1094,7 @@
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
 				C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */,
+				3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,

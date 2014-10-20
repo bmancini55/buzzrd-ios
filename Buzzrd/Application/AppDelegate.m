@@ -13,6 +13,7 @@
 #import "UIWindow+Helpers.h"
 #import "BZLocationManager.h"
 #import "RootViewController.h"
+#import "UpdateUserDeviceCommand.h"
 
 
 @implementation AppDelegate {
@@ -59,6 +60,10 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"AppDelegate:didRegisterForRemoteNotificationsWithDeviceToken");
     NSLog(@"  -> DeviceToken %@", deviceToken);
+    
+    UpdateUserDeviceCommand *command = [[UpdateUserDeviceCommand alloc]init];
+    command.deviceToken = deviceToken;
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
