@@ -256,6 +256,52 @@
      }];
 }
 
+- (void) httpPutWithManager:(AFHTTPSessionManager *)manager
+                         url:(NSString *)url
+                  parameters:(NSDictionary *)parameters
+                      parser:(SEL)parser;
+{
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
+    
+    [manager
+     PUT:url
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+         
+         NSHTTPURLResponse* response = (NSHTTPURLResponse*)task.response;
+         
+         if(response.statusCode == 200)
+         {
+             // execute parser selector
+             IMP imp = [self methodForSelector:parser];
+             id (*func)(id, SEL, id) = (void *)imp;
+             id parsedData = func(self, parser, responseObject);
+             
+             // call success callback
+             self.status = kSuccess;
+             self.results = parsedData;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionNotification];
+         }
+         else
+         {
+             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+             self.status = kFailure;
+             self.results = error;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionFailureNotification];
+         }
+         
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+         self.status = kFailure;
+         self.results = responseObject;
+         self.error = [self handleError:error responseObject:responseObject];
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+         [self sendNetworkErrorNotification];
+     }];
+}
+
 - (NSError *) handleError:(NSError *)error
            responseObject:(id)responseObject;
 {
