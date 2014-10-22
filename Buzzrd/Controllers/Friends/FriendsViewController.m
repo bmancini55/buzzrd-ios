@@ -93,10 +93,13 @@
     NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
     User *friend = dataSource[indexPath.row];
     
-    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friend_cell"];
+    static NSString *cellIdentifier = @"friend_cell";
+    
+    UserCell *cell = (UserCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
     if(cell == nil)
     {
-        cell = [[UserCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend_cell"];
+        cell = [[UserCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     [cell setUser:friend];
