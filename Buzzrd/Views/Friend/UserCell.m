@@ -10,6 +10,7 @@
 #import "ThemeManager.h"
 #import "ProfileImageView.h"
 #import "BuzzrdAPI.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface UserCell()
 
@@ -48,8 +49,8 @@
     self.nameLabel.textColor = [ThemeManager getPrimaryColorMedium];
     self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.nameLabel];
-    
-    self.profileImage = [[ProfileImageView alloc] init];
+
+    self.profileImage = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
     self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.profileImage];
     
@@ -68,11 +69,11 @@
           @"name": self.nameLabel
         };
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-57-[username]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[username]" options:0 metrics:nil views:views]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(47)]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-57-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[name]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[username]-0-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-1-[username]-0-[name]" options:0 metrics:nil views:views]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[image(==47)]" options:0 metrics:nil views:views]];
         
     }
@@ -85,7 +86,13 @@
     _user = user;
     
     self.usernameLabel.text = user.username;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    
+    if ([user.firstName length] > 0) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    }
+    else {
+        self.nameLabel.text = user.lastName;
+    }
     
     [self configureImage:user];
     
@@ -95,22 +102,11 @@
 - (void) configureImage:(User *)user
 {
     if (user.profilePic != nil) {
-        
-        [self.profileImage loadImage:[NSString stringWithFormat:@"http://s3.amazonaws.com/buzzrd-dev/%@", user.profilePic]];
-        
-                self.profileImage.hidden = false;
-    } else {
-        // Use the anonymous buzzrd image
+        [self.profileImage loadImageFromUrl:[NSString stringWithFormat:@"http://s3.amazonaws.com/buzzrd-dev/%@", user.profilePic]];
     }
-    
-    
-    
-    //    if ([BuzzrdAPI current].profilePic != nil) {
-    //        profileImageView.image = [BuzzrdAPI current].profilePic;
-    //    }
-    //    else {
-    //        profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
-    //    }
+    else {
+        [self.profileImage loadImage:[UIImage imageNamed:@"no_profile_pic.png"]];
+    }
 }
 
 - (void)addBorder
@@ -131,9 +127,6 @@
 
 - (CGFloat)calculateHeight
 {
-//    CGFloat borderWidth = .5;
-//    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//    return contentHeight + borderWidth;
     return 55;
 }
 
