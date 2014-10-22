@@ -9,6 +9,7 @@
 #import "ProfileImageView.h"
 #import "AFHTTPSessionManager.h"
 #import "BuzzrdAPI.h"
+#import "UIImageView+WebCache.h"
 
 @interface ProfileImageView()
 
@@ -41,48 +42,23 @@
 }
 
 
--(void)loadImage:(NSString *)url
+-(void)loadImageFromUrl:(NSString *)url
 {
-    // verify we have a url
-    if(url == nil)
-        return;
-    
-    // check image cache and fetch from url if necessary
-    UIImage *image = [[ProfileImageView imageCache] objectForKey:url];
-    if(image == nil) {
-        [self fetchImage:url];
-    } else {
-        [self showImage:image];
-    }
-}
-
--(void)fetchImage:(NSString *)url
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    if([[BuzzrdAPI current] authorization] != nil)
-    {
-        NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
-        [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
+    // remove view if it already exists
+    if(imageView != nil) {
+        [imageView removeFromSuperview];
     }
     
-    manager.responseSerializer = [AFImageResponseSerializer serializer];
-    [manager GET:url
-      parameters:nil
-         success:^(NSURLSessionDataTask *task, id responseObject) {
-             
-             // add to cache
-             [[ProfileImageView imageCache] setObject:responseObject forKey:url];
-             
-             // show image
-             [self showImage:(UIImage *)responseObject];
-         }
-         failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
-             NSLog(@"Failed to load: %@", error);
-         }];
+    // add the new view
+    imageView = [[UIImageView alloc] init];
+    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageCacheMemoryOnly];
+    
+    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSubview:imageView];
 }
 
--(void)showImage:(UIImage *)image
+-(void)loadImage:(UIImage *)image
 {
     // remove view if it already exists
     if(imageView != nil) {

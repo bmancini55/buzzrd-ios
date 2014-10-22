@@ -10,6 +10,8 @@
 
 @interface ProfileImageView : UIView
 
--(void)loadImage:(NSString *)url;
+-(void)loadImageFromUrl:(NSString *)url;
+
+-(void)loadImage:(UIImage *)image;
 
 @end
