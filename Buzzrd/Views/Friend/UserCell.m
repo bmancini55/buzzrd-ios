@@ -8,12 +8,16 @@
 
 #import "UserCell.h"
 #import "ThemeManager.h"
+#import "ProfileImageView.h"
+#import "BuzzrdAPI.h"
 
 @interface UserCell()
 
 @property (nonatomic) bool hasConstraints;
 
+@property (strong, nonatomic) UILabel *usernameLabel;
 @property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) ProfileImageView *profileImage;
 @property (strong, nonatomic) CALayer *bottomBorder;
 
 @end
@@ -32,12 +36,22 @@
 - (void) configure
 {
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
+
+    self.usernameLabel = [[UILabel alloc]init];
+    self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:21.0f];
+    self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
+    self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.usernameLabel];
     
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:17.0f];
-    self.nameLabel.textColor = [ThemeManager getPrimaryColorDark];
+    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:16.0f];
+    self.nameLabel.textColor = [ThemeManager getPrimaryColorMedium];
     self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.nameLabel];
+    
+    self.profileImage = [[ProfileImageView alloc] init];
+    self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.profileImage];
     
     [self updateConstraints];
 }
@@ -49,11 +63,18 @@
         
         NSDictionary *views =
         @{
-          @"title": self.nameLabel
-          };
+          @"username": self.usernameLabel,
+          @"image": self.profileImage,
+          @"name": self.nameLabel
+        };
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[title]-6-|" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[title]-6-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-57-[username]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(47)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-57-[name]" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-3-[username]-0-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[image(==47)]" options:0 metrics:nil views:views]];
+        
     }
     
     [super updateConstraints];
@@ -63,9 +84,33 @@
 {
     _user = user;
     
-    self.nameLabel.text = user.firstName;
+    self.usernameLabel.text = user.username;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    
+    [self configureImage:user];
     
     [self addBorder];
+}
+
+- (void) configureImage:(User *)user
+{
+    if (user.profilePic != nil) {
+        
+        [self.profileImage loadImage:[NSString stringWithFormat:@"http://s3.amazonaws.com/buzzrd-dev/%@", user.profilePic]];
+        
+                self.profileImage.hidden = false;
+    } else {
+        // Use the anonymous buzzrd image
+    }
+    
+    
+    
+    //    if ([BuzzrdAPI current].profilePic != nil) {
+    //        profileImageView.image = [BuzzrdAPI current].profilePic;
+    //    }
+    //    else {
+    //        profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
+    //    }
 }
 
 - (void)addBorder
@@ -86,10 +131,10 @@
 
 - (CGFloat)calculateHeight
 {
-    CGFloat borderWidth = .5;
-    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//    CGFloat borderWidth = .5;
+//    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 //    return contentHeight + borderWidth;
-    return 30;
-}  // Configure the view for the selected state
+    return 55;
+}
 
 @end
