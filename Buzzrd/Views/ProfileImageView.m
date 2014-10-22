@@ -47,8 +47,11 @@
     if(url == nil)
         return;
     
+    NSData *test = [[ProfileImageView imageCache] objectForKey:url];
+    UIImage *image = [[UIImage alloc] initWithData: test];
+
     // check image cache and fetch from url if necessary
-    UIImage *image = [[ProfileImageView imageCache] objectForKey:url];
+//    UIImage *image = [UIImage imageWithData:[[ProfileImageView imageCache] objectForKey:url]];
     if(image == nil) {
         [self fetchImage:url];
     } else {
@@ -60,25 +63,25 @@
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    if([[BuzzrdAPI current] authorization] != nil)
-    {
-        NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
-        [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
-    }
     
     manager.responseSerializer = [AFImageResponseSerializer serializer];
     [manager GET:url
       parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
+
+             UIImage *image = (UIImage *) responseObject;
+            
+             NSData *imgData = UIImagePNGRepresentation(image);
              
              // add to cache
-             [[ProfileImageView imageCache] setObject:responseObject forKey:url];
+             [[ProfileImageView imageCache] setValue:imgData forKey:url];
              
              // show image
-             [self showImage:(UIImage *)responseObject];
+             [self showImage:image];
          }
          failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
              NSLog(@"Failed to load: %@", error);
+             [self showImage:[UIImage imageNamed:@"no_profile_pic.png"]];
          }];
 }
 
@@ -90,7 +93,11 @@
     }
     
     // add the new view
-    imageView = [[UIImageView alloc]initWithImage:(UIImage *)image];
+//    imageView = [[UIImageView alloc]initWithImage:(UIImage *)image];
+    
+    
+        imageView = [[UIImageView alloc]initWithImage:image];
+    
     imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self addSubview:imageView];
 }
