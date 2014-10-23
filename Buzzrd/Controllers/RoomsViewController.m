@@ -156,7 +156,7 @@
     if ([notif.object isKindOfClass:[GetNearbyRoomsCommand class]])
     {
         GetNearbyRoomsCommand *command = notif.object;
-        NSArray *rooms = command.results;
+        NSMutableArray *rooms = command.results;
         
         [self.refreshControl endRefreshing];
         
@@ -171,7 +171,7 @@
     else if ([notif.object isKindOfClass:[GetMyRoomsCommand class]])
     {
         GetMyRoomsCommand *command = notif.object;
-        NSArray *rooms = command.results;
+        NSMutableArray *rooms = command.results;
         
         [self.refreshControl endRefreshing];
         
@@ -201,7 +201,7 @@
 #pragma mark - Table view data source
 
 // Helper function that retrieves a data source for the specified table view
-- (NSArray *) dataSourceForTableView:(UITableView *)tableView
+- (NSMutableArray *) dataSourceForTableView:(UITableView *)tableView
 {
     if(tableView == self.searchDisplayController.searchResultsTableView) {
         return self.searchResults;
@@ -297,9 +297,7 @@
 -(void)addRoomToTable:(Room *)room
 {
     // insert room
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.rooms];
-    [temp insertObject:room atIndex:0];
-    self.rooms = [NSArray arrayWithArray:temp];
+    [self.rooms insertObject:room atIndex:0];
 
     // insert the room cell
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];

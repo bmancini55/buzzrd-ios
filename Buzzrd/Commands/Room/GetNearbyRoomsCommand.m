@@ -42,7 +42,7 @@
         Room* instance = [[Room alloc]initWithJson:dic];
         [temp addObject:instance];
     }
-    return [NSArray arrayWithArray:temp];
+    return temp;
 }
 
 @end

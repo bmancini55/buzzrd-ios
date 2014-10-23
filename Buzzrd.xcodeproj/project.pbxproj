@@ -92,6 +92,7 @@
 		C213C04F19A19A8600B41A2A /* DisclaimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C04E19A19A8600B41A2A /* DisclaimerView.m */; };
 		C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */; };
 		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
+		C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */; };
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
@@ -295,6 +296,8 @@
 		C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsOfServiceViewController.m; path = Controllers/AccountCreation/TermsOfServiceViewController.m; sourceTree = "<group>"; };
 		C213C05319A2EED300B41A2A /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/AccountCreation/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/AccountCreation/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		C261DDB919F88D7300726576 /* RemoveRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoveRoomCommand.h; path = Commands/Room/RemoveRoomCommand.h; sourceTree = "<group>"; };
+		C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoveRoomCommand.m; path = Commands/Room/RemoveRoomCommand.m; sourceTree = "<group>"; };
 		C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTermsOfServiceCommand.h; path = Commands/Disclaimers/GetTermsOfServiceCommand.h; sourceTree = "<group>"; };
 		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
 		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				350AB5AC19C7BDA90060D3C7 /* GetNearbyRoomsCommand.m */,
 				C2BEC62219CA7A0D00DB6BCC /* GetMyRoomsCommand.h */,
 				C2BEC62319CA7A0D00DB6BCC /* GetMyRoomsCommand.m */,
+				C261DDB919F88D7300726576 /* RemoveRoomCommand.h */,
+				C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -1146,6 +1151,7 @@
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
+				C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
 				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,
