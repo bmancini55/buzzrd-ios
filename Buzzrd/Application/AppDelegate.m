@@ -71,6 +71,16 @@
     NSLog(@"  -> Error %@", error);
 }
 
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"AppDelegate:didReceiveRemoteNotification");
+    
+    // update the badge count
+    NSDictionary *aps = userInfo[@"aps"];
+    int badgeCount = (int)[aps[@"badge"] integerValue];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+}
+
 - (void)initializeCommandDispatchListeners {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                             selector:@selector(networkError:)
