@@ -13,11 +13,11 @@
 @interface RoomsViewController : BaseTableViewController
 
 @property (strong, nonatomic) NSString *emptyNote;
-@property (strong, nonatomic) NSArray *rooms;
+@property (strong, nonatomic) NSMutableArray *rooms;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) NSString *sectionHeaderTitle;
 
-@property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 
 - (void)loadRoomsWithSearch:(NSString *)search;
 
