@@ -388,6 +388,13 @@
     self.rightBar.userCount = users;
 }
 
+- (void)receiveClearBadgeCount:(long)clearCount
+{
+    NSLog(@"receiveClearBadgeCount: %lu", clearCount);
+    long currentBadgeCount = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+    long newBadgeCount = MAX(currentBadgeCount - clearCount, 0);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:newBadgeCount];
+}
 
 #pragma mark - SocketIODelegate
 
@@ -421,10 +428,14 @@
         [self receiveLeave:(uint)[packet.args[0] unsignedIntegerValue]];
     }
     
+    else if([packet.name isEqualToString:@"clearbadgecount"]) {
+        long clearCount = [packet.args[0] longValue];
+        [self receiveClearBadgeCount:clearCount];
+    }
+    
     else if([packet.name isEqualToString:@"authenticate"]) {
         [self.socket sendEvent:@"join" withData:self.room.id];
     }
-        
 }
 
 @end
