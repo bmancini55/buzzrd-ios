@@ -151,5 +151,16 @@
     [defaults synchronize];
 }
 
+- (void)registerForRemoteNotifications {
+    NSLog(@"BuzzrdAPI:registerForRemoteNotifications");
+    
+    // register for notification -> move this after login so that it doesn't trigger request until user is logged in
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    bool currentRemoteRegistration = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+    NSLog(@"Current remote registration: %u", currentRemoteRegistration);
+}
+
 
 @end

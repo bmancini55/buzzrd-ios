@@ -22,8 +22,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self registerForRemoteNotifications];
-    
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
 
     [ThemeManager setTheme: defaultStyle];
@@ -42,17 +40,6 @@
     _activityLock = dispatch_queue_create("io.buzzrd.activitylock", nil);
     
     return YES;
-}
-
-- (void)registerForRemoteNotifications {
-    NSLog(@"AppDelegate:registerForRemoteNotifications");
-    
-    // register for notification -> move this after login so that it doesn't trigger request until user is logged in
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    bool currentRemoteRegistration = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
-    NSLog(@"Current remote registration: %u", currentRemoteRegistration);
 }
 
 
