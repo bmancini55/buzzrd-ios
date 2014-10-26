@@ -182,7 +182,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // No need to calculate these, lets just hardcode it
-    return 66.5;
+    return 66;
 }
 
 
