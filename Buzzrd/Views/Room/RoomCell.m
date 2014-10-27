@@ -173,7 +173,7 @@
     }
     
     // handle indicator
-    if(room.newMessages || true) {
+    if(room.newMessages) {
         [self.cornerIndicator setIndicatorColor:[[ThemeManager getTertiaryColorDark] colorWithAlphaComponent:0.75]];
         self.cornerIndicator.hidden = false;
     }
