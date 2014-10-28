@@ -93,6 +93,7 @@
 		C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05119A2E49E00B41A2A /* TermsOfServiceViewController.m */; };
 		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
 		C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */; };
+		C261DDBE19FB422E00726576 /* RoomActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDBD19FB422E00726576 /* RoomActionsViewController.m */; };
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
@@ -298,6 +299,8 @@
 		C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/AccountCreation/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		C261DDB919F88D7300726576 /* RemoveRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoveRoomCommand.h; path = Commands/Room/RemoveRoomCommand.h; sourceTree = "<group>"; };
 		C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoveRoomCommand.m; path = Commands/Room/RemoveRoomCommand.m; sourceTree = "<group>"; };
+		C261DDBC19FB422E00726576 /* RoomActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomActionsViewController.h; path = Controllers/RoomActionsViewController.h; sourceTree = "<group>"; };
+		C261DDBD19FB422E00726576 /* RoomActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomActionsViewController.m; path = Controllers/RoomActionsViewController.m; sourceTree = "<group>"; };
 		C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTermsOfServiceCommand.h; path = Commands/Disclaimers/GetTermsOfServiceCommand.h; sourceTree = "<group>"; };
 		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
 		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
@@ -696,6 +699,8 @@
 				C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */,
 				C290B9C819DE3EA400F6C3B4 /* RootViewController.h */,
 				C290B9C919DE3EA400F6C3B4 /* RootViewController.m */,
+				C261DDBC19FB422E00726576 /* RoomActionsViewController.h */,
+				C261DDBD19FB422E00726576 /* RoomActionsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1161,6 +1166,7 @@
 				C290B9DF19E77C6B00F6C3B4 /* CreateFriendViewController.m in Sources */,
 				C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */,
 				35AD837D1960B4590035214F /* GetLocationCommand.m in Sources */,
+				C261DDBE19FB422E00726576 /* RoomActionsViewController.m in Sources */,
 				35A46FA019328A9F00B615A4 /* LoginViewController.m in Sources */,
 				C2C6E54A1936D65E00DBEEE6 /* GenderPickerTableViewController.m in Sources */,
 				35A46FA419328A9F00B615A4 /* SettingsViewController.m in Sources */,

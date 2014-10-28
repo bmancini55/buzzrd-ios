@@ -183,6 +183,9 @@
 - (void) joinRoom:(Room *)room
 {
     UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
+
+    viewController.hidesBottomBarWhenPushed = true;
+    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

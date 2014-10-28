@@ -10,6 +10,7 @@
 #import "NSString+string.h"
 #import "UIView+UIView_Borders.h"
 #import "RetryAlert.h"
+#import "MMDrawerController.h"
 
 @interface BaseTableViewController : UITableViewController
 
@@ -18,6 +19,10 @@
 #define CELL_PADDING 5.f
 
 @property (strong, nonatomic) RetryAlert *retryAlert;
+
+@property (nonatomic, assign) BOOL isDrawerTransitioning;
+
+-(MMDrawerController*)drawerController;
 
 - (void) showRetryAlertWithTitle:(NSString *)title
                          message:(NSString *)message

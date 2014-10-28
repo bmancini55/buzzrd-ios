@@ -14,6 +14,17 @@
 
 @implementation BaseTableViewController
 
+-(MMDrawerController*)drawerController{
+    UIViewController *parentViewController = self.parentViewController;
+    while (parentViewController != nil) {
+        if([parentViewController isKindOfClass:[MMDrawerController class]]){
+            return (MMDrawerController *)parentViewController;
+        }
+        parentViewController = parentViewController.parentViewController;
+    }
+    return nil;
+}
+
 -(id)init
 {
     return [self initWithStyle:UITableViewStylePlain];

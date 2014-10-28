@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "RetryAlert.h"
+#import "MMDrawerController.h"
 
 @interface BaseViewController : UIViewController
 
 @property (strong, nonatomic) RetryAlert *retryAlert;
+
+@property (nonatomic, assign) BOOL isDrawerTransitioning;
+
+-(MMDrawerController*)drawerController;
 
 - (void) showActivityView;
 
