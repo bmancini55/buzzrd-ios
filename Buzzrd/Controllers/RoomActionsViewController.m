@@ -8,6 +8,9 @@
 
 #import "RoomActionsViewController.h"
 #import "ThemeManager.h"
+#import "TableSectionHeader.h"
+#import "FriendsViewController.h"
+#import "RoomViewController.h"
 
 @interface RoomActionsViewController ()
 
@@ -26,11 +29,19 @@
     
     [self.view setBackgroundColor: [ThemeManager getPrimaryColorLight]];
     
-    self.title = NSLocalizedString(@"Blah Blah Blah", nil);
-    
     // Remove the extra row separators
     self.tableView.tableFooterView = [[UIView alloc] init];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    MMDrawerController *drawerController = (MMDrawerController *) self.parentViewController.parentViewController;
+    
+    [drawerController setMaximumRightDrawerWidth: 200.0];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -59,17 +70,22 @@
         if(indexPath.section == 0) {
             switch (indexPath.row ) {
                 case 0: {
-                    cell.textLabel.text = NSLocalizedString(@"Update Profile", nil);
-                    
+                    cell.textLabel.text = NSLocalizedString(@"Room Details", nil);
                     break ;
                 }
                 case 1: {
-                    cell.textLabel.text = NSLocalizedString(@"Buzzrd Disclaimers", nil);
-                    
+                    cell.textLabel.text = NSLocalizedString(@"Invite Friends", nil);
                     break ;
                 }
                 case 2: {
-                    cell.textLabel.text = NSLocalizedString(@"Log Out", nil);
+                    cell.textLabel.text = NSLocalizedString(@"Notifications", nil);
+                    
+                    UISwitch *notificationsSwitch = [[UISwitch alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
+                    
+                    [notificationsSwitch addTarget: self action: @selector(switchChange:) forControlEvents: UIControlEventValueChanged];
+                    
+                    cell.accessoryView = notificationsSwitch;
+                    
                     break ;
                 }
             }
@@ -81,13 +97,65 @@
     return cell;
 }
 
+- (void)switchChange:(id)sender{
+    if([sender isOn]){
+        // Execute any code when the switch is ON
+        NSLog(@"Switch is ON");
+    } else{
+        // Execute any code when the switch is OFF
+        NSLog(@"Switch is OFF");
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0;
+    return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    CGRect frame = CGRectMake(0,
+                              0,
+                              tableView.frame.size.width,
+                              [self tableView:tableView heightForHeaderInSection:section]);
+    TableSectionHeader *headerView = [[TableSectionHeader alloc]initWithFrame:frame];
+    switch (section)
+    {
+        case 0:
+            headerView.titleText = [NSLocalizedString(@"Room Actions", nil) uppercaseString];
+            break;
+        default:
+            headerView.titleText = nil;
+            break;
+    }
+    
+    return headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    // 03 is the disclaimer cell
+    if ([cell.reuseIdentifier isEqual: @"00"])
+    {
+        // Room Details Controller
+    }
+    // 01 is the disclaimer cell
+    else if ([cell.reuseIdentifier isEqual: @"01"])
+    {
+        MMDrawerController *drawerController = (MMDrawerController *) self.parentViewController.parentViewController;
+        
+        FriendsViewController *friendsViewController = [[FriendsViewController alloc] init];
+        
+        [drawerController setMaximumRightDrawerWidth: self.parentViewController.parentViewController.view.frame.size.width];
+        
+        [self.navigationController pushViewController:friendsViewController animated:YES];
+    }
 }
 
 @end

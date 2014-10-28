@@ -363,9 +363,11 @@
         }
     }];
     
-    UIViewController * rightSideDrawerViewController = [[RoomActionsViewController alloc]init];
+    RoomActionsViewController * rightSideDrawerViewController = [[RoomActionsViewController alloc]init];
     
-    self.drawerController.rightDrawerViewController = rightSideDrawerViewController;
+    UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:rightSideDrawerViewController];
+
+    self.drawerController.rightDrawerViewController = menuNavigationController;
 }
 
 - (void) removeRightDrawerMenu
@@ -382,6 +384,11 @@
 
 -(void)rightDrawerButtonPress:(id)sender
 {
+    [self toggleRightDrawerMenu];
+}
+
+- (void) toggleRightDrawerMenu
+{    
     self.isDrawerTransitioning = true;
     
     [self.drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
@@ -392,7 +399,6 @@
         }
     }];
 }
-
 
 #pragma mark - Socket Interactions
 
