@@ -16,6 +16,8 @@
 #import "BuzzrdBackgroundView.h"
 #import "UITableView+ScrollHelpers.h"
 #import "KeyboardBarTableView.h"
+#import "MMDrawerBarButtonItem.h"
+#import "RoomActionsViewController.h"
 
 @interface RoomViewController ()
 
@@ -42,10 +44,7 @@
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     [self.tableView becomeFirstResponder];
     
-    // Add the info for the right bar menu
-    self.rightBar = [[UserCountBarButton alloc]initWithFrame:CGRectMake(0, 0, 50, self.navigationController.navigationBar.frame.size.height)];
-    [self.rightBar setUserCount:(uint)self.room.userCount];
-    self.navigationItem .rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBar];
+    [self initializeRightDrawerButton];
     
     // Dismiss the keyboard be recognizing tab gesture
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -67,12 +66,21 @@
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
+    
+    [self initializeRightDrawerMenu];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self removeRightDrawerMenu];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
+
     // remove notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillChangeFrameNotification
@@ -122,26 +130,31 @@
 // Scrolls the table by an appropriate amount
 -(void)keyboardWillChange:(NSNotification *)notification
 {
-    CGRect beginFrame = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect endFrame =  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat delta = (endFrame.origin.y - beginFrame.origin.y);
-    NSLog(@"Keyboard YDelta %f -> B: %@, E: %@", delta, NSStringFromCGRect(beginFrame), NSStringFromCGRect(endFrame));
     
-    if(self.tableView.scrolledToBottom && fabs(delta) > 0.0) {
+    dispatch_after(1, dispatch_get_main_queue(), ^{
+        CGRect beginFrame = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        CGRect endFrame =  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat delta = (endFrame.origin.y - beginFrame.origin.y);
+        NSLog(@"Keyboard YDelta %f -> B: %@, E: %@", delta, NSStringFromCGRect(beginFrame), NSStringFromCGRect(endFrame));
         
-        NSTimeInterval duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
-        UIViewAnimationOptions options = (curve << 16) | UIViewAnimationOptionBeginFromCurrentState;
-
-        [UIView animateWithDuration:duration delay:0 options:options animations:^{
+        if(self.tableView.scrolledToBottom && fabs(delta) > 0.0) {
             
-            // Make the tableview scroll opposite the change in keyboard offset.
-            // This causes the scroll position to match the change in table size 1 for 1
-            // since the animation is the same as the keyboard expansion
-            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y - delta);
+            NSTimeInterval duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+            UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+            UIViewAnimationOptions options = (curve << 16) | UIViewAnimationOptionBeginFromCurrentState;
             
-        } completion:nil];
-    }
+            [UIView animateWithDuration:duration delay:0 options:options animations:^{
+                
+                if (self.isDrawerTransitioning == false)
+                {
+                    // Make the tableview scroll opposite the change in keyboard offset.
+                    // This causes the scroll position to match the change in table size 1 for 1
+                    // since the animation is the same as the keyboard expansion
+                    self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y - delta);
+                }
+            } completion:nil];
+        }
+    });
 }
 
 
@@ -319,6 +332,65 @@
            [(KeyboardBarView *)self.tableView.inputAccessoryView clearText];
         }
     }
+}
+
+
+#pragma mark - Drawer Interactions
+
+- (void) initializeRightDrawerMenu
+{
+    // Hide the text input area when the drawer is visible
+    [self.drawerController setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+        
+        self.isDrawerTransitioning = true;
+        
+        if(drawerController.openSide == MMDrawerSideNone)
+        {
+            [self.tableView.inputAccessoryView setHidden:YES];
+            [self.tableView.inputAccessoryView setUserInteractionEnabled:NO];
+        }
+    }];
+    
+    // Show the text input area when the drawer is hidden
+    [self.drawerController setGestureCompletionBlock:^(MMDrawerController *drawerController, UIGestureRecognizer *gesture) {
+
+        self.isDrawerTransitioning = false;
+        
+        if (drawerController.openSide == MMDrawerSideNone)
+        {
+            [self.tableView.inputAccessoryView setHidden:NO];
+            [self.tableView.inputAccessoryView setUserInteractionEnabled:YES];
+        }
+    }];
+    
+    UIViewController * rightSideDrawerViewController = [[RoomActionsViewController alloc]init];
+    
+    self.drawerController.rightDrawerViewController = rightSideDrawerViewController;
+}
+
+- (void) removeRightDrawerMenu
+{
+    self.drawerController.rightDrawerViewController = nil;
+}
+
+- (void) initializeRightDrawerButton
+{
+    MMDrawerBarButtonItem * rightDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(rightDrawerButtonPress:)];
+    
+    self.navigationItem.rightBarButtonItem = rightDrawerButton;
+}
+
+-(void)rightDrawerButtonPress:(id)sender
+{
+    self.isDrawerTransitioning = true;
+    
+    [self.drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
+        if(self.drawerController.openSide == MMDrawerSideNone)
+        {
+            [self.tableView.inputAccessoryView setHidden:NO];
+            [self.tableView.inputAccessoryView setUserInteractionEnabled:YES];
+        }
+    }];
 }
 
 

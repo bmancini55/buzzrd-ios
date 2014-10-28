@@ -18,6 +18,17 @@
 
 @implementation BaseViewController
 
+-(MMDrawerController*)drawerController{
+    UIViewController *parentViewController = self.parentViewController;
+    while (parentViewController != nil) {
+        if([parentViewController isKindOfClass:[MMDrawerController class]]){
+            return (MMDrawerController *)parentViewController;
+        }
+        parentViewController = parentViewController.parentViewController;
+    }
+    return nil;
+}
+
 -(void)loadView
 {
     [super loadView];

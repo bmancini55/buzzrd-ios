@@ -17,8 +17,6 @@
 
 @interface BuzzrdNav : NSObject
 
-+(UIViewController *) createLoginViewController;
-+(UIViewController *) createHomeViewController;
 +(UIViewController *) createSettingsController;
 +(UIViewController *) createRoomViewController:(Room *)room;
 +(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback;
