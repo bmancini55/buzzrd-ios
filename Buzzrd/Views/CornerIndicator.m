@@ -25,7 +25,7 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, self.indicatorColor.CGColor);
-    NSLog(@"%@", NSStringFromCGRect(rect));
+
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, nil, 0, 0);
     CGPathAddLineToPoint(path, nil, 10, 0);
