@@ -27,6 +27,14 @@
 
 @implementation RoomsViewController
 
+- (id)init {
+    self = [super init];
+    if(self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:@"clearBadgeNotification" object:nil];
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -151,7 +159,22 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-
+- (void) didReceiveClearBadgeNotification:(NSNotification*)notification {
+    NSString *roomId = notification.userInfo[@"roomId"];
+    
+    // declare iterator that will clear the badge
+    void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+        Room *room = (Room *)object;
+        if([room.id isEqualToString:roomId]) {
+            room.newMessages = false;
+            [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+        }
+    };
+    
+    // clear the badges
+    [self.rooms enumerateObjectsUsingBlock:clearBadge];
+    [self.searchResults enumerateObjectsUsingBlock:clearBadge];
+}
 
 
 #pragma mark - Table view data source
@@ -277,6 +300,11 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView reloadRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView beginUpdates];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
+}
 
 
 

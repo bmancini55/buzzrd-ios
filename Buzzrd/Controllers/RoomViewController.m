@@ -431,6 +431,9 @@
     else if([packet.name isEqualToString:@"clearbadgecount"]) {
         long clearCount = [packet.args[0] longValue];
         [self receiveClearBadgeCount:clearCount];
+        
+        NSDictionary *userInfo =  @{ @"roomId" : self.room.id };
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBadgeNotification" object:self userInfo:userInfo];
     }
     
     else if([packet.name isEqualToString:@"authenticate"]) {
