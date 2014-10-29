@@ -9,7 +9,7 @@
 #import "RoomActionsViewController.h"
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
-#import "FriendsViewController.h"
+#import "InviteFriendsViewController.h"
 #import "RoomViewController.h"
 
 @interface RoomActionsViewController ()
@@ -150,11 +150,13 @@
     {
         MMDrawerController *drawerController = (MMDrawerController *) self.parentViewController.parentViewController;
         
-        FriendsViewController *friendsViewController = [[FriendsViewController alloc] init];
+        InviteFriendsViewController *inviteFriendsViewController = [[InviteFriendsViewController alloc] init];
+        
+        inviteFriendsViewController.room = self.room;
         
         [drawerController setMaximumRightDrawerWidth: self.parentViewController.parentViewController.view.frame.size.width];
         
-        [self.navigationController pushViewController:friendsViewController animated:YES];
+        [self.navigationController pushViewController:inviteFriendsViewController animated:YES];
     }
 }
 

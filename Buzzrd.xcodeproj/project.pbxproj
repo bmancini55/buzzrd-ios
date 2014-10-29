@@ -94,6 +94,10 @@
 		C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C213C05419A2EED300B41A2A /* PrivacyPolicyViewController.m */; };
 		C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */; };
 		C261DDBE19FB422E00726576 /* RoomActionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDBD19FB422E00726576 /* RoomActionsViewController.m */; };
+		C261DDC11A0064D000726576 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDC01A0064D000726576 /* InviteFriendsViewController.m */; };
+		C261DDC41A00763700726576 /* InviteFriendsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDC31A00763700726576 /* InviteFriendsCommand.m */; };
+		C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDD51A008F8B00726576 /* NSObject+Helpers.m */; };
+		C261DDD91A01225000726576 /* NSMutableDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDD81A01225000726576 /* NSMutableDictionary+Helpers.m */; };
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
@@ -301,6 +305,14 @@
 		C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoveRoomCommand.m; path = Commands/Room/RemoveRoomCommand.m; sourceTree = "<group>"; };
 		C261DDBC19FB422E00726576 /* RoomActionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomActionsViewController.h; path = Controllers/RoomActionsViewController.h; sourceTree = "<group>"; };
 		C261DDBD19FB422E00726576 /* RoomActionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomActionsViewController.m; path = Controllers/RoomActionsViewController.m; sourceTree = "<group>"; };
+		C261DDBF1A0064D000726576 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteFriendsViewController.h; path = Controllers/Friends/InviteFriendsViewController.h; sourceTree = "<group>"; };
+		C261DDC01A0064D000726576 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteFriendsViewController.m; path = Controllers/Friends/InviteFriendsViewController.m; sourceTree = "<group>"; };
+		C261DDC21A00763700726576 /* InviteFriendsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteFriendsCommand.h; path = Commands/Friends/InviteFriendsCommand.h; sourceTree = "<group>"; };
+		C261DDC31A00763700726576 /* InviteFriendsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteFriendsCommand.m; path = Commands/Friends/InviteFriendsCommand.m; sourceTree = "<group>"; };
+		C261DDD41A008F8B00726576 /* NSObject+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Helpers.h"; path = "Categories/NSObject+Helpers.h"; sourceTree = "<group>"; };
+		C261DDD51A008F8B00726576 /* NSObject+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Helpers.m"; path = "Categories/NSObject+Helpers.m"; sourceTree = "<group>"; };
+		C261DDD71A01225000726576 /* NSMutableDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+Helpers.h"; path = "Categories/NSMutableDictionary+Helpers.h"; sourceTree = "<group>"; };
+		C261DDD81A01225000726576 /* NSMutableDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Helpers.m"; path = "Categories/NSMutableDictionary+Helpers.m"; sourceTree = "<group>"; };
 		C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTermsOfServiceCommand.h; path = Commands/Disclaimers/GetTermsOfServiceCommand.h; sourceTree = "<group>"; };
 		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
 		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
@@ -792,6 +804,8 @@
 				C290B9E419EE20A600F6C3B4 /* GetPotentialFriendsCommand.m */,
 				C296B09C19F0AFFC00EF6B22 /* RemoveFriendCommand.h */,
 				C296B09D19F0AFFC00EF6B22 /* RemoveFriendCommand.m */,
+				C261DDC21A00763700726576 /* InviteFriendsCommand.h */,
+				C261DDC31A00763700726576 /* InviteFriendsCommand.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -803,6 +817,8 @@
 				C290B9D419E76B2D00F6C3B4 /* FriendsViewController.m */,
 				C290B9DD19E77C6B00F6C3B4 /* CreateFriendViewController.h */,
 				C290B9DE19E77C6B00F6C3B4 /* CreateFriendViewController.m */,
+				C261DDBF1A0064D000726576 /* InviteFriendsViewController.h */,
+				C261DDC01A0064D000726576 /* InviteFriendsViewController.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -878,6 +894,10 @@
 				350AB5A319B889DD0060D3C7 /* UITableView+ScrollHelpers.m */,
 				3546E92119D64F2900A75E4C /* UIImage+Alpha.h */,
 				3546E92219D64F2900A75E4C /* UIImage+Alpha.m */,
+				C261DDD41A008F8B00726576 /* NSObject+Helpers.h */,
+				C261DDD51A008F8B00726576 /* NSObject+Helpers.m */,
+				C261DDD71A01225000726576 /* NSMutableDictionary+Helpers.h */,
+				C261DDD81A01225000726576 /* NSMutableDictionary+Helpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1140,6 +1160,7 @@
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
 				C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */,
+				C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */,
 				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
@@ -1176,11 +1197,13 @@
 				C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */,
 				3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */,
 				35A46FE1193C079900B615A4 /* VenueCategory.m in Sources */,
+				C261DDC41A00763700726576 /* InviteFriendsCommand.m in Sources */,
 				35A46FBB19328ACC00B615A4 /* KeyboardBarView.m in Sources */,
 				C212FA8F194005D300D5514E /* BaseTheme.m in Sources */,
 				35A46F4B19328A4C00B615A4 /* User.m in Sources */,
 				35A46F4919328A4C00B615A4 /* Message.m in Sources */,
 				355F4713194CF4C500DF8388 /* CreateRoomViewController.m in Sources */,
+				C261DDD91A01225000726576 /* NSMutableDictionary+Helpers.m in Sources */,
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				35EB772619E18D72004B4EAD /* KeyboardBarTableView.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
@@ -1191,6 +1214,7 @@
 				35A46F4819328A4C00B615A4 /* Authorization.m in Sources */,
 				C2C6E556193811A600DBEEE6 /* ProfileImageViewController.m in Sources */,
 				C213C04C199DB0C800B41A2A /* AccessoryIndicatorView.m in Sources */,
+				C261DDC11A0064D000726576 /* InviteFriendsViewController.m in Sources */,
 				C2CBCD5019AAE26100FAE2DE /* UpdateProfileViewController.m in Sources */,
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
