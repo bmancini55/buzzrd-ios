@@ -36,6 +36,8 @@
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
+		357A653A1A0155F100DAFEDA /* DownloadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65371A0155F100DAFEDA /* DownloadImageCommand.m */; };
+		357A653B1A0155F100DAFEDA /* UploadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65391A0155F100DAFEDA /* UploadImageCommand.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
 		35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3419328A2400B615A4 /* BuzzrdAPI.m */; };
 		35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3619328A2400B615A4 /* BuzzrdNav.m */; };
@@ -101,7 +103,6 @@
 		C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDE71981EFFC00EA922F /* Forward_Arrow@2x.png */; };
 		C29DDDEC1982043000EA922F /* no_profile_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */; };
 		C2BEC60C19BD5C0600DB6BCC /* UpdateProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC60B19BD5C0600DB6BCC /* UpdateProfileImageViewController.m */; };
-		C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC60E19C12A3F00DB6BCC /* DownloadImageCommand.m */; };
 		C2BEC61B19CA695000DB6BCC /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */; };
 		C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC62019CA733700DB6BCC /* MyRoomsViewController.m */; };
 		C2BEC62419CA7A0D00DB6BCC /* GetMyRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BEC62319CA7A0D00DB6BCC /* GetMyRoomsCommand.m */; };
@@ -119,7 +120,6 @@
 		C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB31963B035006510D9 /* GetUsersCommand.m */; };
 		C2C97BB71963B0D6006510D9 /* CreateUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */; };
 		C2C97BBA1963B648006510D9 /* UpdateProfilePicCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */; };
-		C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */; };
 		C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C97BC0196B9963006510D9 /* LogoutCommand.m */; };
 		C2CBCD4D19AADAFB00FAE2DE /* DisclaimersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD4C19AADAFB00FAE2DE /* DisclaimersViewController.m */; };
 		C2CBCD5019AAE26100FAE2DE /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD4F19AAE26100FAE2DE /* UpdateProfileViewController.m */; };
@@ -191,6 +191,10 @@
 		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
 		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
 		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
+		357A65361A0155F100DAFEDA /* DownloadImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadImageCommand.h; path = Commands/Image/DownloadImageCommand.h; sourceTree = "<group>"; };
+		357A65371A0155F100DAFEDA /* DownloadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadImageCommand.m; path = Commands/Image/DownloadImageCommand.m; sourceTree = "<group>"; };
+		357A65381A0155F100DAFEDA /* UploadImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadImageCommand.h; path = Commands/Image/UploadImageCommand.h; sourceTree = "<group>"; };
+		357A65391A0155F100DAFEDA /* UploadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadImageCommand.m; path = Commands/Image/UploadImageCommand.m; sourceTree = "<group>"; };
 		35A46F3119328A2400B615A4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		35A46F3219328A2400B615A4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		35A46F3319328A2400B615A4 /* BuzzrdAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuzzrdAPI.h; path = Application/BuzzrdAPI.h; sourceTree = "<group>"; };
@@ -305,8 +309,6 @@
 		C29DDDEB1982043000EA922F /* no_profile_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_profile_pic@2x.png"; sourceTree = "<group>"; };
 		C2BEC60A19BD5C0600DB6BCC /* UpdateProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateProfileImageViewController.h; path = Controllers/Settings/UpdateProfileImageViewController.h; sourceTree = "<group>"; };
 		C2BEC60B19BD5C0600DB6BCC /* UpdateProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateProfileImageViewController.m; path = Controllers/Settings/UpdateProfileImageViewController.m; sourceTree = "<group>"; };
-		C2BEC60D19C12A3F00DB6BCC /* DownloadImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadImageCommand.h; path = Image/DownloadImageCommand.h; sourceTree = "<group>"; };
-		C2BEC60E19C12A3F00DB6BCC /* DownloadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadImageCommand.m; path = Image/DownloadImageCommand.m; sourceTree = "<group>"; };
 		C2BEC61919CA695000DB6BCC /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoomsViewController.h; path = Controllers/RoomsViewController.h; sourceTree = "<group>"; };
 		C2BEC61A19CA695000DB6BCC /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoomsViewController.m; path = Controllers/RoomsViewController.m; sourceTree = "<group>"; };
 		C2BEC61F19CA733700DB6BCC /* MyRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRoomsViewController.h; path = Controllers/MyRoomsViewController.h; sourceTree = "<group>"; };
@@ -339,8 +341,6 @@
 		C2C97BB61963B0D6006510D9 /* CreateUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateUserCommand.m; path = Commands/User/CreateUserCommand.m; sourceTree = "<group>"; };
 		C2C97BB81963B648006510D9 /* UpdateProfilePicCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateProfilePicCommand.h; path = Commands/User/UpdateProfilePicCommand.h; sourceTree = "<group>"; };
 		C2C97BB91963B648006510D9 /* UpdateProfilePicCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateProfilePicCommand.m; path = Commands/User/UpdateProfilePicCommand.m; sourceTree = "<group>"; };
-		C2C97BBC1963B6BA006510D9 /* UploadImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadImageCommand.h; path = Image/UploadImageCommand.h; sourceTree = "<group>"; };
-		C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadImageCommand.m; path = Image/UploadImageCommand.m; sourceTree = "<group>"; };
 		C2C97BBF196B9963006510D9 /* LogoutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoutCommand.h; path = Commands/Login/LogoutCommand.h; sourceTree = "<group>"; };
 		C2C97BC0196B9963006510D9 /* LogoutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoutCommand.m; path = Commands/Login/LogoutCommand.m; sourceTree = "<group>"; };
 		C2CBCD4B19AADAFB00FAE2DE /* DisclaimersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclaimersViewController.h; path = Controllers/Settings/DisclaimersViewController.h; sourceTree = "<group>"; };
@@ -849,10 +849,10 @@
 		C2C97BBB1963B69D006510D9 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				C2C97BBC1963B6BA006510D9 /* UploadImageCommand.h */,
-				C2C97BBD1963B6BA006510D9 /* UploadImageCommand.m */,
-				C2BEC60D19C12A3F00DB6BCC /* DownloadImageCommand.h */,
-				C2BEC60E19C12A3F00DB6BCC /* DownloadImageCommand.m */,
+				357A65361A0155F100DAFEDA /* DownloadImageCommand.h */,
+				357A65371A0155F100DAFEDA /* DownloadImageCommand.m */,
+				357A65381A0155F100DAFEDA /* UploadImageCommand.h */,
+				357A65391A0155F100DAFEDA /* UploadImageCommand.m */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -1060,18 +1060,17 @@
 				C2996C4E194A89940023D353 /* NSString+string.m in Sources */,
 				C2C97BB41963B035006510D9 /* GetUsersCommand.m in Sources */,
 				351036ED19705BF300AF5C39 /* GetMessagesForRoomCommand.m in Sources */,
+				357A653B1A0155F100DAFEDA /* UploadImageCommand.m in Sources */,
 				C2C6E5511936D73200DBEEE6 /* StaticData.m in Sources */,
 				C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */,
 				35A46F3E19328A3600B615A4 /* DateUtils.m in Sources */,
 				3546E92319D64F2900A75E4C /* UIImage+Alpha.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
-				C2C97BBE1963B6BA006510D9 /* UploadImageCommand.m in Sources */,
 				35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */,
 				35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
-				C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */,
 				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
@@ -1113,6 +1112,7 @@
 				350AB5AA19C7BA3E0060D3C7 /* NearbyRoomsViewController.m in Sources */,
 				35EB772619E18D72004B4EAD /* KeyboardBarTableView.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
+				357A653A1A0155F100DAFEDA /* DownloadImageCommand.m in Sources */,
 				C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,

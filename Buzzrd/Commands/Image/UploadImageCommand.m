@@ -7,6 +7,7 @@
 //
 
 #import "UploadImageCommand.h"
+#import "BuzzrdAPI.h"
 
 @implementation UploadImageCommand
 
@@ -26,6 +27,9 @@
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     [request addValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+
+    NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
+    [request addValue:authorization forHTTPHeaderField:@"Authorization"];
     
     NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession* session = [NSURLSession sessionWithConfiguration:config];

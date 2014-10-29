@@ -24,13 +24,12 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/users/updateProfilePic"];
+    NSString *url = [self getAPIUrl:@"/api/me/pic"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:self.iduser forKey:@"userId"];
     [parameters setObject:self.imageURI forKey:@"profilePic"];
     
-    [self httpPostWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
+    [self httpPutWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }
 
 - (id) parser:(id)rawData

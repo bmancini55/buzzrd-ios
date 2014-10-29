@@ -24,7 +24,7 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/users/current"];
+    NSString *url = [self getAPIUrl:@"/api/me"];
     
     [self httpGetWithManager:manager url:url parameters:nil parser:@selector(parser:)];
 }

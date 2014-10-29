@@ -71,6 +71,11 @@
                      parser:(SEL)parser;
 
 - (void) httpPostWithManager:(AFHTTPSessionManager *)manager
+                         url:(NSString *)url
+                  parameters:(NSDictionary *)parameters
+                      parser:(SEL)parser;
+
+- (void) httpPutWithManager:(AFHTTPSessionManager *)manager
                         url:(NSString *)url
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
