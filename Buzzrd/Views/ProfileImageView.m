@@ -67,6 +67,7 @@
     
     // add the new view
     imageView = [[UIImageView alloc]initWithImage:(UIImage *)image];
+    
     imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self addSubview:imageView];
 }
