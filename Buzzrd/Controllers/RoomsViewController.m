@@ -30,7 +30,7 @@
 - (id)init {
     self = [super init];
     if(self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:@"clearBadgeNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:BZRoomDidClearBadgeNotification object:nil];
     }
     return self;
 }
@@ -160,7 +160,7 @@
 }
 
 - (void) didReceiveClearBadgeNotification:(NSNotification*)notification {
-    NSString *roomId = notification.userInfo[@"roomId"];
+    NSString *roomId = notification.userInfo[BZRoomDidClearBadgeRoomKey];
     
     // declare iterator that will clear the badge
     void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {

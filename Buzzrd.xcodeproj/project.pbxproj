@@ -36,6 +36,7 @@
 		3561B6B5194C88BD00EF1654 /* RoomVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B4194C88BD00EF1654 /* RoomVenueViewController.m */; };
 		3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3561B6B7194C8C1500EF1654 /* VenueCell.m */; };
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
+		357A65351A01230900DAFEDA /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65341A01230900DAFEDA /* Constants.m */; };
 		3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */; };
 		3596A55919FA937400180DF4 /* CornerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55819FA937400180DF4 /* CornerIndicator.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
@@ -193,6 +194,8 @@
 		3561B6B6194C8C1500EF1654 /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueCell.h; path = Views/Venues/VenueCell.h; sourceTree = "<group>"; };
 		3561B6B7194C8C1500EF1654 /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueCell.m; path = Views/Venues/VenueCell.m; sourceTree = "<group>"; };
 		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
+		357A65331A01230900DAFEDA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Application/Constants.h; sourceTree = "<group>"; };
+		357A65341A01230900DAFEDA /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Application/Constants.m; sourceTree = "<group>"; };
 		3596A55419F4A20600180DF4 /* UpdateUserDeviceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateUserDeviceCommand.h; path = Commands/User/UpdateUserDeviceCommand.h; sourceTree = "<group>"; };
 		3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateUserDeviceCommand.m; path = Commands/User/UpdateUserDeviceCommand.m; sourceTree = "<group>"; };
 		3596A55719FA937400180DF4 /* CornerIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CornerIndicator.h; path = Views/CornerIndicator.h; sourceTree = "<group>"; };
@@ -529,6 +532,8 @@
 				3500365A19DBC83500E69508 /* BZLocationManager.m */,
 				353D6EC1195CE95D00AC1B62 /* CommandDispatcher.h */,
 				353D6EC2195CE95D00AC1B62 /* CommandDispatcher.m */,
+				357A65331A01230900DAFEDA /* Constants.h */,
+				357A65341A01230900DAFEDA /* Constants.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 				350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */,
 				353D6EC0195CE4C100AC1B62 /* CommandBase.m in Sources */,
 				C2C97BC1196B9963006510D9 /* LogoutCommand.m in Sources */,
+				357A65351A01230900DAFEDA /* Constants.m in Sources */,
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
 				C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */,
 				3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */,
