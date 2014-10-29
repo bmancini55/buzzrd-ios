@@ -105,6 +105,14 @@
 		C261DDC41A00763700726576 /* InviteFriendsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDC31A00763700726576 /* InviteFriendsCommand.m */; };
 		C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDD51A008F8B00726576 /* NSObject+Helpers.m */; };
 		C261DDD91A01225000726576 /* NSMutableDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDD81A01225000726576 /* NSMutableDictionary+Helpers.m */; };
+		C261DDDD1A0176FB00726576 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDDC1A0176FB00726576 /* NotificationsViewController.m */; };
+		C261DDE21A01789500726576 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDE11A01789500726576 /* Notification.m */; };
+		C261DDE61A017B5500726576 /* GetNotificationsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDE51A017B5500726576 /* GetNotificationsCommand.m */; };
+		C261DDE91A017EEA00726576 /* RemoveNotificationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDE81A017EEA00726576 /* RemoveNotificationCommand.m */; };
+		C261DDEC1A0191EB00726576 /* NotificationInvitation.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDEB1A0191EB00726576 /* NotificationInvitation.m */; };
+		C261DDEF1A01945500726576 /* NotificationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDEE1A01945500726576 /* NotificationFactory.m */; };
+		C261DDF21A0198C800726576 /* NotificationType.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDF11A0198C800726576 /* NotificationType.m */; };
+		C261DDF61A019AA800726576 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C261DDF51A019AA800726576 /* NotificationCell.m */; };
 		C290B9C419DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */; };
 		C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C619DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m */; };
 		C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C290B9C919DE3EA400F6C3B4 /* RootViewController.m */; };
@@ -332,6 +340,22 @@
 		C261DDD51A008F8B00726576 /* NSObject+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Helpers.m"; path = "Categories/NSObject+Helpers.m"; sourceTree = "<group>"; };
 		C261DDD71A01225000726576 /* NSMutableDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+Helpers.h"; path = "Categories/NSMutableDictionary+Helpers.h"; sourceTree = "<group>"; };
 		C261DDD81A01225000726576 /* NSMutableDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Helpers.m"; path = "Categories/NSMutableDictionary+Helpers.m"; sourceTree = "<group>"; };
+		C261DDDB1A0176FB00726576 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationsViewController.h; path = Controllers/Notifications/NotificationsViewController.h; sourceTree = "<group>"; };
+		C261DDDC1A0176FB00726576 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationsViewController.m; path = Controllers/Notifications/NotificationsViewController.m; sourceTree = "<group>"; };
+		C261DDE01A01789500726576 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
+		C261DDE11A01789500726576 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = Models/Notification.m; sourceTree = "<group>"; };
+		C261DDE41A017B5500726576 /* GetNotificationsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetNotificationsCommand.h; path = Commands/Notifications/GetNotificationsCommand.h; sourceTree = "<group>"; };
+		C261DDE51A017B5500726576 /* GetNotificationsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetNotificationsCommand.m; path = Commands/Notifications/GetNotificationsCommand.m; sourceTree = "<group>"; };
+		C261DDE71A017EEA00726576 /* RemoveNotificationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoveNotificationCommand.h; path = Commands/Notifications/RemoveNotificationCommand.h; sourceTree = "<group>"; };
+		C261DDE81A017EEA00726576 /* RemoveNotificationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoveNotificationCommand.m; path = Commands/Notifications/RemoveNotificationCommand.m; sourceTree = "<group>"; };
+		C261DDEA1A0191EB00726576 /* NotificationInvitation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationInvitation.h; path = Models/NotificationInvitation.h; sourceTree = "<group>"; };
+		C261DDEB1A0191EB00726576 /* NotificationInvitation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationInvitation.m; path = Models/NotificationInvitation.m; sourceTree = "<group>"; };
+		C261DDED1A01945500726576 /* NotificationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationFactory.h; path = Commands/Notifications/NotificationFactory.h; sourceTree = "<group>"; };
+		C261DDEE1A01945500726576 /* NotificationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationFactory.m; path = Commands/Notifications/NotificationFactory.m; sourceTree = "<group>"; };
+		C261DDF01A0198C800726576 /* NotificationType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationType.h; path = Models/NotificationType.h; sourceTree = "<group>"; };
+		C261DDF11A0198C800726576 /* NotificationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationType.m; path = Models/NotificationType.m; sourceTree = "<group>"; };
+		C261DDF41A019AA800726576 /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = Views/Notification/NotificationCell.h; sourceTree = "<group>"; };
+		C261DDF51A019AA800726576 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = Views/Notification/NotificationCell.m; sourceTree = "<group>"; };
 		C290B9C219DCD94A00F6C3B4 /* GetTermsOfServiceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTermsOfServiceCommand.h; path = Commands/Disclaimers/GetTermsOfServiceCommand.h; sourceTree = "<group>"; };
 		C290B9C319DCD94A00F6C3B4 /* GetTermsOfServiceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetTermsOfServiceCommand.m; path = Commands/Disclaimers/GetTermsOfServiceCommand.m; sourceTree = "<group>"; };
 		C290B9C519DCE90700F6C3B4 /* GetPrivacyPolicyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetPrivacyPolicyCommand.h; path = Commands/Disclaimers/GetPrivacyPolicyCommand.h; sourceTree = "<group>"; };
@@ -486,6 +510,7 @@
 		353D6EBD195CE49900AC1B62 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				C261DDE31A017B3500726576 /* Notifications */,
 				C290B9CB19E38BC500F6C3B4 /* Friends */,
 				C290B9C119DCD90700F6C3B4 /* Disclaimers */,
 				351036EA19705BC000AF5C39 /* Message */,
@@ -535,6 +560,7 @@
 		359FBA2B192327A100704F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C261DDF31A019A5D00726576 /* Notification */,
 				C290B9D619E770AE00F6C3B4 /* Friend */,
 				35A8F8E01992564100D54383 /* Room */,
 				351036EE1981F89300AF5C39 /* Message */,
@@ -711,6 +737,7 @@
 		35BA0E2918CF380300F5B339 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C261DDDA1A0176E000726576 /* Notifications */,
 				C290B9D219E76B0C00F6C3B4 /* Friends */,
 				C2CBCD4A19AADACC00FAE2DE /* Settings */,
 				C2C6E5471936D61800DBEEE6 /* Shared */,
@@ -759,6 +786,12 @@
 				35A46FDD193C01E100B615A4 /* Location.m */,
 				35A46FDF193C079900B615A4 /* VenueCategory.h */,
 				35A46FE0193C079900B615A4 /* VenueCategory.m */,
+				C261DDE01A01789500726576 /* Notification.h */,
+				C261DDE11A01789500726576 /* Notification.m */,
+				C261DDEA1A0191EB00726576 /* NotificationInvitation.h */,
+				C261DDEB1A0191EB00726576 /* NotificationInvitation.m */,
+				C261DDF01A0198C800726576 /* NotificationType.h */,
+				C261DDF11A0198C800726576 /* NotificationType.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -803,6 +836,37 @@
 				1138EA262389FA7808AE394C /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C261DDDA1A0176E000726576 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C261DDDB1A0176FB00726576 /* NotificationsViewController.h */,
+				C261DDDC1A0176FB00726576 /* NotificationsViewController.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		C261DDE31A017B3500726576 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C261DDE41A017B5500726576 /* GetNotificationsCommand.h */,
+				C261DDE51A017B5500726576 /* GetNotificationsCommand.m */,
+				C261DDE71A017EEA00726576 /* RemoveNotificationCommand.h */,
+				C261DDE81A017EEA00726576 /* RemoveNotificationCommand.m */,
+				C261DDED1A01945500726576 /* NotificationFactory.h */,
+				C261DDEE1A01945500726576 /* NotificationFactory.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		C261DDF31A019A5D00726576 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C261DDF41A019AA800726576 /* NotificationCell.h */,
+				C261DDF51A019AA800726576 /* NotificationCell.m */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		C290B9C119DCD90700F6C3B4 /* Disclaimers */ = {
@@ -1165,6 +1229,7 @@
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				3572D02D1A01B2A800F35B4A /* UploadImageCommand.m in Sources */,
+				C261DDEC1A0191EB00726576 /* NotificationInvitation.m in Sources */,
 				C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */,
 				C2C6E55A1938241100DBEEE6 /* UIImage+thumbnail.m in Sources */,
 				C2C6E5431936D5B100DBEEE6 /* CreateAccountTableViewController.m in Sources */,
@@ -1181,6 +1246,7 @@
 				3546E92319D64F2900A75E4C /* UIImage+Alpha.m in Sources */,
 				35A46FA319328A9F00B615A4 /* RoomViewController.m in Sources */,
 				35A46F3919328A2400B615A4 /* BuzzrdNav.m in Sources */,
+				C261DDE21A01789500726576 /* Notification.m in Sources */,
 				35A46FD319328B1500B615A4 /* SocketIOPacket.m in Sources */,
 				35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
@@ -1188,16 +1254,19 @@
 				C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */,
 				C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */,
 				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
+				C261DDF61A019AA800726576 /* NotificationCell.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,
 				C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */,
 				357A65411A015D7200DAFEDA /* GetUnreadRoomsCommand.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
+				C261DDDD1A0176FB00726576 /* NotificationsViewController.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,
 				35A8F8E31992568000D54383 /* UserCountBarButton.m in Sources */,
 				C2CBCD4D19AADAFB00FAE2DE /* DisclaimersViewController.m in Sources */,
 				35A8F8EE1996F53800D54383 /* BuzzrdBackgroundView.m in Sources */,
+				C261DDF21A0198C800726576 /* NotificationType.m in Sources */,
 				355F471A194F120900DF8388 /* FoursquareAttribution.m in Sources */,
 				35A46F9F19328A9F00B615A4 /* BaseViewController.m in Sources */,
 				350AB5A119AD82F90060D3C7 /* GetVenueRoomsCommand.m in Sources */,
@@ -1207,7 +1276,9 @@
 				3534714A1991B6B900D3C1F5 /* PlaceholderTextView.m in Sources */,
 				C261DDBB19F88D7300726576 /* RemoveRoomCommand.m in Sources */,
 				3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */,
+				C261DDE91A017EEA00726576 /* RemoveNotificationCommand.m in Sources */,
 				35A46FBC19328ACC00B615A4 /* LoadingOverlay.m in Sources */,
+				C261DDE61A017B5500726576 /* GetNotificationsCommand.m in Sources */,
 				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,
 				C2BEC60C19BD5C0600DB6BCC /* UpdateProfileImageViewController.m in Sources */,
@@ -1250,6 +1321,7 @@
 				C2C6E5401936D51900DBEEE6 /* JoinBuzzrdViewController.m in Sources */,
 				C2C6E54D1936D6A300DBEEE6 /* Gender.m in Sources */,
 				3500365B19DBC83500E69508 /* BZLocationManager.m in Sources */,
+				C261DDEF1A01945500726576 /* NotificationFactory.m in Sources */,
 				35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */,
 				C290B9DC19E7710300F6C3B4 /* UserCell.m in Sources */,
 			);

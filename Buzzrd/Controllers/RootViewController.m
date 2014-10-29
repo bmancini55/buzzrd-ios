@@ -14,6 +14,7 @@
 #import "FriendsViewController.h"
 #import "ThemeManager.h"
 #import "LoginViewController.h"
+#import "NotificationsViewController.h"
 
 @interface RootViewController ()
 
@@ -52,17 +53,21 @@
     
     FriendsViewController *friendsViewController = [[FriendsViewController alloc]init];
     UINavigationController *friendsNavController = [[UINavigationController alloc] initWithRootViewController:friendsViewController];
-    
+
+    NotificationsViewController *notificationsViewController = [[NotificationsViewController alloc]init];
+    UINavigationController *notificationsNavController = [[UINavigationController alloc] initWithRootViewController:notificationsViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController, friendsNavController];
+    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController, friendsNavController, notificationsNavController];
     
     [[tabBarController.tabBar.items objectAtIndex:0] setTitle:[NSLocalizedString(@"nearby", nil) uppercaseString]];
     
     [[tabBarController.tabBar.items objectAtIndex:1] setTitle:[NSLocalizedString(@"my_rooms", nil) uppercaseString]];
     
     [[tabBarController.tabBar.items objectAtIndex:2] setTitle:[NSLocalizedString(@"Friends", nil) uppercaseString]];
+    
+    [[tabBarController.tabBar.items objectAtIndex:3] setTitle:[NSLocalizedString(@"Notifications", nil) uppercaseString]];
     
     [[UITabBar appearance] setBarTintColor:[ThemeManager getPrimaryColorDark]];
     [[UITabBar appearance] setTintColor:([ThemeManager getSecondaryColorMedium])];
