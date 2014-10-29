@@ -365,6 +365,8 @@
     
     RoomActionsViewController * rightSideDrawerViewController = [[RoomActionsViewController alloc]init];
     
+    rightSideDrawerViewController.room = self.room;
+    
     UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:rightSideDrawerViewController];
 
     self.drawerController.rightDrawerViewController = menuNavigationController;

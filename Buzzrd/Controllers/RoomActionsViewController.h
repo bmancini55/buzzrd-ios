@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "Room.h"
 
 @interface RoomActionsViewController : BaseTableViewController
+
+@property (strong, nonatomic) Room *room;
 
 @end
