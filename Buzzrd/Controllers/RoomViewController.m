@@ -16,6 +16,7 @@
 #import "BuzzrdBackgroundView.h"
 #import "UITableView+ScrollHelpers.h"
 #import "KeyboardBarTableView.h"
+#import "ResetRoomBadgeCountCommand.h"
 
 @interface RoomViewController ()
 
@@ -92,6 +93,9 @@
 
 - (void)initRoom
 {
+    // trigger badge reset
+    [self resetRoomBadgeCount];
+    
     // reset messages
     self.messages = [[NSMutableArray alloc]init];
     self.messageHeights = [[NSMutableArray alloc]init];
@@ -244,6 +248,37 @@
 }
 
 
+
+
+- (void) resetRoomBadgeCount {
+    NSLog(@"resetRoomBadgeCount");
+    
+    ResetRoomBadgeCountCommand *command = [[ResetRoomBadgeCountCommand alloc]init];
+    command.roomId = self.room.id;
+    [command listenForCompletion:self selector:@selector(resetRoomBadgeCountDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)resetRoomBadgeCountDidComplete:(NSNotification *)notification {
+    NSLog(@"resetRoomBadgeCountDidComplete");
+    
+    ResetRoomBadgeCountCommand *command = notification.object;
+    if(command.status == kSuccess) {
+        long clearCount = [command.results longLongValue];
+        NSLog(@"  -> Resting %lu", clearCount);
+        
+        // reset the badge count for the app
+        long currentBadgeCount = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+        long newBadgeCount = MAX(currentBadgeCount - clearCount, 0);
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:newBadgeCount];
+    
+        // send out application notification to clear unread status
+        NSDictionary *userInfo =  @{ BZRoomDidClearBadgeRoomKey : self.room.id };
+        [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomDidClearBadgeNotification object:self userInfo:userInfo];
+    }
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -389,6 +424,7 @@
 }
 
 
+
 #pragma mark - SocketIODelegate
 
 -(void)socketIODidConnect:(SocketIO *)socket
@@ -424,7 +460,6 @@
     else if([packet.name isEqualToString:@"authenticate"]) {
         [self.socket sendEvent:@"join" withData:self.room.id];
     }
-        
 }
 
 @end

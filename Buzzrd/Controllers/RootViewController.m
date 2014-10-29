@@ -23,6 +23,7 @@
         [self presentViewController:[BuzzrdNav createLoginViewController] animated:false completion:nil];
     }
     else {
+        [[BuzzrdAPI current] registerForRemoteNotifications];
         [self presentViewController:[BuzzrdNav createHomeViewController] animated:false completion:nil];
     }
 }

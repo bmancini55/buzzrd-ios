@@ -27,6 +27,15 @@
 
 @implementation RoomsViewController
 
+- (id)init {
+    self = [super init];
+    if(self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRoomUnreadNotification:) name:BZAppDidReceiveRoomUnreadNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:BZRoomDidClearBadgeNotification object:nil];
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -152,6 +161,47 @@
 }
 
 
+- (void) didReceiveRoomUnreadNotification:(NSNotification *)notification {
+    NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomIdKey];
+    uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntegerValue];
+
+    // declare iterator that will clear the badge
+    void(^updateBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+        Room *room = (Room *)object;
+        
+        // check for a room match
+        if([room.id isEqualToString:roomId]) {
+            
+            // update room data
+            room.newMessages = true;
+            room.messageCount = messageCount;
+            
+            // update table row for room
+            [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+        }
+    };
+    
+    // clear the badges
+    [self.rooms enumerateObjectsUsingBlock:updateBadge];
+    [self.searchResults enumerateObjectsUsingBlock:updateBadge];
+}
+
+- (void) didReceiveClearBadgeNotification:(NSNotification*)notification {
+    NSString *roomId = notification.userInfo[BZRoomDidClearBadgeRoomKey];
+    
+    // declare iterator that will clear the badge
+    void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+        Room *room = (Room *)object;
+        if([room.id isEqualToString:roomId]) {
+            room.newMessages = false;
+            [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+        }
+    };
+    
+    // clear the badges
+    [self.rooms enumerateObjectsUsingBlock:clearBadge];
+    [self.searchResults enumerateObjectsUsingBlock:clearBadge];
+}
 
 
 #pragma mark - Table view data source
@@ -182,7 +232,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // No need to calculate these, lets just hardcode it
-    return 66.5;
+    return 66;
 }
 
 
@@ -277,6 +327,11 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView reloadRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView beginUpdates];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
+}
 
 
 

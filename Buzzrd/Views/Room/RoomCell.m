@@ -9,6 +9,7 @@
 #import "RoomCell.h"
 #import "ThemeManager.h"
 #import "UIImage+Alpha.h"
+#import "CornerIndicator.h"
 
 @interface RoomCell()
 
@@ -22,8 +23,8 @@
 @property (strong, nonatomic) UILabel *messageCountLabel;
 @property (strong, nonatomic) UILabel *messageLabel;
 @property (strong, nonatomic) UILabel *distanceLabel;
-@property (strong, nonatomic) CALayer *bottomBorder;
 @property (strong, nonatomic) UIImageView *typeImage;
+@property (strong, nonatomic) CornerIndicator *cornerIndicator;
 
 @end
 
@@ -36,6 +37,17 @@
         [self configure];
     }
     return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, [ThemeManager getSecondaryColorMedium].CGColor);
+    CGContextSetLineWidth(context, 0.5f);
+    CGContextMoveToPoint(context, 12.0f, CGRectGetHeight(rect));
+    CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    CGContextStrokePath(context);
 }
 
 - (void) configure
@@ -83,6 +95,12 @@
     self.typeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Venue.png"]];
     self.typeImage.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.typeImage];
+    
+    CGRect cornerIndicatorFrame = CGRectMake(CGRectGetWidth(self.frame) - 10, 0, CGRectGetWidth(self.frame), 10);
+    self.cornerIndicator = [[CornerIndicator alloc]initWithFrame:cornerIndicatorFrame];
+    self.cornerIndicator.indicatorColor = [ThemeManager getTertiaryColorDark];
+    self.cornerIndicator.hidden = true;
+    [self.contentView addSubview:self.cornerIndicator];
     
     [self updateConstraints];
 }
@@ -154,32 +172,19 @@
         self.addressLabel.text = [room.location prettyString];
     }
     
-    [self addBorder];
-}
-
-- (void)addBorder
-{
-    CGFloat width = .5;
-    CGFloat originY = [self calculateHeight] - width;
-    
-    // create on new
-    if(self.bottomBorder == nil) {
-        self.bottomBorder = [CALayer layer];
-        self.bottomBorder.backgroundColor = [ThemeManager getSecondaryColorMedium].CGColor;
-        [self.layer addSublayer:self.bottomBorder];
+    // handle indicator
+    if(room.newMessages) {
+        [self.cornerIndicator setIndicatorColor:[[ThemeManager getTertiaryColorDark] colorWithAlphaComponent:0.75]];
+        self.cornerIndicator.hidden = false;
     }
-    
-    // adjust frame when reapplied
-    self.bottomBorder.frame = CGRectMake(12, originY, self.frame.size.width - 24, width);
+    else if (room.watchedRoom) {
+        [self.cornerIndicator setIndicatorColor:[ThemeManager getPrimaryColorMediumLight]];
+        self.cornerIndicator.hidden = false;
+    }
+    else {
+        self.cornerIndicator.hidden = true;
+    }
 }
-
-- (CGFloat)calculateHeight
-{
-    CGFloat borderWidth = .5;
-    CGFloat contentHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return contentHeight + borderWidth;
-}  // Configure the view for the selected state
-
 
 - (NSString *)formatMessages:(int)messageCount
 {
