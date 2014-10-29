@@ -20,6 +20,7 @@
 + (NSString *) apiURLBase;
 
 - (void) clearLocalStorage;
+- (void) registerForRemoteNotifications;
 
 // Configuration
 @property (strong, nonatomic) BuzzrdConfig *config;

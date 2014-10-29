@@ -26,7 +26,7 @@
         self.requestTimeoutInterval = [NSNumber numberWithInt:30];
         
         self.removeListenerOnSuccess = true;
-                        
+        
         self.apiURLBase = [BuzzrdAPI current].config.apiURLBase;
         
         self.allowRetry = true;
@@ -85,7 +85,7 @@
 - (void) sendCompletionNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:self.completionNotificationName object:self userInfo:nil];
     
-    // stop listening if we have this 
+    // stop listening if we have this
     if(self.removeListenerOnSuccess)
     {
         [self stopListeningForCompletion:self.listener];
@@ -184,7 +184,7 @@
              IMP imp = [self methodForSelector:parser];
              id (*func)(id, SEL, id) = (void *)imp;
              id parsedData = func(self, parser, responseObject);
-         
+             
              // call success callback
              self.status = kSuccess;
              self.results = parsedData;
@@ -211,6 +211,52 @@
 }
 
 - (void) httpPostWithManager:(AFHTTPSessionManager *)manager
+                         url:(NSString *)url
+                  parameters:(NSDictionary *)parameters
+                      parser:(SEL)parser;
+{
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
+    
+    [manager
+     POST:url
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+         
+         NSHTTPURLResponse* response = (NSHTTPURLResponse*)task.response;
+         
+         if(response.statusCode == 200)
+         {
+             // execute parser selector
+             IMP imp = [self methodForSelector:parser];
+             id (*func)(id, SEL, id) = (void *)imp;
+             id parsedData = func(self, parser, responseObject);
+             
+             // call success callback
+             self.status = kSuccess;
+             self.results = parsedData;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionNotification];
+         }
+         else
+         {
+             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+             self.status = kFailure;
+             self.results = error;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionFailureNotification];
+         }
+         
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+         self.status = kFailure;
+         self.results = responseObject;
+         self.error = [self handleError:error responseObject:responseObject];
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+         [self sendNetworkErrorNotification];
+     }];
+}
+
+- (void) httpPutWithManager:(AFHTTPSessionManager *)manager
                         url:(NSString *)url
                  parameters:(NSDictionary *)parameters
                      parser:(SEL)parser;
@@ -218,7 +264,54 @@
     if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
     
     [manager
-     POST:url
+     PUT:url
+     parameters:parameters
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+         
+         NSHTTPURLResponse* response = (NSHTTPURLResponse*)task.response;
+         
+         if(response.statusCode == 200)
+         {
+             // execute parser selector
+             IMP imp = [self methodForSelector:parser];
+             id (*func)(id, SEL, id) = (void *)imp;
+             id parsedData = func(self, parser, responseObject);
+             
+             // call success callback
+             self.status = kSuccess;
+             self.results = parsedData;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionNotification];
+         }
+         else
+         {
+             NSError *error = [[NSError alloc]initWithDomain:@"buzzrd-api" code:1 userInfo:@{ NSLocalizedDescriptionKey: responseObject[@"error"] }];
+             self.status = kFailure;
+             self.results = error;
+             if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+             [self sendCompletionFailureNotification];
+         }
+         
+     }
+     failure:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+         self.status = kFailure;
+         self.results = responseObject;
+         self.error = [self handleError:error responseObject:responseObject];
+         if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
+         [self sendNetworkErrorNotification];
+     }];
+}
+
+
+- (void) httpDeleteWithManager:(AFHTTPSessionManager *)manager
+                        url:(NSString *)url
+                 parameters:(NSDictionary *)parameters
+                     parser:(SEL)parser;
+{
+    if (self.autoShowActivityIndicator) { [self sendShowActivityNotification]; }
+    
+    [manager
+     DELETE:url
      parameters:parameters
      success:^(NSURLSessionDataTask *task, id responseObject) {
          
@@ -265,17 +358,17 @@
     NSString *defaultRecoverySuggestion = NSLocalizedString(@"Try again", nil);
     
     if ( [error.domain isEqualToString:NSURLErrorDomain] ) {
-            switch(error.code) {
-                case kCFURLErrorCannotConnectToHost:
-                {
-                    [userInfo setObject:error.localizedDescription forKey:NSLocalizedDescriptionKey];
-                    [userInfo setObject:defaultRecoverySuggestion forKey:NSLocalizedRecoverySuggestionErrorKey];
-
-                    return [[NSError alloc] initWithDomain: error.domain
-                                                      code: error.code
-                                                  userInfo:userInfo];
-                }
+        switch(error.code) {
+            case kCFURLErrorCannotConnectToHost:
+            {
+                [userInfo setObject:error.localizedDescription forKey:NSLocalizedDescriptionKey];
+                [userInfo setObject:defaultRecoverySuggestion forKey:NSLocalizedRecoverySuggestionErrorKey];
+                
+                return [[NSError alloc] initWithDomain: error.domain
+                                                  code: error.code
+                                              userInfo:userInfo];
             }
+        }
     }
     
     [userInfo setObject:NSLocalizedString(@"Unexpected Error", nil) forKey:NSLocalizedDescriptionKey];

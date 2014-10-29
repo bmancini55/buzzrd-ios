@@ -28,6 +28,7 @@
         [self presentLoginViewController];
     }
     else {
+        [[BuzzrdAPI current] registerForRemoteNotifications];
         [self presentHomeViewController];
     }
 }

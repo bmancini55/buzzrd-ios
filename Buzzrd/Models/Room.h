@@ -22,6 +22,8 @@
 @property (nonatomic) NSUInteger userCount;
 @property (nonatomic) NSUInteger lurkerCount;
 @property (nonatomic) NSUInteger messageCount;
+@property (nonatomic) bool watchedRoom;
+@property (nonatomic) bool newMessages;
 
 @property (strong, nonatomic) CLLocation *coord;
 @property (strong, nonatomic) Location *location;

@@ -13,14 +13,17 @@
 #import "UIWindow+Helpers.h"
 #import "BZLocationManager.h"
 #import "RootViewController.h"
+#import "UpdateUserDeviceCommand.h"
+#import "GetUnreadRoomsCommand.h"
 
 
 @implementation AppDelegate {
     dispatch_queue_t _activityLock;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"AppDelegate:application:didFinishLaunchingWithOptions");
+    
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
 
     [ThemeManager setTheme: defaultStyle];
@@ -40,6 +43,89 @@
     
     return YES;
 }
+
+
+// Fires when the application comes into the active state
+// This gets triggerd after:
+//      application:didFinishLaunchingWithOptions
+//      application:handleOpenURL
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    NSLog(@"AppDelegate:applicatoinDidBecomeActive");
+    
+    [self checkForUnreadRooms];
+}
+
+
+// Handle the registration of device
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"AppDelegate:didRegisterForRemoteNotificationsWithDeviceToken");
+    NSLog(@"  -> DeviceToken %@", deviceToken);
+    
+    UpdateUserDeviceCommand *command = [[UpdateUserDeviceCommand alloc]init];
+    command.deviceToken = deviceToken;
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"AppDelegate:didFailToRegisterForRemoteNotificationsWithError");
+    NSLog(@"  -> Error %@", error);
+}
+
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"AppDelegate:didReceiveRemoteNotification");
+    
+    // update the badge count
+    NSDictionary *aps = userInfo[@"aps"];
+    int badgeCount = (int)[aps[@"badge"] integerValue];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+    
+    // trigger notification
+    NSString *roomId = userInfo[@"roomId"];
+    uint messageCount = [userInfo[@"messageCount"] unsignedIntValue];
+    [self postRoomUnreadNotificationForRoom:roomId withMessageCount:messageCount];
+}
+
+- (void)postRoomUnreadNotificationForRoom:(NSString *)roomId withMessageCount:(int)messageCount {
+    NSDictionary *notifInfo =
+    @{
+      BZAppDidReceiveRoomUnreadRoomIdKey: roomId,
+      BZAppDidReceiveRoomUnreadMessageCountKey: [NSNumber numberWithUnsignedInteger:messageCount]
+    };
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:notifInfo];
+}
+
+- (void)checkForUnreadRooms {
+    NSLog(@"AppDelegate:checkForUnreadRooms");
+    GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
+    [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
+    NSLog(@"AppDelegate:checkForUnreadRoomsComplete");
+    GetUnreadRoomsCommand *command = (GetUnreadRoomsCommand *)notification.object;
+    
+    // handle success
+    if(command.status == kSuccess) {
+        
+        NSArray *rooms = (NSArray *)command.results;
+        [rooms enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            Room *room = (Room *)obj;
+            [self postRoomUnreadNotificationForRoom:room.id withMessageCount:(uint)room.messageCount];
+        }];
+    }
+    
+    // handle errors
+    else {
+        NSLog(@"  -> Failed with error: %@", command.error);
+    }
+}
+
+
+
 
 - (void)initializeCommandDispatchListeners {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -124,33 +210,6 @@
     self.retryAlert.message = message;
     self.retryAlert.operation = operation;
     [self.retryAlert show];
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end

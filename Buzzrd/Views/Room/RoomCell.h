@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) Room* room;
 
-- (CGFloat)calculateHeight;
 - (void) setRoom:(Room *)room userLocation:(CLLocation *)userLocation;
 
 @end
