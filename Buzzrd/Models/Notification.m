@@ -1,0 +1,29 @@
+//
+//  Notification.m
+//  Buzzrd
+//
+//  Created by Robert Beck on 10/29/14.
+//  Copyright (c) 2014 Buzzrd. All rights reserved.
+//
+
+#import "Notification.h"
+
+@implementation Notification
+
+-(id) initWithJson:(NSDictionary *)json
+{
+    self = [self init];
+    if(self) {
+        self.id = json[@"id"];
+        self.typeId = [NSNumber numberWithInt:[json[@"typeId"] intValue]];
+        self.recipientId = json[@"recipientId"];
+        self.message = json[@"message"];
+        self.created = json[@"message"];
+        self.read = [json[@"read"] boolValue];
+        self.payload = json[@"payload"];
+    }
+
+    return self;
+}
+
+@end
