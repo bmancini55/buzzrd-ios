@@ -66,6 +66,13 @@
     NSDictionary *aps = userInfo[@"aps"];
     int badgeCount = (int)[aps[@"badge"] integerValue];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+    
+    // trigger notification
+    NSString *roomId = userInfo[@"room"];
+    NSDictionary *notifData = @{
+        BZAppDidReceiveRoomUnreadRoomKey: roomId
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:self userInfo:notifData];
 }
 
 - (void)initializeCommandDispatchListeners {

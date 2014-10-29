@@ -30,6 +30,7 @@
 - (id)init {
     self = [super init];
     if(self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRoomUnreadNotification:) name:BZAppDidReceiveRoomUnreadNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:BZRoomDidClearBadgeNotification object:nil];
     }
     return self;
@@ -157,6 +158,24 @@
 {
     UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
+- (void) didReceiveRoomUnreadNotification:(NSNotification *)notification {
+    NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomKey];
+
+    // declare iterator that will clear the badge
+    void(^updateBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+        Room *room = (Room *)object;
+        if([room.id isEqualToString:roomId]) {
+            room.newMessages = true;
+            [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+        }
+    };
+    
+    // clear the badges
+    [self.rooms enumerateObjectsUsingBlock:updateBadge];
+    [self.searchResults enumerateObjectsUsingBlock:updateBadge];
 }
 
 - (void) didReceiveClearBadgeNotification:(NSNotification*)notification {
