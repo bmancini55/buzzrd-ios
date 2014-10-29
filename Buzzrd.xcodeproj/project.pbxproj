@@ -38,6 +38,7 @@
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
 		357A65351A01230900DAFEDA /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65341A01230900DAFEDA /* Constants.m */; };
 		357A65411A015D7200DAFEDA /* GetUnreadRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */; };
+		357A65441A01837400DAFEDA /* ResetRoomBadgeCountCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */; };
 		3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */; };
 		3596A55919FA937400180DF4 /* CornerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55819FA937400180DF4 /* CornerIndicator.m */; };
 		35A46F3719328A2400B615A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A46F3219328A2400B615A4 /* AppDelegate.m */; };
@@ -199,6 +200,8 @@
 		357A65341A01230900DAFEDA /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Application/Constants.m; sourceTree = "<group>"; };
 		357A653F1A015D7200DAFEDA /* GetUnreadRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUnreadRoomsCommand.h; path = Commands/Room/GetUnreadRoomsCommand.h; sourceTree = "<group>"; };
 		357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUnreadRoomsCommand.m; path = Commands/Room/GetUnreadRoomsCommand.m; sourceTree = "<group>"; };
+		357A65421A01837400DAFEDA /* ResetRoomBadgeCountCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetRoomBadgeCountCommand.h; path = Commands/Room/ResetRoomBadgeCountCommand.h; sourceTree = "<group>"; };
+		357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetRoomBadgeCountCommand.m; path = Commands/Room/ResetRoomBadgeCountCommand.m; sourceTree = "<group>"; };
 		3596A55419F4A20600180DF4 /* UpdateUserDeviceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateUserDeviceCommand.h; path = Commands/User/UpdateUserDeviceCommand.h; sourceTree = "<group>"; };
 		3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateUserDeviceCommand.m; path = Commands/User/UpdateUserDeviceCommand.m; sourceTree = "<group>"; };
 		3596A55719FA937400180DF4 /* CornerIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CornerIndicator.h; path = Views/CornerIndicator.h; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 				357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */,
 				C261DDB919F88D7300726576 /* RemoveRoomCommand.h */,
 				C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */,
+				357A65421A01837400DAFEDA /* ResetRoomBadgeCountCommand.h */,
+				357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -1071,6 +1076,7 @@
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
+				357A65441A01837400DAFEDA /* ResetRoomBadgeCountCommand.m in Sources */,
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				C290B9C719DCE90700F6C3B4 /* GetPrivacyPolicyCommand.m in Sources */,
