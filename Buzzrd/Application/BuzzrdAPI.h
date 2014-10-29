@@ -21,7 +21,6 @@
 
 - (void) clearLocalStorage;
 - (void) registerForRemoteNotifications;
-- (void) checkForUnreadRooms;
 
 // Configuration
 @property (strong, nonatomic) BuzzrdConfig *config;

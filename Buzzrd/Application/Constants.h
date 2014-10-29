@@ -8,7 +8,8 @@
 
 // Remote Notificaton received for new messages
 extern NSString *const BZAppDidReceiveRoomUnreadNotification;
-extern NSString *const BZAppDidReceiveRoomUnreadRoomKey;
+extern NSString *const BZAppDidReceiveRoomUnreadRoomIdKey;
+extern NSString *const BZAppDidReceiveRoomUnreadMessageCountKey;
 
 // User opened a room and the clear badge count information was recieved
 extern NSString *const BZRoomDidClearBadgeNotification;

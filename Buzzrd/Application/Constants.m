@@ -7,7 +7,8 @@
 //
 
 NSString *const BZAppDidReceiveRoomUnreadNotification = @"BZAppDidReceiveRoomUnreadNotification";
-NSString *const BZAppDidReceiveRoomUnreadRoomKey = @"BZAppDidReceiveRoomUnreadRoomKey";
+NSString *const BZAppDidReceiveRoomUnreadRoomIdKey = @"BZAppDidReceiveRoomUnreadRoomIdKey";
+NSString *const BZAppDidReceiveRoomUnreadMessageCountKey = @"BZAppDidReceiveRoomUnreadMessageCountKey";
 
 NSString *const BZRoomDidClearBadgeNotification = @"BZRoomDidClearBadgeNotification";
 NSString *const BZRoomDidClearBadgeRoomKey = @"BZRoomDidClearBadgeRoomKey";

@@ -162,13 +162,21 @@
 
 
 - (void) didReceiveRoomUnreadNotification:(NSNotification *)notification {
-    NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomKey];
+    NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomIdKey];
+    uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntegerValue];
 
     // declare iterator that will clear the badge
     void(^updateBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
         Room *room = (Room *)object;
+        
+        // check for a room match
         if([room.id isEqualToString:roomId]) {
+            
+            // update room data
             room.newMessages = true;
+            room.messageCount = messageCount;
+            
+            // update table row for room
             [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
         }
     };

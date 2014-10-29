@@ -8,8 +8,6 @@
 
 #import "BuzzrdAPI.h"
 #import "CommandBase.h"
-#import "GetUnreadRoomsCommand.h"
-#import "Room.h"
 
 @interface BuzzrdAPI()
 
@@ -164,38 +162,5 @@
     NSLog(@"Current remote registration: %u", currentRemoteRegistration);
 }
 
-
-- (void)checkForUnreadRooms {
-    NSLog(@"BuzzrdAPI:checkForUnreadRooms");
-    GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
-    [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
-}
-
-- (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
-    NSLog(@"BuzzrdAPI:checkForUnreadRoomsComplete");
-    GetUnreadRoomsCommand *command = (GetUnreadRoomsCommand *)notification.object;
-    
-    // handle success
-    if(command.status == kSuccess) {
-        
-        NSArray *rooms = (NSArray *)command.results;
-        [rooms enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            Room *room = (Room *)obj;
-            NSDictionary *notifInfo =
-            @{
-                BZAppDidReceiveRoomUnreadRoomKey: room.id
-            };
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:notifInfo];
-        }];
-    }
-    
-    // handle errors
-    else {
-        NSLog(@"  -> Failed with error: %@", command.error);
-    }
-}
 
 @end
