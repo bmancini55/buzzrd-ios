@@ -13,6 +13,7 @@
 #import "RemoveNotificationCommand.h"
 #import "TableSectionHeader.h"
 #import "BuzzrdNav.h"
+#import "NotificationCell.h"
 
 @interface NotificationsViewController ()
 
@@ -34,6 +35,8 @@
     self.navigationItem.leftBarButtonItem = settingsItem;
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
     [self loadNotifications];
 }
@@ -91,16 +94,15 @@
     
     static NSString *cellIdentifier = @"notification_cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[NotificationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-
-    cell.textLabel.text = notification.message;
     
-//    [cell setUser:friend];
+    [cell setNotification:notification];
+    
     return cell;
 }
 

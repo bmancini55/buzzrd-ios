@@ -8,6 +8,7 @@
 
 #import "GetNotificationsCommand.h"
 #import "Notification.h"
+#import "NotificationFactory.h"
 
 @implementation GetNotificationsCommand
 
@@ -34,11 +35,14 @@
 - (id) parser:(id)rawData
 {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    NotificationFactory * notificationFactory = [[NotificationFactory alloc] init];
+    
     for(NSDictionary *dic in rawData[@"results"])
     {
-        Notification* instance = [[Notification alloc]initWithJson:dic];
-        [temp addObject:instance];
+        [temp addObject:[notificationFactory buildFromJson:dic]];
     }
+
     return temp;
 }
 

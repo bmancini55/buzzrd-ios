@@ -26,7 +26,7 @@
 {
     [super loadView];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     self.title = NSLocalizedString(@"Invite Friends", nil);
     self.sectionHeaderTitle = [NSLocalizedString(@"Friends", nil) uppercaseString];

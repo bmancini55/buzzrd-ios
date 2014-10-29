@@ -7,6 +7,7 @@
 //
 
 #import "Notification.h"
+#import "DateUtils.h"
 
 @implementation Notification
 
@@ -18,11 +19,11 @@
         self.typeId = [NSNumber numberWithInt:[json[@"typeId"] intValue]];
         self.recipientId = json[@"recipientId"];
         self.message = json[@"message"];
-        self.created = json[@"message"];
+        self.created = [DateUtils parseMongoDateString:json[@"created"]];
         self.read = [json[@"read"] boolValue];
         self.payload = json[@"payload"];
     }
-
+    
     return self;
 }
 

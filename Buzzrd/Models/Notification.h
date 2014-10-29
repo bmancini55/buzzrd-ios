@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *created;
 @property (nonatomic) bool read;
-@property (nonatomic, assign) id payload;
+@property (strong, nonatomic) NSDictionary *payload;
 
 -(id) initWithJson:(NSDictionary *)json;
 
