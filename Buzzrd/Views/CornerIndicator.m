@@ -37,7 +37,7 @@
 
 - (void)setIndicatorColor:(UIColor *)indicatorColor {
     _indicatorColor = indicatorColor;
-    [self setContentMode:UIViewContentModeRedraw];
+    [self setNeedsDisplay];
 }
 
 @end
