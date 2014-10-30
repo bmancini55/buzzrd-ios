@@ -88,7 +88,7 @@
     }];
     
     if(!appIsActive) {
-        [BuzzrdAPI current].navToRoom = userInfo[@"roomId"];
+        [BuzzrdNav navigateToRoom:userInfo[@"roomId"]];
     }
 }
 

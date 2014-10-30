@@ -167,17 +167,14 @@
 
 - (void) joinRoom:(Room *)room
 {
-    UIViewController *viewController = [BuzzrdNav createRoomViewController:room];
-
-    viewController.hidesBottomBarWhenPushed = true;
-    
+    UIViewController *viewController = [BuzzrdNav getRoomViewController:room];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
 - (void) didReceiveRoomUnreadNotification:(NSNotification *)notification {
     NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomIdKey];
-    uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntegerValue];
+    uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntValue];
 
     // declare iterator that will clear the badge
     void(^updateBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {

@@ -14,11 +14,12 @@
 #import "ProfileImageViewController.h"
 #import "TermsOfServiceViewController.h"
 #import "PrivacyPolicyViewController.h"
+#import "RoomViewController.h"
 
 @interface BuzzrdNav : NSObject
 
 +(UIViewController *) createSettingsController;
-+(UIViewController *) createRoomViewController:(Room *)room;
++(RoomViewController *) getRoomViewController:(Room *)room;
 +(UIViewController *) createNewRoomViewController:(void (^)(Room *newRoom))roomCreatedCallback;
 
 
@@ -28,5 +29,11 @@
 +(ProfileImageViewController *) profileImageViewController;
 +(TermsOfServiceViewController *) termsOfServiceViewController;
 +(PrivacyPolicyViewController *) privacyPolicyViewController;
+
+
++ (void)dismissToRoot:(void (^)(UIViewController *))completed;
++ (void)dismissToPresented:(void (^)(UIViewController *))completed;
+
++ (void)navigateToRoom:(NSString *)roomId;
 
 @end

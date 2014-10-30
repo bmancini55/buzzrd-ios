@@ -7,7 +7,6 @@
 //
 
 #import "BuzzrdNav.h"
-#import "RoomViewController.h"
 #import "SettingsViewController.h"
 #import "NearbyRoomsViewController.h"
 #import "MyRoomsViewController.h"
@@ -16,6 +15,8 @@
 #import "ThemeManager.h"
 #import "Room.h"
 #import "FriendsViewController.h"
+#import "GetRoomCommand.h"
+#import "MMDrawerController.h"
 
 @implementation BuzzrdNav
 
@@ -25,7 +26,7 @@
     return settingsViewController;
 }
 
-+(UIViewController *) createRoomViewController:(Room *)room
++(RoomViewController *) getRoomViewController:(Room *)room
 {
     RoomViewController *roomViewController = [[RoomViewController alloc]init];
     roomViewController.room = room;
@@ -69,6 +70,100 @@
 {
     PrivacyPolicyViewController *viewController = [[PrivacyPolicyViewController alloc]init];
     return viewController;
+}
+
+
+
+
++ (void)dismissToRoot:(void (^)(UIViewController *))completed {
+    UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [self dismissTillRootRecurive:rootController withCompleted:completed];
+}
+
+
+// Internal recursive method
++ (void)dismissTillRootRecurive:(UIViewController *)rootController withCompleted:(void (^)(UIViewController *))completed {
+    
+    UIViewController *topController = rootController;
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    if(topController.presentingViewController != rootController) {
+        [topController dismissViewControllerAnimated:false completion:^{
+            [self dismissTillRootRecurive:rootController withCompleted:completed];
+        }];
+    } else {
+        [topController dismissViewControllerAnimated:false completion:^{
+            completed(topController.presentingViewController);
+        }];
+    }
+}
+
+
++ (void)dismissToPresented:(void (^)(UIViewController *))completed {
+    UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [self dismissToPresentedRecursive:rootController withCompleted:completed];
+}
+
+// Internal recurisve method
++ (void)dismissToPresentedRecursive:(UIViewController *)rootController withCompleted:(void (^)(UIViewController *))completed {
+    
+    UIViewController *topController = rootController;
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    if(topController.presentingViewController != rootController) {
+        [topController dismissViewControllerAnimated:false completion:^{
+            [self dismissToPresentedRecursive:rootController withCompleted:completed];
+        }];
+    } else {
+        completed(topController);
+    }
+}
+
+
++ (void)navigateToRoom:(NSString *)roomId {
+    
+    // Ensure we are authenticated and have a room to nav to
+    if([BuzzrdAPI current].isAuthenticated && ![roomId isEqualToString:@""]) {
+        
+        // Retreive the room before we do anything else
+        GetRoomCommand *command = [[GetRoomCommand alloc]init];
+        command.roomId = roomId;
+        command.success = ^(id result) {
+            
+            // Dismiss until we are at the logged in view information
+            [BuzzrdNav dismissToPresented:^(UIViewController *presentedViewController) {
+                
+                // Ensure we have the MMDrawerController
+                if([presentedViewController isMemberOfClass:[MMDrawerController class]]) {
+            
+                    // Traverse the presented stack... this could be hacky...
+                    MMDrawerController *drawerController = (MMDrawerController *)presentedViewController;
+                    UITabBarController *tabController = (UITabBarController *)drawerController.centerViewController;
+                    UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
+                    
+                    // If we're in a room that isn't ours... we need to dismiss it before we pop
+                    if([navController.topViewController isMemberOfClass:[RoomViewController class]] &&
+                       ![((RoomViewController *)navController.topViewController).room.id isEqualToString:roomId]) {
+                        
+                        [navController popViewControllerAnimated:false];
+                    }
+                    
+                    // Finally we push our new room
+                    RoomViewController *roomViewController = [BuzzrdNav getRoomViewController:(Room *)result];
+                    [navController pushViewController:roomViewController animated:true];
+                }
+                
+            }];
+            
+        };
+        
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    
 }
 
 @end
