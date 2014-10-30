@@ -34,12 +34,23 @@
     UIBarButtonItem *addFriendItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFriendTouch)];
     self.navigationItem.rightBarButtonItem = addFriendItem;
     
-    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
+    [self addSettingsButton];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     [self loadFriends];
+}
+
+- (void) addSettingsButton
+{
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
+    
+    [settingsItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIFont fontWithName:@"Helvetica-Bold" size:26.0], NSFontAttributeName,
+                                          nil]
+                                forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = settingsItem;
 }
 
 - (void)loadFriends

@@ -49,10 +49,21 @@
     UIBarButtonItem *addRoomItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTouchAddRoom)];
     self.navigationItem.rightBarButtonItem = addRoomItem;
     
-    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(didTouchSettings)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
+    [self addSettingsButton];
     
     [self getUserLocation];
+}
+
+- (void) addSettingsButton
+{
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
+    
+    [settingsItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIFont fontWithName:@"Helvetica-Bold" size:26.0], NSFontAttributeName,
+                                          nil]
+                                forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = settingsItem;
 }
 
 - (void)tableViewWillRefresh
@@ -340,7 +351,7 @@
 
 #pragma mark - controller interaction methods
 
-- (void) didTouchSettings
+- (void) settingsTouch
 {
     UIViewController *viewController = [BuzzrdNav createSettingsController];
     viewController.hidesBottomBarWhenPushed = true;

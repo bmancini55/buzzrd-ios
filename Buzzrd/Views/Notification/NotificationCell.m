@@ -124,7 +124,7 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[message]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-0-[date]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-4-[date]" options:0 metrics:nil views:views]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-5-|" options:0 metrics:nil views:views]];
     }

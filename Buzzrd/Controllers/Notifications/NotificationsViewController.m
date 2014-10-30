@@ -14,6 +14,7 @@
 #import "TableSectionHeader.h"
 #import "BuzzrdNav.h"
 #import "NotificationCell.h"
+#import "RoomViewController.h"
 
 @interface NotificationsViewController ()
 
@@ -31,14 +32,25 @@
     self.navigationController.title = [NSLocalizedString(@"Notifications", nil) uppercaseString];
     self.sectionHeaderTitle = [NSLocalizedString(@"Notifications", nil) uppercaseString];
     
-    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
+    [self addSettingsButton];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
     [self loadNotifications];
+}
+
+- (void) addSettingsButton
+{
+    UIBarButtonItem *settingsItem = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTouch)];
+    
+    [settingsItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIFont fontWithName:@"Helvetica-Bold" size:26.0], NSFontAttributeName,
+                                          nil]
+                                forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = settingsItem;
 }
 
 - (void)loadNotifications
@@ -177,6 +189,26 @@
                               message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
                        retryOperation:command];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    Notification *notification = [self notificationForTableView:tableView indexPath:indexPath];
+    
+    if ([notification.typeId intValue] == 1)
+    {
+        [self navigateToRoom];
+    }
+}
+
+- (void) navigateToRoom
+{
+//    RoomViewController *roomViewController = [[RoomViewController alloc]init];
+//    roomViewController.room = room;
+//    roomViewController.hidesBottomBarWhenPushed = true;
+//    [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
 - (void) settingsTouch
