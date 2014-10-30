@@ -14,4 +14,6 @@
 
 + (NSString *) emptyStringIfNil:(NSString *)string;
 
++ (NSString *) generateRandomString:(uint)length;
+
 @end

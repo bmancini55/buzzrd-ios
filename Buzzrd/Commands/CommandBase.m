@@ -132,6 +132,7 @@
 // Copy the Command object so that it can be resubmitted if necessary
 - (id)copyWithZone:(NSZone *)zone {
     CommandBase *newOp = [[[self class] allocWithZone:zone] init];
+    newOp.completionNotificationName = self.completionNotificationName;
     newOp.status = self.status;
     newOp.results = self.results;
     newOp.error = self.error;

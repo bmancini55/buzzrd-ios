@@ -23,5 +23,13 @@
     return string ? string : @"";
 }
 
++ (NSString *) generateRandomString:(uint)length {
+    NSMutableString *result = [NSMutableString stringWithCapacity:length];
+    for(uint i = 0; i < length; i++) {
+        [result appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
+    }
+    return result;
+}
+
 
 @end

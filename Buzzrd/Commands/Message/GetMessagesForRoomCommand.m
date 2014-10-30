@@ -17,7 +17,7 @@
     self = [super init];
     if(self)
     {
-        self.completionNotificationName = @"GetMessagesForRoomComplete";
+        self.completionNotificationName = [@"GetMessagesForRoomComplete-" stringByAppendingString:[NSString generateRandomString:12]];
         self.autoShowActivityIndicator = false;
     }
     return self;
