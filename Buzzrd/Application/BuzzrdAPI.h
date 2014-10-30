@@ -21,6 +21,9 @@
 
 - (void) clearLocalStorage;
 - (void) registerForRemoteNotifications;
+- (void) checkForUnreadRooms;
+
+- (bool) isAuthenticated;
 
 // Configuration
 @property (strong, nonatomic) BuzzrdConfig *config;
@@ -32,5 +35,8 @@
 @property (strong, nonatomic) Authorization *authorization;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) UIImage *profilePic;
+
+// Additional Properties
+@property (strong, nonatomic) NSString *navToRoom;
 
 @end

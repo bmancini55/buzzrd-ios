@@ -8,6 +8,8 @@
 
 #import "BuzzrdAPI.h"
 #import "CommandBase.h"
+#import "GetUnreadRoomsCommand.h"
+#import "Room.h"
 
 @interface BuzzrdAPI()
 
@@ -161,6 +163,49 @@
     bool currentRemoteRegistration = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
     NSLog(@"Current remote registration: %u", currentRemoteRegistration);
 }
+
+- (bool) isAuthenticated {
+    return self.authorization.bearerToken != nil;
+}
+
+// This method will call out the server and retrieve the
+// list of rooms that have pending notifications.
+- (void)checkForUnreadRooms {
+    NSLog(@"BuzzrdAPI:checkForUnreadRooms");
+    
+    GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
+    [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+// This will then trigger a RoomUnread Notification
+// that will update any lists that have the corresponding room
+// to keep the message count and indicators in sync for rooms
+// that have notifications.
+- (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
+    NSLog(@"BuzzrdAPI:checkForUnreadRoomsComplete");
+    
+    GetUnreadRoomsCommand *command = (GetUnreadRoomsCommand *)notification.object;
+    if(command.status == kSuccess) {
+        
+        NSArray *rooms = (NSArray *)command.results;
+        [rooms enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            Room *room = (Room *)obj;
+            [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
+            @{
+                BZAppDidReceiveRoomUnreadRoomIdKey: room.id,
+                BZAppDidReceiveRoomUnreadMessageCountKey: [NSNumber numberWithLongLong:room.messageCount]
+            }];
+        }];
+    }
+    
+    // handle errors
+    else {
+        NSLog(@"  -> Failed with error: %@", command.error);
+    }
+}
+
 
 
 @end

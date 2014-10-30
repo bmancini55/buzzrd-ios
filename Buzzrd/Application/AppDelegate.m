@@ -19,6 +19,7 @@
 
 @implementation AppDelegate {
     dispatch_queue_t _activityLock;
+    bool appIsActive;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -45,12 +46,13 @@
 }
 
 
-// Fires when the application comes into the active state
-// This gets triggerd after application:didFinishLaunchingWithOptions
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    NSLog(@"AppDelegate:applicatoinDidBecomeActive");
-    
-    [self checkForUnreadRooms];
+    appIsActive = true;
+    [[BuzzrdAPI current] checkForUnreadRooms];
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    appIsActive = false;
 }
 
 
@@ -79,51 +81,14 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
     
     // trigger notification
-    NSString *roomId = userInfo[@"roomId"];
-    uint messageCount = [userInfo[@"messageCount"] unsignedIntValue];
-    [self postRoomUnreadNotificationForRoom:roomId withMessageCount:messageCount];
-}
-
-- (void)postRoomUnreadNotificationForRoom:(NSString *)roomId withMessageCount:(int)messageCount {
-    NSDictionary *notifInfo =
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
     @{
-      BZAppDidReceiveRoomUnreadRoomIdKey: roomId,
-      BZAppDidReceiveRoomUnreadMessageCountKey: [NSNumber numberWithUnsignedInteger:messageCount]
-    };
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:notifInfo];
-}
-
-- (void)checkForUnreadRooms {
-    NSLog(@"AppDelegate:checkForUnreadRooms");
+       BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"],
+       BZAppDidReceiveRoomUnreadMessageCountKey: userInfo[@"messageCount"]
+    }];
     
-    if([BuzzrdAPI current].authorization.bearerToken) {
-    
-        GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
-        [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
-        [[BuzzrdAPI dispatch] enqueueCommand:command];
-        
-    }
-}
-
-- (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
-    NSLog(@"AppDelegate:checkForUnreadRoomsComplete");
-    GetUnreadRoomsCommand *command = (GetUnreadRoomsCommand *)notification.object;
-    
-    // handle success
-    if(command.status == kSuccess) {
-        
-        NSArray *rooms = (NSArray *)command.results;
-        [rooms enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            Room *room = (Room *)obj;
-            [self postRoomUnreadNotificationForRoom:room.id withMessageCount:(uint)room.messageCount];
-        }];
-    }
-    
-    // handle errors
-    else {
-        NSLog(@"  -> Failed with error: %@", command.error);
+    if(!appIsActive) {
+        [BuzzrdAPI current].navToRoom = userInfo[@"roomId"];
     }
 }
 
