@@ -23,16 +23,45 @@
 
 @implementation NotificationCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier notification:(Notification *)notification
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self configure];
+        [self setupWithNotification:notification];
     }
     return self;
 }
 
-- (void) configure
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, [ThemeManager getSecondaryColorMedium].CGColor);
+    CGContextSetLineWidth(context, 0.5f);
+    CGContextMoveToPoint(context, 12.0f, CGRectGetHeight(rect));
+    CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    CGContextStrokePath(context);
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    // Set the preferredMaxLayoutWidth of the mutli-line bodyLabel based on the evaluated width of the label's frame,
+    // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
+    self.messageLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.messageLabel.frame);
+}
+
+- (id)initWithNotification:(Notification *) notification
+{
+    self = [super init];
+    if (self) {
+        [self setupWithNotification:notification];
+    }
+    return self;
+}
+
+- (void) setupWithNotification:(Notification *) notification
 {
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
     
@@ -44,9 +73,11 @@
     self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:self.messageLabel];
     
+    
+    
     self.dateLabel = [[UILabel alloc]init];
     self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.dateLabel.font = [ThemeManager getPrimaryFontRegular:12.0f];
+    self.dateLabel.font = [ThemeManager getPrimaryFontRegular:10.0f];
     self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
     [self.contentView addSubview:self.dateLabel];
     
@@ -85,13 +116,17 @@
         @{
           @"message": self.messageLabel,
           @"date": self.dateLabel
-        };
+          };
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[message]-6-|" options:0 metrics:nil views:views]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[date]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[message]-3-[date]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[message]" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-0-[date]" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[date]-5-|" options:0 metrics:nil views:views]];
     }
     
     [super updateConstraints];
@@ -104,28 +139,8 @@
     self.messageLabel.text = notification.message;
     [self configureDate:notification.created];
     
-    [self addBorder];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
-
-- (void)addBorder
-{
-//    CGFloat width = .5;
-//    CGFloat originY = [self calculateHeight] - width;
-//    
-//    // create on new
-//    if(self.bottomBorder == nil) {
-//        self.bottomBorder = [CALayer layer];
-//        self.bottomBorder.backgroundColor = [ThemeManager getSecondaryColorMedium].CGColor;
-//        [self.layer addSublayer:self.bottomBorder];
-//    }
-//    
-//    // adjust frame when reapplied
-//    self.bottomBorder.frame = CGRectMake(12, originY, self.frame.size.width - 24, width);
-}
-
-//- (CGFloat)calculateHeight
-//{
-//    return 85;
-//}
 
 @end

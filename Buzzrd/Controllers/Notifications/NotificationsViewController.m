@@ -83,7 +83,27 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // No need to calculate these, lets just hardcode it
-    return 55;
+    NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
+    Notification *notification = dataSource[indexPath.row];
+    
+    
+    NotificationCell *cell = [[NotificationCell alloc]initWithNotification:notification];
+    [cell setNotification:notification];
+    
+    // Do the layout pass on the cell, which will calculate the frames for all the views based on the constraints
+    // (Note that the preferredMaxLayoutWidth is set on multi-line UILabels inside the -[layoutSubviews] method
+    // in the UITableViewCell subclass
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    // Get the actual height required for the cell
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    // Add an extra point to the height to account for the cell separator, which is added between the bottom
+    // of the cell's contentView and the bottom of the table view cell.
+    //    height += 15;
+    
+    return height;
 }
 
 
@@ -98,7 +118,7 @@
     
     if(cell == nil)
     {
-        cell = [[NotificationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[NotificationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier notification:notification];
     }
     
     [cell setNotification:notification];

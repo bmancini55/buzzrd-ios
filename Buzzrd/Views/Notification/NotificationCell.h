@@ -13,7 +13,8 @@
 
 @property (strong, nonatomic) Notification* notification;
 
-//- (CGFloat)calculateHeight;
+- (id)initWithNotification:(Notification *)notification;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier notification:(Notification *)notification;
 
 - (void)setNotification:(Notification *)notification;
 
