@@ -85,6 +85,7 @@
     self.cornerIndicator = [[CornerIndicator alloc]initWithFrame:cornerIndicatorFrame];
     self.cornerIndicator.indicatorColor = [ThemeManager getTertiaryColorDark];
     self.cornerIndicator.hidden = true;
+    [self.cornerIndicator setIndicatorColor:[[ThemeManager getTertiaryColorDark] colorWithAlphaComponent:0.75]];
     [self.contentView addSubview:self.cornerIndicator];
     
     [self updateConstraints];
@@ -144,13 +145,12 @@
     
     self.messageLabel.text = notification.message;
     [self configureDate:notification.created];
-        
+    
     // handle indicator
     if(notification.read) {
         self.cornerIndicator.hidden = true;
     }
     else {
-        [self.cornerIndicator setIndicatorColor:[[ThemeManager getTertiaryColorDark] colorWithAlphaComponent:0.75]];
         self.cornerIndicator.hidden = false;
     }
 }

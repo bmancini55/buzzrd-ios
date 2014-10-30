@@ -15,6 +15,8 @@
 #import "BuzzrdNav.h"
 #import "NotificationCell.h"
 #import "RoomViewController.h"
+#import "UpdateNotificationReadCommand.h"
+#import "NotificationInvitation.h"
 
 @interface NotificationsViewController ()
 
@@ -199,16 +201,61 @@
     
     if ([notification.typeId intValue] == 1)
     {
-        [self navigateToRoom];
+        [self handleNotificationInvitation:notification];
     }
 }
 
-- (void) navigateToRoom
+- (void) handleNotificationInvitation:(Notification *)notification
 {
-//    RoomViewController *roomViewController = [[RoomViewController alloc]init];
-//    roomViewController.room = room;
-//    roomViewController.hidesBottomBarWhenPushed = true;
-//    [self.navigationController pushViewController:roomViewController animated:YES];
+    notification.read = true;
+    
+    UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
+    command.notification = notification;
+    [command listenForCompletion:self selector:@selector(updateNotificationReadDidComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void)updateNotificationReadDidComplete:(NSNotification *)info
+{
+    UpdateNotificationReadCommand *command = (UpdateNotificationReadCommand *)info.object;
+    if(command.status == kSuccess) {
+        
+        NotificationInvitation *notification = (NotificationInvitation *) command.notification;
+        
+        // Get the room
+//        GetRoomCommand *command = [[GetRoomCommand alloc]init];
+//        command.roomId = notification.roomId;
+//        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+//        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
+}
+
+- (void)getRoomDidComplete:(NSNotification *)info
+{
+//    GetRoomCommand *command = (GetRoomCommand *)info.object;
+//    if(command.status == kSuccess) {
+//        [self navigateToRoom:<#(Room *)#>command.result];
+//    }
+//    else
+//    {
+//        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+//                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+//                       retryOperation:command];
+//    }
+}
+
+- (void) navigateToRoom:(Room *)room
+{
+    RoomViewController *roomViewController = [[RoomViewController alloc]init];
+    roomViewController.room = room;
+    roomViewController.hidesBottomBarWhenPushed = true;
+    [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
 - (void) settingsTouch

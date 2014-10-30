@@ -149,6 +149,7 @@
 		C2CBCD4D19AADAFB00FAE2DE /* DisclaimersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD4C19AADAFB00FAE2DE /* DisclaimersViewController.m */; };
 		C2CBCD5019AAE26100FAE2DE /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD4F19AAE26100FAE2DE /* UpdateProfileViewController.m */; };
 		C2CBCD5319AD6B0F00FAE2DE /* UpdateUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CBCD5219AD6B0F00FAE2DE /* UpdateUserCommand.m */; };
+		C2E86D3D1A01E4B600565931 /* UpdateNotificationReadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E86D3C1A01E4B600565931 /* UpdateNotificationReadCommand.m */; };
 		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
 		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
 		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
@@ -424,6 +425,8 @@
 		C2CBCD4F19AAE26100FAE2DE /* UpdateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateProfileViewController.m; path = Controllers/Settings/UpdateProfileViewController.m; sourceTree = "<group>"; };
 		C2CBCD5119AD6B0F00FAE2DE /* UpdateUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateUserCommand.h; path = Commands/User/UpdateUserCommand.h; sourceTree = "<group>"; };
 		C2CBCD5219AD6B0F00FAE2DE /* UpdateUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateUserCommand.m; path = Commands/User/UpdateUserCommand.m; sourceTree = "<group>"; };
+		C2E86D3B1A01E4B600565931 /* UpdateNotificationReadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateNotificationReadCommand.h; path = Commands/Notifications/UpdateNotificationReadCommand.h; sourceTree = "<group>"; };
+		C2E86D3C1A01E4B600565931 /* UpdateNotificationReadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateNotificationReadCommand.m; path = Commands/Notifications/UpdateNotificationReadCommand.m; sourceTree = "<group>"; };
 		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
 		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				C261DDE81A017EEA00726576 /* RemoveNotificationCommand.m */,
 				C261DDED1A01945500726576 /* NotificationFactory.h */,
 				C261DDEE1A01945500726576 /* NotificationFactory.m */,
+				C2E86D3B1A01E4B600565931 /* UpdateNotificationReadCommand.h */,
+				C2E86D3C1A01E4B600565931 /* UpdateNotificationReadCommand.m */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -1251,7 +1256,6 @@
 				35A6C2001987209800528D77 /* NSDate+Helpers.m in Sources */,
 				35A46F3F19328A3600B615A4 /* FrameUtils.m in Sources */,
 				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
-				C2BEC60F19C12A3F00DB6BCC /* DownloadImageCommand.m in Sources */,
 				C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */,
 				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
 				C261DDF61A019AA800726576 /* NotificationCell.m in Sources */,
@@ -1282,6 +1286,7 @@
 				C213C05219A2E49E00B41A2A /* TermsOfServiceViewController.m in Sources */,
 				35A8F9311997C4FC00D54383 /* TableSectionHeader.m in Sources */,
 				C2BEC60C19BD5C0600DB6BCC /* UpdateProfileImageViewController.m in Sources */,
+				C2E86D3D1A01E4B600565931 /* UpdateNotificationReadCommand.m in Sources */,
 				C290B9D519E76B2D00F6C3B4 /* FriendsViewController.m in Sources */,
 				C2CBCD5319AD6B0F00FAE2DE /* UpdateUserCommand.m in Sources */,
 				C290B9DF19E77C6B00F6C3B4 /* CreateFriendViewController.m in Sources */,
