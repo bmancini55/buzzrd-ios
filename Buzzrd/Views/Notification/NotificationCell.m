@@ -10,6 +10,7 @@
 #import "ThemeManager.h"
 #import "BuzzrdAPI.h"
 #import "NSDate+Helpers.h"
+#import "CornerIndicator.h"
 
 @interface NotificationCell()
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) UILabel *messageLabel;
 @property (strong, nonatomic) UILabel *dateLabel;
 @property (strong, nonatomic) CALayer *bottomBorder;
+@property (strong, nonatomic) CornerIndicator *cornerIndicator;
 
 @end
 
@@ -73,13 +75,17 @@
     self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:self.messageLabel];
     
-    
-    
     self.dateLabel = [[UILabel alloc]init];
     self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.dateLabel.font = [ThemeManager getPrimaryFontRegular:10.0f];
     self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
     [self.contentView addSubview:self.dateLabel];
+    
+    CGRect cornerIndicatorFrame = CGRectMake(CGRectGetWidth(self.frame) - 10, 0, CGRectGetWidth(self.frame), 10);
+    self.cornerIndicator = [[CornerIndicator alloc]initWithFrame:cornerIndicatorFrame];
+    self.cornerIndicator.indicatorColor = [ThemeManager getTertiaryColorDark];
+    self.cornerIndicator.hidden = true;
+    [self.contentView addSubview:self.cornerIndicator];
     
     [self updateConstraints];
 }
@@ -138,9 +144,15 @@
     
     self.messageLabel.text = notification.message;
     [self configureDate:notification.created];
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
+        
+    // handle indicator
+    if(notification.read) {
+        self.cornerIndicator.hidden = true;
+    }
+    else {
+        [self.cornerIndicator setIndicatorColor:[[ThemeManager getTertiaryColorDark] colorWithAlphaComponent:0.75]];
+        self.cornerIndicator.hidden = false;
+    }
 }
 
 @end
