@@ -146,6 +146,9 @@
     self.messageLabel.text = notification.message;
     [self configureDate:notification.created];
     
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+
     // handle indicator
     if(notification.read) {
         self.cornerIndicator.hidden = true;

@@ -17,6 +17,8 @@
 #import "RoomViewController.h"
 #import "UpdateNotificationReadCommand.h"
 #import "NotificationInvitation.h"
+#import "GetRoomCommand.h"
+#import "Room.h"
 
 @interface NotificationsViewController ()
 
@@ -198,23 +200,35 @@
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     
     Notification *notification = [self notificationForTableView:tableView indexPath:indexPath];
-    notification.read = true;
-    
     NotificationCell *cell = (NotificationCell *) [tableView cellForRowAtIndexPath:indexPath];
-    [cell markAsRead];
+    
+    if (notification.read == false) {
+        [cell markAsRead];
+    }
 
     if ([notification.typeId intValue] == 1)
     {
-        [self handleNotificationInvitation:notification];
+        [self handleNotificationInvitation: (NotificationInvitation *)notification];
     }
 }
 
-- (void) handleNotificationInvitation:(Notification *)notification
+- (void) handleNotificationInvitation:(NotificationInvitation *)notification
 {
-    UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
-    command.notification = notification;
-    [command listenForCompletion:self selector:@selector(updateNotificationReadDidComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    if (notification.read == false) {
+        notification.read = true;
+        UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
+        command.notification = notification;
+        [command listenForCompletion:self selector:@selector(updateNotificationReadDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    else
+    {
+        // Get the room
+        GetRoomCommand *command = [[GetRoomCommand alloc]init];
+        command.roomId = notification.roomId;
+        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
 }
 
 - (void)updateNotificationReadDidComplete:(NSNotification *)info
@@ -225,10 +239,10 @@
         NotificationInvitation *notification = (NotificationInvitation *) command.notification;
         
         // Get the room
-//        GetRoomCommand *command = [[GetRoomCommand alloc]init];
-//        command.roomId = notification.roomId;
-//        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
-//        [[BuzzrdAPI dispatch] enqueueCommand:command];
+        GetRoomCommand *command = [[GetRoomCommand alloc]init];
+        command.roomId = notification.roomId;
+        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
     else
     {
@@ -240,16 +254,18 @@
 
 - (void)getRoomDidComplete:(NSNotification *)info
 {
-//    GetRoomCommand *command = (GetRoomCommand *)info.object;
-//    if(command.status == kSuccess) {
-//        [self navigateToRoom:<#(Room *)#>command.result];
-//    }
-//    else
-//    {
-//        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
-//                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
-//                       retryOperation:command];
-//    }
+    GetRoomCommand *command = (GetRoomCommand *)info.object;
+    if(command.status == kSuccess) {
+        Room * room = (Room *) command.results;
+        
+        [self navigateToRoom: room];
+    }
+    else
+    {
+        [self showRetryAlertWithTitle:NSLocalizedString(@"Unexpected Error", nil)
+                              message:NSLocalizedString(@"An unexpected error occurred while processing your request", nil)
+                       retryOperation:command];
+    }
 }
 
 - (void) navigateToRoom:(Room *)room
