@@ -46,9 +46,7 @@
 
 
 // Fires when the application comes into the active state
-// This gets triggerd after:
-//      application:didFinishLaunchingWithOptions
-//      application:handleOpenURL
+// This gets triggerd after application:didFinishLaunchingWithOptions
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     NSLog(@"AppDelegate:applicatoinDidBecomeActive");
     
@@ -98,9 +96,14 @@
 
 - (void)checkForUnreadRooms {
     NSLog(@"AppDelegate:checkForUnreadRooms");
-    GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
-    [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    
+    if([BuzzrdAPI current].authorization.bearerToken) {
+    
+        GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
+        [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+        
+    }
 }
 
 - (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
