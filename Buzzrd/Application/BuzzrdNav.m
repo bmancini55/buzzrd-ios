@@ -126,8 +126,8 @@
 
 + (void)navigateToRoom:(NSString *)roomId {
     
-    // Ensure we are authenticated and have a room to nav to
-    if([BuzzrdAPI current].isAuthenticated && ![roomId isEqualToString:@""]) {
+    // Ensure we have a room to nav to
+    if(![roomId isEqualToString:@""]) {
         
         // Retreive the room before we do anything else
         GetRoomCommand *command = [[GetRoomCommand alloc]init];

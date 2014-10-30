@@ -48,7 +48,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     appIsActive = true;
-    [[BuzzrdAPI current] checkForUnreadRooms];
+    
+    if([BuzzrdAPI current].isAuthenticated) {
+        [[BuzzrdAPI current] checkForUnreadRooms];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -75,20 +78,26 @@
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"AppDelegate:didReceiveRemoteNotification");
     
-    // update the badge count
-    NSDictionary *aps = userInfo[@"aps"];
-    int badgeCount = (int)[aps[@"badge"] integerValue];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+    // Update when user is authenticated
+    if([BuzzrdAPI current].isAuthenticated) {
     
-    // trigger notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
-    @{
-       BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"],
-       BZAppDidReceiveRoomUnreadMessageCountKey: userInfo[@"messageCount"]
-    }];
-    
-    if(!appIsActive) {
-        [BuzzrdNav navigateToRoom:userInfo[@"roomId"]];
+        // update the badge count
+        NSDictionary *aps = userInfo[@"aps"];
+        int badgeCount = (int)[aps[@"badge"] integerValue];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+        
+        // trigger notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
+        @{
+           BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"],
+           BZAppDidReceiveRoomUnreadMessageCountKey: userInfo[@"messageCount"]
+        }];
+        
+        // trigger navigation to room
+        if(!appIsActive) {
+            [BuzzrdNav navigateToRoom:userInfo[@"roomId"]];
+        }
+        
     }
 }
 

@@ -173,9 +173,11 @@
 - (void)checkForUnreadRooms {
     NSLog(@"BuzzrdAPI:checkForUnreadRooms");
     
-    GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
-    [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    if(self.isAuthenticated) {
+        GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
+        [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
 }
 
 // This will then trigger a RoomUnread Notification
