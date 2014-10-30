@@ -190,6 +190,10 @@
              self.results = parsedData;
              if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionNotification];
+             
+             if(self.success) {
+                 self.success(self.results);
+             }
          }
          else
          {
@@ -198,6 +202,10 @@
              self.results = error;
              if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
              [self sendCompletionFailureNotification];
+             
+             if(self.failure) {
+                 self.failure(self.error);
+             }
          }
          
      }
@@ -207,6 +215,10 @@
          self.error = [self handleError:error responseObject:responseObject];
          if (self.autoHideActivityIndicator) { [self sendHideActivityNotification]; }
          [self sendNetworkErrorNotification];
+         
+         if(self.failure) {
+             self.failure(self.error);
+         }
      }];
 }
 

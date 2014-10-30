@@ -33,6 +33,9 @@
 @property (nonatomic) bool                    autoHideActivityIndicator;
 @property (strong, nonatomic) NSString        *activityIndicatorText;
 
+@property (copy) void (^success)(id result);
+@property (copy) void (^failure)(NSError *error);
+
 // Returns the default error notification name
 + (NSString *)getNetworkErrorNotificationName;
 
