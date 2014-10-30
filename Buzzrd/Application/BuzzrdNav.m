@@ -146,9 +146,14 @@
                     UINavigationController *navController = (UINavigationController *)tabController.selectedViewController;
                     
                     // If we're in a room that isn't ours... we need to dismiss it before we pop
-                    if([navController.topViewController isMemberOfClass:[RoomViewController class]] &&
-                       ![((RoomViewController *)navController.topViewController).room.id isEqualToString:roomId]) {
+                    if([navController.topViewController isMemberOfClass:[RoomViewController class]]) {
                         
+                        // abort if room is the same as current
+                        if([((RoomViewController *)navController.topViewController).room.id isEqualToString:roomId]) {
+                            return;
+                        }
+                        
+                        // otherwise dismiss the current
                         [navController popViewControllerAnimated:false];
                     }
                     
