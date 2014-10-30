@@ -198,7 +198,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     
     Notification *notification = [self notificationForTableView:tableView indexPath:indexPath];
+    notification.read = true;
     
+    NotificationCell *cell = (NotificationCell *) [tableView cellForRowAtIndexPath:indexPath];
+    [cell markAsRead];
+
     if ([notification.typeId intValue] == 1)
     {
         [self handleNotificationInvitation:notification];
@@ -207,8 +211,6 @@
 
 - (void) handleNotificationInvitation:(Notification *)notification
 {
-    notification.read = true;
-    
     UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
     command.notification = notification;
     [command listenForCompletion:self selector:@selector(updateNotificationReadDidComplete:)];

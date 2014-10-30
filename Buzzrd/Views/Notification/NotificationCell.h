@@ -18,4 +18,6 @@
 
 - (void)setNotification:(Notification *)notification;
 
+- (void)markAsRead;
+
 @end

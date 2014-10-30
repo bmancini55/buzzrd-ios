@@ -155,4 +155,9 @@
     }
 }
 
+- (void)markAsRead
+{
+    self.cornerIndicator.hidden = true;    
+}
+
 @end
