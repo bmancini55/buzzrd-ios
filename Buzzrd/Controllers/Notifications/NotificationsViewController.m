@@ -283,4 +283,11 @@
     [self.navigationController pushViewController:viewController animated:true];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if(scrollView.contentOffset.y <= 10) {
+        [self loadNotifications];
+    }
+}
+
 @end
