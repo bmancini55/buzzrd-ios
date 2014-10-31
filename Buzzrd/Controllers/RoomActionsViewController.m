@@ -7,10 +7,12 @@
 //
 
 #import "RoomActionsViewController.h"
+#import "BuzzrdAPI.h"
 #import "ThemeManager.h"
 #import "TableSectionHeader.h"
 #import "InviteFriendsViewController.h"
 #import "RoomViewController.h"
+#import "UpdateRoomNotificationCommand.h"
 
 @interface RoomActionsViewController ()
 
@@ -81,7 +83,7 @@
                     cell.textLabel.text = NSLocalizedString(@"Notifications", nil);
                     
                     UISwitch *notificationsSwitch = [[UISwitch alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
-                    
+                    [notificationsSwitch setOn:self.room.notify];
                     [notificationsSwitch addTarget: self action: @selector(switchChange:) forControlEvents: UIControlEventValueChanged];
                     
                     cell.accessoryView = notificationsSwitch;
@@ -98,13 +100,17 @@
 }
 
 - (void)switchChange:(id)sender{
-    if([sender isOn]){
-        // Execute any code when the switch is ON
-        NSLog(@"Switch is ON");
-    } else{
-        // Execute any code when the switch is OFF
-        NSLog(@"Switch is OFF");
-    }
+    bool notify = [sender isOn];
+    
+    UpdateRoomNotificationCommand *command = [[UpdateRoomNotificationCommand alloc]init];
+    command.roomId = self.room.id;
+    command.notify = notify;
+    [command listenForCompletion:self selector:@selector(updateRoomNotificationCommandComplete:)];
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
+}
+
+- (void) updateRoomNotificationCommandComplete:(NSNotification *)notification {
+    // TODO trigger NS event to update notify status on rooms
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
