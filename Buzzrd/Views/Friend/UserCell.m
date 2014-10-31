@@ -95,8 +95,6 @@
     }
     
     [self configureImage:user];
-    
-    [self addBorder];
 }
 
 - (void) configureImage:(User *)user
@@ -109,21 +107,17 @@
     }
 }
 
-- (void)addBorder
-{
-    CGFloat width = .5;
-    CGFloat originY = [self calculateHeight] - width;
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
     
-    // create on new
-    if(self.bottomBorder == nil) {
-        self.bottomBorder = [CALayer layer];
-        self.bottomBorder.backgroundColor = [ThemeManager getSecondaryColorMedium].CGColor;
-        [self.layer addSublayer:self.bottomBorder];
-    }
-    
-    // adjust frame when reapplied
-    self.bottomBorder.frame = CGRectMake(12, originY, self.frame.size.width - 24, width);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, [ThemeManager getSecondaryColorMedium].CGColor);
+    CGContextSetLineWidth(context, 0.5f);
+    CGContextMoveToPoint(context, 12.0f, CGRectGetHeight(rect));
+    CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    CGContextStrokePath(context);
 }
+
 
 - (CGFloat)calculateHeight
 {
