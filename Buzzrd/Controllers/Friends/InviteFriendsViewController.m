@@ -85,7 +85,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // No need to calculate these, lets just hardcode it
-    return 55;
+    return 63;
 }
 
 
