@@ -39,18 +39,18 @@
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
 
     self.usernameLabel = [[UILabel alloc]init];
-    self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:17.0f];
-    self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
+    self.usernameLabel.font = [ThemeManager getPrimaryFontMedium:18.0f];
+    self.usernameLabel.textColor = [ThemeManager getPrimaryColorDark];
     self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.usernameLabel];
     
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:13.0f];
+    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:12.0f];
     self.nameLabel.textColor = [ThemeManager getPrimaryColorMedium];
     self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.nameLabel];
 
-    self.profileImage = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
+    self.profileImage = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 62.5, 62.5)];
     self.profileImage.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.profileImage];
     
@@ -69,12 +69,12 @@
           @"name": self.nameLabel
         };
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-65-[username]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[image(47)]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-65-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-72.5-[username]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[image(62.5)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-72.5-[name]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[username]-0-[name]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[image(==47)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[username]-(-3)-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[image(==62.5)]" options:0 metrics:nil views:views]];
         
     }
     
@@ -113,7 +113,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [ThemeManager getSecondaryColorMedium].CGColor);
     CGContextSetLineWidth(context, 0.5f);
-    CGContextMoveToPoint(context, 12.0f, CGRectGetHeight(rect));
+    CGContextMoveToPoint(context, 0.0f, CGRectGetHeight(rect));
     CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
     CGContextStrokePath(context);
 }
