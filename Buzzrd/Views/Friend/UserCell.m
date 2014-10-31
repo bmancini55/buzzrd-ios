@@ -39,13 +39,13 @@
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
 
     self.usernameLabel = [[UILabel alloc]init];
-    self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:21.0f];
+    self.usernameLabel.font = [ThemeManager getPrimaryFontDemiBold:17.0f];
     self.usernameLabel.textColor = [ThemeManager getTertiaryColorDark];
     self.usernameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.usernameLabel];
     
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:16.0f];
+    self.nameLabel.font = [ThemeManager getPrimaryFontMedium:13.0f];
     self.nameLabel.textColor = [ThemeManager getPrimaryColorMedium];
     self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.nameLabel];
@@ -69,12 +69,12 @@
           @"name": self.nameLabel
         };
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[username]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-6-[image(47)]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-65-[username]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[image(47)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-65-[name]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-1-[username]-0-[name]" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-4-[image(==47)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[username]-0-[name]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[image(==47)]" options:0 metrics:nil views:views]];
         
     }
     
@@ -121,7 +121,7 @@
 
 - (CGFloat)calculateHeight
 {
-    return 55;
+    return 63;
 }
 
 @end
