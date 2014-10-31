@@ -100,6 +100,8 @@
     
     [drawerController setShowsShadow:NO];
     
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar];
+    
     [self presentViewController:drawerController animated:false completion:nil];
 }
 

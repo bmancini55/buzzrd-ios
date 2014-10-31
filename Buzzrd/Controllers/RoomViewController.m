@@ -68,6 +68,8 @@
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
     
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    
     [self initializeRightDrawerMenu];
 }
 
@@ -75,6 +77,8 @@
 {
     [super viewWillAppear:animated];
 
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar];
+    
     [self removeRightDrawerMenu];
 }
 

@@ -50,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,15 +69,15 @@
         
         if(indexPath.section == 0) {
             switch (indexPath.row ) {
+//                case 0: {
+//                    cell.textLabel.text = NSLocalizedString(@"Room Details", nil);
+//                    break ;
+//                }
                 case 0: {
-                    cell.textLabel.text = NSLocalizedString(@"Room Details", nil);
-                    break ;
-                }
-                case 1: {
                     cell.textLabel.text = NSLocalizedString(@"Invite Friends", nil);
                     break ;
                 }
-                case 2: {
+                case 1: {
                     cell.textLabel.text = NSLocalizedString(@"Notifications", nil);
                     
                     UISwitch *notificationsSwitch = [[UISwitch alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
@@ -141,12 +141,12 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     // 03 is the disclaimer cell
-    if ([cell.reuseIdentifier isEqual: @"00"])
-    {
-        // Room Details Controller
-    }
+//    if ([cell.reuseIdentifier isEqual: @"00"])
+//    {
+//        // Room Details Controller
+//    }
     // 01 is the disclaimer cell
-    else if ([cell.reuseIdentifier isEqual: @"01"])
+    if ([cell.reuseIdentifier isEqual: @"00"])
     {
         MMDrawerController *drawerController = (MMDrawerController *) self.parentViewController.parentViewController;
         
