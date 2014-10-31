@@ -42,6 +42,10 @@
     
     self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
     [self loadNotifications];
 }
 
@@ -288,6 +292,11 @@
     if(scrollView.contentOffset.y <= 10) {
         [self loadNotifications];
     }
+}
+
+- (void)tableViewWillRefresh
+{
+    [self.refreshControl endRefreshing];
 }
 
 @end
