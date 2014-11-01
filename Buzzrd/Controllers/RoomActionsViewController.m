@@ -101,6 +101,7 @@
 
 - (void)switchChange:(id)sender{
     bool notify = [sender isOn];
+    self.room.notify = notify;
     
     UpdateRoomNotificationCommand *command = [[UpdateRoomNotificationCommand alloc]init];
     command.roomId = self.room.id;
@@ -110,7 +111,14 @@
 }
 
 - (void) updateRoomNotificationCommandComplete:(NSNotification *)notification {
-    // TODO trigger NS event to update notify status on rooms
+    UpdateRoomNotificationCommand *command = (UpdateRoomNotificationCommand *)notification.object;
+    NSDictionary *userInfo =
+    @{
+        BZRoomDidChangeRoomIdKey: command.roomId,
+        BZRoomDidChangePropertyKey: @"notify",
+        BZRoomDidChangeValueKey: [NSNumber numberWithBool:command.notify]
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomDidChangeNotification object:nil userInfo:userInfo];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
