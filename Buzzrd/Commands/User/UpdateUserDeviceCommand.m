@@ -8,6 +8,7 @@
 
 #import "UpdateUserDeviceCommand.h"
 #import "User.h"
+#import "NSString+string.h"
 
 @implementation UpdateUserDeviceCommand
 
@@ -28,7 +29,7 @@
     NSString *url = [self getAPIUrl:@"/api/me/device"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[self.deviceToken description] forKey:@"deviceId"];
+    [parameters setObject:[NSString emptyStringIfNil:[self.deviceToken description]] forKey:@"deviceId"];
     [self httpPutWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
 }
 

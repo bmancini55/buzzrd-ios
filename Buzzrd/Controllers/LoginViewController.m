@@ -212,6 +212,7 @@
     if(command.status == kSuccess)
     {
         [BuzzrdAPI current].authorization = (Authorization *)command.results;
+        [[NSNotificationCenter defaultCenter] postNotificationName:BZUserDidAuthenticateNotification object:nil userInfo:nil];
                 
         GetCurrentUserCommand *command = [[GetCurrentUserCommand alloc]init];
         [command listenForCompletion:self selector:@selector(getUserDidComplete:)];

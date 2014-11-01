@@ -23,6 +23,9 @@
 
 - (void)main
 {
+    // Trigger will logout notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZUserWillDeauthenticateNotification object:nil userInfo:nil];
+    
     // Clear the local storage
     [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];
     

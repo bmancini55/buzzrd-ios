@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
+// Authentication and deauthentication events
+extern NSString *const BZUserDidAuthenticateNotification;
+extern NSString *const BZUserWillDeauthenticateNotification;
+
 // Remote Notificaton received for new messages
 extern NSString *const BZAppDidReceiveRoomUnreadNotification;
 extern NSString *const BZAppDidReceiveRoomUnreadRoomIdKey;

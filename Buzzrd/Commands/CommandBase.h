@@ -33,6 +33,9 @@
 @property (nonatomic) bool                    autoHideActivityIndicator;
 @property (strong, nonatomic) NSString        *activityIndicatorText;
 
+// Store the auth token at the time of creation
+@property (strong, nonatomic) NSString        *authToken;
+
 @property (copy) void (^success)(id result);
 @property (copy) void (^failure)(NSError *error);
 
