@@ -115,7 +115,9 @@
     NSDictionary *userInfo =
     @{
         BZRoomPropsDidChangeRoomIdKey: command.roomId,
-        BZRoomPropsDidChangePropertiesKey: @{ @"notify": [NSNumber numberWithBool:command.notify] }
+        BZRoomPropsDidChangePropertiesKey: @{
+                @"watchedRoom": [NSNumber numberWithBool:true],
+                @"notify": [NSNumber numberWithBool:command.notify] }
     };
     [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomPropsDidChangeNotification object:nil userInfo:userInfo];
 }
