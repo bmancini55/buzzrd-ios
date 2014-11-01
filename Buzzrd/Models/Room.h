@@ -24,6 +24,7 @@
 @property (nonatomic) NSUInteger messageCount;
 @property (nonatomic) bool watchedRoom;
 @property (nonatomic) bool newMessages;
+@property (nonatomic) bool notify;
 
 @property (strong, nonatomic) CLLocation *coord;
 @property (strong, nonatomic) Location *location;

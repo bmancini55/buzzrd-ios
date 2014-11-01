@@ -26,6 +26,7 @@
         self.messageCount = [json[@"messageCount"] unsignedIntegerValue];
         self.watchedRoom = [json[@"watchedRoom"] boolValue];
         self.newMessages = [json[@"newMessages"] boolValue];
+        self.notify = [json[@"notify"] boolValue];
         
         NSArray *coord = json[@"coord"];
         self.coord = [[CLLocation alloc]initWithLatitude:[coord[1] doubleValue] longitude:[coord[0] doubleValue]];

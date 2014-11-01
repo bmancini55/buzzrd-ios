@@ -59,6 +59,14 @@
     if(command.status == kSuccess) {
         [self.rooms removeObjectAtIndex:command.indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[command.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        NSDictionary *userInfo =
+        @{
+            BZRoomPropsDidChangeRoomIdKey: command.room.id,
+            BZRoomPropsDidChangePropertiesKey: @{  @"watchedRoom": [NSNumber numberWithBool:false],
+                                                  @"newMessages": [NSNumber numberWithUnsignedInt:0] }
+        };
+        [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomPropsDidChangeNotification object:nil userInfo:userInfo];
     }
     else
     {

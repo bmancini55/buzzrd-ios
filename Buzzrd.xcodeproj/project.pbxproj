@@ -86,6 +86,7 @@
 		35BA0E1418CF37A100F5B339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA0DFC18CF37A100F5B339 /* UIKit.framework */; };
 		35BA0E1C18CF37A100F5B339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35BA0E1A18CF37A100F5B339 /* InfoPlist.strings */; };
 		35BA0E1E18CF37A100F5B339 /* BuzzrdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */; };
+		35C5CEB71A031307002A03FA /* UpdateRoomNotificationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C5CEB61A031307002A03FA /* UpdateRoomNotificationCommand.m */; };
 		35CA8C8918D2DA5F00B35F23 /* LaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */; };
 		35CB6BF71918903D00B243D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C2093481834847B1B173E7 /* libPods.a */; };
 		35DB236C1A01C9B500A5DF76 /* GetRoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DB236B1A01C9B500A5DF76 /* GetRoomCommand.m */; };
@@ -313,6 +314,8 @@
 		35BA0E1918CF37A100F5B339 /* BuzzrdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuzzrdTests-Info.plist"; sourceTree = "<group>"; };
 		35BA0E1B18CF37A100F5B339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35BA0E1D18CF37A100F5B339 /* BuzzrdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuzzrdTests.m; sourceTree = "<group>"; };
+		35C5CEB51A031307002A03FA /* UpdateRoomNotificationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateRoomNotificationCommand.h; path = Commands/Room/UpdateRoomNotificationCommand.h; sourceTree = "<group>"; };
+		35C5CEB61A031307002A03FA /* UpdateRoomNotificationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateRoomNotificationCommand.m; path = Commands/Room/UpdateRoomNotificationCommand.m; sourceTree = "<group>"; };
 		35CA8C8718D2DA5F00B35F23 /* LaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@2x.png"; sourceTree = "<group>"; };
 		35DB236A1A01C9B500A5DF76 /* GetRoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetRoomCommand.h; path = Commands/Room/GetRoomCommand.h; sourceTree = "<group>"; };
 		35DB236B1A01C9B500A5DF76 /* GetRoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetRoomCommand.m; path = Commands/Room/GetRoomCommand.m; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 				C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */,
 				357A65421A01837400DAFEDA /* ResetRoomBadgeCountCommand.h */,
 				357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */,
+				35C5CEB51A031307002A03FA /* UpdateRoomNotificationCommand.h */,
+				35C5CEB61A031307002A03FA /* UpdateRoomNotificationCommand.m */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -1253,6 +1258,7 @@
 				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
 				C290B9CE19E38C0400F6C3B4 /* GetFriendsCommand.m in Sources */,
 				357A65441A01837400DAFEDA /* ResetRoomBadgeCountCommand.m in Sources */,
+				35C5CEB71A031307002A03FA /* UpdateRoomNotificationCommand.m in Sources */,
 				C29DDDE61980915C00EA922F /* UIView+UIView_Borders.m in Sources */,
 				35A46FD219328B1500B615A4 /* SocketIOJSONSerialization.m in Sources */,
 				3572D02D1A01B2A800F35B4A /* UploadImageCommand.m in Sources */,
