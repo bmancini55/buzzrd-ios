@@ -47,15 +47,20 @@
 {
     NearbyRoomsViewController *nearbyRoomsViewController = [[NearbyRoomsViewController alloc]init];
     UINavigationController *nearbyRoomsNavController = [[UINavigationController alloc] initWithRootViewController:nearbyRoomsViewController];
+    nearbyRoomsNavController.tabBarItem.image = [UIImage imageNamed:@"Nearby_G.png"];
+
     
     MyRoomsViewController *myRoomsViewController = [[MyRoomsViewController alloc]init];
     UINavigationController *myRoomsNavController = [[UINavigationController alloc] initWithRootViewController:myRoomsViewController];
+    myRoomsNavController.tabBarItem.image = [UIImage imageNamed:@"MyRoom_G.png"];
     
     FriendsViewController *friendsViewController = [[FriendsViewController alloc]init];
     UINavigationController *friendsNavController = [[UINavigationController alloc] initWithRootViewController:friendsViewController];
-
+    friendsNavController.tabBarItem.image = [UIImage imageNamed:@"Friends_G.png"];
+    
     NotificationsViewController *notificationsViewController = [[NotificationsViewController alloc]init];
     UINavigationController *notificationsNavController = [[UINavigationController alloc] initWithRootViewController:notificationsViewController];
+    notificationsNavController.tabBarItem.image = [UIImage imageNamed:@"Notify_G.png"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
@@ -72,19 +77,23 @@
     [[UITabBar appearance] setBarTintColor:[ThemeManager getPrimaryColorDark]];
     [[UITabBar appearance] setTintColor:([ThemeManager getSecondaryColorMedium])];
     
-    [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -14)];
+//    [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -14)];
+    
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    
+//    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor whiteColor]];
+
     
     NSDictionary *normalTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                               [ThemeManager getPrimaryFontBold:12.0], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+                                               [ThemeManager getPrimaryFontBold:8.5], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     
     [[UITabBarItem appearance] setTitleTextAttributes:(normalTitleTextAttributes) forState:UIControlStateNormal];
     
     
     NSDictionary *selectedTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [ThemeManager getPrimaryFontBold:12.0], NSFontAttributeName, [ThemeManager getSecondaryColorMedium], NSForegroundColorAttributeName, nil];
+                                                 [ThemeManager getPrimaryFontBold:8.5], NSFontAttributeName, [ThemeManager getSecondaryColorMedium], NSForegroundColorAttributeName, nil];
     
     [[UITabBarItem appearance] setTitleTextAttributes:(selectedTitleTextAttributes) forState:UIControlStateSelected];
-    
     
     [tabBarController.tabBar addTopBorder:[ThemeManager getSecondaryColorMedium] width:3.0];
     tabBarController.tabBar.clipsToBounds = YES;
