@@ -13,7 +13,6 @@ NSString *const BZAppDidReceiveRoomUnreadMessageCountKey = @"BZAppDidReceiveRoom
 NSString *const BZRoomDidClearBadgeNotification = @"BZRoomDidClearBadgeNotification";
 NSString *const BZRoomDidClearBadgeRoomKey = @"BZRoomDidClearBadgeRoomKey";
 
-NSString *const BZRoomDidChangeNotification = @"BZRoomDidChangeNotification";
-NSString *const BZRoomDidChangeRoomIdKey = @"BZRoomDidChangeRoomIdKey";
-NSString *const BZRoomDidChangePropertyKey = @"BZRoomDidChangePropertyKey";
-NSString *const BZRoomDidChangeValueKey = @"BZRoomDidChangeValueKey";
+NSString *const BZRoomPropsDidChangeNotification = @"BZRoomPropsDidChangeNotification";
+NSString *const BZRoomPropsDidChangeRoomIdKey = @"BZRoomPropsDidChangeRoomIdKey";
+NSString *const BZRoomPropsDidChangePropertiesKey = @"BZRoomPropsDidChangePropertiesKey";

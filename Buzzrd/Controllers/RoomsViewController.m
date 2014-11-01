@@ -32,7 +32,7 @@
     if(self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRoomUnreadNotification:) name:BZAppDidReceiveRoomUnreadNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveClearBadgeNotification:) name:BZRoomDidClearBadgeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRoomChangeNotification:) name:BZRoomDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRoomPropChangeNotification:) name:BZRoomPropsDidChangeNotification object:nil];
     }
     return self;
 }
@@ -215,16 +215,22 @@
     [self.searchResults enumerateObjectsUsingBlock:clearBadge];
 }
 
-- (void) didReceiveRoomChangeNotification:(NSNotification*)notification {
-    NSString *roomId = notification.userInfo[BZRoomDidChangeRoomIdKey];
-    NSString *property = notification.userInfo[BZRoomDidChangePropertyKey];
-    id value = notification.userInfo[BZRoomDidChangeValueKey];
+- (void) didReceiveRoomPropChangeNotification:(NSNotification*)notification {
+    NSString *roomId = notification.userInfo[BZRoomPropsDidChangeRoomIdKey];
+    NSDictionary *properties = notification.userInfo[BZRoomPropsDidChangePropertiesKey];
+
     
     // declare iterator that will update
     void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
         Room *room = (Room *)object;
         if([room.id isEqualToString:roomId]) {
-            [room setValue:value forKey:property];
+            
+            // set any/all properties
+            for (NSString* key in properties.keyEnumerator) {
+                [room setValue:properties[key] forKey:key];
+            }
+            
+            // update the table
             [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
         }
     };

@@ -16,7 +16,6 @@ extern NSString *const BZRoomDidClearBadgeNotification;
 extern NSString *const BZRoomDidClearBadgeRoomKey;
 
 // Fires when a room changes information
-extern NSString *const BZRoomDidChangeNotification;
-extern NSString *const BZRoomDidChangeRoomIdKey;
-extern NSString *const BZRoomDidChangePropertyKey;
-extern NSString *const BZRoomDidChangeValueKey;
+extern NSString *const BZRoomPropsDidChangeNotification;
+extern NSString *const BZRoomPropsDidChangeRoomIdKey;
+extern NSString *const BZRoomPropsDidChangePropertiesKey;
