@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
+NSString *const BZUserDidAuthenticateNotification = @"BZUserDidAuthenticateNotification";
+NSString *const BZUserWillDeauthenticateNotification = @"BZUserWillDeauthenticateNotification";
+
 NSString *const BZAppDidReceiveRoomUnreadNotification = @"BZAppDidReceiveRoomUnreadNotification";
 NSString *const BZAppDidReceiveRoomUnreadRoomIdKey = @"BZAppDidReceiveRoomUnreadRoomIdKey";
 NSString *const BZAppDidReceiveRoomUnreadMessageCountKey = @"BZAppDidReceiveRoomUnreadMessageCountKey";

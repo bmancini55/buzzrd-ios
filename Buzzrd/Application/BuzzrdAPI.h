@@ -37,6 +37,6 @@
 @property (strong, nonatomic) UIImage *profilePic;
 
 // Additional Properties
-@property (strong, nonatomic) NSString *navToRoom;
+@property (strong, nonatomic) NSData *deviceToken;
 
 @end

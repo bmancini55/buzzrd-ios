@@ -34,6 +34,11 @@
         self.autoShowActivityIndicator = true;
         self.autoHideActivityIndicator = true;
         
+        
+        // Cache the auth token at time of command creation to prevent changes to
+        // authorization from impacting the command
+        self.authToken = [BuzzrdAPI current].authorization.bearerToken;
+        
         self.activityIndicatorText = NSLocalizedString(@"Processing", nil);
     }
     
@@ -133,6 +138,7 @@
 - (id)copyWithZone:(NSZone *)zone {
     CommandBase *newOp = [[[self class] allocWithZone:zone] init];
     newOp.completionNotificationName = self.completionNotificationName;
+    newOp.authToken = self.authToken;
     newOp.status = self.status;
     newOp.results = self.results;
     newOp.error = self.error;
@@ -157,9 +163,9 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     // set authorization header
-    if([[BuzzrdAPI current] authorization] != nil)
+    if(self.authToken != nil)
     {
-        NSString *authorization = [@"Bearer " stringByAppendingString:[BuzzrdAPI current].authorization.bearerToken];
+        NSString *authorization = [@"Bearer " stringByAppendingString:self.authToken];
         [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
     }
     

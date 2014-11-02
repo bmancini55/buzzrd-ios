@@ -42,6 +42,12 @@
     // create activityLock
     _activityLock = dispatch_queue_create("io.buzzrd.activitylock", nil);
     
+    // registration device for push notification
+    [self registerForRemoteNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidAuthenticate:) name:BZUserDidAuthenticateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userWillDeauthenticate:) name:BZUserWillDeauthenticateNotification object:nil];
+    
     return YES;
 }
 
@@ -59,19 +65,58 @@
 }
 
 
+- (void)userDidAuthenticate:(NSNotification *)notification {
+    NSLog(@"AppDelegate:userDidAuthenticate");
+    [self updateDeviceTokenOnServer:[BuzzrdAPI current].deviceToken];
+}
+
+- (void)userWillDeauthenticate:(NSNotification *)notification {
+    NSLog(@"AppDelegate:userWillAuthenticate");
+    [self updateDeviceTokenOnServer:nil];
+}
+
+
+// Trigger deviceToken registration
+- (void)registerForRemoteNotifications {
+    NSLog(@"AppDelegate:registerForRemoteNotifications");
+    
+    // register for notification -> move this after login so that it doesn't trigger request until user is logged in
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    bool currentRemoteRegistration = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+    NSLog(@"  -> Current remote registration: %u", currentRemoteRegistration);
+}
+
 // Handle the registration of device
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"AppDelegate:didRegisterForRemoteNotificationsWithDeviceToken");
     NSLog(@"  -> DeviceToken %@", deviceToken);
     
-    UpdateUserDeviceCommand *command = [[UpdateUserDeviceCommand alloc]init];
-    command.deviceToken = deviceToken;
-    [[BuzzrdAPI dispatch] enqueueCommand:command];
+    // Store the deviceToken for subsequent calls
+    [BuzzrdAPI current].deviceToken = deviceToken;
+    
+    // Update deviceToken if user is currently authenticated
+    if([BuzzrdAPI current].isAuthenticated) {
+        [self updateDeviceTokenOnServer:deviceToken];
+    }
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"AppDelegate:didFailToRegisterForRemoteNotificationsWithError");
     NSLog(@"  -> Error %@", error);
+    [BuzzrdAPI current].deviceToken = nil;
+}
+
+// Send the updated device token to the server
+// This should be fired either from the initial deviceToken update if the user is already authenticated
+//   or after authentication or deathentication as triggered by NSNotification events
+- (void)updateDeviceTokenOnServer:(NSData *)deviceToken {
+    NSLog(@"AppDelegate:updateDeviceTokenOnServer");
+    UpdateUserDeviceCommand *command = [[UpdateUserDeviceCommand alloc]init];
+    command.deviceToken = deviceToken;
+    [[BuzzrdAPI dispatch] enqueueCommand:command];
 }
 
 
