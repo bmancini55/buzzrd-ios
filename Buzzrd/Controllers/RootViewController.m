@@ -47,23 +47,23 @@
     NearbyRoomsViewController *nearbyRoomsViewController = [[NearbyRoomsViewController alloc]init];
     UINavigationController *nearbyRoomsNavController = [[UINavigationController alloc] initWithRootViewController:nearbyRoomsViewController];
     nearbyRoomsNavController.tabBarItem.image = [[UIImage imageNamed:@"Nearby_G.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    nearbyRoomsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Nearby_W.png"];
+    nearbyRoomsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Nearby_G.png"];
     
     MyRoomsViewController *myRoomsViewController = [[MyRoomsViewController alloc]init];
     UINavigationController *myRoomsNavController = [[UINavigationController alloc] initWithRootViewController:myRoomsViewController];
     myRoomsNavController.tabBarItem.image = [[UIImage imageNamed:@"MyRoom_G.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    myRoomsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"MyRoom_W.png"];
+    myRoomsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"MyRoom_G.png"];
     
     FriendsViewController *friendsViewController = [[FriendsViewController alloc]init];
     UINavigationController *friendsNavController = [[UINavigationController alloc] initWithRootViewController:friendsViewController];
     friendsNavController.tabBarItem.image = [[UIImage imageNamed:@"Friends_G.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    friendsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Friends_W.png"];
+    friendsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Friends_G.png"];
 
     
     NotificationsViewController *notificationsViewController = [[NotificationsViewController alloc]init];
     UINavigationController *notificationsNavController = [[UINavigationController alloc] initWithRootViewController:notificationsViewController];
     notificationsNavController.tabBarItem.image = [[UIImage imageNamed:@"Notify_G.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    notificationsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Notify_W.png"];
+    notificationsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"Notify_G.png"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
