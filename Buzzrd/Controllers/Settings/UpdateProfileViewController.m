@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) UITextField *passwordTextField;
 @property (strong, nonatomic) UITextField *password2TextField;
+@property (strong, nonatomic) UIImageView *profileImageView;
 
 @end
 
@@ -148,25 +149,25 @@
                     cell.textLabel.text = NSLocalizedString(@"Adjust Profile Picture", nil);
                     cell.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
                     
-                    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+                    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
                     
-                    profileImageView.contentMode = UIViewContentModeScaleAspectFit;
-                    profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
+                    self.profileImageView.contentMode = UIViewContentModeScaleAspectFit;
+                    self.profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
                     
                     if ([BuzzrdAPI current].profilePic != nil) {
-                        profileImageView.image = [BuzzrdAPI current].profilePic;
+                        self.profileImageView.image = [BuzzrdAPI current].profilePic;
                     }
                     else {
-                        profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
+                        self.profileImageView.image = [UIImage imageNamed:@"no_profile_pic.png"];
                     }
                     
-                    [cell addSubview: profileImageView];
+                    [cell addSubview: self.profileImageView];
                     
-                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[cellLabel]-(50)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": profileImageView }]];
+                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[cellLabel]-(50)-[profileImageView(27)]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel, @"profileImageView": self.profileImageView }]];
                     
                     [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[cellLabel]" options:0 metrics:nil views:@{ @"cellLabel": cell.textLabel }]];
                     
-                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[profileImageView(27)]" options:0 metrics:nil views:@{ @"profileImageView": profileImageView }]];
+                    [cell addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[profileImageView(27)]" options:0 metrics:nil views:@{ @"profileImageView": self.profileImageView }]];
                     
                     cell.accessoryView = [[AccessoryIndicatorView alloc] initWithFrame:CGRectMake(cell.frame.size.width - ACCESSORY_WIDTH - CELL_PADDING, cell.frame.size.height/2 - ACCESSORY_HEIGHT/2, ACCESSORY_WIDTH, ACCESSORY_HEIGHT)];
                     
@@ -242,6 +243,11 @@
 - (void) displayProfileImagePicker
 {
     UpdateProfileImageViewController *viewController = [[UpdateProfileImageViewController alloc]init];
+
+    viewController.onProfilePicUpdated = ^(UIImage *profilePic) {
+        self.profileImageView.image = profilePic;
+    };
+
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

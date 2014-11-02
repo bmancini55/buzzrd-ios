@@ -208,6 +208,8 @@
     
     if(command.status == kSuccess)
     {
+        self.onProfilePicUpdated([BuzzrdAPI current].profilePic);
+
         [self.navigationController popViewControllerAnimated:TRUE];
     }
     else

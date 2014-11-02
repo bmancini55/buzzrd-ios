@@ -11,4 +11,6 @@
 
 @interface UpdateProfileImageViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) void(^onProfilePicUpdated)(UIImage *profilePic);
+
 @end
