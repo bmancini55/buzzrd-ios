@@ -86,8 +86,9 @@
 }
 
 - (void)clearLocalStorage {
-    _authorization = nil;
-    _profilePic = nil;
+    [self setAuthorization:nil];
+    [self setProfilePic:nil];
+    [self setUser:nil];    
 }
 
 - (User *) user {

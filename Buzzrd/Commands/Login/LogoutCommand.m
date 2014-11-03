@@ -27,7 +27,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:BZUserWillDeauthenticateNotification object:nil userInfo:nil];
     
     // Clear the local storage
-    [[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];
+    // Disabled this because local storage is used by AFNetworking. Events triggered by the WillDeauthenticate notification are not completing
+    //[[NSUserDefaults standardUserDefaults] setPersistentDomain:[NSDictionary dictionary] forName:[[NSBundle mainBundle] bundleIdentifier]];
     
     [[BuzzrdAPI current] clearLocalStorage];
     
