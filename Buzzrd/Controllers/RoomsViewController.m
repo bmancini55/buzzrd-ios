@@ -178,7 +178,7 @@
     uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntValue];
 
     // declare iterator that will clear the badge
-    void(^updateBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+    id iterator = ^(id object, NSUInteger idx, bool *stop) {
         Room *room = (Room *)object;
         
         // check for a room match
@@ -194,15 +194,15 @@
     };
     
     // clear the badges
-    [self.rooms enumerateObjectsUsingBlock:updateBadge];
-    [self.searchResults enumerateObjectsUsingBlock:updateBadge];
+    [self.rooms enumerateObjectsUsingBlock:iterator];
+    [self.searchResults enumerateObjectsUsingBlock:iterator];
 }
 
 - (void) didReceiveClearBadgeNotification:(NSNotification*)notification {
     NSString *roomId = notification.userInfo[BZRoomDidClearBadgeRoomKey];
     
     // declare iterator that will clear the badge
-    void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+    id iterator = ^(id object, NSUInteger idx, bool *stop) {
         Room *room = (Room *)object;
         if([room.id isEqualToString:roomId]) {
             room.newMessages = false;
@@ -211,17 +211,16 @@
     };
     
     // clear the badges
-    [self.rooms enumerateObjectsUsingBlock:clearBadge];
-    [self.searchResults enumerateObjectsUsingBlock:clearBadge];
+    [self.rooms enumerateObjectsUsingBlock:iterator];
+    [self.searchResults enumerateObjectsUsingBlock:iterator];
 }
 
 - (void) didReceiveRoomPropChangeNotification:(NSNotification*)notification {
     NSString *roomId = notification.userInfo[BZRoomPropsDidChangeRoomIdKey];
     NSDictionary *properties = notification.userInfo[BZRoomPropsDidChangePropertiesKey];
 
-    
     // declare iterator that will update
-    void(^clearBadge)(id object, NSUInteger idx, bool *stop) = ^(id object, NSUInteger idx, bool *stop) {
+    id iterator = ^(id object, NSUInteger idx, bool *stop) {
         Room *room = (Room *)object;
         if([room.id isEqualToString:roomId]) {
             
@@ -236,8 +235,8 @@
     };
     
     // clear the badges
-    [self.rooms enumerateObjectsUsingBlock:clearBadge];
-    [self.searchResults enumerateObjectsUsingBlock:clearBadge];
+    [self.rooms enumerateObjectsUsingBlock:iterator];
+    [self.searchResults enumerateObjectsUsingBlock:iterator];
 }
 
 
