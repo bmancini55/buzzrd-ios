@@ -62,10 +62,21 @@
 {
     [super viewWillAppear:animated];
     
-    // create hook for keyboard to expand table view on close
+    // Scroll table view when keyboard exapnds
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
+    
+    // Trigger relaod when app starts from backgroun
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(initRoom)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    // Trigger disconnect when entering background
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(disconnect)
+                                                 name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
     
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
@@ -89,6 +100,12 @@
     // remove notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillChangeFrameNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationWillEnterForegroundNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification
                                                   object:nil];
     
     // Disconnect on room exit
