@@ -33,6 +33,8 @@
     
     CGContextAddPath(context, path);
     CGContextFillPath(context);
+    
+    CGPathRelease(path);
 }
 
 - (void)setIndicatorColor:(UIColor *)indicatorColor {

@@ -24,6 +24,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     // Show the login view controller when not authenticated
     if ([BuzzrdAPI current].authorization.bearerToken == nil) {
         [self presentLoginViewController];
