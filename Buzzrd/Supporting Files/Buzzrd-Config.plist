@@ -8,5 +8,7 @@
 	<integer>443</integer>
 	<key>API Host</key>
 	<string>devapi.buzzrd.io</string>
+	<key>S3 Bucket URL</key>
+	<string>http://s3.amazonaws.com/buzzrd-dev/</string>
 </dict>
 </plist>

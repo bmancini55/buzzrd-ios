@@ -7,6 +7,7 @@
 //
 
 #import "DownloadImageCommand.h"
+#import "BuzzrdAPI.h"
 
 @implementation DownloadImageCommand
 
@@ -14,7 +15,7 @@
 {
     self = [super init];
     if(self) {
-        self.imageDownloadBaseUrl = @"http://s3.amazonaws.com/buzzrd-dev/";
+        self.imageDownloadBaseUrl = [BuzzrdAPI current].config.s3BucketUrl;
         self.completionNotificationName = @"downloadImageComplete";
     }
     return self;
