@@ -56,6 +56,8 @@
 
 "password_length_error" = "Your password must be at least 6 characters in length";
 
+"Please ensure your passwords match." = "Please ensure your passwords match.";
+
 "nearby" = "Nearby";
 
 "rooms" = "Rooms";

@@ -93,6 +93,12 @@
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"password_length_error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
         [alert show];
     }
+    else if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"Please ensure your passwords match.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+
     else {
         self.user.username = self.usernameTextField.text;
         self.user.password = self.passwordTextField.text;
@@ -333,13 +339,6 @@
     
     // Validate password was filled in
     if (self.passwordTextField.text.length == 0)
-    {
-        self.nextButton.enabled = false;
-        return;
-    }
-    
-    // Validate that the passwords match
-    if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
     {
         self.nextButton.enabled = false;
         return;

@@ -313,12 +313,6 @@
         {
             isValid = false;
         }
-        
-        // The passwords must match before the save button is enabled
-        if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
-        {
-            isValid = false;
-        }
     }
     
     if (isDirty == false)
@@ -351,7 +345,17 @@
         
         if (self.passwordTextField.text.length > 0)
         {
-            self.user.password = self.passwordTextField.text;
+            // The passwords must match before the save button is enabled
+            if (![self.passwordTextField.text isEqualToString:self.password2TextField.text])
+            {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"password", nil) message: NSLocalizedString(@"Please ensure your passwords match.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil];
+                [alert show];
+                return;
+            }
+            else
+            {
+                self.user.password = self.passwordTextField.text;
+            }
         }
         
         UpdateUserCommand *command = [[UpdateUserCommand alloc]init];
