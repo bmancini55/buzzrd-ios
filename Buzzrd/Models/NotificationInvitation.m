@@ -10,10 +10,24 @@
 
 @implementation NotificationInvitation
 
+- (NSString *) senderId{
+    
+    return self.payload[@"senderId"];
+}
+
+- (NSString *) senderName{
+    
+    return self.payload[@"senderName"];
+}
 
 - (NSString *) roomId{
     
     return self.payload[@"roomId"];
+}
+
+- (NSString *) roomName{
+    
+    return self.payload[@"roomName"];
 }
 
 @end

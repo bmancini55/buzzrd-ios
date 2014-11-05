@@ -156,6 +156,7 @@
 		C2E86D6B1A05C70300565931 /* MyRoom_G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D671A05C70300565931 /* MyRoom_G@2x.png */; };
 		C2E86D6C1A05C70300565931 /* Nearby_G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D681A05C70300565931 /* Nearby_G@2x.png */; };
 		C2E86D6D1A05C70300565931 /* Notify_G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D691A05C70300565931 /* Notify_G@2x.png */; };
+		C2E86D6F1A09C0B900565931 /* Notify_Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D6E1A09C0B900565931 /* Notify_Y@2x.png */; };
 		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
 		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
 		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
@@ -441,6 +442,7 @@
 		C2E86D671A05C70300565931 /* MyRoom_G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyRoom_G@2x.png"; sourceTree = "<group>"; };
 		C2E86D681A05C70300565931 /* Nearby_G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nearby_G@2x.png"; sourceTree = "<group>"; };
 		C2E86D691A05C70300565931 /* Notify_G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notify_G@2x.png"; sourceTree = "<group>"; };
+		C2E86D6E1A09C0B900565931 /* Notify_Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notify_Y@2x.png"; sourceTree = "<group>"; };
 		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
 		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 		35CA8C8318D2CCA200B35F23 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2E86D6E1A09C0B900565931 /* Notify_Y@2x.png */,
 				C2E86D661A05C70300565931 /* Friends_G@2x.png */,
 				C2E86D671A05C70300565931 /* MyRoom_G@2x.png */,
 				C2E86D681A05C70300565931 /* Nearby_G@2x.png */,
@@ -1187,6 +1190,7 @@
 				C20A15D8197A0F750003B67E /* Login_Area@2x.png in Resources */,
 				3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */,
 				C29DDDE81981EFFC00EA922F /* Forward_Arrow@2x.png in Resources */,
+				C2E86D6F1A09C0B900565931 /* Notify_Y@2x.png in Resources */,
 				C20A15DA197F3D080003B67E /* Buzzrd_Megaphone@2x.png in Resources */,
 				3500366019DF1A9300E69508 /* Buzzrd-Config.plist in Resources */,
 			);

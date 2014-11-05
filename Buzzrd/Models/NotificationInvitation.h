@@ -13,6 +13,10 @@
 
 @property (strong, readonly) NSString *senderId;
 
+@property (strong, readonly) NSString *senderName;
+
 @property (strong, readonly) NSString *roomId;
+
+@property (strong, readonly) NSString *roomName;
 
 @end
