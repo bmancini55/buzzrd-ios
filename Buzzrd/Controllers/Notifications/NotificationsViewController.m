@@ -45,8 +45,6 @@
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
-    
-    [self loadNotifications];
 }
 
 - (void) addSettingsButton
@@ -297,6 +295,10 @@
 - (void)tableViewWillRefresh
 {
     [self.refreshControl endRefreshing];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadNotifications];
 }
 
 @end
