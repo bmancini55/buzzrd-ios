@@ -399,7 +399,7 @@
     [self.drawerController setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
         
         self.isDrawerTransitioning = true;
-        
+
         if(drawerController.openSide == MMDrawerSideNone)
         {
             [self.tableView.inputAccessoryView setHidden:YES];
@@ -431,6 +431,10 @@
 - (void) removeRightDrawerMenu
 {
     self.drawerController.rightDrawerViewController = nil;
+    
+    [self.drawerController setDrawerVisualStateBlock: nil];
+    
+    [self.drawerController setGestureCompletionBlock: nil];
 }
 
 - (void) initializeRightDrawerButton
