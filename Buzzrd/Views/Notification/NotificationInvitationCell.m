@@ -66,7 +66,6 @@
     [self.contentView addSubview:self.messageLabel];
     
     self.roomNameLabel = [[UILabel alloc]init];
-    
     self.roomNameLabel.font = [ThemeManager getPrimaryFontBold:13.0f];
     self.roomNameLabel.textColor = [ThemeManager getPrimaryColorDark];
     self.roomNameLabel.translatesAutoresizingMaskIntoConstraints = NO;

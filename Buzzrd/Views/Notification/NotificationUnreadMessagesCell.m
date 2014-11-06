@@ -15,6 +15,8 @@
 
 @interface NotificationUnreadMessagesCell()
 
+@property (strong, nonatomic) UILabel *roomNameLabel;
+
 @end
 
 @implementation NotificationUnreadMessagesCell
@@ -53,6 +55,14 @@
     self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:self.messageLabel];
     
+    self.roomNameLabel = [[UILabel alloc]init];
+    self.roomNameLabel.font = [ThemeManager getPrimaryFontBold:13.0f];
+    self.roomNameLabel.textColor = [ThemeManager getPrimaryColorDark];
+    self.roomNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.roomNameLabel.numberOfLines = 0;
+    self.roomNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.contentView addSubview:self.roomNameLabel];
+    
     self.dateLabel = [[UILabel alloc]init];
     self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.dateLabel.font = [ThemeManager getPrimaryFontMedium:12.0f];
@@ -78,14 +88,19 @@
         @{
           @"message": self.messageLabel,
           @"date": self.dateLabel,
-          @"notifyIcon": self.exclamationImageView
+          @"notifyIcon": self.exclamationImageView,
+          @"room": self.roomNameLabel
           };
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[message]-6-[date]-12-|" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[message]-(>=15)-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[message]-1-[room]" options:0 metrics:nil views:views]];
+                
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[room]-6-|" options:0 metrics:nil views:views]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[date]" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[room]-(>=5)-|" options:0 metrics:nil views:views]];
         
         if (!notification.read)
         {
@@ -99,6 +114,7 @@
 - (void)setNotification:(NotificationUnreadMessages *)notification
 {
     self.messageLabel.text = notification.message;
+    self.roomNameLabel.text = notification.roomName;
     self.dateLabel.text = [self configureDate:notification.created];
     
     [self setNeedsLayout];
