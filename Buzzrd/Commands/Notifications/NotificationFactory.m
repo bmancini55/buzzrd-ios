@@ -9,6 +9,7 @@
 #import "NotificationFactory.h"
 #import "NotificationInvitation.h"
 #import "NotificationType.h"
+#import "NotificationUnreadMessages.h"
 
 @implementation NotificationFactory
 
@@ -20,7 +21,9 @@
         case 1:
             return [[NotificationInvitation alloc]initWithJson:json];
             break;
-            
+        case 2:
+            return [[NotificationUnreadMessages alloc]initWithJson:json];
+            break;
         default:
             return [[Notification alloc]initWithJson:json];
             break;

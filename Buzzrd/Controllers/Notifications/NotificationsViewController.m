@@ -13,10 +13,12 @@
 #import "RemoveNotificationCommand.h"
 #import "TableSectionHeader.h"
 #import "BuzzrdNav.h"
-#import "NotificationCell.h"
+#import "NotificationInvitationCell.h"
+#import "NotificationUnreadMessagesCell.h"
 #import "RoomViewController.h"
 #import "UpdateNotificationReadCommand.h"
 #import "NotificationInvitation.h"
+#import "NotificationUnreadMessages.h"
 #import "GetRoomCommand.h"
 #import "Room.h"
 
@@ -104,9 +106,17 @@
     NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
     Notification *notification = dataSource[indexPath.row];
     
+    NotificationCell *cell;
     
-    NotificationCell *cell = [[NotificationCell alloc]initWithNotification:notification];
-    [cell setNotification:notification];
+    if ([notification.typeId isEqualToNumber:@(1)])
+    {
+        cell = [[NotificationInvitationCell alloc]initWithNotification:notification];
+        [cell setNotification:notification];
+    }
+    else{
+        cell = [[NotificationUnreadMessagesCell alloc]initWithNotification:notification];
+        [cell setNotification:notification];
+    }
     
     // Do the layout pass on the cell, which will calculate the frames for all the views based on the constraints
     // (Note that the preferredMaxLayoutWidth is set on multi-line UILabels inside the -[layoutSubviews] method
@@ -130,18 +140,35 @@
     NSMutableArray *dataSource =  [self dataSourceForTableView:tableView];
     Notification *notification = dataSource[indexPath.row];
     
-    static NSString *cellIdentifier = @"notification_cell";
-    
-    NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if(cell == nil)
+    if ([notification.typeId isEqualToNumber:@(1)])
     {
-        cell = [[NotificationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier notification:notification];
+        static NSString *cellIdentifier = @"notification_invitation_cell";
+    
+        NotificationInvitationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+        if(cell == nil)
+        {
+            cell = [[NotificationInvitationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier notification:notification];
+        }
+    
+        [cell setNotification:notification];
+        
+        return cell;
     }
-    
-    [cell setNotification:notification];
-    
-    return cell;
+    else {
+        static NSString *cellIdentifier = @"notification_messages_cell";
+        
+        NotificationUnreadMessagesCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if(cell == nil)
+        {
+            cell = [[NotificationUnreadMessagesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier notification:notification];
+        }
+        
+        [cell setNotification:notification];
+        
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -208,13 +235,36 @@
         [cell markAsRead];
     }
 
-    if ([notification.typeId intValue] == 1)
+    if ([notification.typeId isEqualToNumber:@(1)])
     {
         [self handleNotificationInvitation: (NotificationInvitation *)notification];
+    }
+    else
+    {
+        [self handleNotificationUnreadMessages: (NotificationUnreadMessages *)notification];
     }
 }
 
 - (void) handleNotificationInvitation:(NotificationInvitation *)notification
+{
+    if (notification.read == false) {
+        notification.read = true;
+        UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
+        command.notification = notification;
+        [command listenForCompletion:self selector:@selector(updateNotificationReadDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+    else
+    {
+        // Get the room
+        GetRoomCommand *command = [[GetRoomCommand alloc]init];
+        command.roomId = notification.roomId;
+        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+        [[BuzzrdAPI dispatch] enqueueCommand:command];
+    }
+}
+
+- (void) handleNotificationUnreadMessages:(NotificationUnreadMessages *)notification
 {
     if (notification.read == false) {
         notification.read = true;
@@ -238,13 +288,26 @@
     UpdateNotificationReadCommand *command = (UpdateNotificationReadCommand *)info.object;
     if(command.status == kSuccess) {
         
-        NotificationInvitation *notification = (NotificationInvitation *) command.notification;
-        
-        // Get the room
-        GetRoomCommand *command = [[GetRoomCommand alloc]init];
-        command.roomId = notification.roomId;
-        [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
-        [[BuzzrdAPI dispatch] enqueueCommand:command];
+        if ([command.notification.typeId isEqualToNumber:@(1)])
+        {
+            NotificationInvitation *notification = (NotificationInvitation *) command.notification;
+            
+            // Get the room
+            GetRoomCommand *command = [[GetRoomCommand alloc]init];
+            command.roomId = notification.roomId;
+            [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+            [[BuzzrdAPI dispatch] enqueueCommand:command];
+        }
+        else
+        {
+            NotificationUnreadMessages *notification = (NotificationUnreadMessages *) command.notification;
+            
+            // Get the room
+            GetRoomCommand *command = [[GetRoomCommand alloc]init];
+            command.roomId = notification.roomId;
+            [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
+            [[BuzzrdAPI dispatch] enqueueCommand:command];
+        }
     }
     else
     {

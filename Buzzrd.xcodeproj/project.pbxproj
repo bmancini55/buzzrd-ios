@@ -157,6 +157,9 @@
 		C2E86D6C1A05C70300565931 /* Nearby_G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D681A05C70300565931 /* Nearby_G@2x.png */; };
 		C2E86D6D1A05C70300565931 /* Notify_G@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D691A05C70300565931 /* Notify_G@2x.png */; };
 		C2E86D6F1A09C0B900565931 /* Notify_Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E86D6E1A09C0B900565931 /* Notify_Y@2x.png */; };
+		C2E86D721A0B01CC00565931 /* NotificationInvitationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E86D711A0B01CC00565931 /* NotificationInvitationCell.m */; };
+		C2E86D781A0B168600565931 /* NotificationUnreadMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E86D771A0B168600565931 /* NotificationUnreadMessages.m */; };
+		C2E86D7B1A0B1F1B00565931 /* NotificationUnreadMessagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E86D7A1A0B1F1B00565931 /* NotificationUnreadMessagesCell.m */; };
 		C2FC0460193EB20E000183CC /* buzzrd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FC045F193EB20E000183CC /* buzzrd@2x.png */; };
 		C2FC0467193FF94E000183CC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0466193FF94E000183CC /* ThemeManager.m */; };
 		C2FC046A193FF969000183CC /* DefaultTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FC0469193FF969000183CC /* DefaultTheme.m */; };
@@ -443,6 +446,12 @@
 		C2E86D681A05C70300565931 /* Nearby_G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nearby_G@2x.png"; sourceTree = "<group>"; };
 		C2E86D691A05C70300565931 /* Notify_G@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notify_G@2x.png"; sourceTree = "<group>"; };
 		C2E86D6E1A09C0B900565931 /* Notify_Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notify_Y@2x.png"; sourceTree = "<group>"; };
+		C2E86D701A0B01CC00565931 /* NotificationInvitationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationInvitationCell.h; path = Views/Notification/NotificationInvitationCell.h; sourceTree = "<group>"; };
+		C2E86D711A0B01CC00565931 /* NotificationInvitationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationInvitationCell.m; path = Views/Notification/NotificationInvitationCell.m; sourceTree = "<group>"; };
+		C2E86D761A0B168600565931 /* NotificationUnreadMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationUnreadMessages.h; path = Models/NotificationUnreadMessages.h; sourceTree = "<group>"; };
+		C2E86D771A0B168600565931 /* NotificationUnreadMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationUnreadMessages.m; path = Models/NotificationUnreadMessages.m; sourceTree = "<group>"; };
+		C2E86D791A0B1F1B00565931 /* NotificationUnreadMessagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationUnreadMessagesCell.h; path = Views/Notification/NotificationUnreadMessagesCell.h; sourceTree = "<group>"; };
+		C2E86D7A1A0B1F1B00565931 /* NotificationUnreadMessagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationUnreadMessagesCell.m; path = Views/Notification/NotificationUnreadMessagesCell.m; sourceTree = "<group>"; };
 		C2FC045F193EB20E000183CC /* buzzrd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzrd@2x.png"; sourceTree = "<group>"; };
 		C2FC0465193FF94E000183CC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
 		C2FC0466193FF94E000183CC /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
@@ -815,6 +824,8 @@
 				C261DDEB1A0191EB00726576 /* NotificationInvitation.m */,
 				C261DDF01A0198C800726576 /* NotificationType.h */,
 				C261DDF11A0198C800726576 /* NotificationType.m */,
+				C2E86D761A0B168600565931 /* NotificationUnreadMessages.h */,
+				C2E86D771A0B168600565931 /* NotificationUnreadMessages.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -895,6 +906,10 @@
 			children = (
 				C261DDF41A019AA800726576 /* NotificationCell.h */,
 				C261DDF51A019AA800726576 /* NotificationCell.m */,
+				C2E86D701A0B01CC00565931 /* NotificationInvitationCell.h */,
+				C2E86D711A0B01CC00565931 /* NotificationInvitationCell.m */,
+				C2E86D791A0B1F1B00565931 /* NotificationUnreadMessagesCell.h */,
+				C2E86D7A1A0B1F1B00565931 /* NotificationUnreadMessagesCell.m */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -1259,6 +1274,7 @@
 				35A46F4A19328A4C00B615A4 /* Room.m in Sources */,
 				3561B6B8194C8C1500EF1654 /* VenueCell.m in Sources */,
 				35DB236C1A01C9B500A5DF76 /* GetRoomCommand.m in Sources */,
+				C2E86D721A0B01CC00565931 /* NotificationInvitationCell.m in Sources */,
 				35A46FDE193C01E100B615A4 /* Location.m in Sources */,
 				C290B9CE19E38C0400F6C3B4 /* GetFriendsCommand.m in Sources */,
 				357A65441A01837400DAFEDA /* ResetRoomBadgeCountCommand.m in Sources */,
@@ -1290,6 +1306,7 @@
 				351036F11981F8D000AF5C39 /* MessageCell.m in Sources */,
 				C261DDD61A008F8B00726576 /* NSObject+Helpers.m in Sources */,
 				C2BEC62119CA733700DB6BCC /* MyRoomsViewController.m in Sources */,
+				C2E86D781A0B168600565931 /* NotificationUnreadMessages.m in Sources */,
 				C261DDF61A019AA800726576 /* NotificationCell.m in Sources */,
 				35A46F9E19328A9F00B615A4 /* BaseTableViewController.m in Sources */,
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
@@ -1346,6 +1363,7 @@
 				35EB772619E18D72004B4EAD /* KeyboardBarTableView.m in Sources */,
 				C213C049199B00EB00B41A2A /* UIWindow+Helpers.m in Sources */,
 				C290B9CA19DE3EA400F6C3B4 /* RootViewController.m in Sources */,
+				C2E86D7B1A0B1F1B00565931 /* NotificationUnreadMessagesCell.m in Sources */,
 				351036E9196EF5A700AF5C39 /* CreateRoomCommand.m in Sources */,
 				35A46FD419328B1500B615A4 /* SocketIOTransportWebsocket.m in Sources */,
 				C2BEC62419CA7A0D00DB6BCC /* GetMyRoomsCommand.m in Sources */,
