@@ -28,8 +28,8 @@
 
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, nil, 0, 0);
-    CGPathAddLineToPoint(path, nil, 10, 0);
-    CGPathAddLineToPoint(path, nil, 10, 10);
+    CGPathAddLineToPoint(path, nil, 15, 0);
+    CGPathAddLineToPoint(path, nil, 15, 15);
     
     CGContextAddPath(context, path);
     CGContextFillPath(context);

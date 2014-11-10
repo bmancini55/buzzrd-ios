@@ -71,7 +71,7 @@
     self.dateLabel.textColor = [ThemeManager getPrimaryColorMedium];
     [self.contentView addSubview:self.dateLabel];
     
-    CGRect cornerIndicatorFrame = CGRectMake(CGRectGetWidth(self.frame) - 10, 0, CGRectGetWidth(self.frame), 10);
+    CGRect cornerIndicatorFrame = CGRectMake(CGRectGetWidth(self.frame) - 15, 0, CGRectGetWidth(self.frame), 15);
     self.cornerIndicator = [[CornerIndicator alloc]initWithFrame:cornerIndicatorFrame];
     self.cornerIndicator.indicatorColor = [ThemeManager getTertiaryColorDark];
     self.cornerIndicator.hidden = true;
