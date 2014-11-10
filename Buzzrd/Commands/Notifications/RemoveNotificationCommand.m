@@ -23,12 +23,9 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/me/removeNotification/"];
+    NSString *url = [self getAPIUrl:[NSString stringWithFormat:@"/api/notifications/%@", self.notification.id]];
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:self.notification.id forKey:@"notificationId"];
-    
-    [self httpPostWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
+    [self httpDeleteWithManager:manager url:url parameters:nil parser:@selector(parser:)];
 }
 
 - (id) parser:(id)rawData

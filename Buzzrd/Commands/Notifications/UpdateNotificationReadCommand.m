@@ -24,13 +24,9 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/me/notifications/updateNotificationRead"];
+    NSString *url = [self getAPIUrl:[NSString stringWithFormat:@"/api/notifications/%@/read", self.notification.id]];
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:self.notification.id forKey:@"notificationId"];
-    [parameters setValue:[NSNumber numberWithBool:self.notification.read] forKey:@"read"];
-    
-    [self httpPutWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
+    [self httpPutWithManager:manager url:url parameters:nil parser:@selector(parser:)];
 }
 
 - (id) parser:(id)rawData

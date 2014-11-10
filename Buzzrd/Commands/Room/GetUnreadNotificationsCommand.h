@@ -1,5 +1,5 @@
 //
-//  GetUnreadRoomsCommand.h
+//  GetUnreadNotificationsCommand.h
 //  Buzzrd
 //
 //  Created by Brian Mancini on 10/29/14.
@@ -8,6 +8,6 @@
 
 #import "CommandBase.h"
 
-@interface GetUnreadRoomsCommand : CommandBase
+@interface GetUnreadNotificationsCommand : CommandBase
 
 @end

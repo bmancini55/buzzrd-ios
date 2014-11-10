@@ -11,7 +11,6 @@ NSString *const BZUserWillDeauthenticateNotification = @"BZUserWillDeauthenticat
 
 NSString *const BZAppDidReceiveRoomUnreadNotification = @"BZAppDidReceiveRoomUnreadNotification";
 NSString *const BZAppDidReceiveRoomUnreadRoomIdKey = @"BZAppDidReceiveRoomUnreadRoomIdKey";
-NSString *const BZAppDidReceiveRoomUnreadMessageCountKey = @"BZAppDidReceiveRoomUnreadMessageCountKey";
 
 NSString *const BZRoomDidClearBadgeNotification = @"BZRoomDidClearBadgeNotification";
 NSString *const BZRoomDidClearBadgeRoomKey = @"BZRoomDidClearBadgeRoomKey";

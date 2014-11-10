@@ -39,7 +39,7 @@
 		3572D02D1A01B2A800F35B4A /* UploadImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3572D02B1A01B2A800F35B4A /* UploadImageCommand.m */; };
 		3576A88319A442D80071FED5 /* SubRooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3576A88219A442D80071FED5 /* SubRooms@2x.png */; };
 		357A65351A01230900DAFEDA /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65341A01230900DAFEDA /* Constants.m */; };
-		357A65411A015D7200DAFEDA /* GetUnreadRoomsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */; };
+		357A65411A015D7200DAFEDA /* GetUnreadNotificationsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65401A015D7200DAFEDA /* GetUnreadNotificationsCommand.m */; };
 		357A65441A01837400DAFEDA /* ResetRoomBadgeCountCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */; };
 		3596A55619F4A20600180DF4 /* UpdateUserDeviceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55519F4A20600180DF4 /* UpdateUserDeviceCommand.m */; };
 		3596A55919FA937400180DF4 /* CornerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596A55819FA937400180DF4 /* CornerIndicator.m */; };
@@ -233,8 +233,8 @@
 		3576A88219A442D80071FED5 /* SubRooms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubRooms@2x.png"; sourceTree = "<group>"; };
 		357A65331A01230900DAFEDA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Application/Constants.h; sourceTree = "<group>"; };
 		357A65341A01230900DAFEDA /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Application/Constants.m; sourceTree = "<group>"; };
-		357A653F1A015D7200DAFEDA /* GetUnreadRoomsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUnreadRoomsCommand.h; path = Commands/Room/GetUnreadRoomsCommand.h; sourceTree = "<group>"; };
-		357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUnreadRoomsCommand.m; path = Commands/Room/GetUnreadRoomsCommand.m; sourceTree = "<group>"; };
+		357A653F1A015D7200DAFEDA /* GetUnreadNotificationsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetUnreadNotificationsCommand.h; path = Commands/Room/GetUnreadNotificationsCommand.h; sourceTree = "<group>"; };
+		357A65401A015D7200DAFEDA /* GetUnreadNotificationsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetUnreadNotificationsCommand.m; path = Commands/Room/GetUnreadNotificationsCommand.m; sourceTree = "<group>"; };
 		357A65421A01837400DAFEDA /* ResetRoomBadgeCountCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetRoomBadgeCountCommand.h; path = Commands/Room/ResetRoomBadgeCountCommand.h; sourceTree = "<group>"; };
 		357A65431A01837400DAFEDA /* ResetRoomBadgeCountCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetRoomBadgeCountCommand.m; path = Commands/Room/ResetRoomBadgeCountCommand.m; sourceTree = "<group>"; };
 		3596A55419F4A20600180DF4 /* UpdateUserDeviceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateUserDeviceCommand.h; path = Commands/User/UpdateUserDeviceCommand.h; sourceTree = "<group>"; };
@@ -507,8 +507,6 @@
 				C2BEC62319CA7A0D00DB6BCC /* GetMyRoomsCommand.m */,
 				35DB236A1A01C9B500A5DF76 /* GetRoomCommand.h */,
 				35DB236B1A01C9B500A5DF76 /* GetRoomCommand.m */,
-				357A653F1A015D7200DAFEDA /* GetUnreadRoomsCommand.h */,
-				357A65401A015D7200DAFEDA /* GetUnreadRoomsCommand.m */,
 				C261DDB919F88D7300726576 /* RemoveRoomCommand.h */,
 				C261DDBA19F88D7300726576 /* RemoveRoomCommand.m */,
 				357A65421A01837400DAFEDA /* ResetRoomBadgeCountCommand.h */,
@@ -891,6 +889,8 @@
 			children = (
 				C261DDE41A017B5500726576 /* GetNotificationsCommand.h */,
 				C261DDE51A017B5500726576 /* GetNotificationsCommand.m */,
+				357A653F1A015D7200DAFEDA /* GetUnreadNotificationsCommand.h */,
+				357A65401A015D7200DAFEDA /* GetUnreadNotificationsCommand.m */,
 				C261DDE71A017EEA00726576 /* RemoveNotificationCommand.h */,
 				C261DDE81A017EEA00726576 /* RemoveNotificationCommand.m */,
 				C261DDED1A01945500726576 /* NotificationFactory.h */,
@@ -1312,7 +1312,7 @@
 				35A46FD519328B1500B615A4 /* SocketIOTransportXHR.m in Sources */,
 				3527766A1960E5D70095E51E /* RetryAlert.m in Sources */,
 				C213C05519A2EED300B41A2A /* PrivacyPolicyViewController.m in Sources */,
-				357A65411A015D7200DAFEDA /* GetUnreadRoomsCommand.m in Sources */,
+				357A65411A015D7200DAFEDA /* GetUnreadNotificationsCommand.m in Sources */,
 				35A46FC319328B0100B615A4 /* main.m in Sources */,
 				C261DDDD1A0176FB00726576 /* NotificationsViewController.m in Sources */,
 				35A46F3819328A2400B615A4 /* BuzzrdAPI.m in Sources */,

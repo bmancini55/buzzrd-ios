@@ -21,6 +21,7 @@
         self.message = json[@"message"];
         self.created = [DateUtils parseMongoDateString:json[@"created"]];
         self.read = [json[@"read"] boolValue];
+        self.badgeCount = [json[@"badgeCount"] unsignedIntValue];
         self.payload = json[@"payload"];
     }
     

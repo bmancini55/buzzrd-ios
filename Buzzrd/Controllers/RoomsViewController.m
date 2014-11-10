@@ -175,7 +175,6 @@
 
 - (void) didReceiveRoomUnreadNotification:(NSNotification *)notification {
     NSString *roomId = notification.userInfo[BZAppDidReceiveRoomUnreadRoomIdKey];
-    uint messageCount = [notification.userInfo[BZAppDidReceiveRoomUnreadMessageCountKey] unsignedIntValue];
 
     // declare iterator that will clear the badge
     id iterator = ^(id object, NSUInteger idx, bool *stop) {
@@ -186,7 +185,6 @@
             
             // update room data
             room.newMessages = true;
-            room.messageCount = messageCount;
             
             // update table row for room
             [self tableView:self.tableView reloadRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *created;
 @property (nonatomic) bool read;
+@property (nonatomic) uint badgeCount;
 @property (strong, nonatomic) NSDictionary *payload;
 
 -(id) initWithJson:(NSDictionary *)json;

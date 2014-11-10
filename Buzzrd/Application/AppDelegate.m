@@ -14,7 +14,6 @@
 #import "BZLocationManager.h"
 #import "RootViewController.h"
 #import "UpdateUserDeviceCommand.h"
-#import "GetUnreadRoomsCommand.h"
 
 
 @implementation AppDelegate {
@@ -56,7 +55,7 @@
     appIsActive = true;
     
     if([BuzzrdAPI current].isAuthenticated) {
-        [[BuzzrdAPI current] checkForUnreadRooms];
+        [[BuzzrdAPI current] checkForUnreadNotifications];
     }
 }
 
@@ -134,8 +133,7 @@
         // trigger notification
         [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
         @{
-           BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"],
-           BZAppDidReceiveRoomUnreadMessageCountKey: userInfo[@"messageCount"]
+           BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"]
         }];
         
         // trigger navigation to room

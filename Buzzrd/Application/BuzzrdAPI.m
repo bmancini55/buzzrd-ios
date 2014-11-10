@@ -8,8 +8,8 @@
 
 #import "BuzzrdAPI.h"
 #import "CommandBase.h"
-#import "GetUnreadRoomsCommand.h"
-#import "Room.h"
+#import "GetUnreadNotificationsCommand.h"
+#import "Notification.h"
 
 @interface BuzzrdAPI()
 
@@ -160,12 +160,12 @@
 
 // This method will call out the server and retrieve the
 // list of rooms that have pending notifications.
-- (void)checkForUnreadRooms {
-    NSLog(@"BuzzrdAPI:checkForUnreadRooms");
+- (void)checkForUnreadNotifications {
+    NSLog(@"BuzzrdAPI:checkForUnreadNotifications");
     
     if(self.isAuthenticated) {
-        GetUnreadRoomsCommand *command = [[GetUnreadRoomsCommand alloc] init];
-        [command listenForCompletion:self selector:@selector(checkForUnreadRoomsComplete:)];
+        GetUnreadNotificationsCommand *command = [[GetUnreadNotificationsCommand alloc] init];
+        [command listenForCompletion:self selector:@selector(checkForUnreadNotificationsComplete:)];
         [[BuzzrdAPI dispatch] enqueueCommand:command];
     }
 }
@@ -174,21 +174,27 @@
 // that will update any lists that have the corresponding room
 // to keep the message count and indicators in sync for rooms
 // that have notifications.
-- (void)checkForUnreadRoomsComplete:(NSNotification *)notification {
-    NSLog(@"BuzzrdAPI:checkForUnreadRoomsComplete");
+- (void)checkForUnreadNotificationsComplete:(NSNotification *)notification {
+    NSLog(@"BuzzrdAPI:checkForUnreadNotificationsComplete");
     
-    GetUnreadRoomsCommand *command = (GetUnreadRoomsCommand *)notification.object;
+    GetUnreadNotificationsCommand *command = (GetUnreadNotificationsCommand *)notification.object;
     if(command.status == kSuccess) {
         
-        NSArray *rooms = (NSArray *)command.results;
-        [rooms enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSArray *notifications = (NSArray *)command.results;
+        [notifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            Room *room = (Room *)obj;
-            [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
-            @{
-                BZAppDidReceiveRoomUnreadRoomIdKey: room.id,
-                BZAppDidReceiveRoomUnreadMessageCountKey: [NSNumber numberWithLongLong:room.messageCount]
-            }];
+            Notification *notification = (Notification *)obj;
+            
+            switch([notification.typeId integerValue]) {
+                case 1:
+                    break;
+                case 2:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
+                    @{
+                       BZAppDidReceiveRoomUnreadRoomIdKey: [notification.payload valueForKey:@"roomId"]
+                    }];
+                    break;
+            }
         }];
     }
     

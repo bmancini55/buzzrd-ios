@@ -26,11 +26,9 @@
 {
     AFHTTPSessionManager *manager = [self getJSONRequestManager];
     
-    NSString *url = [self getAPIUrl:@"/api/me/rooms/reset"];
+    NSString *url = [self getAPIUrl:[NSString stringWithFormat:@"/api/me/rooms/%@/read", self.roomId]];
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:self.roomId forKey:@"roomId"];    
-    [self httpPutWithManager:manager url:url parameters:parameters parser:@selector(parser:)];
+    [self httpPutWithManager:manager url:url parameters:nil parser:@selector(parser:)];
 }
 
 - (id) parser:(id)rawData

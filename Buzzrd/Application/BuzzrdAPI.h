@@ -21,7 +21,7 @@
 
 - (void) clearLocalStorage;
 - (void) registerForRemoteNotifications;
-- (void) checkForUnreadRooms;
+- (void) checkForUnreadNotifications;
 
 - (bool) isAuthenticated;
 
