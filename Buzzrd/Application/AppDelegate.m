@@ -127,8 +127,8 @@
     
         // update the badge count
         NSDictionary *aps = userInfo[@"aps"];
-        int badgeCount = (int)[aps[@"badge"] integerValue];
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+        uint badgeCount = [aps[@"badge"] unsignedIntValue];
+        [[BuzzrdAPI current] setBadgeCount:badgeCount];
         
         // trigger notification
         [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:

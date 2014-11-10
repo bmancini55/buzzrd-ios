@@ -10,6 +10,7 @@
 #import "CommandBase.h"
 #import "GetUnreadNotificationsCommand.h"
 #import "Notification.h"
+#import "MMDrawerController.h"
 
 @interface BuzzrdAPI()
 
@@ -181,9 +182,11 @@
     if(command.status == kSuccess) {
         
         NSArray *notifications = (NSArray *)command.results;
+        __block uint totalBadgeCount = 0;
         [notifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             Notification *notification = (Notification *)obj;
+            totalBadgeCount += totalBadgeCount + notification.badgeCount;
             
             switch([notification.typeId integerValue]) {
                 case 1:
@@ -196,6 +199,9 @@
                     break;
             }
         }];
+        
+        // set badge counts
+        [self setBadgeCount:totalBadgeCount];
     }
     
     // handle errors
@@ -204,6 +210,27 @@
     }
 }
 
+
+- (void)setBadgeCount:(uint)badgeCount {
+    NSLog(@"BuzzrdAPI:setBadgeCount");
+    NSLog(@"  -> Settting to %u", badgeCount);
+    
+    // set global badge count
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+    
+    // set badge count for tab bar
+    UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if([rootController.presentedViewController class] == [MMDrawerController class]) {
+        MMDrawerController *drawer = (MMDrawerController *)rootController.presentedViewController;
+        UITabBarController *tabController = (UITabBarController *)drawer.centerViewController;
+        UITabBarItem *item = [tabController.tabBar.items objectAtIndex:2];
+        
+        if(badgeCount > 0)
+            item.badgeValue = [NSString stringWithFormat:@"%u", badgeCount];
+        else
+            item.badgeValue = nil;
+    }
+}
 
 
 @end

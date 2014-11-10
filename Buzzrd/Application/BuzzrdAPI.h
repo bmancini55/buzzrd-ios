@@ -20,8 +20,8 @@
 + (NSString *) apiURLBase;
 
 - (void) clearLocalStorage;
-- (void) registerForRemoteNotifications;
 - (void) checkForUnreadNotifications;
+- (void) setBadgeCount:(uint)badgeCount;
 
 - (bool) isAuthenticated;
 
