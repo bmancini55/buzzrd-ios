@@ -69,15 +69,15 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController, friendsNavController, notificationsNavController];
+    tabBarController.viewControllers = @[nearbyRoomsNavController, myRoomsNavController, notificationsNavController, friendsNavController];
     
     [[tabBarController.tabBar.items objectAtIndex:0] setTitle:[NSLocalizedString(@"nearby", nil) uppercaseString]];
     
     [[tabBarController.tabBar.items objectAtIndex:1] setTitle:[NSLocalizedString(@"my_rooms", nil) uppercaseString]];
     
-    [[tabBarController.tabBar.items objectAtIndex:2] setTitle:[NSLocalizedString(@"Friends", nil) uppercaseString]];
+    [[tabBarController.tabBar.items objectAtIndex:2] setTitle:[NSLocalizedString(@"Notifications", nil) uppercaseString]];
     
-    [[tabBarController.tabBar.items objectAtIndex:3] setTitle:[NSLocalizedString(@"Notifications", nil) uppercaseString]];
+    [[tabBarController.tabBar.items objectAtIndex:3] setTitle:[NSLocalizedString(@"Friends", nil) uppercaseString]];
     
     [[UITabBar appearance] setBarTintColor:[ThemeManager getPrimaryColorDark]];
     [[UITabBar appearance] setTintColor:([ThemeManager getSecondaryColorMedium])];

@@ -12,6 +12,7 @@
 #import "NSDate+Helpers.h"
 #import "CornerIndicator.h"
 #import "NotificationUnreadMessages.h"
+#import "UIImage+Alpha.h"
 
 @interface NotificationUnreadMessagesCell()
 
@@ -43,8 +44,9 @@
 {
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
     
-    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 17, 40)];
-    self.exclamationImageView.image = [UIImage imageNamed:@"Notify_Y.png"];
+    float imageAlpha = 0.75;
+    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 14, 34)];
+    self.exclamationImageView.image = [[UIImage imageNamed:@"Notify_Y.png"] imageByApplyingAlpha:imageAlpha];
     [self.contentView addSubview:self.exclamationImageView];
     
     self.messageLabel = [[UILabel alloc]init];
