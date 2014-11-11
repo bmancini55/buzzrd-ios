@@ -130,17 +130,23 @@
         uint badgeCount = [aps[@"badge"] unsignedIntValue];
         [[BuzzrdAPI current] setBadgeCount:badgeCount];
         
-        // trigger notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
-        @{
-           BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"]
-        }];
         
-        // trigger navigation to room
-        if(!appIsActive) {
-            [BuzzrdNav navigateToRoom:userInfo[@"roomId"]];
+        // trigger notification
+        switch([userInfo[@"typeId"] intValue])
+        {
+            case 1: // invite
+                break;
+                
+            case 2: // message
+                [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceiveRoomUnreadNotification object:nil userInfo:
+                 @{ BZAppDidReceiveRoomUnreadRoomIdKey: userInfo[@"roomId"] }];
+                break;
         }
         
+        // trigger navigation to room if we had one
+        if(!appIsActive && userInfo[@"roomId"]) {
+            [BuzzrdNav navigateToRoom:userInfo[@"roomId"]];
+        }
     }
 }
 
