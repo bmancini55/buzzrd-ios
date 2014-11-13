@@ -78,6 +78,8 @@
     
     self.notifications = notifications;
     [self.tableView reloadData];
+    
+    [[BuzzrdAPI current] updateBadgeCountWithArray:notifications];
 }
 
 #pragma mark - Table view data source
