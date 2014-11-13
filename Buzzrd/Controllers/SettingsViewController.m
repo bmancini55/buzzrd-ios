@@ -171,6 +171,7 @@
     
     if(command.status == kSuccess)
     {
+        [[BuzzrdAPI current] updateBadgeCount:(uint)nil];
         [self dismissViewControllerAnimated:NO completion:nil];
     }
     else
