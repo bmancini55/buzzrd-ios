@@ -45,8 +45,9 @@
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
     
     float imageAlpha = 0.75;
-    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 14, 34)];
+    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.exclamationImageView.image = [[UIImage imageNamed:@"Notify_Y.png"] imageByApplyingAlpha:imageAlpha];
+    self.exclamationImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.exclamationImageView];
     
     self.messageLabel = [[UILabel alloc]init];
@@ -94,20 +95,18 @@
           @"room": self.roomNameLabel
           };
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[message]-6-[date]-12-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[message]-(>=6)-[date]-12-|" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[message]-1-[room]" options:0 metrics:nil views:views]];
-                
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[room]-6-|" options:0 metrics:nil views:views]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[message]-1-[room]" options:0 metrics:nil views:views]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[date]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[room]-(>=5)-|" options:0 metrics:nil views:views]];
-        
-        if (!notification.read)
-        {
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[notifyIcon]-(>=5)-|" options:0 metrics:nil views:views]];
-        }
+
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[notifyIcon(14)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[notifyIcon(32)]" options:0 metrics:nil views:views]];
+    
     }
     
     [super updateConstraints];
@@ -115,7 +114,7 @@
 
 - (void)setNotification:(NotificationUnreadMessages *)notification
 {
-    self.messageLabel.text = notification.message;
+    self.messageLabel.text = [notification.message stringByReplacingOccurrencesOfString:@"[badgeCount]" withString:[NSString stringWithFormat:@"%u", notification.badgeCount]];
     self.roomNameLabel.text = notification.roomName;
     self.dateLabel.text = [self configureDate:notification.created];
     

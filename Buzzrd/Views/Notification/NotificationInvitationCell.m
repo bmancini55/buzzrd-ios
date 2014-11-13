@@ -47,8 +47,9 @@
     self.backgroundColor = [ThemeManager getPrimaryColorLight];
     
     float imageAlpha = 0.75;
-    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 14, 34)];
+    self.exclamationImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.exclamationImageView.image = [[UIImage imageNamed:@"Notify_Y.png"] imageByApplyingAlpha:imageAlpha];
+    self.exclamationImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.exclamationImageView];
     
     self.senderNameLabel = [[UILabel alloc]init];
@@ -101,7 +102,8 @@
           @"sender": self.senderNameLabel,
           @"message": self.messageLabel,
           @"room": self.roomNameLabel,
-          @"date": self.dateLabel
+          @"date": self.dateLabel,
+          @"notifyIcon": self.exclamationImageView
           };
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[sender]-(>=6)-[date]" options:0 metrics:nil views:views]];
@@ -112,11 +114,13 @@
 
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[date]-12-|" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[sender]-1-[message]-1-[room]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[sender]-(-2)-[message]-1-[room]" options:0 metrics:nil views:views]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[date]" options:0 metrics:nil views:views]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[room]-5-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[notifyIcon(14)]" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[notifyIcon(32)]" options:0 metrics:nil views:views]];
+        
     }
     
     [super updateConstraints];
