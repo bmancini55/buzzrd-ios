@@ -266,7 +266,8 @@
 
 - (void) handleNotificationUnreadMessages:(NotificationUnreadMessages *)notification
 {
-    if (notification.read == false) {
+    // ignore updating read status for room related notifications, as these will be updated when the room loads
+    if (notification.read == false && [notification.typeId intValue] != 1 && [notification.typeId intValue] != 2) {
         notification.read = true;
         UpdateNotificationReadCommand *command = [[UpdateNotificationReadCommand alloc]init];
         command.notification = notification;
@@ -276,6 +277,7 @@
     else
     {
         // Get the room
+        notification.read = true;
         GetRoomCommand *command = [[GetRoomCommand alloc]init];
         command.roomId = notification.roomId;
         [command listenForCompletion:self selector:@selector(getRoomDidComplete:)];
