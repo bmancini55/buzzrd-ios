@@ -188,6 +188,7 @@
     if(command.status == kSuccess) {
         [self.notifications removeObjectAtIndex:command.indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[command.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [[BuzzrdAPI current] decrementBadgeCount:command.notification.badgeCount];
     }
     else
     {

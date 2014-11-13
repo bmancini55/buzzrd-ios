@@ -23,6 +23,7 @@
 - (void) checkForUnreadNotifications;
 - (void) updateBadgeCount:(uint)badgeCount;
 - (void) updateBadgeCountWithArray:(NSArray *)notifications;
+- (void) decrementBadgeCount:(uint)amount;
 
 - (bool) isAuthenticated;
 

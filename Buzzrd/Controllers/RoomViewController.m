@@ -298,13 +298,11 @@
     
     ResetRoomBadgeCountCommand *command = notification.object;
     if(command.status == kSuccess) {
-        long clearCount = [command.results longLongValue];
-        NSLog(@"  -> Resting %lu", clearCount);
+        uint clearCount = [command.results unsignedIntValue];
+        NSLog(@"  -> Resting %u", clearCount);
         
         // reset the badge count for the app
-        long currentBadgeCount = [[UIApplication sharedApplication] applicationIconBadgeNumber];
-        uint newBadgeCount = (uint)MAX(currentBadgeCount - clearCount, 0);
-        [[BuzzrdAPI current] updateBadgeCount:newBadgeCount];
+        [[BuzzrdAPI current] decrementBadgeCount:clearCount];
     
         // send out application notification to clear unread status
         NSDictionary *userInfo =  @{ BZRoomDidClearBadgeRoomKey : self.room.id };

@@ -243,5 +243,11 @@
     [self updateBadgeCount:totalBadgeCount];
 }
 
+- (void)decrementBadgeCount:(uint)amount {
+    long currentBadgeCount = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+    uint newBadgeCount = (uint)MAX(currentBadgeCount - amount, 0);
+    [self updateBadgeCount:newBadgeCount];
+}
+
 
 @end
