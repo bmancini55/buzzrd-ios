@@ -182,12 +182,9 @@
     if(command.status == kSuccess) {
         
         NSArray *notifications = (NSArray *)command.results;
-        __block uint totalBadgeCount = 0;
         [notifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             Notification *notification = (Notification *)obj;
-            totalBadgeCount += notification.badgeCount;
-            
             switch([notification.typeId integerValue]) {
                 case 1:
                     break;
@@ -201,7 +198,7 @@
         }];
         
         // set badge counts
-        [self setBadgeCount:totalBadgeCount];
+        [self updateBadgeCountWithArray:notifications];
     }
     
     // handle errors
@@ -211,8 +208,8 @@
 }
 
 
-- (void)setBadgeCount:(uint)badgeCount {
-    NSLog(@"BuzzrdAPI:setBadgeCount");
+- (void)updateBadgeCount:(uint)badgeCount {
+    NSLog(@"BuzzrdAPI:updateBadgeCount");
     NSLog(@"  -> Settting to %u", badgeCount);
     
     // set global badge count
@@ -230,6 +227,20 @@
         else
             item.badgeValue = nil;
     }
+}
+
+- (void)updateBadgeCountWithArray:(NSArray *)notifications {
+    NSLog(@"BuzzrdAPI:updateBadgeCountWithArray");
+    
+    __block uint totalBadgeCount = 0;
+    [notifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Notification *notification = (Notification *)obj;
+        if(!notification.read) {
+            totalBadgeCount += notification.badgeCount;
+        }
+    }];
+    
+    [self updateBadgeCount:totalBadgeCount];
 }
 
 

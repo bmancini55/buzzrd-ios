@@ -128,7 +128,7 @@
         // update the badge count
         NSDictionary *aps = userInfo[@"aps"];
         uint badgeCount = [aps[@"badge"] unsignedIntValue];
-        [[BuzzrdAPI current] setBadgeCount:badgeCount];
+        [[BuzzrdAPI current] updateBadgeCount:badgeCount];
         
         
         // trigger notification

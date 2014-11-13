@@ -21,7 +21,8 @@
 
 - (void) clearLocalStorage;
 - (void) checkForUnreadNotifications;
-- (void) setBadgeCount:(uint)badgeCount;
+- (void) updateBadgeCount:(uint)badgeCount;
+- (void) updateBadgeCountWithArray:(NSArray *)notifications;
 
 - (bool) isAuthenticated;
 
