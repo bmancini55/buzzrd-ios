@@ -186,7 +186,7 @@
         [notifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             Notification *notification = (Notification *)obj;
-            totalBadgeCount += totalBadgeCount + notification.badgeCount;
+            totalBadgeCount += notification.badgeCount;
             
             switch([notification.typeId integerValue]) {
                 case 1:
