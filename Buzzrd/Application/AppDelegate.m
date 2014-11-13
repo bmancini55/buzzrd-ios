@@ -67,11 +67,13 @@
 - (void)userDidAuthenticate:(NSNotification *)notification {
     NSLog(@"AppDelegate:userDidAuthenticate");
     [self updateDeviceTokenOnServer:[BuzzrdAPI current].deviceToken];
+    [[BuzzrdAPI current] checkForUnreadNotifications];
 }
 
 - (void)userWillDeauthenticate:(NSNotification *)notification {
     NSLog(@"AppDelegate:userWillAuthenticate");
     [self updateDeviceTokenOnServer:nil];
+    [[BuzzrdAPI current] updateBadgeCount:(uint)nil];
 }
 
 

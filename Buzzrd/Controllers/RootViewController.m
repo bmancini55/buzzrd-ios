@@ -113,6 +113,9 @@
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar];
     
     [self presentViewController:drawerController animated:false completion:nil];
+    
+    // sync badge count between application and notification tab
+    [tabBarController.tabBar.items[2] setBadgeValue:[NSString stringWithFormat:@"%lu", [[UIApplication sharedApplication] applicationIconBadgeNumber]]];
 }
 
 @end
