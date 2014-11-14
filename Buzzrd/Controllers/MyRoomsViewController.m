@@ -69,6 +69,9 @@
                                             @"newMessages": [NSNumber numberWithUnsignedInt:0] }
         };
         [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomPropsDidChangeNotification object:nil userInfo:userInfo];
+        
+        // attach the footer
+        [super attachFooterToTableView:self.tableView];
     }
     else
     {

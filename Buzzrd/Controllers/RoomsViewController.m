@@ -401,6 +401,9 @@
     [self.tableView insertRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
+    
+    // attach footer view
+    [self attachFooterToTableView:self.tableView];
 
     // join the room
     [self joinRoom:room];

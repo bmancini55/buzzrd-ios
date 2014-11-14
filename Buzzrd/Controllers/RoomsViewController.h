@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSMutableArray *searchResults;
 
 - (void)loadRoomsWithSearch:(NSString *)search;
+- (void)attachFooterToTableView:(UITableView *)tableView;
 
 @end
