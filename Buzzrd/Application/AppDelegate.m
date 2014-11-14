@@ -124,6 +124,8 @@
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"AppDelegate:didReceiveRemoteNotification");
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:BZAppDidReceivePushNotification object:nil userInfo:nil];
+    
     // Update when user is authenticated
     if([BuzzrdAPI current].isAuthenticated) {
     

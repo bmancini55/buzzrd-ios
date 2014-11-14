@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
+// On Push Notification
+extern NSString *const BZAppDidReceivePushNotification;
+
 // Authentication and deauthentication events
 extern NSString *const BZUserDidAuthenticateNotification;
 extern NSString *const BZUserWillDeauthenticateNotification;

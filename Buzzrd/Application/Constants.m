@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Buzzrd. All rights reserved.
 //
 
+NSString *const BZAppDidReceivePushNotification = @"BZAppDidReceivePushNotification";
+
 NSString *const BZUserDidAuthenticateNotification = @"BZUserDidAuthenticateNotification";
 NSString *const BZUserWillDeauthenticateNotification = @"BZUserWillDeauthenticateNotification";
 

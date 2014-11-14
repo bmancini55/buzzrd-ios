@@ -49,6 +49,9 @@
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(tableViewWillRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNotifications) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNotifications) name:BZAppDidReceivePushNotification object:nil];
 }
 
 - (void) addSettingsButton
