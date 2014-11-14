@@ -21,6 +21,7 @@
 #import "NotificationUnreadMessages.h"
 #import "GetRoomCommand.h"
 #import "Room.h"
+#import "ThemeManager.h"
 
 @interface NotificationsViewController ()
 
@@ -37,6 +38,7 @@
     self.title = NSLocalizedString(@"Notifications", nil);
     self.navigationController.title = [NSLocalizedString(@"Notifications", nil) uppercaseString];
     self.sectionHeaderTitle = [NSLocalizedString(@"Notifications", nil) uppercaseString];
+    self.emptyNote = NSLocalizedString(@"notifications_empty_note", nil);
     
     [self addSettingsButton];
     
@@ -78,6 +80,8 @@
     
     self.notifications = notifications;
     [self.tableView reloadData];
+    
+    [self attachFooterToTableView:self.tableView];
     
     [[BuzzrdAPI current] updateBadgeCountWithArray:notifications];
 }
@@ -339,5 +343,36 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self loadNotifications];
 }
+
+- (void) attachFooterToTableView:(UITableView *)tableView
+{
+    
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    
+    // no rows, show the create button
+    if(dataSource.count == 0) {
+        UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130)];
+        
+        UILabel *note = [[UILabel alloc]init];
+        note.translatesAutoresizingMaskIntoConstraints = NO;
+        note.numberOfLines = 0;
+        note.font = [ThemeManager getPrimaryFontRegular:13.0];
+        note.textColor = [ThemeManager getPrimaryColorDark];
+        note.text = self.emptyNote;
+        note.textAlignment = NSTextAlignmentCenter;
+        [footer addSubview:note];
+        
+        tableView.tableFooterView = footer;
+        
+        NSDictionary *views =
+        @{
+          @"note": note
+          };
+        
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(24)-[note]-(24)-|" options:0 metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=12)-[note]-(>=12)-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    }
+}
+
 
 @end

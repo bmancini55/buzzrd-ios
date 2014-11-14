@@ -191,3 +191,5 @@
 "Invite Friends" = "Invite Friends";
 
 "Notifications" = "Notifications";
+
+"notifications_empty_note" = "You don't have any notifications.";

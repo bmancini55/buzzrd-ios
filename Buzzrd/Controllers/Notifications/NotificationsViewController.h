@@ -10,6 +10,7 @@
 
 @interface NotificationsViewController : BaseTableViewController
 
+@property (strong, nonatomic) NSString *emptyNote;
 @property (strong, nonatomic) NSMutableArray *notifications;
 @property (strong, nonatomic) NSString *sectionHeaderTitle;
 
