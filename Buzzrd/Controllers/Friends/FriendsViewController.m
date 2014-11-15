@@ -14,6 +14,7 @@
 #import "BuzzrdNav.h"
 #import "CreateFriendViewController.h"
 #import "RemoveFriendCommand.h"
+#import "ThemeManager.h"
 
 @interface FriendsViewController ()
 
@@ -30,6 +31,7 @@
     self.title = NSLocalizedString(@"Friends", nil);
     self.navigationController.title = [NSLocalizedString(@"Friends", nil) uppercaseString];
     self.sectionHeaderTitle = [NSLocalizedString(@"Friends", nil) uppercaseString];
+    self.emptyNote = NSLocalizedString(@"friends_empty_note", nil);
     
     UIBarButtonItem *addFriendItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFriendTouch)];
     self.navigationItem.rightBarButtonItem = addFriendItem;
@@ -70,6 +72,8 @@
     
     self.friends = friends;
     [self.tableView reloadData];
+    
+    [self attachFooterToTableView:self.tableView];
 }
 
 #pragma mark - Table view data source
@@ -161,6 +165,7 @@
     if(command.status == kSuccess) {
         [self.friends removeObjectAtIndex:command.indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[command.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self attachFooterToTableView:self.tableView];
     }
     else
     {
@@ -203,6 +208,51 @@
     [self.tableView insertRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
+    
+    [self attachFooterToTableView:self.tableView];
+}
+
+- (void) attachFooterToTableView:(UITableView *)tableView
+{
+    
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    
+    // no rows, show the create button
+    if(dataSource.count == 0) {
+        UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130)];
+        
+        UILabel *note = [[UILabel alloc]init];
+        note.translatesAutoresizingMaskIntoConstraints = NO;
+        note.numberOfLines = 0;
+        note.font = [ThemeManager getPrimaryFontRegular:13.0];
+        note.textColor = [ThemeManager getPrimaryColorDark];
+        note.text = self.emptyNote;
+        note.textAlignment = NSTextAlignmentCenter;
+        [footer addSubview:note];
+        
+        UIButton *button = [[UIButton alloc]init];
+        button.translatesAutoresizingMaskIntoConstraints = NO;
+        button.backgroundColor = [ThemeManager getTertiaryColorDark];
+        button.layer.cornerRadius = 6.0f;
+        button.titleLabel.font = [ThemeManager getPrimaryFontRegular:15.0];
+        [button setTitle:NSLocalizedString(@"Add Friend", nil) forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(addFriendTouch) forControlEvents:UIControlEventTouchUpInside];
+        [footer addSubview:button];
+        tableView.tableFooterView = footer;
+        
+        NSDictionary *views =
+        @{
+          @"note": note,
+          @"button": button
+          };
+        
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=12)-[button(120)]-(>=12)-|" options:0 metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(24)-[note]-(24)-|" options:0 metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=12)-[note]-24-[button]-(>=12)-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    }
+    else {
+        tableView.tableFooterView = nil;
+    }
 }
 
 @end

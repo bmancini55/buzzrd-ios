@@ -10,6 +10,7 @@
 
 @interface FriendsViewController : BaseTableViewController
 
+@property (strong, nonatomic) NSString *emptyNote;
 @property (strong, nonatomic) NSMutableArray *friends;
 @property (strong, nonatomic) NSString *sectionHeaderTitle;
 

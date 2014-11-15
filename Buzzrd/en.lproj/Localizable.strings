@@ -193,3 +193,5 @@
 "Notifications" = "Notifications";
 
 "notifications_empty_note" = "You don't have any notifications.";
+
+"friends_empty_note" = "You haven't added any friends yet.";
