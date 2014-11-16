@@ -30,7 +30,7 @@
     return self;
 }
 
-- (bool) canBecomeFirstResponder {
+- (BOOL) canBecomeFirstResponder {
     return true;
 }
 

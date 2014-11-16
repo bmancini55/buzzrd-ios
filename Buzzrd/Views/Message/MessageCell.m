@@ -192,7 +192,7 @@
 - (void) configureImage:(Message *)message
 {
     if (message.revealed) {        
-        [self.profileImage loadImage:[NSString stringWithFormat:@"%@/api/users/%@/pic", [BuzzrdAPI apiURLBase], message.userId]];
+        [self.profileImage loadImageFromUrl:[NSString stringWithFormat:@"%@/api/users/%@/pic", [BuzzrdAPI apiURLBase], message.userId]];
         self.profileImage.hidden = false;
     } else {
         self.profileImage.hidden = true;
