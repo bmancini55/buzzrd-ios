@@ -248,7 +248,7 @@
         
         [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=12)-[button(120)]-(>=12)-|" options:0 metrics:nil views:views]];
         [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(24)-[note]-(24)-|" options:0 metrics:nil views:views]];
-        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=12)-[note]-24-[button]-(>=12)-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(48)-[note]-24-[button]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     }
     else {
         tableView.tableFooterView = nil;

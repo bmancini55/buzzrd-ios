@@ -19,7 +19,9 @@
 
 @property (strong, nonatomic) NSMutableArray *searchResults;
 
+- (void)didTouchAddRoom;
 - (void)loadRoomsWithSearch:(NSString *)search;
+- (NSMutableArray *) dataSourceForTableView:(UITableView *)tableView;
 - (void)attachFooterToTableView:(UITableView *)tableView;
 
 @end

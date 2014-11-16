@@ -10,6 +10,8 @@
 #import "BuzzrdAPI.h"
 #import "GetMyRoomsCommand.h"
 #import "RemoveRoomCommand.h"
+#import "ThemeManager.h"
+#import "FoursquareAttribution.h"
 
 @interface MyRoomsViewController ()
 
@@ -71,7 +73,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:BZRoomPropsDidChangeNotification object:nil userInfo:userInfo];
         
         // attach the footer
-        [super attachFooterToTableView:self.tableView];
+        [self attachFooterToTableView:self.tableView];
     }
     else
     {
@@ -84,6 +86,41 @@
 - (NSMutableArray *) dataSourceForTableView:(UITableView *)tableView
 {
     return self.rooms;
+}
+
+- (void) attachFooterToTableView:(UITableView *)tableView
+{
+    
+    NSArray *dataSource = [self dataSourceForTableView:tableView];
+    
+    // no rows, show the message
+    if(dataSource.count == 0) {
+        UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130)];
+        
+        UILabel *note = [[UILabel alloc]init];
+        note.translatesAutoresizingMaskIntoConstraints = NO;
+        note.numberOfLines = 0;
+        note.font = [ThemeManager getPrimaryFontRegular:13.0];
+        note.textColor = [ThemeManager getPrimaryColorDark];
+        note.text = self.emptyNote;
+        note.textAlignment = NSTextAlignmentCenter;
+        [footer addSubview:note];
+        
+        tableView.tableFooterView = footer;
+        
+        NSDictionary *views =
+        @{
+          @"note": note
+          };
+        
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(24)-[note]-(24)-|" options:0 metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(48)-[note]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    }
+    else {
+        CGRect footerFrame = CGRectMake(0, 0, tableView.frame.size.width, 45);
+        FoursquareAttribution *footer =[[FoursquareAttribution alloc]initWithFrame:footerFrame];
+        tableView.tableFooterView = footer;
+    }
 }
 
 @end

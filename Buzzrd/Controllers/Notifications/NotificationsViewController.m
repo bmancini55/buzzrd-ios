@@ -374,7 +374,7 @@
           };
         
         [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(24)-[note]-(24)-|" options:0 metrics:nil views:views]];
-        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=12)-[note]-(>=12)-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+        [footer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(48)-[note]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     }
     else {
         tableView.tableFooterView = nil;
