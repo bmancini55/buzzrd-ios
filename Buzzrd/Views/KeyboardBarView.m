@@ -109,6 +109,7 @@
 }
 
 
+// Support iOS8 and iOS7
 - (CGSize)intrinsicContentSize {
 
     float singleLineHeight = 29.0;
@@ -132,12 +133,13 @@
     }
     
     // scroll to the bottom
-    [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
+    //[self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
     
     return CGSizeMake(CGRectGetWidth(self.frame), newHeight);
 }
 
 
+// Supports iOS7
 - (void) layoutSubviews
 {
     CGSize newSize = [self intrinsicContentSize];
@@ -154,6 +156,9 @@
 -(void) resize {
     [self invalidateIntrinsicContentSize];
     [self layoutSubviews];
+    
+    // finally scroll to position after taking resize actions
+    [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length - 1, 1)];
 }
 
 - (void)dismissKeyboard
