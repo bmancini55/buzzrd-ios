@@ -83,11 +83,17 @@
     
     // register for notification -> move this after login so that it doesn't trigger request until user is logged in
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    bool currentRemoteRegistration = [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
-    NSLog(@"  -> Current remote registration: %u", currentRemoteRegistration);
+    // iOS8
+    if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    // iOS7
+    else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound];
+    }
+    
 }
 
 // Handle the registration of device
