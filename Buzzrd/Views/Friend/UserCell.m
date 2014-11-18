@@ -94,7 +94,8 @@
 - (void) configureImage:(User *)user
 {
     if (user.profilePic != nil) {
-        [self.profileImage loadImageFromUrl:[NSString stringWithFormat:@"http://s3.amazonaws.com/buzzrd-dev/%@", user.profilePic]];
+        NSString *path = [NSString stringWithFormat:[[BuzzrdAPI current].config.s3BucketUrl stringByAppendingString:@"%@"], user.profilePic];
+        [self.profileImage loadImageFromUrl:path];
     }
     else {
         [self.profileImage loadImage:[UIImage imageNamed:@"no_profile_pic.png"]];
