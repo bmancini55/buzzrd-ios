@@ -131,7 +131,7 @@
     self.senderNameLabel.text = notification.senderName;
     self.messageLabel.text = notification.message;
     self.roomNameLabel.text = notification.roomName;
-    self.dateLabel.text = [self configureDate:notification.created];
+    self.dateLabel.text = [self configureDate:notification.updated];
     
     [self setNeedsLayout];
     [self layoutIfNeeded];

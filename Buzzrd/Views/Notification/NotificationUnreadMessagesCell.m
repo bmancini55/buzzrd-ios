@@ -116,7 +116,7 @@
 {
     self.messageLabel.text = [notification.message stringByReplacingOccurrencesOfString:@"[badgeCount]" withString:[NSString stringWithFormat:@"%u", notification.badgeCount]];
     self.roomNameLabel.text = notification.roomName;
-    self.dateLabel.text = [self configureDate:notification.created];
+    self.dateLabel.text = [self configureDate:notification.updated];
     
     [self setNeedsLayout];
     [self layoutIfNeeded];

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *recipientId;
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSDate *created;
+@property (strong, nonatomic) NSDate *updated;
 @property (nonatomic) bool read;
 @property (nonatomic) uint badgeCount;
 @property (strong, nonatomic) NSDictionary *payload;
