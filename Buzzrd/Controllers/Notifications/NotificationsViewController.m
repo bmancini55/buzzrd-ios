@@ -77,7 +77,13 @@
 - (void)notificationsDidLoad:(NSNotification *) notif
 {
     GetNotificationsCommand *command = notif.object;
-    NSMutableArray *notifications = command.results;
+    NSMutableArray *notifications = [[NSMutableArray alloc]init];
+    
+    for(Notification* notification in command.results) {
+        if (notification.badgeCount > 0) {
+            [notifications addObject:notification];
+        }
+    }
     
     [self.refreshControl endRefreshing];
     
